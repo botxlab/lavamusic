@@ -275,6 +275,11 @@
 			"errors": {
 				"no_results": "Mevcut parça için şarkı sözleri bulunamadı.",
 				"lyrics_error": "Şarkı sözlerini alırken bir hata oluştu."
+			},
+			"options": {
+				"song": {
+					"description": "The song you want to get lyrics for."
+				}
 			}
 		},
 		"nowplaying": {

@@ -275,6 +275,11 @@
 			"errors": {
 				"no_results": "현재 트랙의 가사를 찾지 못했어요.",
 				"lyrics_error": "가사를 검색하는 도중 오류가 발생했어요."
+			},
+			"options": {
+				"song": {
+					"description": "The song you want to get lyrics for."
+				}
 			}
 		},
 		"nowplaying": {

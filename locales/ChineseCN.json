@@ -499,7 +499,12 @@
 			}
 		},
 		"lyrics": {
-			"description": "Get's the lyrics of the currently playing track"
+			"description": "Get's the lyrics of the currently playing track",
+			"options": {
+				"song": {
+					"description": "The song you want to get lyrics for."
+				}
+			}
 		},
 		"movenode": {
 			"description": "Move the players to a different Lavalink node",

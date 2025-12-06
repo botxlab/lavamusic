@@ -523,6 +523,11 @@
 			"errors": {
 				"no_results": "Nie znaleziono tekstu dla tego utworu.",
 				"lyrics_error": "Wystąpił błąd podczas pobierania tekstu piosenki."
+			},
+			"options": {
+				"song": {
+					"description": "The song you want to get lyrics for."
+				}
 			}
 		},
 		"movenode": {
