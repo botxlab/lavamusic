@@ -43,7 +43,8 @@ export default class Skip extends Command {
 				ctx.locale("event.message.no_music_playing"),
 			);
 		const autoplay = player.get<boolean>("autoplay");
-		if (!autoplay && player.queue.tracks.length === 0) {
+		const currentTrack = player.queue.current;
+		if (!currentTrack && player.queue.tracks.length === 0) {
 			return await ctx.sendMessage({
 				embeds: [
 					embed
@@ -52,15 +53,18 @@ export default class Skip extends Command {
 				],
 			});
 		}
-		const currentTrack = player.queue.current?.info;
-		player.skip(0, !autoplay);
+		if (player.queue.tracks.length === 0 && !autoplay) {
+			await player.stopPlaying(false, false);
+		} else {
+			await player.skip();
+		}
 		if (ctx.isInteraction) {
 			return await ctx.sendMessage({
 				embeds: [
 					embed.setColor(this.client.color.main).setDescription(
 						ctx.locale("cmd.skip.messages.skipped", {
-							title: currentTrack?.title,
-							uri: currentTrack?.uri,
+							title: currentTrack?.info.title,
+							uri: currentTrack?.info.uri,
 						}),
 					),
 				],
