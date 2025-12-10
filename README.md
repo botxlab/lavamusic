@@ -215,7 +215,7 @@ We ❤️ contributors! Here's how to get involved:
 - **[Invite the Bot Now](https://mintone.tech/invite)** and try it out!
 - Check our [FAQ](https://github.com/botxlab/lavamusic/wiki) for quick fixes
 - Report bugs or request features at [Issues](https://github.com/botxlab/lavamusic/issues)
-- Chat with us on [Discord](https://discord.gg/botxlab)
+- Chat with us on [Discord](https://discord.gg/UsXz2x34d4)
 - **Common Quick Fixes:**
   - **"Bot not responding?"** Check your token and Lavalink is running.
   - **Audio issues?** Verify Lavalink config and plugins.
