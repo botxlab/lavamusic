@@ -25,6 +25,8 @@
         devPackages = with pkgs; [
           git
           bun
+          docker-compose
+          biome
         ];
 
         # Environment variables
@@ -44,12 +46,17 @@
             echo "🔧 Tools:"
             echo "  • Bun $(bun --version)"
             echo "  • Git $(git version | awk '{print $3}')"
+            echo "  • Biome $(biome --version | awk '{print $2}')"
             echo ""
             echo "💻 Development commands:"
             echo "  • bun install"
             echo "  • bun run dev"
             echo "  • bun run lint"
             echo "  • bun run format"
+            echo ""
+            echo "🐳 Docker:"
+            echo "  • docker-compose up -d"
+            echo ""
           '';
         };
 
