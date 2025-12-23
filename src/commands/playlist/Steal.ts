@@ -1,5 +1,6 @@
 import type { AutocompleteInteraction } from "discord.js";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class StealPlaylist extends Command {
 	constructor(client: Lavamusic) {
@@ -23,12 +24,7 @@ export default class StealPlaylist extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: ["SendMessages", "ReadMessageHistory", "ViewChannel", "EmbedLinks"],
 				user: [],
 			},
 			slashCommand: true,
@@ -166,7 +162,7 @@ export default class StealPlaylist extends Command {
 				],
 			});
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 			return await ctx.sendMessage({
 				embeds: [
 					{

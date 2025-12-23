@@ -1,21 +1,22 @@
 /** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	ChannelType,
-	Collection,
-	EmbedBuilder,
-	MessageFlags,
-	type GuildMember,
-	InteractionType,
-	PermissionFlagsBits,
-	type TextChannel,
-	type Interaction,
-	type CacheType,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    ChannelType,
+    Collection,
+    EmbedBuilder,
+    InteractionType,
+    MessageFlags,
+    PermissionFlagsBits,
+    type CacheType,
+    type GuildMember,
+    type Interaction,
+    type TextChannel,
 } from "discord.js";
 import { T } from "../../structures/I18n";
 import { Context, Event, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class InteractionCreate extends Event {
 	constructor(client: Lavamusic, file: string) {
@@ -312,7 +313,7 @@ export default class InteractionCreate extends Event {
 					await (logs as TextChannel).send({ embeds: [embed] });
 				}
 			} catch (error) {
-				this.client.logger.error(error);
+				logger.error(error);
 				await interaction.reply({
 					content: T(locale, "event.interaction.error", { error }),
 				});
@@ -326,7 +327,7 @@ export default class InteractionCreate extends Event {
 			try {
 				await command.autocomplete(interaction);
 			} catch (error) {
-				this.client.logger.error(error);
+				logger.error(error);
 			}
 		}
 	}

@@ -3,15 +3,12 @@ import i18n from "i18n";
 import { Locale } from "discord.js";
 import defaultLanguage from "../config";
 import { Language } from "../types";
-import Logger from "./Logger";
-
-const log = new Logger();
+import logger from "./Logger";
 
 export function initI18n() {
 	i18n.configure({
 		locales: Object.keys(Language),
-		defaultLocale:
-			typeof defaultLanguage === "string" ? defaultLanguage : "EnglishUS",
+		defaultLocale: typeof defaultLanguage === "string" ? defaultLanguage : "EnglishUS",
 		directory: `${process.cwd()}/locales`,
 		retryInDefaultLocale: true,
 		objectNotation: true,
@@ -27,16 +24,12 @@ export function initI18n() {
 		},
 	});
 
-	log.info("I18n has been initialized");
+	logger.info("I18n has been initialized");
 }
 
 export { i18n };
 
-export function T(
-	locale: string,
-	text: string | i18n.TranslateOptions,
-	...params: any
-) {
+export function T(locale: string, text: string | i18n.TranslateOptions, ...params: any) {
 	i18n.setLocale(locale);
 	return i18n.__mf(text, ...params);
 }

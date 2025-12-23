@@ -1,8 +1,8 @@
+import { Events } from "discord.js";
 import { AutoPoster } from "topgg-autoposter";
 import { env } from "../../env";
 import { Event, type Lavamusic } from "../../structures/index";
-import { Events } from "discord.js";
-
+import logger from "../../structures/Logger";
 export default class Ready extends Event {
 	constructor(client: Lavamusic, file: string) {
 		super(client, file, {
@@ -11,7 +11,7 @@ export default class Ready extends Event {
 	}
 
 	public async run(): Promise<void> {
-		this.client.logger.success(`${this.client.user?.tag} is ready!`);
+		logger.success(`${this.client.user?.tag} is ready!`);
 
 		this.client.user?.setPresence({
 			activities: [
@@ -27,11 +27,11 @@ export default class Ready extends Event {
 			const autoPoster = AutoPoster(env.TOPGG, this.client);
 			setInterval(() => {
 				autoPoster.on("posted", (_stats) => {
-					this.client.logger.info("Successfully posted stats to Top.gg!");
+					logger.info("Successfully posted stats to Top.gg!");
 				});
 			}, 86400000); // 24 hours in milliseconds
 		} else {
-			this.client.logger.warn("Top.gg token not found. Skipping auto poster.");
+			logger.warn("Top.gg token not found. Skipping auto poster.");
 		}
 		await this.client.manager.init({ ...this.client.user!, shards: "auto" });
 	}

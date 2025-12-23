@@ -5,7 +5,7 @@ import {
 	type VoiceState,
 } from "discord.js";
 import { Event, type Lavamusic } from "../../structures/index";
-
+import logger from "../../structures/Logger";
 export default class VoiceStateUpdate extends Event {
 	constructor(client: Lavamusic, file: string) {
 		super(client, file, {
@@ -44,7 +44,7 @@ export default class VoiceStateUpdate extends Event {
 				try {
 					await player.destroy();
 				} catch (err) {
-					this.client.logger?.error?.("destroy() on bot leave failed", err);
+					logger?.error?.("destroy() on bot leave failed", err);
 				}
 			}
 			return;
@@ -54,7 +54,7 @@ export default class VoiceStateUpdate extends Event {
 			try {
 				await player.destroy();
 			} catch (err) {
-				this.client.logger?.error?.("destroy() when bot not in VC failed", err);
+				logger?.error?.("destroy() when bot not in VC failed", err);
 			}
 			return;
 		}
@@ -86,7 +86,7 @@ export default class VoiceStateUpdate extends Event {
 				await this.handleMove(newState, this.client);
 			}
 		} catch (err) {
-			this.client.logger?.error?.("VoiceStateUpdate handler error", err);
+			logger?.error?.("VoiceStateUpdate handler error", err);
 		}
 	}
 
@@ -106,7 +106,7 @@ export default class VoiceStateUpdate extends Event {
 					await player.resume();
 				}
 			} catch (err) {
-				client.logger?.error?.("pause/resume on serverMute toggle failed", err);
+				logger?.error?.("pause/resume on serverMute toggle failed", err);
 			}
 		}
 
@@ -124,7 +124,7 @@ export default class VoiceStateUpdate extends Event {
 						try {
 							await newState.setDeaf(true);
 						} catch (err) {
-							client.logger?.warn?.("setDeaf(true) failed", err);
+							logger?.warn?.("setDeaf(true) failed", err);
 						}
 					}
 				}
@@ -154,7 +154,7 @@ export default class VoiceStateUpdate extends Event {
 				try {
 					await bot.setSuppressed(false);
 				} catch (err) {
-					client.logger?.warn?.("setSuppressed(false) failed", err);
+					logger?.warn?.("setSuppressed(false) failed", err);
 				}
 			}
 		}
@@ -179,7 +179,7 @@ export default class VoiceStateUpdate extends Event {
 					try {
 						await newState.setDeaf(true);
 					} catch (err) {
-						client.logger?.warn?.("setDeaf(true) on join failed", err);
+						logger?.warn?.("setDeaf(true) on join failed", err);
 					}
 				}
 			}
@@ -223,7 +223,7 @@ export default class VoiceStateUpdate extends Event {
 						try {
 							await latestPlayer.destroy();
 						} catch (err) {
-							client.logger?.error?.(
+							logger?.error?.(
 								"destroy() after 5s no-listeners failed",
 								err,
 							);
@@ -256,7 +256,7 @@ export default class VoiceStateUpdate extends Event {
 				try {
 					await bot.setSuppressed(false);
 				} catch (err) {
-					client.logger?.warn?.("setSuppressed(false) failed", err);
+					logger?.warn?.("setSuppressed(false) failed", err);
 				}
 			}
 		}

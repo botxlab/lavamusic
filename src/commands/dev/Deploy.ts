@@ -1,13 +1,14 @@
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
-	type ButtonInteraction,
 	ButtonStyle,
 	ComponentType,
 	MessageFlags,
+	type ButtonInteraction,
 	type Message,
 } from "discord.js";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class Deploy extends Command {
 	constructor(client: Lavamusic) {
@@ -30,12 +31,7 @@ export default class Deploy extends Command {
 			},
 			permissions: {
 				dev: true,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: ["SendMessages", "ReadMessageHistory", "ViewChannel", "EmbedLinks"],
 				user: [],
 			},
 			slashCommand: false,
@@ -43,11 +39,7 @@ export default class Deploy extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		_args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, _args: string[]): Promise<any> {
 		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
 			new ButtonBuilder()
 				.setCustomId("deploy-global")
@@ -66,7 +58,7 @@ export default class Deploy extends Command {
 				components: [row],
 			});
 		} catch (error) {
-			client.logger.error("Failed to send the initial message:", error);
+			logger.error("Failed to send the initial message:", error);
 			return;
 		}
 
@@ -77,7 +69,7 @@ export default class Deploy extends Command {
 						content: "You can't interact with this message",
 						flags: MessageFlags.Ephemeral,
 					})
-					.catch(client.logger.error);
+					.catch(logger.error);
 				return false;
 			}
 			return true;
@@ -110,7 +102,7 @@ export default class Deploy extends Command {
 					});
 				}
 			} catch (error) {
-				client.logger.error("Failed to handle interaction:", error);
+				logger.error("Failed to handle interaction:", error);
 			}
 		});
 
@@ -119,7 +111,7 @@ export default class Deploy extends Command {
 				try {
 					await msg.delete();
 				} catch (error) {
-					client.logger.error("Failed to delete the message:", error);
+					logger.error("Failed to delete the message:", error);
 				}
 			}
 		});

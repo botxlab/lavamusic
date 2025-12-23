@@ -1,7 +1,7 @@
 import type { DestroyReasonsType, LavalinkNode } from "lavalink-client";
 import { Event, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 import { sendLog } from "../../utils/BotLog";
-
 export default class Destroy extends Event {
 	constructor(client: Lavamusic, file: string) {
 		super(client, file, {
@@ -13,7 +13,7 @@ export default class Destroy extends Event {
 		node: LavalinkNode,
 		destroyReason?: DestroyReasonsType,
 	): Promise<void> {
-		this.client.logger.success(`Node ${node.id} is destroyed!`);
+		logger.success(`Node ${node.id} is destroyed!`);
 		sendLog(
 			this.client,
 			`Node ${node.id} is destroyed: ${destroyReason}`,

@@ -1,16 +1,17 @@
 import {
-	type ColorResolvable,
-	EmbedBuilder,
-	type Guild,
-	type Message,
-	type TextChannel,
-	MessageFlags,
+    type ColorResolvable,
+    EmbedBuilder,
+    type Guild,
+    type Message,
+    MessageFlags,
+    type TextChannel,
 } from "discord.js";
 import type { Player, Track } from "lavalink-client";
 import { T } from "../structures/I18n";
 import type { Lavamusic } from "../structures/index";
 import type { Requester } from "../types";
 import { getButtons } from "./Buttons";
+import logger from "../structures/Logger";
 
 /**
  * A function that will generate an embed based on the player's current track.
@@ -76,7 +77,7 @@ async function setupStart(
 				cache: true,
 			});
 	} catch (error) {
-		client.logger.error(error);
+		logger.error(error);
 	}
 	if (m) {
 		try {
@@ -143,7 +144,7 @@ async function setupStart(
 					await player.play();
 			}
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 		}
 	}
 }
@@ -174,7 +175,7 @@ async function trackStart(
 	try {
 		m = await channel.messages.fetch({ message: msgId, cache: true });
 	} catch (error) {
-		client.logger.error(error);
+		logger.error(error);
 	}
 
 	const iconUrl =
@@ -244,7 +245,7 @@ async function updateSetup(
 				cache: true,
 			});
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 		}
 	}
 	if (m) {
@@ -352,7 +353,7 @@ async function oops(channel: TextChannel, args: string): Promise<void> {
 		return console.error(e);
 	}
 }
-export { setupStart, trackStart, buttonReply, updateSetup, oops };
+export { buttonReply, oops, setupStart, trackStart, updateSetup };
 
 /**
  * Project: lavamusic

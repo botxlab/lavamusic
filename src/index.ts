@@ -1,9 +1,7 @@
 import { start } from "./shard";
-import Logger from "./structures/Logger";
+import logger from "./structures/Logger";
 import { LAVAMUSIC_BANNER } from "./utils/LavaLogo";
 import { ThemeSelector } from "./utils/ThemeSelector";
-
-const logger = new Logger();
 
 const theme = new ThemeSelector();
 
@@ -21,7 +19,7 @@ try {
 	// Set a custom title for the console window
 	setConsoleTitle("Lavamusic");
 	console.log(theme.purpleNeon(LAVAMUSIC_BANNER));
-	start(logger);
+	start();
 } catch (err) {
 	logger.error("[CLIENT] An error has occurred:", err);
 }

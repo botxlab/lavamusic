@@ -1,16 +1,13 @@
 import { env } from "../env";
-import Logger from "../structures/Logger";
+import logger from "../structures/Logger";
 import { DatabaseType, type LavaDatabase } from "../types/database";
 import * as schema from "./schemas";
-
-const logger = new Logger();
 
 const getDatabaseType = (url?: string): DatabaseType => {
 	if (!url) return DatabaseType.PGLite;
 	if (url.startsWith("postgres://") || url.startsWith("postgresql://"))
 		return DatabaseType.Postgres;
-	if (url.startsWith("file:") || url.endsWith(".db"))
-		return DatabaseType.PGLite;
+	if (url.startsWith("file:") || url.endsWith(".db")) return DatabaseType.PGLite;
 
 	return DatabaseType.PGLite;
 };

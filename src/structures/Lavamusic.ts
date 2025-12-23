@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/style/noNonNullAssertion: explanation */
-import fs from "node:fs";
-import path from "node:path";
 import { Api } from "@top-gg/sdk";
 import {
 	ApplicationCommandType,
@@ -9,21 +7,23 @@ import {
 	EmbedBuilder,
 	Events,
 	type Interaction,
+	Locale,
 	PermissionsBitField,
 	REST,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody,
 	Routes,
 } from "discord.js";
-import { Locale } from "discord.js";
+import fs, { existsSync } from "node:fs";
+import path from "node:path";
 import config from "../config";
 import ServerData from "../database/server";
 import { env } from "../env";
 import loadPlugins from "../plugin/index";
 import { Utils } from "../utils/Utils";
 import { T, i18n, initI18n, localization } from "./I18n";
-import LavalinkClient from "./LavalinkClient";
-import Logger from "./Logger";
 import type { Command } from "./index";
+import LavalinkClient from "./LavalinkClient";
+import logger from "./Logger"; // Centralized logger instance
 
 export default class Lavamusic extends Client {
 	public commands: Collection<string, Command> = new Collection();
@@ -31,214 +31,195 @@ export default class Lavamusic extends Client {
 	public db = new ServerData();
 	public cooldown: Collection<string, any> = new Collection();
 	public config = config;
-	public logger: Logger = new Logger();
 	public readonly emoji = config.emoji;
 	public readonly color = config.color;
-	private body: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
-	public topGG!: Api;
+
+	// Utilities and Environment
 	public utils = Utils;
 	public env: typeof env = env;
 	public manager!: LavalinkClient;
+	public topGG!: Api;
 	public rest = new REST({ version: "10" }).setToken(env.TOKEN ?? "");
+	private body: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
+
 	public embed(): EmbedBuilder {
 		return new EmbedBuilder();
 	}
 
 	public async start(token: string): Promise<void> {
 		initI18n();
+
 		if (env.TOPGG) {
 			this.topGG = new Api(env.TOPGG);
 		} else {
-			this.logger.warn("Top.gg token not found!");
+			logger.warn("Top.gg token not found! Skipping Top.gg API initialization");
 		}
-		this.manager = new LavalinkClient(this);
-		await this.loadCommands();
-		this.logger.info("Successfully loaded commands!");
-		await this.loadEvents();
-		this.logger.info("Successfully loaded events!");
-		loadPlugins(this);
-		await this.login(token);
 
+		this.manager = new LavalinkClient(this);
+
+		try {
+			await this.loadCommands();
+			logger.info(`Successfully loaded ${this.commands.size} commands!`);
+
+			await this.loadEvents();
+			logger.info("Successfully loaded events!");
+
+			loadPlugins(this);
+
+			await this.login(token);
+		} catch (error) {
+			logger.error("Critical error during startup:", error);
+			process.exit(1);
+		}
+
+		this.setupInteractionListener();
+	}
+
+	/**
+	 * Setsup interaction listener for buttons.
+	 */
+	private setupInteractionListener(): void {
 		this.on(Events.InteractionCreate, async (interaction: Interaction) => {
 			if (interaction.isButton() && interaction.guildId) {
-				const setup = await this.db.getSetup(interaction.guildId);
-				if (
-					setup &&
-					interaction.channelId === setup.textId &&
-					interaction.message.id === setup.messageId
-				) {
-					this.emit("setupButtons", interaction);
+				try {
+					const setup = await this.db.getSetup(interaction.guildId);
+					if (
+						setup &&
+						interaction.channelId === setup.textId &&
+						interaction.message.id === setup.messageId
+					) {
+						this.emit("setupButtons", interaction);
+					}
+				} catch (error) {
+					logger.error("Error handling setup buttons:", error);
 				}
 			}
 		});
 	}
 
 	private async loadCommands(): Promise<void> {
-		const commandsPath = fs.readdirSync(
-			path.join(process.cwd(), "dist", "commands"),
-		);
+		const commandsPath = path.join(process.cwd(), "dist", "commands");
 
-		for (const dir of commandsPath) {
+		if (!existsSync(commandsPath)) {
+			logger.warn(`Commands directory not found at ${commandsPath}`);
+			return;
+		}
+
+		const commandDirs = fs.readdirSync(commandsPath);
+
+		for (const dir of commandDirs) {
+			const dirPath = path.join(commandsPath, dir);
+			if (!fs.lstatSync(dirPath).isDirectory()) continue;
+
 			const commandFiles = fs
-				.readdirSync(path.join(process.cwd(), "dist", "commands", dir))
+				.readdirSync(dirPath)
 				.filter((file) => file.endsWith(".js"));
 
 			for (const file of commandFiles) {
-				const cmdModule = require(
-					path.join(process.cwd(), "dist", "commands", dir, file),
-				);
-				const command: Command = new cmdModule.default(this, file);
-				command.category = dir;
+				try {
+					const cmdModule = require(path.join(dirPath, file));
+					const command: Command = new cmdModule.default(this, file);
+					command.category = dir;
 
-				this.commands.set(command.name, command);
-				command.aliases.forEach((alias: string) => {
-					this.aliases.set(alias, command.name as any);
-				});
-
-				if (command.slashCommand) {
-					const data: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-						name: command.name,
-						description: T(Locale.EnglishUS, command.description.content),
-						type: ApplicationCommandType.ChatInput,
-						options: command.options || [],
-						default_member_permissions:
-							Array.isArray(command.permissions.user) &&
-							command.permissions.user.length > 0
-								? PermissionsBitField.resolve(
-										command.permissions.user as any,
-									).toString()
-								: null,
-						name_localizations: null,
-						description_localizations: null,
-					};
-
-					const localizations: { name: any[]; description: string[] }[] = [];
-					i18n.getLocales().map((locale: any) => {
-						localizations.push(
-							localization(locale, command.name, command.description.content),
-						);
+					this.commands.set(command.name, command);
+					command.aliases.forEach((alias: string) => {
+						this.aliases.set(alias, command.name as any);
 					});
 
-					for (const localization of localizations) {
-						const [language, name] = localization.name;
-						const [language2, description] = localization.description;
-						data.name_localizations = {
-							...data.name_localizations,
-							[language]: name,
-						};
-						data.description_localizations = {
-							...data.description_localizations,
-							[language2]: description,
-						};
+					if (command.slashCommand) {
+						this.body.push(this.prepareCommandData(command));
 					}
-
-					if (command.options.length > 0) {
-						command.options.map((option) => {
-							const optionsLocalizations: {
-								name: any[];
-								description: string[];
-							}[] = [];
-							i18n.getLocales().map((locale: any) => {
-								optionsLocalizations.push(
-									localization(locale, option.name, option.description),
-								);
-							});
-
-							for (const localization of optionsLocalizations) {
-								const [language, name] = localization.name;
-								const [language2, description] = localization.description;
-								option.name_localizations = {
-									...option.name_localizations,
-									[language]: name,
-								};
-								option.description_localizations = {
-									...option.description_localizations,
-									[language2]: description,
-								};
-							}
-							option.description = T(Locale.EnglishUS, option.description);
-						});
-
-						data.options?.map((option) => {
-							if ("options" in option && option.options!.length > 0) {
-								option.options?.map((subOption) => {
-									const subOptionsLocalizations: {
-										name: any[];
-										description: string[];
-									}[] = [];
-									i18n.getLocales().map((locale: any) => {
-										subOptionsLocalizations.push(
-											localization(
-												locale,
-												subOption.name,
-												subOption.description,
-											),
-										);
-									});
-
-									for (const localization of subOptionsLocalizations) {
-										const [language, name] = localization.name;
-										const [language2, description] = localization.description;
-										subOption.name_localizations = {
-											...subOption.name_localizations,
-											[language]: name,
-										};
-										subOption.description_localizations = {
-											...subOption.description_localizations,
-											[language2]: description,
-										};
-									}
-									subOption.description = T(
-										Locale.EnglishUS,
-										subOption.description,
-									);
-								});
-							}
-						});
-					}
-					this.body.push(data);
+				} catch (error) {
+					logger.error(`Failed to load command ${file}:`, error);
 				}
 			}
 		}
 	}
 
+	private prepareCommandData(
+		command: Command,
+	): RESTPostAPIChatInputApplicationCommandsJSONBody {
+		const data: RESTPostAPIChatInputApplicationCommandsJSONBody = {
+			name: command.name,
+			description: T(Locale.EnglishUS, command.description.content),
+			type: ApplicationCommandType.ChatInput,
+			options: command.options || [],
+			default_member_permissions:
+				Array.isArray(command.permissions.user) &&
+				command.permissions.user.length > 0
+					? PermissionsBitField.resolve(
+							command.permissions.user as any,
+						).toString()
+					: null,
+			name_localizations: {},
+			description_localizations: {},
+		};
+
+		// Handle localizations
+		for (const locale of i18n.getLocales()) {
+			const loc = localization(
+				locale,
+				command.name,
+				command.description.content,
+			);
+			if (loc.name) data.name_localizations![loc.name[0] as any] = loc.name[1];
+			if (loc.description)
+				data.description_localizations![loc.description[0] as any] =
+					loc.description[1];
+		}
+
+		return data;
+	}
+
 	public async deployCommands(guildId?: string): Promise<void> {
+		if (!this.user?.id) {
+			logger.error("Cannot deploy commands: Client is not logged in.");
+			return;
+		}
+
 		const route = guildId
-			? Routes.applicationGuildCommands(this.user?.id ?? "", guildId)
-			: Routes.applicationCommands(this.user?.id ?? "");
+			? Routes.applicationGuildCommands(this.user.id, guildId)
+			: Routes.applicationCommands(this.user.id);
 
 		try {
 			await this.rest.put(route, { body: this.body });
-			this.logger.info("Successfully deployed slash commands!");
+			logger.info(`Successfully deployed ${this.body.length} slash commands!`);
 		} catch (error) {
-			this.logger.error(error);
+			logger.error("Failed to deploy commands:", error);
 		}
 	}
 
 	private async loadEvents(): Promise<void> {
-		const eventsPath = fs.readdirSync(
-			path.join(process.cwd(), "dist", "events"),
-		);
+		const eventsPath = path.join(process.cwd(), "dist", "events");
 
-		for (const dir of eventsPath) {
+		if (!existsSync(eventsPath)) return;
+
+		const eventDirs = fs.readdirSync(eventsPath);
+
+		for (const dir of eventDirs) {
+			const dirPath = path.join(eventsPath, dir);
+			if (!fs.lstatSync(dirPath).isDirectory()) continue;
+
 			const eventFiles = fs
-				.readdirSync(path.join(process.cwd(), "dist", "events", dir))
+				.readdirSync(dirPath)
 				.filter((file) => file.endsWith(".js"));
 
 			for (const file of eventFiles) {
-				const eventModule = require(
-					path.join(process.cwd(), "dist", "events", dir, file),
-				);
-				const event = new eventModule.default(this, file);
+				try {
+					const eventModule = require(path.join(dirPath, file));
+					const event = new eventModule.default(this, file);
 
-				if (dir === "player") {
-					this.manager.on(event.name, (...args: any) => event.run(...args));
-				} else if (dir === "node") {
-					this.manager.nodeManager.on(event.name, (...args: any) =>
-						event.run(...args),
-					);
-				} else {
-					this.on(event.name, (...args) => event.run(...args));
+					if (dir === "player") {
+						this.manager.on(event.name, (...args: any) => event.run(...args));
+					} else if (dir === "node") {
+						this.manager.nodeManager.on(event.name, (...args: any) =>
+							event.run(...args),
+						);
+					} else {
+						this.on(event.name, (...args) => event.run(...args));
+					}
+				} catch (error) {
+					logger.error(`Failed to load event ${file}:`, error);
 				}
 			}
 		}

@@ -1,3 +1,5 @@
+import { LogBadgeStyle } from "./types/log";
+
 export default {
 	color: {
 		red: 0xff0000,
@@ -43,6 +45,7 @@ export default {
 	links: {
 		img: "https://i.imgur.com/ud3EWNh.jpg",
 	},
+	logBadgeStyle: LogBadgeStyle.emoji,
 };
 
 /**

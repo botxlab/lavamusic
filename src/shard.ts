@@ -1,14 +1,12 @@
 import { ShardEvents, ShardingManager } from "discord.js";
 import path from "node:path";
 import { env } from "./env";
-import type Logger from "./structures/Logger";
+import logger from "./structures/Logger";
 
 /**
  * Starts the Sharding Manager
- *
- * @param logger - The logger instance
  */
-export async function start(logger: Logger) {
+export async function start() {
 	/**
 	 * Determine the file extension based on the current environment
 	 *

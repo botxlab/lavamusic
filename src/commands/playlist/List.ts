@@ -1,4 +1,5 @@
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class GetPlaylists extends Command {
 	constructor(client: Lavamusic) {
@@ -125,7 +126,7 @@ export default class GetPlaylists extends Command {
 				],
 			});
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 			return await ctx.sendMessage({
 				embeds: [
 					{

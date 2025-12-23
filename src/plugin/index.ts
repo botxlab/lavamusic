@@ -1,6 +1,7 @@
 import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import type { Lavamusic } from "../structures/index";
+import logger from "../structures/Logger";
 import type { BotPlugin } from "../types/botPlugin";
 
 /**
@@ -21,7 +22,7 @@ export default function loadPlugins(client: Lavamusic): void {
 	const pluginsFolder = join(__dirname, "plugins");
 
 	if (!existsSync(pluginsFolder)) {
-		client.logger.warn(`[PLUGINS] Directory not found at: ${pluginsFolder}`);
+		logger.warn(`[PLUGINS] Directory not found at: ${pluginsFolder}`);
 		return;
 	}
 
@@ -42,17 +43,17 @@ export default function loadPlugins(client: Lavamusic): void {
 			 * Skip to the next plugin file to prevent crash
 			 */
 			if (!isBotPlugin(plugin)) {
-				client.logger.warn(
+				logger.warn(
 					`[PLUGIN] Skipping invalid file: ${file} (Missing 'name' or 'initialize' method)`,
 				);
 				continue;
 			}
 
 			plugin.initialize(client);
-			client.logger.info(`[PLUGIN] Loaded: ${plugin.name} v${plugin.version}`);
+			logger.info(`[PLUGIN] Loaded: ${plugin.name} v${plugin.version}`);
 		} catch (error) {
 			// Catch individual plugin errors to continues loading others
-			client.logger.error(`[PLUGIN] Failed to load ${file}:`, error);
+			logger.error(`[PLUGIN] Failed to load ${file}:`, error);
 		}
 	}
 }

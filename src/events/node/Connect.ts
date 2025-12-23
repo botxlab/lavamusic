@@ -1,7 +1,7 @@
 import type { LavalinkNode } from "lavalink-client";
 import { Event, type Lavamusic } from "../../structures/index";
 import { sendLog } from "../../utils/BotLog";
-
+import logger from "../../structures/Logger";
 export default class Connect extends Event {
 	constructor(client: Lavamusic, file: string) {
 		super(client, file, {
@@ -10,7 +10,7 @@ export default class Connect extends Event {
 	}
 
 	public async run(node: LavalinkNode): Promise<void> {
-		this.client.logger.success(`Node ${node.id} is ready!`);
+		logger.success(`Node ${node.id} is ready!`);
 
 		let data = await this.client.db.get_247();
 		if (!data) return;
@@ -42,12 +42,12 @@ export default class Connect extends Event {
 							});
 							if (!player.connected) await player.connect();
 						} catch (error) {
-							this.client.logger.error(
+							logger.error(
 								`Failed to create queue for guild ${guild.id}: ${error}`,
 							);
 						}
 					} else {
-						this.client.logger.warn(
+						logger.warn(
 							`Missing channels for guild ${guild.id}. Text channel: ${main.textId}, Voice channel: ${main.voiceId}`,
 						);
 					}

@@ -1,5 +1,6 @@
 import type { GuildMember } from "discord.js";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class _247 extends Command {
 	constructor(client: Lavamusic) {
@@ -85,7 +86,7 @@ export default class _247 extends Command {
 				],
 			});
 		} catch (error) {
-			client.logger.error("Error in 247 command:", error);
+			logger.error("Error in 247 command:", error);
 			return await ctx.sendMessage({
 				embeds: [
 					embed

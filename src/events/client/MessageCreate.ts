@@ -13,7 +13,7 @@ import {
 } from "discord.js";
 import { T } from "../../structures/I18n";
 import { Context, Event, type Lavamusic } from "../../structures/index";
-
+import logger from "../../structures/Logger";
 export default class MessageCreate extends Event {
 	constructor(client: Lavamusic, file: string) {
 		super(client, file, {
@@ -308,7 +308,7 @@ export default class MessageCreate extends Event {
 		try {
 			return command.run(this.client, ctx, ctx.args);
 		} catch (error: any) {
-			this.client.logger.error(error);
+			logger.error(error);
 			await message.reply({
 				content: T(locale, "event.message.error", {
 					error: error.message || "Unknown error",

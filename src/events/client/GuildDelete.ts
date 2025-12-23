@@ -5,6 +5,7 @@ import {
 	type TextChannel,
 } from "discord.js";
 import { Event, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class GuildDelete extends Event {
 	constructor(client: Lavamusic, file: string) {
@@ -19,7 +20,7 @@ export default class GuildDelete extends Event {
 		try {
 			owner = await guild.members.fetch(guild.ownerId);
 		} catch (error) {
-			this.client.logger.error(
+			logger.error(
 				`Error fetching owner for guild ${guild.id}: ${error}`,
 			);
 		}
@@ -59,14 +60,14 @@ export default class GuildDelete extends Event {
 
 		const logChannelId = this.client.env.LOG_CHANNEL_ID;
 		if (!logChannelId) {
-			this.client.logger.error("Log channel ID not found in configuration.");
+			logger.error("Log channel ID not found in configuration.");
 			return;
 		}
 
 		try {
 			const fetched = await this.client.channels.fetch(logChannelId);
 			if (!fetched?.isTextBased()) {
-				this.client.logger.error(
+				logger.error(
 					`Channel ${logChannelId} is not a text-based channel.`,
 				);
 				return;
@@ -74,7 +75,7 @@ export default class GuildDelete extends Event {
 			const channel = fetched as TextChannel;
 			await channel.send({ embeds: [embed] });
 		} catch (error) {
-			this.client.logger.error(
+			logger.error(
 				`Error sending message to log channel ${logChannelId}: ${error}`,
 			);
 		}

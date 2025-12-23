@@ -8,8 +8,9 @@ import {
 	MessageFlags,
 	SectionBuilder,
 } from "discord.js";
+import type { LyricsLine, LyricsResult } from "lavalink-client";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
-import { LyricsLine, LyricsResult } from "lavalink-client";
+import logger from "../../structures/Logger";
 
 export default class Lyrics extends Command {
 	constructor(client: Lavamusic) {
@@ -33,13 +34,7 @@ export default class Lyrics extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"AttachFiles",
-				],
+				client: ["SendMessages", "ReadMessageHistory", "ViewChannel", "EmbedLinks", "AttachFiles"],
 				user: [],
 			},
 			slashCommand: true,
@@ -110,13 +105,11 @@ export default class Lyrics extends Command {
 			lyricsResult = await player.getCurrentLyrics(false);
 			const track = player.queue.current;
 			trackTitle =
-				(track.info.title
-					?.replace(/\[.*?]|\(.*?\)|{.*?}/g, "")
-					.trim() as string) || "Unknown Title";
+				(track.info.title?.replace(/\[.*?]|\(.*?\)|{.*?}/g, "").trim() as string) ||
+				"Unknown Title";
 			artistName =
-				(track.info.author
-					?.replace(/\[.*?]|\(.*?\)|{.*?}/g, "")
-					.trim() as string) || "Unknown Artist";
+				(track.info.author?.replace(/\[.*?]|\(.*?\)|{.*?}/g, "").trim() as string) ||
+				"Unknown Artist";
 			trackUrl = track.info.uri ?? "about:blank";
 			artworkUrl = track.info.artworkUrl || "";
 		}
@@ -124,9 +117,7 @@ export default class Lyrics extends Command {
 		const searchingContainer = new ContainerBuilder()
 			.setAccentColor(client.color.main)
 			.addTextDisplayComponents((textDisplay) =>
-				textDisplay.setContent(
-					ctx.locale("cmd.lyrics.searching", { trackTitle }),
-				),
+				textDisplay.setContent(ctx.locale("cmd.lyrics.searching", { trackTitle })),
 			);
 
 		await ctx.sendDeferMessage({
@@ -166,13 +157,9 @@ export default class Lyrics extends Command {
 				const lyricsPages = this.paginateLyrics(cleanedLyrics, ctx);
 				let currentPage = 0;
 
-				const createLyricsContainer = (
-					pageIndex: number,
-					finalState: boolean = false,
-				) => {
+				const createLyricsContainer = (pageIndex: number, finalState: boolean = false) => {
 					const currentLyricsPage =
-						lyricsPages[pageIndex] ||
-						ctx.locale("cmd.lyrics.no_lyrics_on_page");
+						lyricsPages[pageIndex] || ctx.locale("cmd.lyrics.no_lyrics_on_page");
 
 					let fullContent =
 						ctx.locale("cmd.lyrics.lyrics_for_track", {
@@ -192,18 +179,15 @@ export default class Lyrics extends Command {
 						fullContent += `\n\n*${ctx.locale("cmd.lyrics.session_expired")}*`;
 					}
 
-					const mainLyricsSection =
-						new SectionBuilder().addTextDisplayComponents((textDisplay) =>
-							textDisplay.setContent(fullContent),
-						);
+					const mainLyricsSection = new SectionBuilder().addTextDisplayComponents((textDisplay) =>
+						textDisplay.setContent(fullContent),
+					);
 
 					if (artworkUrl && artworkUrl.length > 0) {
 						mainLyricsSection.setThumbnailAccessory((thumbnail) =>
 							thumbnail
 								.setURL(artworkUrl)
-								.setDescription(
-									ctx.locale("cmd.lyrics.artwork_description", { trackTitle }),
-								),
+								.setDescription(ctx.locale("cmd.lyrics.artwork_description", { trackTitle })),
 						);
 					}
 
@@ -232,17 +216,16 @@ export default class Lyrics extends Command {
 				};
 
 				// Add subscribe/unsubscribe buttons to lyrics
-				const liveLyricsRow =
-					new ActionRowBuilder<ButtonBuilder>().addComponents(
-						new ButtonBuilder()
-							.setCustomId("lyrics_subscribe")
-							.setLabel(ctx.locale("cmd.lyrics.button_subscribe"))
-							.setStyle(ButtonStyle.Success),
-						new ButtonBuilder()
-							.setCustomId("lyrics_unsubscribe")
-							.setLabel(ctx.locale("cmd.lyrics.button_unsubscribe"))
-							.setStyle(ButtonStyle.Danger),
-					);
+				const liveLyricsRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+					new ButtonBuilder()
+						.setCustomId("lyrics_subscribe")
+						.setLabel(ctx.locale("cmd.lyrics.button_subscribe"))
+						.setStyle(ButtonStyle.Success),
+					new ButtonBuilder()
+						.setCustomId("lyrics_unsubscribe")
+						.setLabel(ctx.locale("cmd.lyrics.button_unsubscribe"))
+						.setStyle(ButtonStyle.Danger),
+				);
 
 				await ctx.editMessage({
 					components: [
@@ -281,10 +264,7 @@ export default class Lyrics extends Command {
 									if (!player || !player.playing) break;
 									const position = player.position;
 									let currentIdx = lyricsLines.findIndex((l) => {
-										const time =
-											(l as any).startTime ??
-											(l as any).time ??
-											(l as any).timestamp;
+										const time = (l as any).startTime ?? (l as any).time ?? (l as any).timestamp;
 										return typeof time === "number" && time > position;
 									});
 									if (currentIdx === -1) currentIdx = lyricsLines.length - 1;
@@ -292,9 +272,7 @@ export default class Lyrics extends Command {
 									if (currentIdx !== lastLine) {
 										lastLine = currentIdx;
 										const formatted = lyricsLines
-											.map((l, i) =>
-												i === currentIdx ? `**${l.line}**` : l.line,
-											)
+											.map((l, i) => (i === currentIdx ? `**${l.line}**` : l.line))
 											.join("\n");
 										const liveLyricsContainer = new ContainerBuilder()
 											.setAccentColor(client.color.main)
@@ -339,11 +317,7 @@ export default class Lyrics extends Command {
 									),
 								);
 							await interaction.update({
-								components: [
-									unsubLyricsContainer,
-									getNavigationRow(currentPage),
-									liveLyricsRow,
-								],
+								components: [unsubLyricsContainer, getNavigationRow(currentPage), liveLyricsRow],
 							});
 							await interaction.reply({
 								content: ctx.locale("cmd.lyrics.unsubscribed"),
@@ -386,26 +360,21 @@ export default class Lyrics extends Command {
 					}
 				}
 				// After collecting is finished
-				if (
-					ctx.guild?.members.me
-						?.permissionsIn(ctx.channelId)
-						.has("SendMessages")
-				) {
+				if (ctx.guild?.members.me?.permissionsIn(ctx.channelId).has("SendMessages")) {
 					const finalContainer = createLyricsContainer(currentPage, true);
 					// Deactivate subscription buttons after the song ends
-					const disabledLiveLyricsRow =
-						new ActionRowBuilder<ButtonBuilder>().addComponents(
-							new ButtonBuilder()
-								.setCustomId("lyrics_subscribe")
-								.setLabel(ctx.locale("cmd.lyrics.button_subscribe"))
-								.setStyle(ButtonStyle.Success)
-								.setDisabled(true),
-							new ButtonBuilder()
-								.setCustomId("lyrics_unsubscribe")
-								.setLabel(ctx.locale("cmd.lyrics.button_unsubscribe"))
-								.setStyle(ButtonStyle.Danger)
-								.setDisabled(true),
-						);
+					const disabledLiveLyricsRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+						new ButtonBuilder()
+							.setCustomId("lyrics_subscribe")
+							.setLabel(ctx.locale("cmd.lyrics.button_subscribe"))
+							.setStyle(ButtonStyle.Success)
+							.setDisabled(true),
+						new ButtonBuilder()
+							.setCustomId("lyrics_unsubscribe")
+							.setLabel(ctx.locale("cmd.lyrics.button_unsubscribe"))
+							.setStyle(ButtonStyle.Danger)
+							.setDisabled(true),
+					);
 					await ctx
 						.editMessage({
 							components: [finalContainer, disabledLiveLyricsRow],
@@ -413,7 +382,7 @@ export default class Lyrics extends Command {
 						})
 						.catch((e) => {
 							if (e?.code !== 10008) {
-								client.logger.error("Failed to clear lyrics buttons:", e);
+								logger.error("Failed to clear lyrics buttons:", e);
 							}
 						});
 				}
@@ -429,7 +398,7 @@ export default class Lyrics extends Command {
 				});
 			}
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 			const errorContainer = new ContainerBuilder()
 				.setAccentColor(client.color.red)
 				.addTextDisplayComponents((textDisplay) =>
@@ -459,11 +428,7 @@ export default class Lyrics extends Command {
 		let artworkUrl = "";
 		let lyricsResult: LyricsResult | string = "";
 
-		const searchRes = await client.manager.search(
-			songQuery,
-			ctx.author,
-			undefined,
-		);
+		const searchRes = await client.manager.search(songQuery, ctx.author, undefined);
 		const track = searchRes.tracks[0];
 		if (!track) {
 			const noResultsContainer = new ContainerBuilder()
@@ -486,8 +451,8 @@ export default class Lyrics extends Command {
 				lyricsResult = await player.getLyrics(track, true);
 			}
 		} catch (err) {
-			if (client.logger && typeof client.logger.error === "function") {
-				client.logger.error(`[LYRICS] Error fetching lyrics: ${err}`);
+			if (logger && typeof logger.error === "function") {
+				logger.error(`[LYRICS] Error fetching lyrics: ${err}`);
 			}
 			throw err;
 		}
@@ -508,10 +473,7 @@ export default class Lyrics extends Command {
 		for (const line of lines) {
 			const lineWithNewline = `${line}\n`;
 
-			if (
-				currentPage.length + lineWithNewline.length >
-				MAX_CHARACTERS_PER_PAGE
-			) {
+			if (currentPage.length + lineWithNewline.length > MAX_CHARACTERS_PER_PAGE) {
 				if (currentPage.trim()) {
 					pages.push(currentPage.trim());
 				}
@@ -533,11 +495,8 @@ export default class Lyrics extends Command {
 	}
 
 	private cleanLyrics(lyrics: string): string {
-		let cleaned = lyrics
-			.replace(
-				/^(\d+\s*Contributors.*?Lyrics|.*Contributors.*|Lyrics\s*|.*Lyrics\s*)$/gim,
-				"",
-			)
+		const cleaned = lyrics
+			.replace(/^(\d+\s*Contributors.*?Lyrics|.*Contributors.*|Lyrics\s*|.*Lyrics\s*)$/gim, "")
 			.replace(/^[\s\n\r]+/, "")
 			.replace(/[\s\n\r]+$/, "")
 			.replace(/\n{3,}/g, "\n\n");

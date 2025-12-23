@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/style/useTemplate: explanation */
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class MoveNode extends Command {
 	constructor(client: Lavamusic) {
@@ -273,7 +274,7 @@ export default class MoveNode extends Command {
 			}
 			return;
 		} catch (error) {
-			client.logger.error("Failed to move player nodes:", error);
+			logger.error("Failed to move player nodes:", error);
 			// Error handling
 			if (
 				ctx.interaction &&
