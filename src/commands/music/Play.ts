@@ -1,19 +1,27 @@
-/** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import type {
 	ApplicationCommandOptionChoiceData,
 	AutocompleteInteraction,
 	VoiceChannel,
 } from "discord.js";
 import type { SearchResult } from "lavalink-client";
+import { I18N, t } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
 import { applyFairPlayToQueue } from "../../utils/functions/player";
+import {
+	Connect,
+	EmbedLinks,
+	ReadMessageHistory,
+	SendMessages,
+	Speak,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 export default class Play extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "play",
 			description: {
-				content: "cmd.play.description",
+				content: I18N.commands.play.description,
 				examples: [
 					"play example",
 					"play https://www.youtube.com/watch?v=example",
@@ -35,21 +43,14 @@ export default class Play extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"Connect",
-					"Speak",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks, Connect, Speak],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "song",
-					description: "cmd.play.options.song",
+					description: t(I18N.commands.play.options.song),
 					type: 3,
 					required: true,
 					autocomplete: true,
@@ -58,16 +59,11 @@ export default class Play extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const query = args.join(" ");
-		await ctx.sendDeferMessage(ctx.locale("cmd.play.loading"));
+		await ctx.sendDeferMessage(ctx.locale(I18N.commands.play.loading));
 		let player = client.manager.getPlayer(ctx.guild.id);
-		const memberVoiceChannel = (ctx.member as any).voice
-			.channel as VoiceChannel;
+		const memberVoiceChannel = (ctx.member as any).voice.channel as VoiceChannel;
 
 		if (!player)
 			player = client.manager.createPlayer({
@@ -81,10 +77,7 @@ export default class Play extends Command {
 
 		if (!player.connected) await player.connect();
 
-		const response = (await player.search(
-			{ query: query },
-			ctx.author,
-		)) as SearchResult;
+		const response = (await player.search({ query: query }, ctx.author)) as SearchResult;
 		const embed = this.client.embed();
 
 		if (!response || response.tracks?.length === 0) {
@@ -93,14 +86,12 @@ export default class Play extends Command {
 				embeds: [
 					embed
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.play.errors.search_error")),
+						.setDescription(ctx.locale(I18N.commands.play.errors.search_error)),
 				],
 			});
 		}
 
-		await player.queue.add(
-			response.loadType === "playlist" ? response.tracks : response.tracks[0],
-		);
+		await player.queue.add(response.loadType === "playlist" ? response.tracks : response.tracks[0]);
 
 		const fairPlayEnabled = player.get<boolean>("fairplay");
 		if (fairPlayEnabled) {
@@ -112,7 +103,7 @@ export default class Play extends Command {
 				content: "",
 				embeds: [
 					embed.setColor(this.client.color.main).setDescription(
-						ctx.locale("cmd.play.added_playlist_to_queue", {
+						ctx.locale(I18N.commands.play.added_playlist_to_queue, {
 							length: response.tracks.length,
 						}),
 					),
@@ -123,7 +114,7 @@ export default class Play extends Command {
 				content: "",
 				embeds: [
 					embed.setColor(this.client.color.main).setDescription(
-						ctx.locale("cmd.play.added_to_queue", {
+						ctx.locale(I18N.commands.play.added_to_queue, {
 							title: response.tracks[0].info.title,
 							uri: response.tracks[0].info.uri,
 						}),
@@ -131,22 +122,16 @@ export default class Play extends Command {
 				],
 			});
 		}
-		if (!player.playing && player.queue.tracks.length > 0)
-			await player.play({ paused: false });
+		if (!player.playing && player.queue.tracks.length > 0) await player.play({ paused: false });
 	}
-	public async autocomplete(
-		interaction: AutocompleteInteraction,
-	): Promise<void> {
+	public async autocomplete(interaction: AutocompleteInteraction): Promise<void> {
 		const focusedValue = interaction.options.getFocused(true);
 
 		if (!focusedValue?.value.trim()) {
 			return interaction.respond([]);
 		}
 
-		const res = await this.client.manager.search(
-			focusedValue.value.trim(),
-			interaction.user,
-		);
+		const res = await this.client.manager.search(focusedValue.value.trim(), interaction.user);
 		const songs: ApplicationCommandOptionChoiceData[] = [];
 
 		if (res.loadType === "search") {

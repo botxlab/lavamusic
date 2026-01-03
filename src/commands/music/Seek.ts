@@ -1,11 +1,13 @@
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class Seek extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "seek",
 			description: {
-				content: "cmd.seek.description",
+				content: I18N.commands.seek.description,
 				examples: ["seek 1m, seek 1h 30m", "seek 1h 30m 30s"],
 				usage: "seek <duration>",
 			},
@@ -22,19 +24,14 @@ export default class Seek extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "duration",
-					description: "cmd.seek.options.duration",
+					description: I18N.commands.seek.options.duration,
 					type: 3,
 					required: true,
 				},
@@ -42,30 +39,22 @@ export default class Seek extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const player = client.manager.getPlayer(ctx.guild.id);
 		if (!player) {
-			return await ctx.sendMessage(
-				ctx.locale("event.message.no_music_playing"),
-			);
+			return await ctx.sendMessage(ctx.locale(I18N.events.message.no_music_playing));
 		}
 		const current = player.queue.current?.info;
 		const embed = this.client.embed();
 		const durationInput =
-			(args.length
-				? args.join(" ")
-				: (ctx.options?.get("duration")?.value as string)) ?? "";
+			(args.length ? args.join(" ") : (ctx.options?.get("duration")?.value as string)) ?? "";
 		const duration = client.utils.parseTime(durationInput);
 		if (!duration) {
 			return await ctx.sendMessage({
 				embeds: [
 					embed
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.seek.errors.invalid_format")),
+						.setDescription(ctx.locale(I18N.commands.seek.errors.invalid_format)),
 				],
 			});
 		}
@@ -74,7 +63,7 @@ export default class Seek extends Command {
 				embeds: [
 					embed
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.seek.errors.not_seekable")),
+						.setDescription(ctx.locale(I18N.commands.seek.errors.not_seekable)),
 				],
 			});
 		}
@@ -82,7 +71,7 @@ export default class Seek extends Command {
 			return await ctx.sendMessage({
 				embeds: [
 					embed.setColor(this.client.color.red).setDescription(
-						ctx.locale("cmd.seek.errors.beyond_duration", {
+						ctx.locale(I18N.commands.seek.errors.beyond_duration, {
 							length: client.utils.formatTime(current.duration),
 						}),
 					),
@@ -93,7 +82,7 @@ export default class Seek extends Command {
 		return await ctx.sendMessage({
 			embeds: [
 				embed.setColor(this.client.color.main).setDescription(
-					ctx.locale("cmd.seek.messages.seeked_to", {
+					ctx.locale(I18N.commands.seek.messages.seeked_to, {
 						duration: client.utils.formatTime(duration),
 					}),
 				),

@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Kodu değerlendir",
+		"success": "Kod başarıyla değerlendirildi",
+		"error": "Kod değerlendirilemedi"
+	},
+	"guilds": {
+		"description": "Bot sunucularını yönet ve listele",
+		"list": "Sunucu Listesi",
+		"leave": {
+			"success": "Sunucudan başarıyla ayrıldı: {name}",
+			"fail": "{name} sunucusundan ayrılma başarısız oldu",
+			"log": "Bot sunucudan ayrıldı: {name} (ID: {id})"
+		},
+		"not_found": "Sunucu bulunamadı."
+	},
+	"restart": {
+		"description": "Bot işlemini yeniden başlat",
+		"prompt": "**{client}** botunu yeniden başlatmak istediğinizden emin misiniz?",
+		"status": {
+			"restarting": "Yeniden başlatılıyor...",
+			"canceled": "Yeniden başlatma iptal edildi.",
+			"error": "Bot yeniden başlatılırken bir hata oluştu."
+		},
+		"restart_by": "{user} tarafından yeniden başlatma başlatıldı"
+	},
+	"shutdown": {
+		"description": "Bot işlemini kapat",
+		"prompt": "Kapatmak istediğinizden emin misiniz?",
+		"status": "Kapatılıyor...",
+		"canceled": "Kapatma iptal edildi."
+	},
+	"deploy": {
+		"description": "Slash komutlarını Discord API ile senkronize et",
+		"prompt": "Komutları nerede (kaldırmak/)dağıtmak istiyorsunuz?",
+		"status": {
+			"deployed_global": "Komutlar global olarak dağıtıldı.",
+			"deployed_guild": "Komutlar bu sunucuda dağıtıldı.",
+			"removed_global": "Komutlar global olarak kaldırıldı.",
+			"removed_guild": "Komutlar bu sunucudan kaldırıldı.",
+			"failed": "Komut aracılığıyla dağıtım başarısız oldu: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Global Dağıt",
+			"deploy_guild": "Sunucuya Dağıt",
+			"remove_global": "Global Kaldır",
+			"remove_guild": "Sunucudan Kaldır"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Belirli bir sunucu için davet bağlantısı oluştur.",
+			"errors": {
+				"guild_not_found": "Sunucu bulunamadı. ID'nin doğru olduğundan emin olun.",
+				"no_suitable_channel": "O sunucuda davet oluşturmak için yeterli izinlere sahip uygun bir kanal bulunamadı."
+			},
+			"success": "**{guildName}** için davet bağlantısı: [Buraya Tıklayın]({url})"
+		},
+		"destroy": {
+			"description": "Bir sunucuda bot tarafından oluşturulan tüm davet bağlantılarını yok et",
+			"errors": {
+				"guild_not_found": "Sunucu bulunamadı. Lütfen geçerli bir ID sağlayın.",
+				"generic": "Davetler yok edilemedi. O sunucuda 'Sunucuyu Yönet' iznim olup olmadığını kontrol edin."
+			},
+			"success": "**{guildName}** sunucusunda tarafımdan oluşturulan **{count}** davet başarıyla yok edildi.",
+			"not_found": "Bu sunucuda tarafımdan oluşturulan herhangi bir davet bulunamadı."
+		}
+	}
+}

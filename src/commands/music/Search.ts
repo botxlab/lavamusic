@@ -1,16 +1,24 @@
 import {
 	ActionRowBuilder,
-	StringSelectMenuBuilder,
 	ButtonBuilder,
 	ButtonStyle,
-	type VoiceChannel,
-	SectionBuilder,
-	MessageFlags,
 	ContainerBuilder,
+	MessageFlags,
+	SectionBuilder,
 	SeparatorBuilder,
+	StringSelectMenuBuilder,
+	type VoiceChannel,
 } from "discord.js";
 import type { SearchResult, Track } from "lavalink-client";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import {
+	AttachFiles,
+	EmbedLinks,
+	ReadMessageHistory,
+	SendMessages,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 const TRACKS_PER_PAGE = 5;
 
@@ -19,7 +27,7 @@ export default class Search extends Command {
 		super(client, {
 			name: "search",
 			description: {
-				content: "cmd.search.description",
+				content: I18N.commands.search.description,
 				examples: ["search example"],
 				usage: "search <song>",
 			},
@@ -36,20 +44,14 @@ export default class Search extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"AttachFiles",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks, AttachFiles],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "song",
-					description: "cmd.search.options.song",
+					description: I18N.commands.search.options.song,
 					type: 3,
 					required: true,
 				},
@@ -57,11 +59,7 @@ export default class Search extends Command {
 		});
 	}
 
-	private formatTrackDisplay(
-		track: Track,
-		index: number,
-		client: Lavamusic,
-	): string {
+	private formatTrackDisplay(track: Track, index: number, client: Lavamusic): string {
 		return (
 			`**${index + 1}. [${track.info.title}](${track.info.uri})**\n` +
 			`*${track.info.author || "Unknown Artist"}*\n` +
@@ -79,19 +77,16 @@ export default class Search extends Command {
 	) {
 		const startIndex = currentPage * TRACKS_PER_PAGE;
 		const endIndex = startIndex + TRACKS_PER_PAGE;
-		const tracksOnPage = tracks.slice(
-			startIndex,
-			Math.min(endIndex, tracks.length),
-		);
+		const tracksOnPage = tracks.slice(startIndex, Math.min(endIndex, tracks.length));
 
 		const resultsContainer = new ContainerBuilder()
 			.setAccentColor(client.color.main)
 			.addTextDisplayComponents((textDisplay) =>
 				textDisplay.setContent(
-					`**${ctx.locale("cmd.search.messages.results_found", {
+					`**${ctx.locale(I18N.commands.search.messages.results_found, {
 						count: tracks.length,
-					})}**\n*${ctx.locale("cmd.search.messages.select_prompt")}*` +
-						`\n\n**${ctx.locale("cmd.search.messages.page_info", {
+					})}**\n*${ctx.locale(I18N.commands.search.messages.select_prompt)}*` +
+						`\n\n**${ctx.locale(I18N.commands.search.messages.page_info, {
 							currentPage: currentPage + 1,
 							maxPages: maxPages,
 						})}**`,
@@ -100,11 +95,8 @@ export default class Search extends Command {
 
 		tracksOnPage.forEach((track: Track, index: number) => {
 			const globalIndex = startIndex + index;
-			const section = new SectionBuilder().addTextDisplayComponents(
-				(textDisplay) =>
-					textDisplay.setContent(
-						this.formatTrackDisplay(track, globalIndex, client),
-					),
+			const section = new SectionBuilder().addTextDisplayComponents((textDisplay) =>
+				textDisplay.setContent(this.formatTrackDisplay(track, globalIndex, client)),
 			);
 
 			if (track.info.artworkUrl) {
@@ -123,7 +115,7 @@ export default class Search extends Command {
 
 		const selectMenu = new StringSelectMenuBuilder()
 			.setCustomId("select-track")
-			.setPlaceholder(ctx.locale("cmd.search.select"))
+			.setPlaceholder(ctx.locale(I18N.commands.search.select))
 			.addOptions(
 				tracksOnPage.map((track: Track, index: number) => ({
 					label: `${startIndex + index + 1}. ${track.info.title.slice(0, 50)}${track.info.title.length > 50 ? "..." : ""}`,
@@ -132,18 +124,17 @@ export default class Search extends Command {
 				})),
 			)
 			.setDisabled(isDisabled);
-		const selectRow =
-			new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu);
+		const selectRow = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu);
 
 		const previousButton = new ButtonBuilder()
 			.setCustomId("previous-page")
-			.setLabel(ctx.locale("buttons.previous"))
+			.setLabel(ctx.locale(I18N.buttons.previous))
 			.setStyle(ButtonStyle.Primary)
 			.setDisabled(currentPage === 0 || isDisabled); // Apply disabled state
 
 		const nextButton = new ButtonBuilder()
 			.setCustomId("next-page")
-			.setLabel(ctx.locale("buttons.next"))
+			.setLabel(ctx.locale(I18N.buttons.next))
 			.setStyle(ButtonStyle.Primary)
 			.setDisabled(currentPage === maxPages - 1 || isDisabled); // Apply disabled state
 
@@ -158,14 +149,9 @@ export default class Search extends Command {
 		};
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const query = args.join(" ");
-		const memberVoiceChannel = (ctx.member as any).voice
-			.channel as VoiceChannel;
+		const memberVoiceChannel = (ctx.member as any).voice.channel as VoiceChannel;
 
 		let player = client.manager.getPlayer(ctx.guild.id);
 
@@ -191,8 +177,8 @@ export default class Search extends Command {
 					.addTextDisplayComponents((textDisplay) =>
 						textDisplay.setContent(
 							`**${ctx.locale(
-								"cmd.search.errors.vc_connect_fail_title", // Changed key
-							)}**\n${ctx.locale("cmd.search.errors.vc_connect_fail_description")}`, // Changed key
+								I18N.commands.search.errors.vc_connect_fail_title, // Changed key
+							)}**\n${ctx.locale(I18N.commands.search.errors.vc_connect_fail_description)}`, // Changed key
 						),
 					);
 				return await ctx.sendMessage({
@@ -202,10 +188,7 @@ export default class Search extends Command {
 			}
 		}
 
-		const response = (await player.search(
-			{ query: query },
-			ctx.author,
-		)) as SearchResult;
+		const response = (await player.search({ query: query }, ctx.author)) as SearchResult;
 
 		if (!response || response.tracks?.length === 0) {
 			const noResultsContainer = new ContainerBuilder()
@@ -213,8 +196,8 @@ export default class Search extends Command {
 				.addTextDisplayComponents((textDisplay) =>
 					textDisplay.setContent(
 						`**${ctx.locale(
-							"cmd.search.errors.no_results_title",
-						)}**\n\n${ctx.locale("cmd.search.errors.no_results_description")}`,
+							I18N.commands.search.errors.no_results_title,
+						)}**\n\n${ctx.locale(I18N.commands.search.errors.no_results_description)}`,
 					),
 				);
 
@@ -234,7 +217,7 @@ export default class Search extends Command {
 			currentPage,
 			maxPages,
 		);
-		// @ts-ignore
+		// @ts-expect-error
 		const sentMessage = await ctx.sendMessage(initialComponents);
 
 		const collector = sentMessage.createMessageComponentCollector({
@@ -245,7 +228,7 @@ export default class Search extends Command {
 
 		collector.on("collect", async (int: any) => {
 			if (int.customId === "select-track") {
-				const selectedIndex = Number.parseInt(int.values[0]);
+				const selectedIndex = Number.parseInt(int.values[0], 10);
 				const track = response.tracks[selectedIndex];
 
 				await int.deferUpdate();
@@ -256,8 +239,8 @@ export default class Search extends Command {
 						.addTextDisplayComponents((textDisplay) =>
 							textDisplay.setContent(
 								`**${ctx.locale(
-									"cmd.search.errors.invalid_selection_title",
-								)}**\n${ctx.locale("cmd.search.errors.invalid_selection_description")}`,
+									I18N.commands.search.errors.invalid_selection_title,
+								)}**\n${ctx.locale(I18N.commands.search.errors.invalid_selection_description)}`,
 							),
 						);
 					return await int.sendMessage({
@@ -267,14 +250,13 @@ export default class Search extends Command {
 				}
 
 				player.queue.add(track);
-				if (!player.playing && player.queue.tracks.length > 0)
-					await player.play({ paused: false });
+				if (!player.playing && player.queue.tracks.length > 0) await player.play({ paused: false });
 
 				const confirmationContainer = new ContainerBuilder()
 					.setAccentColor(this.client.color.green)
 					.addTextDisplayComponents((textDisplay) =>
 						textDisplay.setContent(
-							ctx.locale("cmd.search.messages.added_to_queue", {
+							ctx.locale(I18N.commands.search.messages.added_to_queue, {
 								title: track.info.title,
 								uri: track.info.uri,
 							}),
@@ -293,10 +275,7 @@ export default class Search extends Command {
 
 				await ctx.editMessage(
 					filterFlagsForEditMessage({
-						components: [
-							confirmationContainer,
-							...disabledComponents.components.slice(1),
-						],
+						components: [confirmationContainer, ...disabledComponents.components.slice(1)],
 						flags: MessageFlags.IsComponentsV2,
 					}),
 				);
@@ -328,8 +307,7 @@ export default class Search extends Command {
 						currentPage,
 						maxPages,
 					);
-					const newComponentsFiltered =
-						filterFlagsForEditMessage(newComponents);
+					const newComponentsFiltered = filterFlagsForEditMessage(newComponents);
 					await ctx.editMessage(newComponentsFiltered);
 				} else {
 					await int.deferUpdate();
@@ -346,8 +324,8 @@ export default class Search extends Command {
 						.addTextDisplayComponents((textDisplay) =>
 							textDisplay.setContent(
 								`**${ctx.locale(
-									"cmd.search.messages.selection_timed_out_title",
-								)}**\n${ctx.locale("cmd.search.messages.selection_timed_out_description")}`,
+									I18N.commands.search.messages.selection_timed_out_title,
+								)}**\n${ctx.locale(I18N.commands.search.messages.selection_timed_out_description)}`,
 							),
 						);
 
@@ -363,7 +341,7 @@ export default class Search extends Command {
 						.setAccentColor(this.client.color.red)
 						.addTextDisplayComponents((textDisplay) =>
 							textDisplay.setContent(
-								ctx.locale("cmd.search.messages.selection_timed_out_short"),
+								ctx.locale(I18N.commands.search.messages.selection_timed_out_short),
 							),
 						);
 					await ctx.sendMessage({
@@ -380,7 +358,6 @@ export default class Search extends Command {
 
 // Helper function to filter out 'flags' for editMessage
 function filterFlagsForEditMessage(options: any) {
-	// biome-ignore lint/correctness/noUnusedVariables: false positive, 'flags' is intentionally omitted
 	const { flags, ...rest } = options;
 	return rest;
 }

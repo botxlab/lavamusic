@@ -1,9 +1,7 @@
-import * as fs from "node:fs";
-import { shardStart } from "./shard";
-import Logger from "./structures/Logger";
+import { start } from "./shard";
+import logger from "./structures/Logger";
+import { LAVAMUSIC_BANNER } from "./utils/LavaLogo";
 import { ThemeSelector } from "./utils/ThemeSelector";
-
-const logger = new Logger();
 
 const theme = new ThemeSelector();
 
@@ -17,16 +15,11 @@ function setConsoleTitle(title: string): void {
 }
 
 try {
-	if (!fs.existsSync("./src/utils/LavaLogo.txt")) {
-		logger.error("LavaLogo.txt file is missing");
-		process.exit(1);
-	}
 	console.clear();
 	// Set a custom title for the console window
 	setConsoleTitle("Lavamusic");
-	const logFile = fs.readFileSync("./src/utils/LavaLogo.txt", "utf-8");
-	console.log(theme.purpleNeon(logFile));
-	shardStart(logger);
+	console.log(theme.purpleNeon(LAVAMUSIC_BANNER));
+	start();
 } catch (err) {
 	logger.error("[CLIENT] An error has occurred:", err);
 }

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "There is no active player in this guild.",
+		"no_channel": "You need to be in a voice channel to use this command.",
+		"queue_empty": "The queue is empty.",
+		"no_previous": "There are no previous songs in the queue.",
+		"no_song": "There are no songs in the queue.",
+		"already_paused": "The song is already paused.",
+		"user_not_in_voice_channel": "You are not connected to a voice channel."
+	},
+	"trackStart": {
+		"now_playing": "Now Playing",
+		"requested_by": "Requested by {user}",
+		"duration": "Duration",
+		"author": "Author",
+		"not_connected_to_voice_channel": "You are not connected to <#{channel}> to use these buttons.",
+		"need_dj_role": "You need to have the DJ role to use this command.",
+		"previous_by": "Previous by {user}",
+		"no_previous_song": "There is no previous song.",
+		"paused_by": "Paused by {user}",
+		"resumed_by": "Resumed by {user}",
+		"skipped_by": "Skipped by {user}",
+		"no_more_songs_in_queue": "There is no more song in the queue.",
+		"looping_by": "Looping by {user}",
+		"looping_queue_by": "Looping Queue by {user}",
+		"looping_off_by": "Looping Off by {user}"
+	},
+	"setupStart": {
+		"now_playing": "Now Playing",
+		"description": "[{title}]({uri}) by {author} • `[{length}]` - Requested by <@{requester}>",
+		"error_searching": "There was an error while searching.",
+		"no_results": "There were no results found.",
+		"nothing_playing": "Nothing is playing right now",
+		"queue_too_long": "The queue is too long. The maximum length is {maxQueueSize} songs.",
+		"playlist_too_long": "The playlist is too long. The maximum length is {maxPlaylistSize} songs.",
+		"added_to_queue": "Added [{title}]({uri}) to the queue.",
+		"added_playlist_to_queue": "Added [{length}] songs from the playlist to the queue."
+	}
+}

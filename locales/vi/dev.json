@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Đánh giá mã",
+		"success": "Đã đánh giá mã thành công",
+		"error": "Không thể đánh giá mã"
+	},
+	"guilds": {
+		"description": "Quản lý và liệt kê các máy chủ bot",
+		"list": "Danh sách máy chủ",
+		"leave": {
+			"success": "Đã rời khỏi máy chủ thành công: {name}",
+			"fail": "Không thể rời khỏi máy chủ {name}",
+			"log": "Bot đã rời khỏi máy chủ: {name} (ID: {id})"
+		},
+		"not_found": "Không tìm thấy máy chủ."
+	},
+	"restart": {
+		"description": "Khởi động lại quy trình bot",
+		"prompt": "Bạn có chắc chắn muốn khởi động lại **{client}** không?",
+		"status": {
+			"restarting": "Đang khởi động lại...",
+			"canceled": "Đã hủy khởi động lại.",
+			"error": "Đã xảy ra lỗi khi khởi động lại bot."
+		},
+		"restart_by": "Khởi động lại được bắt đầu bởi {user}"
+	},
+	"shutdown": {
+		"description": "Tắt quy trình bot",
+		"prompt": "Bạn có chắc chắn muốn tắt không?",
+		"status": "Đang tắt...",
+		"canceled": "Đã hủy tắt."
+	},
+	"deploy": {
+		"description": "Đồng bộ hóa lệnh slash với API Discord",
+		"prompt": "Bạn muốn triển khai/hủy triển khai các lệnh ở đâu?",
+		"status": {
+			"deployed_global": "Các lệnh đã được triển khai toàn cầu.",
+			"deployed_guild": "Các lệnh đã được triển khai trong máy chủ này.",
+			"removed_global": "Các lệnh đã được xóa toàn cầu.",
+			"removed_guild": "Các lệnh đã được xóa khỏi máy chủ này.",
+			"failed": "Triển khai thất bại qua lệnh: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Triển khai Toàn cầu",
+			"deploy_guild": "Triển khai Máy chủ",
+			"remove_global": "Xóa Toàn cầu",
+			"remove_guild": "Xóa Máy chủ"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Tạo liên kết mời cho một máy chủ cụ thể.",
+			"errors": {
+				"guild_not_found": "Không tìm thấy máy chủ. Hãy chắc chắn rằng ID là chính xác.",
+				"no_suitable_channel": "Không tìm thấy kênh phù hợp với đủ quyền để tạo lời mời trong máy chủ đó."
+			},
+			"success": "Liên kết mời cho **{guildName}**: [Nhấp vào đây]({url})"
+		},
+		"destroy": {
+			"description": "Hủy tất cả các liên kết mời được tạo bởi bot trong một máy chủ",
+			"errors": {
+				"guild_not_found": "Không tìm thấy máy chủ. Vui lòng cung cấp một ID hợp lệ.",
+				"generic": "Không thể hủy lời mời. Kiểm tra xem tôi có quyền 'Quản lý Máy chủ' trong máy chủ đó không."
+			},
+			"success": "Đã hủy thành công **{count}** lời mời được tạo bởi tôi trong **{guildName}**.",
+			"not_found": "Không tìm thấy lời mời nào được tạo bởi tôi trong máy chủ này."
+		}
+	}
+}

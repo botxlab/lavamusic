@@ -1,0 +1,639 @@
+{
+	"247": {
+		"description": "Bot ko voice channel mein rahne ke liye set karein",
+		"errors": {
+			"not_in_voice": "Is command ka upyog karne ke liye aapko ek voice channel mein hone ki jaroorat hai.",
+			"generic": "Is command ko execute karte samay ek error aaya."
+		},
+		"messages": {
+			"disabled": "`✅` | 24/7 mode `NIRAKRIYA` kar diya gaya hai",
+			"enabled": "`✅` | 24/7 mode `SAKRIYA` kar diya gaya hai."
+		}
+	},
+	"fairplay": {
+		"description": "Bot ko users ke beech nishpaksh roop se music play karne ke liye set karein.",
+		"errors": {
+			"not_in_voice": "Is command ka upyog karne ke liye aapko ek voice channel mein hone ki jaroorat hai.",
+			"generic": "Is command ko execute karte samay ek error aaya."
+		},
+		"messages": {
+			"disabled": "`✅` | Fairplay mode `NIRAKRIYA` kar diya gaya hai.",
+			"enabled": "`✅` | Fairplay mode `SAKRIYA` kar diya gaya hai."
+		}
+	},
+	"ping": {
+		"description": "Bot ka ping dhakeye",
+		"content": "Pinging...",
+		"bot_latency": "Bot Vilanbta",
+		"api_latency": "API Vilanbta",
+		"requested_by": "{author} dwara anurodh kiya gaya"
+	},
+	"lavalink": {
+		"description": "Mojuda Lavalink aakde dhakeye",
+		"title": "Lavalink Aakde",
+		"content": "Player: {players}\nChal rahe Player: {playingPlayers}\nUptime: {uptime}\nCores: {cores} Core(s)\nSmriti Upbhog: {used} / {reservable}\nSystem Load: {systemLoad}%\nLavalink Load: {lavalinkLoad}%",
+		"page_info": "Page {index} of {total}"
+	},
+	"invite": {
+		"description": "Bot nimantran link prapt karein",
+		"content": "Aap niche diye gaye button par click karke mujhe invite kar sakte hain. Koi bug ya outage? Support server mein shamil hon!"
+	},
+	"help": {
+		"description": "Sahayta menu dhakeye",
+		"options": {
+			"command": "Woh command jiske baare mein aap jankari prapt karna chahte hain"
+		},
+		"content": "Namaste! Main `{bot}` hun, [`Lavamusic`](https://github.com/appujet/lavamusic) aur `Discord.js` se bana ek music bot.\nKisi command ke baare mein adhik jankari prapt karne ke liye aap `{prefix}help <command>` ka upyog kar sakte hain.",
+		"title": "Sahayta Menu",
+		"not_found": "Yeh `{cmdName}` command maujood nahin hai.",
+		"help_cmd": "**Vivaran:** {description}\n**Prayog:** {usage}\n**Udaharan:** {examples}\n**Upnaam:** {aliases}\n**Shreni:** {category}\n**Cooldown:** {cooldown} seconds\n**Anumatiyan:** {premUser}\n**Bot Anumatiyan:** {premBot}\n**Keval Developer:** {dev}\n**Slash Command:** {slash}\n**Args:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**DJ Anumatiyan:** {djPerm}\n**Voice:** {voice}",
+		"footer": "Kisi command ke baare mein adhik jankari ke liye {prefix}help <command> ka upyog karein"
+	},
+	"botinfo": {
+		"description": "Bot ke baare mein jankari",
+		"content": "Bot Jankari:\n- **Operating System**: {osInfo}\n- **Uptime**: {osUptime}\n- **Hostname**: {osHostname}\n- **CPU Architecture**: {cpuInfo}\n- **CPU Upbhog**: {cpuUsed}%\n- **Smriti Upbhog**: {memUsed}MB / {memTotal}GB\n- **Node Version**: {nodeVersion}\n- **Discord.js Version**: {discordJsVersion}\n- **Se जुड़ा हुआ** {guilds} guilds, {channels} channels, aur {users} users\n- **Kul Commands**: {commands}"
+	},
+	"about": {
+		"description": "Bot ke baare mein jankari dhakeye",
+		"fields": {
+			"creator": "Nirmata",
+			"repository": "Repository",
+			"support": "Sahayta",
+			"description": "Woh sachmuch mein coding anubhav ke liye apna pehla open source project banana chahta tha. Is project mein, use kam bugs ke sath ek project banane ki चुनौती दी गई थी. Aasha hai aap LavaMusic ka upyog karke anand lenge!"
+		}
+	},
+	"dj": {
+		"description": "DJ mode aur sambandhit roles ka prabandhan karein",
+		"errors": {
+			"provide_role": "Kripya ek role प्रदान करें.",
+			"no_roles": "DJ role khali hai.",
+			"invalid_subcommand": "Kripya ek valid subcommand प्रदान करें."
+		},
+		"messages": {
+			"role_exists": "DJ role <@&{roleId}> pehle se hi juda hua hai.",
+			"role_added": "DJ role <@&{roleId}> juda kar diya gaya hai.",
+			"role_not_found": "DJ role <@&{roleId}> juda nahin hai.",
+			"role_removed": "DJ role <@&{roleId}> हटा diya gaya hai.",
+			"all_roles_cleared": "Saare DJ roles हटा diye gaye hain.",
+			"toggle": "DJ mode ko {status} mein toggle kar diya gaya hai."
+		},
+		"options": {
+			"add": "Woh DJ role jise aap jodna chahte hain",
+			"remove": "Woh DJ role jise aap hatana chahte hain",
+			"clear": "Saare DJ roles ko clear karta hai",
+			"toggle": "DJ role ko toggle karta hai",
+			"role": "DJ role"
+		},
+		"subcommands": "Subcommands"
+	},
+	"language": {
+		"description": "Bot ki bhasha configure karein.",
+		"invalid_language": "Kripya ek valid bhasha प्रदान करें. Udaharan: English (United States) ke liye `en-US`\n\nAap supported bhashaon ki सूची [yahan](https://discord.com/developers/docs/reference#locales) dekh sakte hain\n\n**Uplabdh Bhashayen:**\n{languages}",
+		"already_set": "Bhasha pehle se hi `{language}` par set hai",
+		"not_set": "Bhasha set nahin hai.",
+		"set": "Bhasha `{language}` par set kar di गई है",
+		"reset": "Bhasha ko default bhasha mein reset kar diya gaya hai.",
+		"options": {
+			"set": "Bot ke liye bhasha set karein",
+			"language": "Woh bhasha jise aap set karna chahte hain",
+			"reset": "Bhasha ko wapas default bhasha mein badlein"
+		}
+	},
+	"prefix": {
+		"description": "Bot ka prefix dhakeye ya set karta hai",
+		"errors": {
+			"prefix_too_long": "Prefix 3 aksharon se adhik lamba nahin ho sakta."
+		},
+		"messages": {
+			"current_prefix": "Is server ke liye prefix `{prefix}` hai",
+			"prefix_set": "Is server ke liye prefix ab `{prefix}` hai",
+			"prefix_reset": "Is server ke liye prefix ab `{prefix}` hai"
+		},
+		"options": {
+			"set": "Prefix set karta hai",
+			"prefix": "Woh prefix jise aap set karna chahte hain",
+			"reset": "Prefix ko default par reset karta hai"
+		}
+	},
+	"setup": {
+		"description": "Bot ko setup karta hai",
+		"errors": {
+			"channel_exists": "Song request channel pehle se hi maujood hai.",
+			"channel_not_exists": "Song request channel maujood nahin hai.",
+			"channel_delete_fail": "Setup channel database se delete kar diya gaya hai. Kripya text channel ko manually delete karein."
+		},
+		"messages": {
+			"channel_created": "Song request channel <#{channelId}> mein bana diya gaya hai.",
+			"channel_deleted": "Song request channel ko delete kar diya gaya hai.",
+			"channel_info": "Song request channel <#{channelId}> hai."
+		},
+		"options": {
+			"create": "Song request channel banata hai",
+			"delete": "Song request channel ko delete karta hai",
+			"info": "Song request channel dhakeye"
+		}
+	},
+	"defaultvolume": {
+		"description": "Is server mein bot ke liye default volume set karein",
+		"options": {
+			"volume": "Woh default volume jo aap set karna chahte hain (0-200)"
+		},
+		"messages": {
+			"current": "Is server ke liye vartaman default volume **{volume}** hai.",
+			"set": "`✅` | Default volume **{volume}** par set kar diya gaya hai.",
+			"invalid_number": "Kripya ek valid number प्रदान करें.",
+			"too_low": "Volume 0 se kam nahin ho sakta.",
+			"too_high": "Volume 200 se adhik nahin ho sakta."
+		}
+	},
+	"8d": {
+		"description": "8d filter toggle karein",
+		"messages": {
+			"filter_enabled": "`✅` | 8D filter `SAKRIYA` kar diya gaya hai.",
+			"filter_disabled": "`✅` | 8D filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"bassboost": {
+		"description": "Bassboost filter toggle karein",
+		"options": {
+			"level": "Bassboost level jo aap set karna chahte hain"
+		},
+		"messages": {
+			"high": "`✅` | High bassboost filter `SAKRIYA` kar diya gaya hai.",
+			"low": "`✅` | Low bassboost filter `SAKRIYA` kar diya gaya hai.",
+			"medium": "`✅` | Medium bassboost filter `SAKRIYA` kar diya gaya hai.",
+			"off": "`✅` | Bassboost filter `NIRAKRIYA` kar diya gaya hai.",
+			"invalid_level": "Kripya ek valid bassboost level dein. Uplabdh levels: `high`, `medium`, `low`, `off`."
+		}
+	},
+	"distortion": {
+		"description": "Distorsion filter toggle karein",
+		"messages": {
+			"filter_enabled": "`✅` | Distorsion filter `SAKRIYA` kar diya gaya hai.",
+			"filter_disabled": "`✅` | Distorsion filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"karaoke": {
+		"description": "Karaoke filter toggle karein",
+		"messages": {
+			"filter_enabled": "`✅` | Karaoke filter `SAKRIYA` kar diya gaya hai.",
+			"filter_disabled": "`✅` | Karaoke filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"lowpass": {
+		"description": "Lowpass filter toggle karein",
+		"messages": {
+			"filter_enabled": "`✅` | Lowpass filter `SAKRIYA` kar diya gaya hai.",
+			"filter_disabled": "`✅` | Lowpass filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"nightcore": {
+		"description": "Nightcore filter toggle karein",
+		"messages": {
+			"filter_enabled": "`✅` | Nightcore filter `SAKRIYA` kar diya gaya hai.",
+			"filter_disabled": "`✅` | Nightcore filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"pitch": {
+		"description": "Pitch filter toggle karein",
+		"options": {
+			"pitch": "Woh number jiske liye aap pitch set karna chahte hain (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "Kripya 0.5 aur 5 ke beech ek valid number प्रदान करें."
+		},
+		"messages": {
+			"pitch_set": "`✅` | Pitch **{pitch}** par set kar diya gaya hai."
+		}
+	},
+	"rate": {
+		"description": "Song ki rate badlein",
+		"options": {
+			"rate": "Woh number jiske liye aap rate set karna chahte hain (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "Kripya 0.5 aur 5 ke beech ek valid number प्रदान करें."
+		},
+		"messages": {
+			"rate_set": "`✅` | Rate **{rate}** par set kar diya gaya hai."
+		}
+	},
+	"reset": {
+		"description": "Sabhi active filters ko reset karta hai",
+		"messages": {
+			"filters_reset": "`✅` | Filters ko reset kar diya gaya hai."
+		}
+	},
+	"rotation": {
+		"description": "Rotation filter toggle karein",
+		"messages": {
+			"enabled": "`✅` | Rotation filter `SAKRIYA` kar diya gaya hai.",
+			"disabled": "`✅` | Rotation filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"speed": {
+		"description": "Song ki speed badlein",
+		"options": {
+			"speed": "Woh speed jise aap set karna chahte hain (0.5 - 5)"
+		},
+		"messages": {
+			"invalid_number": "Kripya 0.5 aur 5 ke beech ek valid number प्रदान करें.",
+			"set_speed": "`✅` | Speed **{speed}** par set kar diya gaya hai."
+		}
+	},
+	"tremolo": {
+		"description": "Tremolo filter toggle karein",
+		"messages": {
+			"enabled": "`✅` | Tremolo filter `SAKRIYA` kar diya gaya hai.",
+			"disabled": "`✅` | Tremolo filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"vibrato": {
+		"description": "Vibrato filter toggle karein",
+		"messages": {
+			"enabled": "`✅` | Vibrato filter `SAKRIYA` kar diya gaya hai.",
+			"disabled": "`✅` | Vibrato filter `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"autoplay": {
+		"description": "Autoplay mode toggle karta hai.",
+		"messages": {
+			"enabled": "`✅` | Autoplay `SAKRIYA` kar diya gaya hai.",
+			"disabled": "`✅` | Autoplay `NIRAKRIYA` kar diya gaya hai."
+		}
+	},
+	"clearqueue": {
+		"description": "Current queue ko clear karta hai.",
+		"messages": {
+			"cleared": "Queue ko clear kar diya gaya hai."
+		}
+	},
+	"grab": {
+		"description": "Mojuda song ko apne DM mein save karein.",
+		"loading": "Loading...",
+		"content": "**Aawadhi:** {length}\n**Anurodh karta:** <@{requester}>\n**Link:** [Yahan click karein]({uri})",
+		"check_dm": "Kripya apna DM check karein.",
+		"dm_failed": "Main aapko DM nahin bhej saka. Kripya sunishchit karein ki aapke DMs khule hain."
+	},
+	"join": {
+		"description": "Bot ko voice channel mein join karwata hai",
+		"already_connected": "Main pehle se hi <#{channelId}> se juda hua hun.",
+		"no_voice_channel": "Is command ka upyog karne ke liye aapko ek voice channel mein hone ki jaroorat hai.",
+		"joined": "<#{channelId}> mein safaltapoorvak shamil hua."
+	},
+	"leave": {
+		"description": "Bot ko voice channel se disconnect karta hai",
+		"left": "<#{channelId}> safaltapoorvak chhod diya.",
+		"not_in_channel": "Main kisi voice channel mein nahin hun."
+	},
+	"loop": {
+		"description": "Mojuda song ya queue ko loop karein",
+		"options": {
+			"mode": "Woh loop mode jo aap set karna chahte hain"
+		},
+		"messages": {
+			"looping_song": "**Song ko loop kar raha hun.**",
+			"looping_queue": "**Queue ko loop kar raha hun.**",
+			"looping_off": "**Looping ab band hai.**",
+			"invalid_mode": "Invalid loop mode"
+		}
+	},
+	"lyrics": {
+		"description": "Vartaman track ke lyrics dhakeye",
+		"lyrics_for_track": "### Lyrics for: [{trackTitle}]({trackUrl})",
+		"no_lyrics_on_page": "Is page par koi lyrics nahin mile.",
+		"searching": "🔍 **{trackTitle}** ke liye lyrics khoj raha hun...",
+		"session_expired": "Satra samapt ho gaya. Refresh karne ke liye command ka fir se upyog karein.",
+		"page_indicator": "Page {current}/{total}",
+		"artwork_description": "{trackTitle} ke liye artwork",
+		"no_lyrics_available": "Koi lyrics uplabdh nahin hain",
+		"button_subscribe": "📌 Live Lyrics ke liye subscribe karein",
+		"button_unsubscribe": "📌 Live Lyrics se unsubscribe karein",
+		"subscribed": "Aapne live lyrics updates ke liye subscribe kiya hai!",
+		"unsubscribed": "Aapne live lyrics updates se unsubscribe kiya hai.",
+		"errors": {
+			"no_results": "Vartaman track ke liye koi lyrics nahin mile.",
+			"lyrics_error": "Lyrics prapt karte samay ek error aaya.",
+			"no_player_for_lyrics": "Active player ke bina is song ke lyrics prapt nahin kiye ja sakte."
+		},
+		"options": {
+			"song": "Woh song jiske lyrics aap prapt karna chahte hain"
+		}
+	},
+	"nowplaying": {
+		"description": "Abhi chal rahe song ko dhakeye",
+		"now_playing": "Abhi Chal Raha Hai",
+		"track_info": "[{title}]({uri}) - Anurodh karta: <@{requester}>\n\n`{bar}`"
+	},
+	"pause": {
+		"description": "Mojuda song ko pause karein",
+		"successfully_paused": "Song ko safaltapoorvak pause kar diya gaya."
+	},
+	"play": {
+		"description": "YouTube, Spotify, URL aadi se song play karein.",
+		"options": {
+			"song": "Woh song ya URL jise aap play karna chahte hain"
+		},
+		"loading": "Loading...",
+		"errors": {
+			"search_error": "Khojte samay ek error aaya.",
+			"no_results": "Koi result nahin mila.",
+			"queue_too_long": "Queue bahut lambi hai. Adhiktam lambai {maxQueueSize} songs hai.",
+			"playlist_too_long": "Playlist bahut lambi hai. Adhiktam lambai {maxPlaylistSize} songs hai."
+		},
+		"added_to_queue": "[{title}]({uri}) ko queue mein jod diya gaya hai.",
+		"added_playlist_to_queue": "{length} songs ko queue mein jod diya gaya hai."
+	},
+	"playlocal": {
+		"description": "Ek sthaniya (local) audio file play karein",
+		"options": {
+			"file": "Woh audio file jise aap play karna chahte hain"
+		},
+		"loading": "Loading...",
+		"errors": {
+			"empty_query": "Kripya play karne ke liye ek audio file attach karein.",
+			"invalid_format": "Aap keval MP3, WAV, OGG, FLAC, AAC ya M4A files play kar sakte hain.",
+			"no_results": "Audio file play karne mein vifal. Yeh corrupt ho sakti hai."
+		},
+		"added_to_queue": "[{title}]({url}) ko queue mein jod diya gaya"
+	},
+	"playnext": {
+		"description": "Ek song ko queue ke top par jodein",
+		"options": {
+			"song": "Woh song jise aap play karna chahte hain"
+		},
+		"loading": "Loading...",
+		"errors": {
+			"search_error": "Khojte samay ek error aaya.",
+			"no_results": "Koi result nahin mila.",
+			"queue_too_long": "Queue bahut lambi hai. Adhiktam lambai {maxQueueSize} songs hai.",
+			"playlist_too_long": "Playlist bahut lambi hai. Adhiktam lambai {maxPlaylistSize} songs hai."
+		},
+		"added_to_play_next": "[{title}]({uri}) ko queue mein agla play karne ke liye jod diya gaya hai.",
+		"added_playlist_to_play_next": "{length} songs ko queue mein agla play karne ke liye jod diya gaya hai."
+	},
+	"queue": {
+		"description": "Mojuda song queue dhakeye.",
+		"now_playing": "Abhi chal raha hai: [{title}]({uri}) - Anurodh karta: <@{requester}> - Aawadhi: `{duration}`",
+		"live": "LIVE",
+		"track_info": "{index}. [{title}]({uri}) - Anurodh karta: <@{requester}> - Aawadhi: `{duration}`",
+		"title": "Queue",
+		"page_info": "Page {index} of {total}",
+		"duration": "Queue Aawadhi: `{totalDuration}`"
+	},
+	"remove": {
+		"description": "Queue se ek specific song hatayein",
+		"options": {
+			"song": "Woh song number jise aap hatana chahte hain"
+		},
+		"errors": {
+			"no_songs": "Queue mein koi song nahin hai.",
+			"invalid_number": "Kripya ek valid song number प्रदान करें."
+		},
+		"messages": {
+			"removed": "Song number {songNumber} ko queue se hata diya gaya hai."
+		}
+	},
+	"replay": {
+		"description": "Mojuda track ko replay karein",
+		"errors": {
+			"not_seekable": "Is track ko replay nahin kiya ja sakta kyonki yeh seekable nahin hai."
+		},
+		"messages": {
+			"replaying": "Mojuda track ko replay kar raha hun."
+		}
+	},
+	"resume": {
+		"description": "Paused song ko resume karein",
+		"errors": {
+			"not_paused": "Player pause nahin hai."
+		},
+		"messages": {
+			"resumed": "Player ko resume kar diya gaya."
+		}
+	},
+	"search": {
+		"description": "Ek song khojein",
+		"options": {
+			"song": "Woh song jise aap dhoondh rahe hain"
+		},
+		"select": "List se ek song chunein...",
+		"errors": {
+			"no_results": "Koi result nahin mila.",
+			"no_results_title": "Koi Search Result Nahin Mila!",
+			"no_results_description": "Mujhe aapki query se milta-julta koi song nahin mila. Keywords badalne ya link pradan karne ka prayas karein.",
+			"invalid_selection_title": "Invalid Chayan!",
+			"invalid_selection_description": "Chuna gaya vikalp invalid hai. Kripya list se ek song number chunein.",
+			"search_error": "Song khojte samay ek error aaya.",
+			"vc_connect_fail_title": "Voice channel connection error",
+			"vc_connect_fail_description": "Main aapke voice channel se connect nahin ho saka. Sunishchit karein ki mere paas uchit anumatian hain."
+		},
+		"messages": {
+			"results_found": "**{count}** songs mile.",
+			"select_prompt": "Song ko queue mein jodne ke liye ek number chunein.",
+			"page_info": "Page {currentPage}/{maxPages}",
+			"added_to_queue": "**[{title}]({uri})** ko queue mein jod diya gaya!",
+			"selection_timed_out_title": "Samay Samapt!",
+			"selection_timed_out_description": "Diye gaye samay mein koi song nahin chuna gaya. Khoj radd kar di gayi hai. Kripya punah prayas karein.",
+			"selection_timed_out_short": "Chayan ka samay samapt ho gaya."
+		}
+	},
+	"seek": {
+		"description": "Song mein ek specific samay tak khojein",
+		"options": {
+			"duration": "Woh aawadhi jahan tak seek karna hai (jaise 1m 30s)"
+		},
+		"errors": {
+			"invalid_format": "Invalid samay format. Udaharan: seek 1m, seek 1h 30m",
+			"not_seekable": "Yeh track seekable nahin hai.",
+			"beyond_duration": "{length} ki song aawadhi ke baad seek karna sambhav nahin hai."
+		},
+		"messages": {
+			"seeked_to": "{duration} tak seek kiya gaya"
+		}
+	},
+	"shuffle": {
+		"description": "Queue ko shuffle karein",
+		"messages": {
+			"shuffled": "Queue ko shuffle kar diya gaya."
+		},
+		"errors": {
+			"fairplay": "Fairplay mode sakriya hai. Aap queue ko shuffle nahin kar sakte."
+		}
+	},
+	"skip": {
+		"description": "Mojuda song ko skip karein",
+		"messages": {
+			"skipped": "[{title}]({uri}) ko skip kar diya gaya."
+		}
+	},
+	"skipto": {
+		"description": "Queue mein ek specific song tak skip karein",
+		"options": {
+			"number": "Us song ka number jahan tak aap skip karna chahte hain"
+		},
+		"errors": {
+			"invalid_number": "Kripya ek valid number प्रदान करें."
+		},
+		"messages": {
+			"skipped_to": "Song number {number} tak skip kar diya gaya."
+		}
+	},
+	"move": {
+		"description": "Queue mein track ki position badlein",
+		"options": {
+			"from": "Track ki position jise move karna hai",
+			"to": "Woh position jahan track ko move karna hai"
+		},
+		"errors": {
+			"no_tracks": "Queue mein koi tracks nahin hain.",
+			"invalid_usage": "Invalid upyog. Kripya 'from' aur 'to' positions pradan karein.",
+			"invalid_numbers": "Kripya valid track positions pradan karein.",
+			"invalid_positions": "Kripya queue ke bhitar valid track positions pradan karein.",
+			"same_position": "'From' aur 'to' positions ek hi hain."
+		},
+		"messages": {
+			"moved": "**{title}** ko position {from} se {to} par move kar diya gaya."
+		}
+	},
+	"stop": {
+		"description": "Music band karein aur queue clear karein",
+		"messages": {
+			"stopped": "Music band kar diya gaya aur queue clear kar di gayi."
+		}
+	},
+	"volume": {
+		"description": "Player ka volume set karein",
+		"options": {
+			"number": "Woh volume jo aap set karna chahte hain (0-200)"
+		},
+		"messages": {
+			"invalid_number": "Kripya ek valid number प्रदान करें.",
+			"too_low": "Volume 0 se kam nahin ho sakta.",
+			"too_high": "Volume 200 se adhik nahin ho sakta. Kya aap apne kaano ya speakers ko nuksan pahunchana chahte hain? Hmmm, mujhe nahin lagta ki yeh ek achcha vichar hai.",
+			"set": "Volume {volume} par set kar diya gaya"
+		}
+	},
+	"addsong": {
+		"description": "Ek saved playlist mein song jodein",
+		"options": {
+			"playlist": "Woh playlist jismein aap jodna chahte hain",
+			"song": "Woh song jise aap jodna chahte hain"
+		},
+		"messages": {
+			"no_playlist": "Kripya ek playlist pradan karein",
+			"no_song": "Kripya ek song pradan karein",
+			"playlist_not_found": "Woh playlist maujood nahin hai",
+			"no_songs_found": "Koi song nahin mila",
+			"added": "{playlist} mein {count} song(s) jod diye gaye"
+		}
+	},
+	"create": {
+		"description": "Ek nayi playlist banayein.",
+		"options": {
+			"name": "Playlist ka naam"
+		},
+		"messages": {
+			"name_too_long": "Playlist ke naam sirf 50 aksharon tak ke ho sakte hain.",
+			"playlist_exists": "Us naam ki ek playlist pehle se hi maujood hai. Kripya ek alag naam ka upyog karein.",
+			"playlist_created": "Playlist **{name}** bana di gayi hai.",
+			"name_empty": "Aapko ek playlist naam pradan karna hoga."
+		}
+	},
+	"delete": {
+		"description": "Ek playlist ko delete karein",
+		"options": {
+			"playlist": "Woh playlist jise aap delete karna chahte hain"
+		},
+		"messages": {
+			"playlist_not_found": "Woh playlist maujood nahin hai.",
+			"playlist_deleted": "Playlist **{playlistName}** delete kar di gayi."
+		}
+	},
+	"list": {
+		"description": "User ke liye sabhi playlists ko list karta hai",
+		"options": {
+			"user": "Woh user jiske playlists aap prapt karna chahte hain"
+		},
+		"messages": {
+			"no_playlists": "Is user ke paas koi playlist nahin hai.",
+			"your": "Aapka",
+			"playlists_title": "{username} ki Playlists",
+			"error": "Playlists ko prapt karte samay ek error aaya.",
+			"invalid_username": "Invalid username ya user nahin mila.",
+			"invalid_userid": "Invalid User ID."
+		}
+	},
+	"load": {
+		"description": "Ek saved playlist ko queue mein load karein.",
+		"options": {
+			"playlist": "Woh playlist jise aap load karna chahte hain"
+		},
+		"messages": {
+			"playlist_not_exist": "Woh playlist maujood nahin hai.",
+			"playlist_empty": "Woh playlist khali hai.",
+			"playlist_loaded": "`{name}` ko `{count}` songs ke sath load kiya gaya.",
+			"no_lavalink_nodes": "Playlist load karne ke liye koi Lavalink nodes uplabdh nahin hain."
+		}
+	},
+	"removesong": {
+		"description": "Playlist se ek song hatayein",
+		"options": {
+			"playlist": "Woh playlist jisse aap hatana chahte hain",
+			"song": "Woh song jise aap hatana chahte hain"
+		},
+		"messages": {
+			"provide_playlist": "Kripya ek playlist pradan karein.",
+			"provide_song": "Kripya ek song pradan karein.",
+			"playlist_not_exist": "Woh playlist maujood nahin hai.",
+			"song_not_found": "Koi matching song nahin mila.",
+			"song_removed": "{playlist} se {song} ko hata diya gaya.",
+			"error_occurred": "Song ko hatate samay ek error aaya."
+		}
+	},
+	"steal": {
+		"description": "Kisi doosre user se playlist churayein aur use apni playlists mein jodein",
+		"options": {
+			"playlist": "Woh playlist jise aap churana chahte hain",
+			"user": "Woh user jisse aap playlist churana chahte hain"
+		},
+		"messages": {
+			"provide_playlist": "Kripya ek playlist naam pradan karein.",
+			"provide_user": "Kripya ek user ka ullekh karein.",
+			"playlist_not_exist": "Mentioned user ke liye woh playlist maujood nahin hai.",
+			"playlist_exists": "Aapke paas `{playlist}` naam ki playlist pehle se hai.",
+			"playlist_stolen": "{user} se playlist `{playlist}` ko safaltapoorvak chura liya gaya.",
+			"error_occurred": "Playlist ko churaate samay ek error aaya."
+		}
+	},
+	"movenode": {
+		"description": "Players ko alag Lavalink node par move karein",
+		"options": {
+			"node": "Node ID jahan players ko move karna hai"
+		},
+		"messages": {
+			"no_player": "Is server mein koi active music player nahin hai.",
+			"no_available_nodes": "Move karne ke liye koi nodes uplabdh nahin hain.",
+			"available_nodes_title": "Uplabdh Nodes",
+			"current_node": "Vartaman Node",
+			"available_nodes": "Uplabdh Nodes",
+			"usage_hint": "Upyog: movenode <nodeId>",
+			"node_not_found": "Node `{node}` nahin mila.",
+			"node_not_connected": "Node `{node}` connected nahin hai.",
+			"same_node": "Player pehle se hi node `{node}` par hai.",
+			"moving": "Player ko `{from}` se `{to}` par move kiya ja raha hai...",
+			"success_title": "Player Safaltapoorvak Move Hua",
+			"success_description": "Player ko `{from}` se `{to}` par move kar diya gaya hai.",
+			"error": "Player move karne mein vifal: {error}",
+			"moving_all_players": "Sabhi players ko node `{node}` par move kiya ja raha hai...",
+			"results_title": "MoveNode Parinaam",
+			"moved_players": "**Guilds mein players move kiye gaye:**\n{list}",
+			"guild_move": "• `{guildId}` ({from} → {to})",
+			"failed_moves": "**Guilds mein players move karne mein vifal:**\n{list}",
+			"guild_move_failed": "• `{guildId}`: {error}",
+			"no_players_moved": "Kisi player ko move karne ki jaroorat nahin thi.",
+			"unknown_error": "Anjaan error",
+			"no_players": "Move karne ke liye koi players nahin hain."
+		}
+	}
+}

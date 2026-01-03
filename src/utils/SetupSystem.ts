@@ -3,12 +3,13 @@ import {
 	EmbedBuilder,
 	type Guild,
 	type Message,
-	type TextChannel,
 	MessageFlags,
+	type TextChannel,
 } from "discord.js";
 import type { Player, Track } from "lavalink-client";
-import { T } from "../structures/I18n";
+import { I18N, t } from "../structures/I18n";
 import type { Lavamusic } from "../structures/index";
+import logger from "../structures/Logger";
 import type { Requester } from "../types";
 import { getButtons } from "./Buttons";
 
@@ -20,19 +21,15 @@ import { getButtons } from "./Buttons";
  * @param locale The locale to translate the strings.
  * @returns The modified embed.
  */
-function neb(
-	embed: EmbedBuilder,
-	player: Player,
-	client: Lavamusic,
-	locale: string,
-): EmbedBuilder {
+function neb(embed: EmbedBuilder, player: Player, client: Lavamusic, locale: string): EmbedBuilder {
 	if (!player?.queue.current?.info) return embed;
 	const iconUrl =
 		client.config.icons[player.queue.current.info.sourceName] ||
 		client.user!.displayAvatarURL({ extension: "png" });
 	const icon = player.queue.current.info.artworkUrl || client.config.links.img;
 
-	const description = T(locale, "player.setupStart.description", {
+	const description = t(I18N.player.setupStart.description, {
+		lng: locale,
 		title: player.queue.current.info.title,
 		uri: player.queue.current.info.uri,
 		author: player.queue.current.info.author,
@@ -41,7 +38,7 @@ function neb(
 	});
 	return embed
 		.setAuthor({
-			name: T(locale, "player.setupStart.now_playing"),
+			name: t(I18N.player.setupStart.now_playing, { lng: locale }),
 			iconURL: iconUrl,
 		})
 		.setDescription(description)
@@ -76,7 +73,7 @@ async function setupStart(
 				cache: true,
 			});
 	} catch (error) {
-		client.logger.error(error);
+		logger.error(error);
 	}
 	if (m) {
 		try {
@@ -91,9 +88,7 @@ async function setupStart(
 								embeds: [
 									embed
 										.setColor(client.color.red)
-										.setDescription(
-											T(locale, "player.setupStart.error_searching"),
-										),
+										.setDescription(t(I18N.player.setupStart.error_searching, { lng: locale })),
 								],
 							})
 							.then((msg) => setTimeout(() => msg.delete(), 5000));
@@ -105,7 +100,8 @@ async function setupStart(
 							.send({
 								embeds: [
 									embed.setColor(client.color.main).setDescription(
-										T(locale, "player.setupStart.added_to_queue", {
+										t(I18N.player.setupStart.added_to_queue, {
+											lng: locale,
 											title: res.tracks[0].info.title,
 											uri: res.tracks[0].info.uri,
 										}),
@@ -125,7 +121,8 @@ async function setupStart(
 							.send({
 								embeds: [
 									embed.setColor(client.color.main).setDescription(
-										T(locale, "player.setupStart.added_playlist_to_queue", {
+										t(I18N.player.setupStart.added_playlist_to_queue, {
+											lng: locale,
 											length: res.tracks.length,
 										}),
 									),
@@ -139,11 +136,10 @@ async function setupStart(
 						break;
 					}
 				}
-				if (!player.playing && player.queue.tracks.length > 0)
-					await player.play();
+				if (!player.playing && player.queue.tracks.length > 0) await player.play();
 			}
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 		}
 	}
 }
@@ -174,13 +170,14 @@ async function trackStart(
 	try {
 		m = await channel.messages.fetch({ message: msgId, cache: true });
 	} catch (error) {
-		client.logger.error(error);
+		logger.error(error);
 	}
 
 	const iconUrl =
 		client.config.icons[player.queue.current!.info.sourceName] ||
 		client.user!.displayAvatarURL({ extension: "png" });
-	const description = T(locale, "player.setupStart.description", {
+	const description = t(I18N.player.setupStart.description, {
+		lng: locale,
 		title: track.info.title,
 		uri: track.info.uri,
 		author: track.info.author,
@@ -191,7 +188,7 @@ async function trackStart(
 	const embed = client
 		.embed()
 		.setAuthor({
-			name: T(locale, "player.setupStart.now_playing"),
+			name: t(I18N.player.setupStart.now_playing, { lng: locale }),
 			iconURL: iconUrl,
 		})
 		.setColor(client.color.main)
@@ -203,7 +200,9 @@ async function trackStart(
 			.edit({
 				embeds: [embed],
 				components: getButtons(player, client).map((b) => {
-					b.components.forEach((c) => c.setDisabled(!player?.queue.current));
+					b.components.forEach((c) => {
+						c.setDisabled(!player?.queue.current);
+					});
 					return b;
 				}),
 			})
@@ -215,7 +214,9 @@ async function trackStart(
 			.send({
 				embeds: [embed],
 				components: getButtons(player, client).map((b) => {
-					b.components.forEach((c) => c.setDisabled(!player?.queue.current));
+					b.components.forEach((c) => {
+						c.setDisabled(!player?.queue.current);
+					});
 					return b;
 				}),
 			})
@@ -228,11 +229,7 @@ async function trackStart(
 	}
 }
 
-async function updateSetup(
-	client: Lavamusic,
-	guild: Guild,
-	locale: string,
-): Promise<void> {
+async function updateSetup(client: Lavamusic, guild: Guild, locale: string): Promise<void> {
 	const setup = await client.db.getSetup(guild.id);
 	let m: Message | undefined;
 	if (setup?.textId) {
@@ -244,7 +241,7 @@ async function updateSetup(
 				cache: true,
 			});
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 		}
 	}
 	if (m) {
@@ -253,7 +250,8 @@ async function updateSetup(
 			const iconUrl =
 				client.config.icons[player.queue.current.info.sourceName] ||
 				client.user!.displayAvatarURL({ extension: "png" });
-			const description = T(locale, "player.setupStart.description", {
+			const description = t(I18N.player.setupStart.description, {
+				lng: locale,
 				title: player.queue.current.info.title,
 				uri: player.queue.current.info.uri,
 				author: player.queue.current.info.author,
@@ -264,7 +262,7 @@ async function updateSetup(
 			const embed = client
 				.embed()
 				.setAuthor({
-					name: T(locale, "player.setupStart.now_playing"),
+					name: t(I18N.player.setupStart.now_playing, { lng: locale }),
 					iconURL: iconUrl,
 				})
 				.setColor(client.color.main)
@@ -274,7 +272,9 @@ async function updateSetup(
 				.edit({
 					embeds: [embed],
 					components: getButtons(player, client).map((b) => {
-						b.components.forEach((c) => c.setDisabled(!player?.queue.current));
+						b.components.forEach((c) => {
+							c.setDisabled(!player?.queue.current);
+						});
 						return b;
 					}),
 				})
@@ -289,13 +289,15 @@ async function updateSetup(
 					name: client.user!.username,
 					iconURL: client.user!.displayAvatarURL({ extension: "png" }),
 				})
-				.setDescription(T(locale, "player.setupStart.nothing_playing"))
+				.setDescription(t(I18N.player.setupStart.nothing_playing, { lng: locale }))
 				.setImage(client.config.links.img);
 			await m
 				.edit({
 					embeds: [embed],
 					components: getButtons(player!, client).map((b) => {
-						b.components.forEach((c) => c.setDisabled(true));
+						b.components.forEach((c) => {
+							c.setDisabled(true);
+						});
 						return b;
 					}),
 				})
@@ -306,25 +308,17 @@ async function updateSetup(
 	}
 }
 
-async function buttonReply(
-	int: any,
-	args: string,
-	color: ColorResolvable,
-): Promise<void> {
+async function buttonReply(int: any, args: string, color: ColorResolvable): Promise<void> {
 	const embed = new EmbedBuilder();
 	let m: Message;
 	if (int.replied) {
-		m = await int
-			.editReply({ embeds: [embed.setColor(color).setDescription(args)] })
-			.catch(() => {
-				null;
-			});
+		m = await int.editReply({ embeds: [embed.setColor(color).setDescription(args)] }).catch(() => {
+			null;
+		});
 	} else {
-		m = await int
-			.followUp({ embeds: [embed.setColor(color).setDescription(args)] })
-			.catch(() => {
-				null;
-			});
+		m = await int.followUp({ embeds: [embed.setColor(color).setDescription(args)] }).catch(() => {
+			null;
+		});
 	}
 	setTimeout(async () => {
 		if (int && !int.flags?.has(MessageFlags.Ephemeral)) {
@@ -352,7 +346,7 @@ async function oops(channel: TextChannel, args: string): Promise<void> {
 		return console.error(e);
 	}
 }
-export { setupStart, trackStart, buttonReply, updateSetup, oops };
+export { buttonReply, oops, setupStart, trackStart, updateSetup };
 
 /**
  * Project: lavamusic

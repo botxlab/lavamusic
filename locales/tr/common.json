@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Onayla",
+		"cancel": "İptal",
+		"yes": "Evet",
+		"no": "Hayır",
+		"back": "Geri",
+		"next": "İleri",
+		"previous": "Önceki",
+		"save": "Kaydet",
+		"close": "Kapat"
+	},
+	"status": {
+		"enabled": "Etkin",
+		"disabled": "Devre Dışı",
+		"on": "Açık",
+		"off": "Kapalı",
+		"loading": "Yükleniyor...",
+		"processing": "İşleniyor...",
+		"success": "Başarılı!",
+		"failed": "Başarısız!"
+	},
+	"errors": {
+		"generic": "Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyin.\n{error}",
+		"timeout": "Bu işlem için zaman aşımı süresi doldu.",
+		"no_permissions": "Bu işlemi gerçekleştirmek için gerekli izinlere sahip değilsiniz.",
+		"dev_only": "Bu komut sadece geliştiriciler tarafından kullanılabilir.",
+		"db_error": "Veritabanına erişirken bir hata oluştu."
+	},
+	"labels": {
+		"author": "Yazar",
+		"duration": "Süre",
+		"requested_by": "İsteyen",
+		"volume": "Ses",
+		"page": "Sayfa {current} / {total}"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Is guild mein koi active player nahin hai.",
+		"no_channel": "Is command ka upyog karne ke liye aapko ek voice channel mein hone ki jaroorat hai.",
+		"queue_empty": "Queue khali hai.",
+		"no_previous": "Queue mein koi pichhla song nahin hai.",
+		"no_song": "Queue mein koi song nahin hai.",
+		"already_paused": "Song pehle se hi pause hai.",
+		"user_not_in_voice_channel": "Aap kisi voice channel se jude nahin hain."
+	},
+	"trackStart": {
+		"now_playing": "Abhi Chal Raha Hai",
+		"requested_by": "{user} dwara anurodh kiya gaya",
+		"duration": "Aawadhi",
+		"author": "Lekhak",
+		"not_connected_to_voice_channel": "In buttons ka upyog karne ke liye aap <#{channel}> se nahin jude hain.",
+		"need_dj_role": "Is command ka upyog karne ke liye aapke paas DJ role hone ki jaroorat hai.",
+		"previous_by": "{user} dwara pichhla",
+		"no_previous_song": "Koi pichhla song nahin hai.",
+		"paused_by": "{user} dwara pause kiya gaya",
+		"resumed_by": "{user} dwara resume kiya gaya",
+		"skipped_by": "{user} dwara skip kiya gaya",
+		"no_more_songs_in_queue": "Queue mein koi aur song nahin hai.",
+		"looping_by": "{user} dwara looping",
+		"looping_queue_by": "{user} dwara queue looping",
+		"looping_off_by": "{user} dwara looping band"
+	},
+	"setupStart": {
+		"now_playing": "Abhi Chal Raha Hai",
+		"description": "[{title}]({uri}) • {author} dwara • `[{length}]` - <@{requester}> dwara anurodh kiya gaya",
+		"error_searching": "Khojte samay ek error aaya.",
+		"no_results": "Koi result nahin mila.",
+		"nothing_playing": "Abhi kuchh bhi play nahin ho raha hai.",
+		"queue_too_long": "Queue bahut lambi hai. Adhiktam lambai {maxQueueSize} songs hai.",
+		"playlist_too_long": "Playlist bahut lambi hai. Adhiktam lambai {maxPlaylistSize} songs hai.",
+		"added_to_queue": "[{title}]({uri}) ko queue mein jod diya gaya hai.",
+		"added_playlist_to_queue": "Playlist se [{length}] songs ko queue mein jod diya gaya hai."
+	}
+}

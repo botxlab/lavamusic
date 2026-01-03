@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Bekreft",
+		"cancel": "Avbryt",
+		"yes": "Ja",
+		"no": "Nei",
+		"back": "Tilbake",
+		"next": "Neste",
+		"previous": "Forrige",
+		"save": "Lagre",
+		"close": "Lukk"
+	},
+	"status": {
+		"enabled": "Aktivert",
+		"disabled": "Deaktivert",
+		"on": "På",
+		"off": "Av",
+		"loading": "Laster...",
+		"processing": "Behandler...",
+		"success": "Suksess!",
+		"failed": "Feilet!"
+	},
+	"errors": {
+		"generic": "En uventet feil oppstod. Prøv igjen senere.\n{error}",
+		"timeout": "Tidsgrensen for denne handlingen har utløpt.",
+		"no_permissions": "Du har ikke nødvendige tillatelser til å utføre denne handlingen.",
+		"dev_only": "Denne kommandoen er begrenset til utviklere.",
+		"db_error": "Det oppstod en feil ved tilgang til databasen."
+	},
+	"labels": {
+		"author": "Forfatter",
+		"duration": "Varighet",
+		"requested_by": "Forespurt av",
+		"volume": "Volum",
+		"page": "Side {current} av {total}"
+	}
+}

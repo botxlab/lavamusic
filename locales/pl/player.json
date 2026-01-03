@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Nie ma aktywnego odtwarzacza na tym serwerze.",
+		"no_channel": "Musisz być na kanale głosowym, aby użyć tej komendy.",
+		"queue_empty": "Kolejka jest pusta.",
+		"no_previous": "Nie ma żadnych poprzednich utworów w kolejce.",
+		"no_song": "Nie ma żadnych utworów w kolejce.",
+		"already_paused": "Utwór jest już wstrzymany.",
+		"user_not_in_voice_channel": "Nie jesteś połączony z kanałem głosowym."
+	},
+	"trackStart": {
+		"now_playing": "Teraz odtwarzane",
+		"requested_by": "Zażądane przez {user}",
+		"duration": "Czas trwania",
+		"author": "Autor",
+		"not_connected_to_voice_channel": "Aby używać tych przycisków musisz być połączony z <#{channel}>.",
+		"need_dj_role": "Musisz mieć rolę DJ, aby użyć tej komendy.",
+		"previous_by": "Poprzedni przez {user}",
+		"no_previous_song": "Nie ma żadnego poprzedniego utworu.",
+		"paused_by": "Wstrzymany przez {user}",
+		"resumed_by": "Wznowiony przez {user}",
+		"skipped_by": "Pominięty przez {user}",
+		"no_more_songs_in_queue": "Nie ma więcej utworów w kolejce.",
+		"looping_by": "Zapętlanie przez {user}",
+		"looping_queue_by": "Zapętlona kolejka przez {user}",
+		"looping_off_by": "Zapętlenie wyłączone przez {user}"
+	},
+	"setupStart": {
+		"now_playing": "Teraz odtwarzane",
+		"description": "[{title}]({uri}) autorstwa {author} • `[{length}]` - Zażądane przez <@{requester}>",
+		"error_searching": "Wystąpił błąd podczas wyszukiwania.",
+		"no_results": "Nie znaleziono żadnych wyników.",
+		"nothing_playing": "Obecnie nic nie jest odtwarzane",
+		"queue_too_long": "Kolejka jest zbyt długa. Maksymalna długość kolejki to {maxQueueSize} utworów.",
+		"playlist_too_long": "Playlista jest zbyt długa. Maksymalna długość playlisty to {maxPlaylistSize} utworów.",
+		"added_to_queue": "Dodano utwór [{title}]({uri}) do kolejki.",
+		"added_playlist_to_queue": "Dodano [{length}] utworów z playlisty do kolejki."
+	}
+}

@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Evaluate code",
+    "success": "Code evaluated successfully",
+    "error": "Failed to evaluate code"
+  },
+  "guilds": {
+    "description": "Manage and list bot guilds",
+    "list": "List of Guilds",
+    "leave": {
+      "success": "Successfully left guild: {name}",
+      "fail": "Failed to leave guild {name}",
+      "log": "Bot has left guild: {name} (ID: {id})"
+    },
+    "not_found": "Guild not found."
+  },
+  "restart": {
+    "description": "Restart the bot process",
+    "prompt": "Are you sure you want to restart **{client}**?",
+    "status": {
+      "restarting": "Restarting...",
+      "canceled": "Restart canceled.",
+      "error": "An error occurred while restarting the bot."
+    },
+    "restart_by": "Restart initiated by {user}"
+  },
+  "shutdown": {
+    "description": "Shutdown the bot process",
+    "prompt": "Are you sure you want to shutdown?",
+    "status": "Shutting down...",
+    "canceled": "Shutdown canceled."
+  },
+  "deploy": {
+    "description": "Sync slash commands with Discord API",
+    "prompt": "Where do you want to un/deploy the commands?",
+    "status": {
+      "deployed_global": "Commands deployed globally.",
+      "deployed_guild": "Commands deployed in this guild.",
+      "removed_global": "Commands removed globally.",
+      "removed_guild": "Commands removed from this guild.",
+      "failed": "Deployment failed via command: {command}"
+    },
+    "buttons": {
+      "deploy_global": "Deploy Global",
+      "deploy_guild": "Deploy Guild",
+      "remove_global": "Remove Global",
+      "remove_guild": "Remove Guild"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Create an invite link for a specific guild.",
+      "errors": {
+        "guild_not_found": "Guild not found. Make sure the ID is correct.",
+        "no_suitable_channel": "No suitable channel found with enough permissions to create an invite in that guild."
+      },
+      "success": "Invite link for **{guildName}**: [Click here]({url})"
+    },
+    "destroy": {
+      "description": "Destroy all invite links created by the bot in a guild",
+      "errors": {
+        "guild_not_found": "Guild not found. Please provide a valid ID.",
+        "generic": "Failed to destroy invites. Check if I have 'Manage Server' permissions in that guild."
+      },
+      "success": "Successfully destroyed **{count}** invite(s) created by me in **{guildName}**.",
+      "not_found": "No invites created by me were found in this guild."
+    }
+  }
+}

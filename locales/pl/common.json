@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Potwierdź",
+		"cancel": "Anuluj",
+		"yes": "Tak",
+		"no": "Nie",
+		"back": "Wstecz",
+		"next": "Dalej",
+		"previous": "Poprzedni",
+		"save": "Zapisz",
+		"close": "Zamknij"
+	},
+	"status": {
+		"enabled": "Włączone",
+		"disabled": "Wyłączone",
+		"on": "Wł.",
+		"off": "Wył.",
+		"loading": "Ładowanie...",
+		"processing": "Przetwarzanie...",
+		"success": "Sukces!",
+		"failed": "Niepowodzenie!"
+	},
+	"errors": {
+		"generic": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.\n{error}",
+		"timeout": "Limit czasu na tę czynność upłynął.",
+		"no_permissions": "Nie masz wymaganych uprawnień, aby wykonać tę czynność.",
+		"dev_only": "Ta komenda jest ograniczona tylko dla deweloperów.",
+		"db_error": "Wystąpił błąd podczas dostępu do bazy danych."
+	},
+	"labels": {
+		"author": "Autor",
+		"duration": "Czas trwania",
+		"requested_by": "Zażądane przez",
+		"volume": "Głośność",
+		"page": "Strona {current} z {total}"
+	}
+}

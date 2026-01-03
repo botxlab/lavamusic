@@ -1,13 +1,20 @@
-/** biome-ignore-all lint/style/noNonNullAssertion: explanation */
-import { ChannelType, PermissionFlagsBits, type TextChannel } from "discord.js";
+import { ChannelType, type TextChannel } from "discord.js";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import {
+	CreateInstantInvite,
+	EmbedLinks,
+	ReadMessageHistory,
+	SendMessages,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 export default class CreateInvite extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "createinvite",
 			description: {
-				content: "Create an invite link for a guild",
+				content: I18N.dev.invite.create.description,
 				examples: ["createinvite 0000000000000000000"],
 				usage: "createinvite <guildId>",
 			},
@@ -15,21 +22,10 @@ export default class CreateInvite extends Command {
 			aliases: ["ci", "gi", "ginvite", "guildinvite"],
 			cooldown: 3,
 			args: true,
-			player: {
-				voice: false,
-				dj: false,
-				active: false,
-				djPerm: null,
-			},
+			player: { voice: false, dj: false, active: false, djPerm: null },
 			permissions: {
 				dev: true,
-				client: [
-					"SendMessages",
-					"CreateInstantInvite",
-					"ReadMessageHistory",
-					"EmbedLinks",
-					"ViewChannel",
-				],
+				client: [SendMessages, CreateInstantInvite, ReadMessageHistory, EmbedLinks, ViewChannel],
 				user: [],
 			},
 			slashCommand: false,
@@ -37,43 +33,36 @@ export default class CreateInvite extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const guild = client.guilds.cache.get(args[0]);
 
 		if (!guild) {
 			return await ctx.sendMessage({
 				embeds: [
-					this.client
+					client
 						.embed()
-						.setColor(this.client.color.red)
-						.setDescription("Guild not found"),
+						.setColor(client.color.red)
+						.setDescription(ctx.locale(I18N.dev.invite.create.errors.guild_not_found)),
 				],
 			});
 		}
 
+		// Search for a channel where the bot has invite permissions
 		const textChannel = guild.channels.cache.find(
-			(c) =>
-				c.type === ChannelType.GuildText &&
-				c
+			(channel) =>
+				channel.type === ChannelType.GuildText &&
+				channel
 					.permissionsFor(guild.members.me!)
-					?.has(
-						PermissionFlagsBits.CreateInstantInvite |
-							PermissionFlagsBits.SendMessages |
-							PermissionFlagsBits.ViewChannel,
-					),
+					?.has(["CreateInstantInvite", "SendMessages", "ViewChannel"]),
 		) as TextChannel | undefined;
 
 		if (!textChannel) {
 			return await ctx.sendMessage({
 				embeds: [
-					this.client
+					client
 						.embed()
-						.setColor(this.client.color.red)
-						.setDescription("No suitable channel found"),
+						.setColor(client.color.red)
+						.setDescription(ctx.locale(I18N.dev.invite.create.errors.no_suitable_channel)),
 				],
 			});
 		}
@@ -86,11 +75,14 @@ export default class CreateInvite extends Command {
 
 		return await ctx.sendMessage({
 			embeds: [
-				this.client
+				client
 					.embed()
-					.setColor(this.client.color.main)
+					.setColor(client.color.main)
 					.setDescription(
-						`Invite link for ${guild.name}: [Link](${invite.url})`,
+						ctx.locale(I18N.dev.invite.create.success, {
+							guildName: guild.name,
+							url: invite.url,
+						}),
 					),
 			],
 		});

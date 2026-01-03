@@ -23,9 +23,7 @@ export default class PlayerDisconnect extends Event {
 		const messageId = player.get<string | undefined>("messageId");
 		if (!messageId) return;
 
-		const channel = guild.channels.cache.get(
-			player.textChannelId!,
-		) as TextChannel;
+		const channel = guild.channels.cache.get(player.textChannelId!) as TextChannel;
 		if (!channel) return;
 
 		const message = await channel.messages.fetch(messageId).catch(() => {

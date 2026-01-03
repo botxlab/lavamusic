@@ -1,18 +1,16 @@
-import { config } from "dotenv";
 import { defineConfig } from 'drizzle-kit';
+import { env } from "./src/env";
 
-config();
-
-let { DATABASE_URL } = process.env;
-if (!DATABASE_URL) {
-  DATABASE_URL = "file:./lavamusic.db";
+if (!env.DATABASE_URL) {
+  env.DATABASE_URL = "file:./lavamusic.db";
 }
 
 export default defineConfig({
-  out: './drizzle',
+  out: './drizzle/postgres',
   schema: './src/database/schemas.ts',
-  dialect: 'sqlite',
+  dialect: 'postgresql',
+  driver: "pglite",
   dbCredentials: {
-    url:  DATABASE_URL,
+    url: env.DATABASE_URL,
   },
 });

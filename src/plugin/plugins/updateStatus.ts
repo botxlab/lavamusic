@@ -1,6 +1,6 @@
-import type { Lavamusic } from "../../structures/index";
-import type { BotPlugin } from "../index";
 import { Events } from "discord.js";
+import type { Lavamusic } from "../../structures/index";
+import type { BotPlugin } from "../../types/botPlugin";
 
 const updateStatusPlugin: BotPlugin = {
 	name: "Update Status Plugin",

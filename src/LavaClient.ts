@@ -2,22 +2,11 @@ import { type ClientOptions, GatewayIntentBits, Options } from "discord.js";
 import { env } from "./env";
 import Lavamusic from "./structures/Lavamusic";
 
-const {
-	MessageContent,
-	GuildVoiceStates,
-	GuildMessages,
-	Guilds,
-	GuildMessageTyping,
-} = GatewayIntentBits;
+const { MessageContent, GuildVoiceStates, GuildMessages, Guilds, GuildMessageTyping } =
+	GatewayIntentBits;
 
 const clientOptions: ClientOptions = {
-	intents: [
-		Guilds,
-		GuildMessages,
-		MessageContent,
-		GuildVoiceStates,
-		GuildMessageTyping,
-	],
+	intents: [Guilds, GuildMessages, MessageContent, GuildVoiceStates, GuildMessageTyping],
 	allowedMentions: { parse: ["users", "roles"], repliedUser: false },
 	makeCache: Options.cacheWithLimits({
 		...Options.DefaultMakeCacheSettings,
@@ -37,7 +26,7 @@ const clientOptions: ClientOptions = {
 		},
 		UserManager: 100,
 		PresenceManager: 0,
-	})
+	}),
 };
 
 const client = new Lavamusic(clientOptions);

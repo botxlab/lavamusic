@@ -1,14 +1,17 @@
 import util from "node:util";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import { fetch } from "undici";
+import { env } from "../../env";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class Eval extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "eval",
 			description: {
-				content: "Evaluate code",
+				content: I18N.dev.eval.description,
 				examples: ["eval"],
 				usage: "eval",
 			},
@@ -24,12 +27,7 @@ export default class Eval extends Command {
 			},
 			permissions: {
 				dev: true,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: false,
@@ -37,11 +35,7 @@ export default class Eval extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const code = args.join(" ");
 		try {
 			// biome-ignore lint/security/noGlobalEval: explanation
@@ -53,7 +47,7 @@ export default class Eval extends Command {
 			}
 
 			// Redact common secrets
-			const secrets = [client.token, process.env.TOKEN];
+			const secrets = [client.token, env.TOKEN];
 			for (const secret of secrets.filter(Boolean)) {
 				evaled = evaled.replaceAll(secret!, "[REDACTED]");
 			}
@@ -84,8 +78,7 @@ export default class Eval extends Command {
 				components: [row],
 			});
 
-			const filter = (i: any) =>
-				i.customId === "eval-delete" && i.user.id === ctx.author?.id;
+			const filter = (i: any) => i.customId === "eval-delete" && i.user.id === ctx.author?.id;
 			const collector = msg.createMessageComponentCollector({
 				time: 60000,
 				filter: filter,

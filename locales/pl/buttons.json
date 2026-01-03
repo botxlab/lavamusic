@@ -1,0 +1,13 @@
+{
+	"invite": "Zaproś",
+	"support": "Serwer wsparcia",
+	"previous": "Poprzednia",
+	"resume": "Wznów",
+	"stop": "Zatrzymaj",
+	"skip": "Pomiń",
+	"loop": "Zapętl",
+	"next": "Następna",
+	"errors": {
+		"not_author": "Nie możesz użyć tego przycisku."
+	}
+}

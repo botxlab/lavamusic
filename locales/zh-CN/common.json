@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "确认",
+		"cancel": "取消",
+		"yes": "是",
+		"no": "否",
+		"back": "返回",
+		"next": "下一个",
+		"previous": "上一个",
+		"save": "保存",
+		"close": "关闭"
+	},
+	"status": {
+		"enabled": "已启用",
+		"disabled": "已禁用",
+		"on": "开",
+		"off": "关",
+		"loading": "正在加载...",
+		"processing": "处理中...",
+		"success": "成功！",
+		"failed": "失败！"
+	},
+	"errors": {
+		"generic": "发生意外错误。请稍后再试。\n{error}",
+		"timeout": "此操作的时间限制已过。",
+		"no_permissions": "您没有执行此操作所需的权限。",
+		"dev_only": "此命令仅限开发者使用。",
+		"db_error": "访问数据库时出错。"
+	},
+	"labels": {
+		"author": "作者",
+		"duration": "时长",
+		"requested_by": "请求者",
+		"volume": "音量",
+		"page": "第 {current} 页，共 {total} 页"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Il n'y a pas de lecteur actif dans cette guilde.",
+		"no_channel": "Vous devez être dans un canal vocal pour utiliser cette commande.",
+		"queue_empty": "La file d'attente est vide.",
+		"no_previous": "Il n'y a pas de chansons précédentes dans la file d'attente.",
+		"no_song": "Il n'y a pas de chanson dans la file d'attente.",
+		"already_paused": "La chanson est déjà en pause.",
+		"user_not_in_voice_channel": "Vous n'êtes pas connecté à un canal vocal."
+	},
+	"trackStart": {
+		"now_playing": "En cours de lecture",
+		"requested_by": "Demandé par {user}",
+		"duration": "Durée",
+		"author": "Auteur",
+		"not_connected_to_voice_channel": "Vous n'êtes pas connecté à <#{channel}> pour utiliser ces boutons.",
+		"need_dj_role": "Vous devez avoir le rôle DJ pour utiliser cette commande.",
+		"previous_by": "Précédent par {user}",
+		"no_previous_song": "Il n'y a pas de chanson précédente.",
+		"paused_by": "Mis en pause par {user}",
+		"resumed_by": "Repris par {user}",
+		"skipped_by": "Passé par {user}",
+		"no_more_songs_in_queue": "Il n'y a plus de chanson dans la file d'attente.",
+		"looping_by": "Boucle par {user}",
+		"looping_queue_by": "Boucle de la file d'attente par {user}",
+		"looping_off_by": "Boucle désactivée par {user}"
+	},
+	"setupStart": {
+		"now_playing": "En cours de lecture",
+		"description": "[{title}]({uri}) par {author} • `[{length}]` - Demandé par <@{requester}>",
+		"error_searching": "Une erreur s'est produite lors de la recherche.",
+		"no_results": "Aucun résultat trouvé.",
+		"nothing_playing": "Rien ne joue en ce moment.",
+		"queue_too_long": "La file d'attente est trop longue. La longueur maximale est de {maxQueueSize} chansons.",
+		"playlist_too_long": "La playlist est trop longue. La longueur maximale est de {maxPlaylistSize} chansons.",
+		"added_to_queue": "Ajouté [{title}]({uri}) à la file d'attente.",
+		"added_playlist_to_queue": "Ajouté [{length}] chansons de la playlist à la file d'attente."
+	}
+}

@@ -1,11 +1,13 @@
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class LavaLink extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "lavalink",
 			description: {
-				content: "cmd.lavalink.description",
+				content: I18N.commands.lavalink.description,
 				examples: ["lavalink"],
 				usage: "lavalink",
 			},
@@ -22,12 +24,7 @@ export default class LavaLink extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: true,
@@ -47,9 +44,9 @@ export default class LavaLink extends Command {
 		const pages = chunks.map((chunk, index) => {
 			const embed = this.client
 				.embed()
-				.setTitle(ctx.locale("cmd.lavalink.title"))
+				.setTitle(ctx.locale(I18N.commands.lavalink.title))
 				.setColor(this.client.color.main)
-				.setThumbnail(client.user?.avatarURL()!)
+				.setThumbnail(client.user?.avatarURL() ?? "")
 				.setTimestamp();
 
 			chunk.forEach((node) => {
@@ -64,7 +61,7 @@ export default class LavaLink extends Command {
 
 				embed.addFields({
 					name: `${node.id} (${statusEmoji})`,
-					value: `\`\`\`yaml\n${ctx.locale("cmd.lavalink.content", {
+					value: `\`\`\`yaml\n${ctx.locale(I18N.commands.lavalink.content, {
 						players: stats.players,
 						playingPlayers: stats.playingPlayers,
 						uptime: client.utils.formatTime(stats.uptime),
@@ -78,7 +75,7 @@ export default class LavaLink extends Command {
 			});
 
 			embed.setFooter({
-				text: ctx.locale("cmd.lavalink.page_info", {
+				text: ctx.locale(I18N.commands.lavalink.page_info, {
 					index: index + 1,
 					total: chunks.length,
 				}),

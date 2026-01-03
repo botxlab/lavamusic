@@ -1,32 +1,61 @@
-import fs from "node:fs";
-import path from "node:path";
+import { existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import type { Lavamusic } from "../structures/index";
+import logger from "../structures/Logger";
+import type { BotPlugin } from "../types/botPlugin";
 
-const pluginsFolder = path.join(process.cwd(), "dist", "plugin", "plugins");
-
-export default async function loadPlugins(client: Lavamusic): Promise<void> {
-	try {
-		const pluginFiles = fs
-			.readdirSync(pluginsFolder)
-			.filter((file) => file.endsWith(".js"));
-		for (const file of pluginFiles) {
-			const pluginPath = path.join(pluginsFolder, file);
-			const { default: plugin } = require(pluginPath);
-			if (plugin.initialize) plugin.initialize(client);
-			client.logger.info(`Loaded plugin: ${plugin.name} v${plugin.version}`);
-		}
-	} catch (error) {
-		client.logger.error("Error loading plugins:", error);
-	}
+/**
+ * Validate if a loaded module matches the BotPlugin interface at runtime.
+ */
+function isBotPlugin(obj: any): obj is BotPlugin {
+	return obj && typeof obj.name === "string" && typeof obj.initialize === "function";
 }
 
-export interface BotPlugin {
-	name: string;
-	version: string;
-	author: string;
-	description?: string;
-	initialize: (client: Lavamusic) => void;
-	shutdown?: (client: Lavamusic) => void;
+/**
+ * Loads all plugins from `plugins` subdirectory.
+ *
+ * Designed to be fault-tolerant: if one plugin fails, others continue to load.
+ *
+ * @param client - The bot client instance.
+ */
+export default function loadPlugins(client: Lavamusic): void {
+	const pluginsFolder = join(__dirname, "plugins");
+
+	if (!existsSync(pluginsFolder)) {
+		logger.warn(`[PLUGINS] Directory not found at: ${pluginsFolder}`);
+		return;
+	}
+
+	// Filter for js/ts, ignoring definition files
+	const pluginFiles = readdirSync(pluginsFolder).filter(
+		(file) => (file.endsWith(".js") || file.endsWith(".ts")) && !file.endsWith(".d.ts"),
+	);
+
+	for (const file of pluginFiles) {
+		try {
+			const pluginPath = join(pluginsFolder, file);
+
+			const rawModule = require(pluginPath);
+			const plugin: BotPlugin = rawModule.default || rawModule;
+
+			/**
+			 * Validate structure before execution.
+			 * Skip to the next plugin file to prevent crash
+			 */
+			if (!isBotPlugin(plugin)) {
+				logger.warn(
+					`[PLUGIN] Skipping invalid file: ${file} (Missing 'name' or 'initialize' method)`,
+				);
+				continue;
+			}
+
+			plugin.initialize(client);
+			logger.info(`[PLUGIN] Loaded: ${plugin.name} v${plugin.version}`);
+		} catch (error) {
+			// Catch individual plugin errors to continues loading others
+			logger.error(`[PLUGIN] Failed to load ${file}:`, error);
+		}
+	}
 }
 
 /**

@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Ewaluacja kodu",
+    "success": "Kod wykonany pomyślnie",
+    "error": "Nie udało się wykonać kodu"
+  },
+  "guilds": {
+    "description": "Zarządzaj i wyświetlaj listę serwerów bota",
+    "list": "Lista Serwerów",
+    "leave": {
+      "success": "Pomyślnie opuszczono serwer: {name}",
+      "fail": "Nie udało się opuścić serwera {name}",
+      "log": "Bot opuścił serwer: {name} (ID: {id})"
+    },
+    "not_found": "Serwer nie znaleziony."
+  },
+  "restart": {
+    "description": "Restart procesu bota",
+    "prompt": "Czy na pewno chcesz zrestartować **{client}**?",
+    "status": {
+      "restarting": "Restartowanie...",
+      "canceled": "Restart anulowany.",
+      "error": "Wystąpił błąd podczas restartowania bota."
+    },
+    "restart_by": "Restart zainicjowany przez {user}"
+  },
+  "shutdown": {
+    "description": "Zamknięcie procesu bota",
+    "prompt": "Czy na pewno chcesz wyłączyć bota?",
+    "status": "Wyłączanie...",
+    "canceled": "Wyłączanie anulowane."
+  },
+  "deploy": {
+    "description": "Synchronizacja komend slash z API Discorda",
+    "prompt": "Gdzie chcesz wdrożyć/usunąć komendy?",
+    "status": {
+      "deployed_global": "Komendy wdrożone globalnie.",
+      "deployed_guild": "Komendy wdrożone na tym serwerze.",
+      "removed_global": "Komendy usunięte globalnie.",
+      "removed_guild": "Komendy usunięte z tego serwera.",
+      "failed": "Wdrożenie nie powiodło się dla komendy: {command}"
+    },
+    "buttons": {
+      "deploy_global": "Wdróż Globalnie",
+      "deploy_guild": "Wdróż na Serwerze",
+      "remove_global": "Usuń Globalnie",
+      "remove_guild": "Usuń z Serwera"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Utwórz link zaproszenia dla konkretnego serwera.",
+      "errors": {
+        "guild_not_found": "Serwer nie znaleziony. Upewnij się, że ID jest poprawne.",
+        "no_suitable_channel": "Nie znaleziono odpowiedniego kanału z wystarczającymi uprawnieniami do utworzenia zaproszenia na tym serwerze."
+      },
+      "success": "Link zaproszenia dla **{guildName}**: [Kliknij tutaj]({url})"
+    },
+    "destroy": {
+      "description": "Zniszcz wszystkie linki zaproszenia utworzone przez bota na serwerze",
+      "errors": {
+        "guild_not_found": "Serwer nie znaleziony. Proszę podać poprawne ID.",
+        "generic": "Nie udało się zniszczyć zaproszeń. Sprawdź, czy mam uprawnienia 'Zarządzanie serwerem' na tym serwerze."
+      },
+      "success": "Pomyślnie zniszczono **{count}** zaproszeń utworzonych przeze mnie w **{guildName}**.",
+      "not_found": "Nie znaleziono żadnych zaproszeń utworzonych przeze mnie na tym serwerze."
+    }
+  }
+}

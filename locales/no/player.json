@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Det er ingen aktiv spiller i denne serveren.",
+		"no_channel": "Du må være i en talekanal for å bruke denne kommandoen.",
+		"queue_empty": "Køen er tom.",
+		"no_previous": "Det er ingen tidligere sanger i køen.",
+		"no_song": "Det er ingen sanger i køen.",
+		"already_paused": "Sangen er allerede pauset.",
+		"user_not_in_voice_channel": "Du er ikke tilkoblet en talekanal."
+	},
+	"trackStart": {
+		"now_playing": "Spilles nå",
+		"requested_by": "Forespurt av {user}",
+		"duration": "Varighet",
+		"author": "Skaper",
+		"not_connected_to_voice_channel": "Du er ikke tilkoblet <#{channel}> for å bruke disse knappene.",
+		"need_dj_role": "Du må ha DJ-rollen for å bruke denne kommandoen.",
+		"previous_by": "Forrige av {user}",
+		"no_previous_song": "Det er ingen forrige sang.",
+		"paused_by": "Pauset av {user}",
+		"resumed_by": "Gjenopptatt av {user}",
+		"skipped_by": "Hoppet over av {user}",
+		"no_more_songs_in_queue": "Det er ingen flere sanger i køen.",
+		"looping_by": "Looper av {user}",
+		"looping_queue_by": "Looper kø av {user}",
+		"looping_off_by": "Slår av looping av {user}"
+	},
+	"setupStart": {
+		"now_playing": "Spilles nå",
+		"description": "[{title}]({uri}) av {author} • `[{length}]` - Forespurt av <@{requester}>",
+		"error_searching": "Det oppstod en feil under søket.",
+		"no_results": "Fant ingen resultater.",
+		"nothing_playing": "Ingen avspilling akkurat nå.",
+		"queue_too_long": "Køen er for lang. Maksimal lengde er {maxQueueSize} sanger.",
+		"playlist_too_long": "Spillelisten er for lang. Maksimal lengde er {maxPlaylistSize} sanger.",
+		"added_to_queue": "La til [{title}]({uri}) i køen.",
+		"added_playlist_to_queue": "La til [{length}] sanger fra spillelisten i køen."
+	}
+}

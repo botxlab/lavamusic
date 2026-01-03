@@ -1,5 +1,5 @@
 import { type Message, TextChannel } from "discord.js";
-import { T } from "../../structures/I18n";
+import { I18N, t } from "../../structures/I18n";
 import { Event, type Lavamusic } from "../../structures/index";
 import { oops, setupStart } from "../../utils/SetupSystem";
 
@@ -15,7 +15,7 @@ export default class SetupSystem extends Event {
 		const channel = message.channel as TextChannel;
 		if (!(channel instanceof TextChannel)) return;
 		if (!message.member?.voice.channel) {
-			await oops(channel, T(locale, "event.message.no_voice_channel_queue"));
+			await oops(channel, t(I18N.events.message.no_voice_channel_queue, { lng: locale }));
 			await message.delete().catch(() => {
 				null;
 			});
@@ -29,7 +29,8 @@ export default class SetupSystem extends Event {
 		/*  if (voiceChannel && clientUser && !voiceChannel?.permissionsFor(clientUser!).has(PermissionsBitField.Flags.Connect | PermissionsBitField.Flags.Speak)) {
             await oops(
                 channel,
-                T(locale, "event.message.no_permission_connect_speak", {
+                t(I18N.events.message.no_permission_connect_speak, {
+                    lng: locale,
                     channel: voiceChannel.id,
                 }),
             );
@@ -37,13 +38,11 @@ export default class SetupSystem extends Event {
             return;
         } */
 
-		if (
-			clientMember?.voice.channel &&
-			clientMember.voice.channelId !== voiceChannel.id
-		) {
+		if (clientMember?.voice.channel && clientMember.voice.channelId !== voiceChannel.id) {
 			await oops(
 				channel,
-				T(locale, "event.message.different_voice_channel_queue", {
+				t(I18N.events.message.different_voice_channel_queue, {
+					lng: locale,
 					channel: clientMember.voice.channelId,
 				}),
 			);

@@ -2,8 +2,8 @@
 
 # Run database migrations
 echo "Running database initialization..."
-npm run generate
-npm run push
+bun run generate
+bun run push
 
 # Start the application
 echo "Starting LavaMusic..."

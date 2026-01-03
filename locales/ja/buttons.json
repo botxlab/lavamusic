@@ -1,0 +1,13 @@
+{
+	"invite": "招待",
+	"support": "サポートサーバー",
+	"previous": "前の曲",
+	"resume": "再開",
+	"stop": "停止",
+	"skip": "スキップ",
+	"loop": "ループ",
+	"next": "次へ",
+	"errors": {
+		"not_author": "このボタンを使用する権限がありません。"
+	}
+}

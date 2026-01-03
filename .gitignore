@@ -538,3 +538,5 @@ lavamusic.db
 package-lock.json
 
 /generated/prisma
+
+.direnv/

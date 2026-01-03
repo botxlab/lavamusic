@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Xác nhận",
+		"cancel": "Hủy",
+		"yes": "Có",
+		"no": "Không",
+		"back": "Quay lại",
+		"next": "Tiếp theo",
+		"previous": "Trước",
+		"save": "Lưu",
+		"close": "Đóng"
+	},
+	"status": {
+		"enabled": "Đã bật",
+		"disabled": "Đã tắt",
+		"on": "Bật",
+		"off": "Tắt",
+		"loading": "Đang tải...",
+		"processing": "Đang xử lý...",
+		"success": "Thành công!",
+		"failed": "Thất bại!"
+	},
+	"errors": {
+		"generic": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại sau.\n{error}",
+		"timeout": "Thời hạn cho hành động này đã hết.",
+		"no_permissions": "Bạn không có quyền cần thiết để thực hiện hành động này.",
+		"dev_only": "Lệnh này chỉ dành cho các nhà phát triển.",
+		"db_error": "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu."
+	},
+	"labels": {
+		"author": "Tác giả",
+		"duration": "Thời lượng",
+		"requested_by": "Yêu cầu bởi",
+		"volume": "Âm lượng",
+		"page": "Trang {current} trên {total}"
+	}
+}

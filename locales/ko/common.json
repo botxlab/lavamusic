@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "확인",
+		"cancel": "취소",
+		"yes": "예",
+		"no": "아니요",
+		"back": "뒤로",
+		"next": "다음",
+		"previous": "이전",
+		"save": "저장",
+		"close": "닫기"
+	},
+	"status": {
+		"enabled": "활성화됨",
+		"disabled": "비활성화됨",
+		"on": "켜짐",
+		"off": "꺼짐",
+		"loading": "로딩 중...",
+		"processing": "처리 중...",
+		"success": "성공!",
+		"failed": "실패!"
+	},
+	"errors": {
+		"generic": "예상치 못한 오류가 발생했어요. 나중에 다시 시도해주세요.\n{error}",
+		"timeout": "이 작업의 시간 제한이 만료되었어요.",
+		"no_permissions": "이 작업을 수행할 권한이 없어요.",
+		"dev_only": "이 명령어는 개발자만 사용할 수 있어요.",
+		"db_error": "데이터베이스 액세스 중 오류가 발생했어요."
+	},
+	"labels": {
+		"author": "작성자",
+		"duration": "길이",
+		"requested_by": "요청자",
+		"volume": "볼륨",
+		"page": "{total}페이지 중 {current}페이지"
+	}
+}

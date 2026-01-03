@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Evaluar código",
+    "success": "Código evaluado exitosamente",
+    "error": "Fallo al evaluar código"
+  },
+  "guilds": {
+    "description": "Gestionar y listar servidores del bot",
+    "list": "Lista de Servidores",
+    "leave": {
+      "success": "Salí exitosamente del servidor: {name}",
+      "fail": "Fallo al salir del servidor {name}",
+      "log": "Bot ha dejado el servidor: {name} (ID: {id})"
+    },
+    "not_found": "Servidor no encontrado."
+  },
+  "restart": {
+    "description": "Reiniciar el proceso del bot",
+    "prompt": "¿Estás seguro de que quieres reiniciar **{client}**?",
+    "status": {
+      "restarting": "Reiniciando...",
+      "canceled": "Reinicio cancelado.",
+      "error": "Ocurrió un error al reiniciar el bot."
+    },
+    "restart_by": "Reinicio iniciado por {user}"
+  },
+  "shutdown": {
+    "description": "Apagar el proceso del bot",
+    "prompt": "¿Estás seguro de que quieres apagar?",
+    "status": "Apagando...",
+    "canceled": "Apagado cancelado."
+  },
+  "deploy": {
+    "description": "Sincronizar comandos slash con la API de Discord",
+    "prompt": "¿Dónde quieres desplegar/eliminar los comandos?",
+    "status": {
+      "deployed_global": "Comandos desplegados globalmente.",
+      "deployed_guild": "Comandos desplegados en este servidor.",
+      "removed_global": "Comandos eliminados globalmente.",
+      "removed_guild": "Comandos eliminados de este servidor.",
+      "failed": "Despliegue fallido vía comando: {command}"
+    },
+    "buttons": {
+      "deploy_global": "Desplegar Global",
+      "deploy_guild": "Desplegar Servidor",
+      "remove_global": "Eliminar Global",
+      "remove_guild": "Eliminar Servidor"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Crear un enlace de invitación para un servidor específico.",
+      "errors": {
+        "guild_not_found": "Servidor no encontrado. Asegúrate de que el ID sea correcto.",
+        "no_suitable_channel": "No se encontró un canal adecuado con permisos suficientes para crear una invitación."
+      },
+      "success": "Enlace de invitación para **{guildName}**: [Clic aquí]({url})"
+    },
+    "destroy": {
+      "description": "Destruir todas las invitaciones creadas por el bot en un servidor",
+      "errors": {
+        "guild_not_found": "Servidor no encontrado. Proporciona un ID válido.",
+        "generic": "Fallo al destruir invitaciones. Verifica mis permisos de 'Gestionar Servidor'."
+      },
+      "success": "Destruidas exitosamente **{count}** invitación(es) creadas por mí en **{guildName}**.",
+      "not_found": "No se encontraron invitaciones creadas por mí en este servidor."
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Confirm",
+		"cancel": "Cancel",
+		"yes": "Yes",
+		"no": "No",
+		"back": "Back",
+		"next": "Next",
+		"previous": "Previous",
+		"save": "Save",
+		"close": "Close"
+	},
+	"status": {
+		"enabled": "Enabled",
+		"disabled": "Disabled",
+		"on": "On",
+		"off": "Off",
+		"loading": "Loading...",
+		"processing": "Processing...",
+		"success": "Success!",
+		"failed": "Failed!"
+	},
+	"errors": {
+		"generic": "An unexpected error occurred. Please try again later.\n{error}",
+		"timeout": "The time limit for this action has expired.",
+		"no_permissions": "You do not have the necessary permissions to perform this action.",
+		"dev_only": "This command is restricted to developers only.",
+		"db_error": "There was an error accessing the database."
+	},
+	"labels": {
+		"author": "Author",
+		"duration": "Duration",
+		"requested_by": "Requested by",
+		"volume": "Volume",
+		"page": "Page {current} of {total}"
+	}
+}

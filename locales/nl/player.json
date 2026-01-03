@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Er is geen actieve speler in deze server.",
+		"no_channel": "Je moet in een spraakkanaal zitten om dit commando te gebruiken.",
+		"queue_empty": "De wachtrij is leeg.",
+		"no_previous": "Er zijn geen vorige nummers in de wachtrij.",
+		"no_song": "Er zijn geen nummers in de wachtrij.",
+		"already_paused": "Het nummer is al gepauzeerd.",
+		"user_not_in_voice_channel": "Je bent niet verbonden met een spraakkanaal."
+	},
+	"trackStart": {
+		"now_playing": "Nu Spelend",
+		"requested_by": "Aangevraagd door {user}",
+		"duration": "Duur",
+		"author": "Auteur",
+		"not_connected_to_voice_channel": "Je bent niet verbonden met <#{channel}> om deze knoppen te gebruiken.",
+		"need_dj_role": "Je moet de DJ-rol hebben om dit commando te gebruiken.",
+		"previous_by": "Vorige door {user}",
+		"no_previous_song": "Er is geen vorig nummer.",
+		"paused_by": "Gepauzeerd door {user}",
+		"resumed_by": "Hervat door {user}",
+		"skipped_by": "Overgeslagen door {user}",
+		"no_more_songs_in_queue": "Er zijn geen nummers meer in de wachtrij.",
+		"looping_by": "Herhalen ingeschakeld door {user}",
+		"looping_queue_by": "Wachtrij herhalen ingeschakeld door {user}",
+		"looping_off_by": "Herhalen uitgeschakeld door {user}"
+	},
+	"setupStart": {
+		"now_playing": "Nu Spelend",
+		"description": "[{title}]({uri}) door {author} • `[{length}]` - Aangevraagd door <@{requester}>",
+		"error_searching": "Er is een fout opgetreden tijdens het zoeken.",
+		"no_results": "Er zijn geen resultaten gevonden.",
+		"nothing_playing": "Er wordt momenteel niets afgespeeld",
+		"queue_too_long": "De wachtrij is te lang. De maximale lengte is {maxQueueSize} nummers.",
+		"playlist_too_long": "De afspeellijst is te lang. De maximale lengte is {maxPlaylistSize} nummers.",
+		"added_to_queue": "[{title}]({uri}) is toegevoegd aan de wachtrij.",
+		"added_playlist_to_queue": "[{length}] nummers van de afspeellijst zijn toegevoegd aan de wachtrij."
+	}
+}

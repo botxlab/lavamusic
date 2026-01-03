@@ -1,12 +1,14 @@
 import type { AutocompleteInteraction, GuildMember } from "discord.js";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class LoadPlaylist extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "load",
 			description: {
-				content: "cmd.load.description",
+				content: I18N.commands.load.description,
 				examples: ["load <playlist>"],
 				usage: "load <playlist>",
 			},
@@ -23,19 +25,14 @@ export default class LoadPlaylist extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "playlist",
-					description: "cmd.load.options.playlist",
+					description: I18N.commands.load.options.playlist,
 					type: 3,
 					required: true,
 					autocomplete: true,
@@ -44,37 +41,27 @@ export default class LoadPlaylist extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		let player = client.manager.getPlayer(ctx.guild.id);
 		const playlistName = args.join(" ").trim();
-		const playlistData = await client.db.getPlaylist(
-			ctx.author?.id!,
-			playlistName,
-		);
+		const playlistData = await client.db.getPlaylist(ctx.author?.id ?? "", playlistName);
 		if (!playlistData) {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.load.messages.playlist_not_exist"),
+						description: ctx.locale(I18N.commands.load.messages.playlist_not_exist),
 						color: this.client.color.red,
 					},
 				],
 			});
 		}
 
-		const songs = await client.db.getTracksFromPlaylist(
-			ctx.author?.id!,
-			playlistName,
-		);
+		const songs = await client.db.getTracksFromPlaylist(ctx.author?.id ?? "", playlistName);
 		if (songs.length === 0) {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.load.messages.playlist_empty"),
+						description: ctx.locale(I18N.commands.load.messages.playlist_empty),
 						color: client.color.red,
 					},
 				],
@@ -89,7 +76,7 @@ export default class LoadPlaylist extends Command {
 				textChannelId: ctx.channel.id,
 				selfMute: false,
 				selfDeaf: true,
-				vcRegion: member.voice.channel?.rtcRegion!,
+				vcRegion: member.voice.channel?.rtcRegion ?? undefined,
 			});
 			if (!player.connected) await player.connect();
 		}
@@ -99,7 +86,7 @@ export default class LoadPlaylist extends Command {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.load.messages.no_lavalink_nodes"),
+						description: ctx.locale(I18N.commands.load.messages.no_lavalink_nodes),
 						color: client.color.red,
 					},
 				],
@@ -111,7 +98,7 @@ export default class LoadPlaylist extends Command {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.load.messages.playlist_empty"),
+						description: ctx.locale(I18N.commands.load.messages.playlist_empty),
 						color: client.color.red,
 					},
 				],
@@ -119,13 +106,12 @@ export default class LoadPlaylist extends Command {
 		}
 		player.queue.add(tracks);
 
-		if (!player.playing && player.queue.tracks.length > 0)
-			await player.play({ paused: false });
+		if (!player.playing && player.queue.tracks.length > 0) await player.play({ paused: false });
 
 		return await ctx.sendMessage({
 			embeds: [
 				{
-					description: ctx.locale("cmd.load.messages.playlist_loaded", {
+					description: ctx.locale(I18N.commands.load.messages.playlist_loaded, {
 						name: playlistData.name,
 						count: songs.length,
 					}),
@@ -135,9 +121,7 @@ export default class LoadPlaylist extends Command {
 		});
 	}
 
-	public async autocomplete(
-		interaction: AutocompleteInteraction,
-	): Promise<void> {
+	public async autocomplete(interaction: AutocompleteInteraction): Promise<void> {
 		const focusedValue = interaction.options.getFocused();
 		const userId = interaction.user.id;
 

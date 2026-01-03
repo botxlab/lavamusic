@@ -4,14 +4,23 @@ import type {
 	VoiceChannel,
 } from "discord.js";
 import type { SearchResult } from "lavalink-client";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import {
+	Connect,
+	EmbedLinks,
+	ReadMessageHistory,
+	SendMessages,
+	Speak,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 export default class PlayNext extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "playnext",
 			description: {
-				content: "cmd.playnext.description",
+				content: I18N.commands.playnext.description,
 				examples: [
 					"playnext example",
 					"playnext https://www.youtube.com/watch?v=example",
@@ -33,21 +42,14 @@ export default class PlayNext extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"Connect",
-					"Speak",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks, Connect, Speak],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "song",
-					description: "cmd.playnext.options.song",
+					description: I18N.commands.playnext.options.song,
 					type: 3,
 					required: true,
 					autocomplete: true,
@@ -56,20 +58,14 @@ export default class PlayNext extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const query = args.join(" ");
 		let player = client.manager.getPlayer(ctx.guild.id);
-		const memberVoiceChannel = (ctx.member as any).voice?.channel as
-			| VoiceChannel
-			| undefined;
+		const memberVoiceChannel = (ctx.member as any).voice?.channel as VoiceChannel | undefined;
 
 		if (!memberVoiceChannel) {
 			return await ctx.editMessage({
-				content: ctx.locale("player.errors.user_not_in_voice_channel"),
+				content: ctx.locale(I18N.player.errors.user_not_in_voice_channel),
 			});
 		}
 
@@ -84,19 +80,19 @@ export default class PlayNext extends Command {
 			});
 		if (!player.connected) await player.connect();
 
-		await ctx.sendDeferMessage(ctx.locale("cmd.playnext.loading"));
+		await ctx.sendDeferMessage(ctx.locale(I18N.commands.playnext.loading));
 
 		let response: SearchResult;
 		try {
 			response = (await player.search({ query }, ctx.author)) as SearchResult;
-		} catch (err) {
+		} catch (_error) {
 			return await ctx.editMessage({
 				content: "",
 				embeds: [
 					this.client
 						.embed()
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.play.errors.search_error")),
+						.setDescription(ctx.locale(I18N.commands.play.errors.search_error)),
 				],
 			});
 		}
@@ -109,16 +105,14 @@ export default class PlayNext extends Command {
 				embeds: [
 					embed
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.play.errors.search_error")),
+						.setDescription(ctx.locale(I18N.commands.play.errors.search_error)),
 				],
 			});
 		}
 		await player.queue.splice(
 			0,
 			0,
-			...(response.loadType === "playlist"
-				? response.tracks
-				: [response.tracks[0]]),
+			...(response.loadType === "playlist" ? response.tracks : [response.tracks[0]]),
 		);
 
 		if (response.loadType === "playlist") {
@@ -126,7 +120,7 @@ export default class PlayNext extends Command {
 				content: "",
 				embeds: [
 					embed.setColor(this.client.color.main).setDescription(
-						ctx.locale("cmd.playnext.added_playlist_to_play_next", {
+						ctx.locale(I18N.commands.playnext.added_playlist_to_play_next, {
 							length: response.tracks.length,
 						}),
 					),
@@ -137,7 +131,7 @@ export default class PlayNext extends Command {
 				content: "",
 				embeds: [
 					embed.setColor(this.client.color.main).setDescription(
-						ctx.locale("cmd.playnext.added_to_play_next", {
+						ctx.locale(I18N.commands.playnext.added_to_play_next, {
 							title: response.tracks[0].info.title,
 							uri: response.tracks[0].info.uri,
 						}),
@@ -145,22 +139,16 @@ export default class PlayNext extends Command {
 				],
 			});
 		}
-		if (!player.playing && player.queue.tracks.length > 0)
-			await player.play({ paused: false });
+		if (!player.playing && player.queue.tracks.length > 0) await player.play({ paused: false });
 	}
-	public async autocomplete(
-		interaction: AutocompleteInteraction,
-	): Promise<void> {
+	public async autocomplete(interaction: AutocompleteInteraction): Promise<void> {
 		const focusedValue = interaction.options.getFocused(true);
 
 		if (!focusedValue?.value.trim()) {
 			return interaction.respond([]);
 		}
 
-		const res = await this.client.manager.search(
-			focusedValue.value.trim(),
-			interaction.user,
-		);
+		const res = await this.client.manager.search(focusedValue.value.trim(), interaction.user);
 		const songs: ApplicationCommandOptionChoiceData[] = [];
 
 		if (res.loadType === "search") {

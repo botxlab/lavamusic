@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Code evaluate karein",
+    "success": "Code safaltapoorvak evaluate kiya gaya",
+    "error": "Code evaluate karne mein vifal"
+  },
+  "guilds": {
+    "description": "Bot guilds manage aur list karein",
+    "list": "Guilds ki soochi",
+    "leave": {
+      "success": "Guild safaltapoorvak chhod diya: {name}",
+      "fail": "Guild {name} chhodne mein vifal",
+      "log": "Bot ne guild chhod diya: {name} (ID: {id})"
+    },
+    "not_found": "Guild nahin mila."
+  },
+  "restart": {
+    "description": "Bot process restart karein",
+    "prompt": "Kya aap nishchit roop se **{client}** ko restart karna chahte hain?",
+    "status": {
+      "restarting": "Restart ho raha hai...",
+      "canceled": "Restart radd kar diya gaya.",
+      "error": "Bot restart karte samay ek error aaya."
+    },
+    "restart_by": "{user} dwara restart shuru kiya gaya"
+  },
+  "shutdown": {
+    "description": "Bot process shutdown karein",
+    "prompt": "Kya aap nishchit roop se shutdown karna chahte hain?",
+    "status": "Band ho raha hai...",
+    "canceled": "Shutdown radd kar diya gaya."
+  },
+  "deploy": {
+    "description": "Discord API ke sath slash commands sync karein",
+    "prompt": "Aap commands ko kahan un/deploy karna chahte hain?",
+    "status": {
+      "deployed_global": "Commands global roop se deploy kiye gaye.",
+      "deployed_guild": "Commands is guild mein deploy kiye gaye.",
+      "removed_global": "Commands global roop se hataye gaye.",
+      "removed_guild": "Commands is guild se hataye gaye.",
+      "failed": "Command ke madhyam se deployment vifal raha: {command}"
+    },
+    "buttons": {
+      "deploy_global": "Deploy Global",
+      "deploy_guild": "Deploy Guild",
+      "remove_global": "Remove Global",
+      "remove_guild": "Remove Guild"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Ek specific guild ke liye invite link banayein.",
+      "errors": {
+        "guild_not_found": "Guild nahin mila. Sunishchit karein ki ID sahi hai.",
+        "no_suitable_channel": "Us guild mein invite banane ke liye paryapt permissions wala koi upyukt channel nahin mila."
+      },
+      "success": "**{guildName}** ke liye invite link: [Yahan click karein]({url})"
+    },
+    "destroy": {
+      "description": "Ek guild mein bot dwara banaye gaye sabhi invite links nasht karein",
+      "errors": {
+        "guild_not_found": "Guild nahin mila. Kripya ek valid ID pradan karein.",
+        "generic": "Invites nasht karne mein vifal. Jaanch karein ki kya mere paas us guild mein 'Manage Server' permissions hain."
+      },
+      "success": "**{guildName}** mein mere dwara banaye gaye **{count}** invite(s) safaltapoorvak nasht kiye gaye.",
+      "not_found": "Is guild mein mere dwara banaya gaya koi invite nahin mila."
+    }
+  }
+}

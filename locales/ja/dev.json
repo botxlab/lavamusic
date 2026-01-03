@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "コードを評価",
+		"success": "コードが正常に評価されました",
+		"error": "コードの評価に失敗しました"
+	},
+	"guilds": {
+		"description": "ボットのサーバーを管理および一覧表示",
+		"list": "サーバー一覧",
+		"leave": {
+			"success": "サーバーから正常に退出しました: {name}",
+			"fail": "サーバー {name} からの退出に失敗しました",
+			"log": "ボットがサーバーから退出しました: {name} (ID: {id})"
+		},
+		"not_found": "サーバーが見つかりません。"
+	},
+	"restart": {
+		"description": "ボットプロセスを再起動",
+		"prompt": "本当に **{client}** を再起動しますか？",
+		"status": {
+			"restarting": "再起動中...",
+			"canceled": "再起動がキャンセルされました。",
+			"error": "ボットの再起動中にエラーが発生しました。"
+		},
+		"restart_by": "{user} によって再起動が開始されました"
+	},
+	"shutdown": {
+		"description": "ボットプロセスをシャットダウン",
+		"prompt": "本当にシャットダウンしますか？",
+		"status": "シャットダウン中...",
+		"canceled": "シャットダウンがキャンセルされました。"
+	},
+	"deploy": {
+		"description": "スラッシュコマンドをDiscord APIと同期",
+		"prompt": "どこにコマンドを展開/解除しますか？",
+		"status": {
+			"deployed_global": "コマンドがグローバルに展開されました。",
+			"deployed_guild": "コマンドがこのサーバーに展開されました。",
+			"removed_global": "コマンドがグローバルに削除されました。",
+			"removed_guild": "コマンドがこのサーバーから削除されました。",
+			"failed": "コマンドによる展開に失敗しました: {command}"
+		},
+		"buttons": {
+			"deploy_global": "グローバル展開",
+			"deploy_guild": "サーバー展開",
+			"remove_global": "グローバル削除",
+			"remove_guild": "サーバー削除"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "特定のサーバーの招待リンクを作成します。",
+			"errors": {
+				"guild_not_found": "サーバーが見つかりません。IDが正しいことを確認してください。",
+				"no_suitable_channel": "そのサーバーで招待を作成するための十分な権限を持つ適切なチャンネルが見つかりませんでした。"
+			},
+			"success": "**{guildName}** の招待リンク: [ここをクリック]({url})"
+		},
+		"destroy": {
+			"description": "サーバー内でボットによって作成されたすべての招待リンクを破棄します",
+			"errors": {
+				"guild_not_found": "サーバーが見つかりません。有効なIDを指定してください。",
+				"generic": "招待の破棄に失敗しました。そのサーバーで「サーバー管理」権限があるか確認してください。"
+			},
+			"success": "**{guildName}** で私によって作成された **{count}** 件の招待を正常に破棄しました。",
+			"not_found": "このサーバーで私によって作成された招待は見つかりませんでした。"
+		}
+	}
+}

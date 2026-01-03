@@ -5,16 +5,32 @@ import {
 	ButtonStyle,
 	ComponentType,
 	MessageFlags,
-	type Message,
 } from "discord.js";
+import { I18N, t } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
+
+const deployStatus = {
+	deploy: {
+		global: { key: I18N.dev.deploy.status.deployed_global, emoji: "🚀" },
+		guild: { key: I18N.dev.deploy.status.deployed_guild, emoji: "✅" },
+	},
+	undeploy: {
+		global: { key: I18N.dev.deploy.status.removed_global, emoji: "🗑️" },
+		guild: { key: I18N.dev.deploy.status.removed_guild, emoji: "❌" },
+	},
+} as const;
+
+type ActionType = "deploy" | "undeploy";
+type ScopeType = "global" | "guild";
 
 export default class Deploy extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "deploy",
 			description: {
-				content: "Deploy commands",
+				content: `🔁 ${I18N.dev.deploy.description}`,
 				examples: ["deploy"],
 				usage: "deploy",
 			},
@@ -30,12 +46,7 @@ export default class Deploy extends Command {
 			},
 			permissions: {
 				dev: true,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: false,
@@ -43,74 +54,70 @@ export default class Deploy extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		_args: string[],
-	): Promise<any> {
-		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+	public async run(client: Lavamusic, ctx: Context, _args: string[]): Promise<any> {
+		const buildButton = (id: string, labelKey: string, style: ButtonStyle) =>
 			new ButtonBuilder()
-				.setCustomId("deploy-global")
-				.setLabel("Global")
-				.setStyle(ButtonStyle.Secondary),
-			new ButtonBuilder()
-				.setCustomId("deploy-guild")
-				.setLabel("Guild")
-				.setStyle(ButtonStyle.Secondary),
+				.setCustomId(id)
+				.setLabel(t(labelKey, { lng: ctx.guildLocale }))
+				.setStyle(style);
+
+		const deployRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+			buildButton("deploy-global", I18N.dev.deploy.buttons.deploy_global, ButtonStyle.Success),
+			buildButton("deploy-guild", I18N.dev.deploy.buttons.deploy_guild, ButtonStyle.Primary),
 		);
 
-		let msg: Message | undefined;
-		try {
-			msg = await ctx.sendMessage({
-				content: "Where do you want to deploy the commands?",
-				components: [row],
-			});
-		} catch (error) {
-			client.logger.error("Failed to send the initial message:", error);
-			return;
-		}
+		const undeployRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+			buildButton("undeploy-global", I18N.dev.deploy.buttons.remove_global, ButtonStyle.Danger),
+			buildButton("undeploy-guild", I18N.dev.deploy.buttons.remove_guild, ButtonStyle.Secondary),
+		);
 
-		const filter = (interaction: ButtonInteraction) => {
-			if (interaction.user.id !== ctx.author?.id) {
-				interaction
-					.reply({
-						content: "You can't interact with this message",
-						flags: MessageFlags.Ephemeral,
-					})
-					.catch(client.logger.error);
-				return false;
-			}
-			return true;
-		};
-
-		const collector = msg!.createMessageComponentCollector({
-			filter: (interaction) => {
-				if (interaction.message.id !== msg!.id) return false;
-				return filter(interaction);
-			},
-			componentType: ComponentType.Button,
-			time: 30000,
+		const msg = await ctx.sendMessage({
+			content: `⚠️ ${ctx.locale(I18N.dev.deploy.prompt)}`,
+			components: [deployRow, undeployRow],
+			flags: MessageFlags.Ephemeral,
 		});
 
-		collector.on("collect", async (interaction) => {
+		if (!msg) return;
+
+		const collector = msg.createMessageComponentCollector({
+			componentType: ComponentType.Button,
+			time: 45000,
+			filter: (i) => i.user.id === ctx.author?.id,
+		});
+
+		collector.on("collect", async (interaction: ButtonInteraction) => {
+			if (interaction.user.id !== ctx.author?.id) {
+				return interaction.reply({
+					content: ctx.locale(I18N.common.errors.no_permissions),
+					flags: MessageFlags.Ephemeral,
+				});
+			}
+
+			await interaction.deferUpdate();
+
+			// customId format is "action-scope" (e.g., "undeploy-guild")
+			const [action, scope] = interaction.customId.split("-") as [ActionType, ScopeType];
+			const isClear = action === "undeploy";
+			const guildId = scope === "guild" ? interaction.guildId! : undefined;
+
 			try {
-				if (interaction.customId === "deploy-global") {
-					await interaction.deferUpdate(); // acknowledge first
-					await client.deployCommands();
-					await ctx.editMessage({
-						content: "Commands deployed globally.",
-						components: [],
-					});
-				} else if (interaction.customId === "deploy-guild") {
-					await interaction.deferUpdate(); // acknowledge first
-					await client.deployCommands(interaction.guild!.id);
-					await ctx.editMessage({
-						content: "Commands deployed in this guild.",
-						components: [],
-					});
-				}
+				await client.syncCommands(guildId, isClear);
+
+				const { key, emoji } = deployStatus[action][scope];
+
+				await ctx.editMessage({
+					content: `${emoji} ${ctx.locale(key)}`,
+					components: [],
+				});
+
+				collector.stop("success");
 			} catch (error) {
-				client.logger.error("Failed to handle interaction:", error);
+				logger.error(`[DEPLOY] ${ctx.locale(I18N.dev.deploy.status.failed, { error: error })} `);
+
+				await ctx.editMessage({
+					content: ctx.locale(I18N.common.errors.generic, { error: error }),
+					components: [],
+				});
 			}
 		});
 
@@ -119,7 +126,7 @@ export default class Deploy extends Command {
 				try {
 					await msg.delete();
 				} catch (error) {
-					client.logger.error("Failed to delete the message:", error);
+					logger.error("Failed to delete the message:", error);
 				}
 			}
 		});

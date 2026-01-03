@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "ไม่มีเครื่องเล่นที่ใช้งานอยู่ในกิลด์นี้",
+		"no_channel": "คุณต้องอยู่ในช่องเสียงเพื่อใช้คำสั่งนี้",
+		"queue_empty": "คิวว่างเปล่า",
+		"no_previous": "ไม่มีเพลงก่อนหน้าในคิว",
+		"no_song": "ไม่มีเพลงในคิว",
+		"already_paused": "เพลงถูกหยุดชั่วคราวแล้ว",
+		"user_not_in_voice_channel": "คุณไม่ได้เชื่อมต่อกับช่องเสียง"
+	},
+	"trackStart": {
+		"now_playing": "กำลังเล่น",
+		"requested_by": "ขอโดย {user}",
+		"duration": "ความยาว",
+		"author": "ผู้แต่ง",
+		"not_connected_to_voice_channel": "คุณไม่ได้เชื่อมต่อกับ <#{channel}> เพื่อใช้ปุ่มเหล่านี้",
+		"need_dj_role": "คุณต้องมี role ดีเจเพื่อใช้คำสั่งนี้",
+		"previous_by": "ก่อนหน้าโดย {user}",
+		"no_previous_song": "ไม่มีเพลงก่อนหน้า",
+		"paused_by": "หยุดชั่วคราวโดย {user}",
+		"resumed_by": "เล่นต่อโดย {user}",
+		"skipped_by": "ข้ามโดย {user}",
+		"no_more_songs_in_queue": "ไม่มีเพลงในคิวอีกแล้ว",
+		"looping_by": "กำลังวนซ้ำโดย {user}",
+		"looping_queue_by": "กำลังวนซ้ำคิวโดย {user}",
+		"looping_off_by": "ปิดการวนซ้ำโดย {user}"
+	},
+	"setupStart": {
+		"now_playing": "กำลังเล่น",
+		"description": "[{title}]({uri}) โดย {author} • `[{length}]` - ขอโดย <@{requester}>",
+		"error_searching": "เกิดข้อผิดพลาดขณะค้นหา",
+		"no_results": "ไม่พบผลลัพธ์",
+		"nothing_playing": "ไม่มีอะไรเล่นอยู่ตอนนี้",
+		"queue_too_long": "คิวยาวเกินไป ความยาวสูงสุดคือ {maxQueueSize} เพลง",
+		"playlist_too_long": "เพลย์ลิสต์ยาวเกินไป ความยาวสูงสุดคือ {maxPlaylistSize} เพลง",
+		"added_to_queue": "เพิ่ม [{title}]({uri}) ลงในคิวแล้ว",
+		"added_playlist_to_queue": "เพิ่ม [{length}] เพลงจากเพลย์ลิสต์ลงในคิวแล้ว"
+	}
+}

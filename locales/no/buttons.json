@@ -1,0 +1,13 @@
+{
+	"invite": "Inviter",
+	"support": "Støtteserver",
+	"previous": "Forrige",
+	"resume": "Gjenoppta",
+	"stop": "Stopp",
+	"skip": "Hopp over",
+	"loop": "Loop",
+	"next": "Neste",
+	"errors": {
+		"not_author": "Du kan ikke bruke denne knappen."
+	}
+}

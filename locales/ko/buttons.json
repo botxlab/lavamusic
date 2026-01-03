@@ -1,0 +1,13 @@
+{
+	"invite": "초대",
+	"support": "서포트 서버",
+	"previous": "이전",
+	"resume": "재계",
+	"stop": "정지",
+	"skip": "스킵",
+	"loop": "반복",
+	"next": "다음",
+	"errors": {
+		"not_author": "지금은 이 버튼을 사용할 수 없어요."
+	}
+}

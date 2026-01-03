@@ -7,10 +7,7 @@ import {
 import type { Player } from "lavalink-client";
 import type { Lavamusic } from "../structures/index";
 
-function getButtons(
-	player: Player,
-	client: Lavamusic,
-): ActionRowBuilder<ButtonBuilder>[] {
+function getButtons(player: Player, client: Lavamusic): ActionRowBuilder<ButtonBuilder>[] {
 	const buttonData = [
 		{
 			customId: "PREV_BUT",
@@ -39,7 +36,7 @@ function getButtons(
 		},
 		{
 			customId: "LOW_VOL_BUT",
-			emoji: client.emoji.voldown,
+			emoji: client.emoji.volume.down,
 			style: ButtonStyle.Secondary,
 		},
 		{
@@ -59,7 +56,7 @@ function getButtons(
 		},
 		{
 			customId: "HIGH_VOL_BUT",
-			emoji: client.emoji.volup,
+			emoji: client.emoji.volume.up,
 			style: ButtonStyle.Secondary,
 		},
 	];
@@ -75,10 +72,7 @@ function getButtons(
 			emojiFormat = emoji;
 		}
 
-		const button = new ButtonBuilder()
-			.setCustomId(customId)
-			.setEmoji(emojiFormat)
-			.setStyle(style);
+		const button = new ButtonBuilder().setCustomId(customId).setEmoji(emojiFormat).setStyle(style);
 		rows[rows.length - 1].addComponents(button);
 		return rows;
 	}, [] as ActionRowBuilder<ButtonBuilder>[]);

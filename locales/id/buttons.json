@@ -1,0 +1,13 @@
+{
+	"invite": "Undang",
+	"support": "Server Support",
+	"previous": "Sebelumnya",
+	"resume": "Lanjut",
+	"stop": "Stop",
+	"skip": "Skip",
+	"loop": "Loop",
+	"next": "Selanjutnya",
+	"errors": {
+		"not_author": "Anda tidak dapat menggunakan tombol ini."
+	}
+}

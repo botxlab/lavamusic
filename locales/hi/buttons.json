@@ -1,0 +1,13 @@
+{
+	"invite": "Nimantran",
+	"support": "Support Server",
+	"previous": "Pichhla",
+	"resume": "Resume",
+	"stop": "Roko",
+	"skip": "Skip",
+	"loop": "Loop",
+	"next": "Agla",
+	"errors": {
+		"not_author": "Aap is button ka upyog nahin kar sakte."
+	}
+}

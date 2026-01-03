@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Évaluer du code",
+    "success": "Code évalué avec succès",
+    "error": "Échec de l'évaluation du code"
+  },
+  "guilds": {
+    "description": "Gérer et lister les guildes du bot",
+    "list": "Liste des guildes",
+    "leave": {
+      "success": "Guilde quittée avec succès : {name}",
+      "fail": "Échec lors de la tentative de quitter la guilde {name}",
+      "log": "Le bot a quitté la guilde : {name} (ID: {id})"
+    },
+    "not_found": "Guilde introuvable."
+  },
+  "restart": {
+    "description": "Redémarrer le processus du bot",
+    "prompt": "Êtes-vous sûr de vouloir redémarrer **{client}** ?",
+    "status": {
+      "restarting": "Redémarrage...",
+      "canceled": "Redémarrage annulé.",
+      "error": "Une erreur s'est produite lors du redémarrage du bot."
+    },
+    "restart_by": "Redémarrage initié par {user}"
+  },
+  "shutdown": {
+    "description": "Arrêter le processus du bot",
+    "prompt": "Êtes-vous sûr de vouloir arrêter ?",
+    "status": "Arrêt en cours...",
+    "canceled": "Arrêt annulé."
+  },
+  "deploy": {
+    "description": "Synchroniser les commandes slash avec l'API Discord",
+    "prompt": "Où voulez-vous déployer/retirer les commandes ?",
+    "status": {
+      "deployed_global": "Commandes déployées globalement.",
+      "deployed_guild": "Commandes déployées dans cette guilde.",
+      "removed_global": "Commandes retirées globalement.",
+      "removed_guild": "Commandes retirées de cette guilde.",
+      "failed": "Le déploiement a échoué via la commande : {command}"
+    },
+    "buttons": {
+      "deploy_global": "Déployer Global",
+      "deploy_guild": "Déployer Guilde",
+      "remove_global": "Retirer Global",
+      "remove_guild": "Retirer Guilde"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Créer un lien d'invitation pour une guilde spécifique.",
+      "errors": {
+        "guild_not_found": "Guilde introuvable. Assurez-vous que l'ID est correct.",
+        "no_suitable_channel": "Aucun canal approprié trouvé avec suffisamment de permissions pour créer une invitation dans cette guilde."
+      },
+      "success": "Lien d'invitation pour **{guildName}** : [Cliquez ici]({url})"
+    },
+    "destroy": {
+      "description": "Détruire tous les liens d'invitation créés par le bot dans une guilde",
+      "errors": {
+        "guild_not_found": "Guilde introuvable. Veuillez fournir un ID valide.",
+        "generic": "Échec de la destruction des invitations. Vérifiez si j'ai les permissions 'Gérer le serveur' dans cette guilde."
+      },
+      "success": "Destruction réussie de **{count}** invitation(s) créée(s) par moi dans **{guildName}**.",
+      "not_found": "Aucune invitation créée par moi n'a été trouvée dans cette guilde."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Não há player ativo neste servidor.",
+		"no_channel": "Você precisa estar em um canal de voz.",
+		"queue_empty": "A fila está vazia.",
+		"no_previous": "Não há músicas anteriores.",
+		"no_song": "Nenhuma música na fila.",
+		"already_paused": "A música já está pausada.",
+		"user_not_in_voice_channel": "Você não está conectado a um canal de voz."
+	},
+	"trackStart": {
+		"now_playing": "Tocando agora",
+		"requested_by": "Pedido por {user}",
+		"duration": "Duração",
+		"author": "Autor",
+		"not_connected_to_voice_channel": "Você precisa estar em <#{channel}> para usar estes botões.",
+		"need_dj_role": "Você precisa do cargo de DJ para usar este comando.",
+		"previous_by": "Anterior por {user}",
+		"no_previous_song": "Não há música anterior.",
+		"paused_by": "Pausado por {user}",
+		"resumed_by": "Retomado por {user}",
+		"skipped_by": "Pulado por {user}",
+		"no_more_songs_in_queue": "Fim da fila de reprodução.",
+		"looping_by": "Repetição ativada por {user}",
+		"looping_queue_by": "Repetição da Fila por {user}",
+		"looping_off_by": "Repetição desativada por {user}"
+	},
+	"setupStart": {
+		"now_playing": "Tocando agora",
+		"description": "[{title}]({uri}) por {author} • `[{length}]` - Pedido por <@{requester}>",
+		"error_searching": "Ocorreu um erro durante a busca.",
+		"no_results": "Nenhum resultado encontrado.",
+		"nothing_playing": "Nada tocando no momento",
+		"queue_too_long": "A fila está muito grande. Limite: {maxQueueSize} músicas.",
+		"playlist_too_long": "A playlist é muito grande. Limite: {maxPlaylistSize} músicas.",
+		"added_to_queue": "Adicionado [{title}]({uri}) à fila.",
+		"added_playlist_to_queue": "Adicionadas [{length}] músicas da playlist à fila."
+	}
+}

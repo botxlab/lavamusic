@@ -1,7 +1,7 @@
-import { eq, and } from "drizzle-orm";
-import { db, schema } from "./index";
+import { randomUUID } from "node:crypto";
+import { and, eq } from "drizzle-orm";
 import { env } from "../env";
-import { randomUUID } from "crypto";
+import { db, schema } from "./index";
 
 const { guild, setup, stay, dj, role, playlist } = schema;
 
@@ -19,11 +19,14 @@ export default class ServerData {
 
 	private async createGuild(guildId: string) {
 		// Use onConflictDoNothing to prevent duplicate key errors
-		await db.insert(guild).values({
-			guildId,
-			prefix: env.PREFIX,
-			language: env.DEFAULT_LANGUAGE,
-		}).onConflictDoNothing();
+		await db
+			.insert(guild)
+			.values({
+				guildId,
+				prefix: env.PREFIX,
+				language: env.DEFAULT_LANGUAGE,
+			})
+			.onConflictDoNothing();
 
 		return (await db.select().from(guild).where(eq(guild.guildId, guildId)))[0];
 	}
@@ -32,9 +35,7 @@ export default class ServerData {
 		// First ensure the guild exists
 		await this.get(guildId);
 
-		await db.update(guild)
-			.set({ prefix })
-			.where(eq(guild.guildId, guildId));
+		await db.update(guild).set({ prefix }).where(eq(guild.guildId, guildId));
 	}
 
 	public async getPrefix(guildId: string) {
@@ -46,9 +47,7 @@ export default class ServerData {
 		// First ensure the guild exists
 		await this.get(guildId);
 
-		await db.update(guild)
-			.set({ language })
-			.where(eq(guild.guildId, guildId));
+		await db.update(guild).set({ language }).where(eq(guild.guildId, guildId));
 	}
 
 	public async getLanguage(guildId: string) {
@@ -60,9 +59,7 @@ export default class ServerData {
 		// First ensure the guild exists
 		await this.get(guildId);
 
-		await db.update(guild)
-			.set({ defaultVolume: volume })
-			.where(eq(guild.guildId, guildId));
+		await db.update(guild).set({ defaultVolume: volume }).where(eq(guild.guildId, guildId));
 	}
 
 	public async getDefaultVolume(guildId: string): Promise<number> {
@@ -85,14 +82,12 @@ export default class ServerData {
 		const existing = await this.getSetup(guildId);
 
 		if (existing) {
-			await db.update(setup)
-				.set({ textId, messageId })
-				.where(eq(setup.guildId, guildId));
+			await db.update(setup).set({ textId, messageId }).where(eq(setup.guildId, guildId));
 		} else {
 			await db.insert(setup).values({
 				guildId,
 				textId,
-				messageId
+				messageId,
 			});
 		}
 	}
@@ -111,14 +106,12 @@ export default class ServerData {
 		const existing = await this.get_247(guildId);
 
 		if (existing) {
-			await db.update(stay)
-				.set({ textId, voiceId })
-				.where(eq(stay.guildId, guildId));
+			await db.update(stay).set({ textId, voiceId }).where(eq(stay.guildId, guildId));
 		} else {
 			await db.insert(stay).values({
 				guildId,
 				textId,
-				voiceId
+				voiceId,
 			});
 		}
 	}
@@ -145,13 +138,14 @@ export default class ServerData {
 		const existing = await this.getDj(guildId);
 
 		if (existing) {
-			await db.update(dj)
+			await db
+				.update(dj)
 				.set({ mode: mode ? 1 : 0 })
 				.where(eq(dj.guildId, guildId));
 		} else {
 			await db.insert(dj).values({
 				guildId,
-				mode: mode ? 1 : 0
+				mode: mode ? 1 : 0,
 			});
 		}
 	}
@@ -173,15 +167,17 @@ export default class ServerData {
 		await this.get(guildId);
 
 		// Use onConflictDoNothing to prevent duplicate role errors
-		await db.insert(role).values({
-			guildId,
-			roleId
-		}).onConflictDoNothing();
+		await db
+			.insert(role)
+			.values({
+				guildId,
+				roleId,
+			})
+			.onConflictDoNothing();
 	}
 
 	public async removeRole(guildId: string, roleId: string) {
-		await db.delete(role)
-			.where(and(eq(role.guildId, guildId), eq(role.roleId, roleId)));
+		await db.delete(role).where(and(eq(role.guildId, guildId), eq(role.roleId, roleId)));
 	}
 
 	public async clearRoles(guildId: string) {
@@ -192,7 +188,9 @@ export default class ServerData {
 	// Playlists
 	// -----------------------------
 	public async getPlaylist(userId: string, name: string) {
-		const r = await db.select().from(playlist)
+		const r = await db
+			.select()
+			.from(playlist)
 			.where(and(eq(playlist.userId, userId), eq(playlist.name, name)));
 
 		return r[0] ?? null;
@@ -203,30 +201,36 @@ export default class ServerData {
 	}
 
 	public async createPlaylist(userId: string, name: string) {
-		await db.insert(playlist).values({
-			id: randomUUID(),
-			userId,
-			name,
-			tracks: JSON.stringify([])
-		}).onConflictDoNothing();
+		await db
+			.insert(playlist)
+			.values({
+				id: randomUUID(),
+				userId,
+				name,
+				tracks: JSON.stringify([]),
+			})
+			.onConflictDoNothing();
 	}
 
 	public async createPlaylistWithTracks(userId: string, name: string, tracks: string[]) {
-		await db.insert(playlist).values({
-			id: randomUUID(),
-			userId,
-			name,
-			tracks: JSON.stringify(tracks)
-		}).onConflictDoNothing();
+		await db
+			.insert(playlist)
+			.values({
+				id: randomUUID(),
+				userId,
+				name,
+				tracks: JSON.stringify(tracks),
+			})
+			.onConflictDoNothing();
 	}
 
 	public async deletePlaylist(userId: string, name: string) {
-		await db.delete(playlist)
-			.where(and(eq(playlist.userId, userId), eq(playlist.name, name)));
+		await db.delete(playlist).where(and(eq(playlist.userId, userId), eq(playlist.name, name)));
 	}
 
 	public async deleteSongsFromPlaylist(userId: string, playlistName: string) {
-		await db.update(playlist)
+		await db
+			.update(playlist)
 			.set({ tracks: JSON.stringify([]) })
 			.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
 	}
@@ -242,7 +246,8 @@ export default class ServerData {
 		const existing = p.tracks ? JSON.parse(p.tracks) : [];
 		const updated = [...existing, ...tracks];
 
-		await db.update(playlist)
+		await db
+			.update(playlist)
 			.set({ tracks: JSON.stringify(updated) })
 			.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
 	}
@@ -256,7 +261,8 @@ export default class ServerData {
 		const idx = tracks.indexOf(encodedSong);
 		if (idx !== -1) tracks.splice(idx, 1);
 
-		await db.update(playlist)
+		await db
+			.update(playlist)
 			.set({ tracks: JSON.stringify(tracks) })
 			.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
 	}

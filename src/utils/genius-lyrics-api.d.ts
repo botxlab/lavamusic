@@ -23,10 +23,7 @@ module "genius-lyrics-api" {
 		apiKey: string;
 	}
 	export function search(options: SearchOptions): Promise<Song[]>;
-	export function getSong(options: {
-		id: number;
-		apiKey: string;
-	}): Promise<Song>;
+	export function getSong(options: { id: number; apiKey: string }): Promise<Song>;
 	export function getLyrics(options: LyricsOptions): Promise<string>;
 	export function getAlbumArt(options: AlbumArtOptions): Promise<string>;
 	export function getSongById(options: SongByIdOptions): Promise<Song>;

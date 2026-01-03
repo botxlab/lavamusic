@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Tidak ada player aktif di server ini.",
+		"no_channel": "Anda perlu berada di voice channel untuk menggunakan command ini.",
+		"queue_empty": "Antrean kosong.",
+		"no_previous": "Tidak ada lagu sebelumnya dalam antrean.",
+		"no_song": "Tidak ada lagu dalam antrean.",
+		"already_paused": "Lagu sudah dijeda.",
+		"user_not_in_voice_channel": "Anda tidak terhubung ke voice channel."
+	},
+	"trackStart": {
+		"now_playing": "Sedang Diputar",
+		"requested_by": "Direquest oleh {user}",
+		"duration": "Durasi",
+		"author": "Artis",
+		"not_connected_to_voice_channel": "Anda tidak terhubung ke <#{channel}> untuk menggunakan tombol-tombol ini.",
+		"need_dj_role": "Anda perlu memiliki role DJ untuk menggunakan command ini.",
+		"previous_by": "Sebelumnya oleh {user}",
+		"no_previous_song": "Tidak ada lagu sebelumnya.",
+		"paused_by": "Dijeda oleh {user}",
+		"resumed_by": "Dilanjutkan oleh {user}",
+		"skipped_by": "Dilewati oleh {user}",
+		"no_more_songs_in_queue": "Tidak ada lagi lagu dalam antrean.",
+		"looping_by": "Looping oleh {user}",
+		"looping_queue_by": "Looping Antrean oleh {user}",
+		"looping_off_by": "Looping Mati oleh {user}"
+	},
+	"setupStart": {
+		"now_playing": "Sedang Diputar",
+		"description": "[{title}]({uri}) oleh {author} • `[{length}]` - Direquest oleh <@{requester}>",
+		"error_searching": "Terjadi kesalahan saat mencari.",
+		"no_results": "Tidak ada hasil yang ditemukan.",
+		"nothing_playing": "Tidak ada yang diputar saat ini",
+		"queue_too_long": "Antrean terlalu panjang. Panjang maksimum adalah {maxQueueSize} lagu.",
+		"playlist_too_long": "Playlist terlalu panjang. Panjang maksimum adalah {maxPlaylistSize} lagu.",
+		"added_to_queue": "Menambahkan [{title}]({uri}) ke antrean.",
+		"added_playlist_to_queue": "Menambahkan [{length}] lagu dari playlist ke antrean."
+	}
+}

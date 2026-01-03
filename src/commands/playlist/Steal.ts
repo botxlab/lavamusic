@@ -1,12 +1,15 @@
 import type { AutocompleteInteraction } from "discord.js";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class StealPlaylist extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "steal",
 			description: {
-				content: "cmd.steal.description",
+				content: I18N.commands.steal.description,
 				examples: ["steal <@user> <playlist_name>"],
 				usage: "steal <@user> <playlist_name>",
 			},
@@ -23,25 +26,20 @@ export default class StealPlaylist extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "user",
-					description: "cmd.steal.options.user",
+					description: I18N.commands.steal.options.user,
 					type: 6,
 					required: true,
 				},
 				{
 					name: "playlist",
-					description: "cmd.steal.options.playlist",
+					description: I18N.commands.steal.options.playlist,
 					type: 3,
 					required: true,
 					autocomplete: true,
@@ -91,7 +89,7 @@ export default class StealPlaylist extends Command {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.steal.messages.provide_playlist"),
+						description: ctx.locale(I18N.commands.steal.messages.provide_playlist),
 						color: this.client.color.red,
 					},
 				],
@@ -102,7 +100,7 @@ export default class StealPlaylist extends Command {
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.steal.messages.provide_user"),
+						description: ctx.locale(I18N.commands.steal.messages.provide_user),
 						color: this.client.color.red,
 					},
 				],
@@ -110,36 +108,27 @@ export default class StealPlaylist extends Command {
 		}
 
 		try {
-			const targetPlaylist = await client.db.getPlaylist(
-				targetUserId,
-				playlistName,
-			);
+			const targetPlaylist = await client.db.getPlaylist(targetUserId, playlistName);
 
 			if (!targetPlaylist) {
 				return await ctx.sendMessage({
 					embeds: [
 						{
-							description: ctx.locale("cmd.steal.messages.playlist_not_exist"),
+							description: ctx.locale(I18N.commands.steal.messages.playlist_not_exist),
 							color: this.client.color.red,
 						},
 					],
 				});
 			}
 
-			const targetSongs = await client.db.getTracksFromPlaylist(
-				targetUserId,
-				playlistName,
-			);
+			const targetSongs = await client.db.getTracksFromPlaylist(targetUserId, playlistName);
 
-			const existingPlaylist = await client.db.getPlaylist(
-				ctx.author?.id!,
-				playlistName,
-			);
+			const existingPlaylist = await client.db.getPlaylist(ctx.author?.id ?? "", playlistName);
 			if (existingPlaylist) {
 				return await ctx.sendMessage({
 					embeds: [
 						{
-							description: ctx.locale("cmd.steal.messages.playlist_exists", {
+							description: ctx.locale(I18N.commands.steal.messages.playlist_exists, {
 								playlist: playlistName,
 							}),
 							color: this.client.color.red,
@@ -148,16 +137,12 @@ export default class StealPlaylist extends Command {
 				});
 			}
 
-			await client.db.createPlaylistWithTracks(
-				ctx.author?.id!,
-				playlistName,
-				targetSongs,
-			);
+			await client.db.createPlaylistWithTracks(ctx.author?.id ?? "", playlistName, targetSongs);
 
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.steal.messages.playlist_stolen", {
+						description: ctx.locale(I18N.commands.steal.messages.playlist_stolen, {
 							playlist: playlistName,
 							user: targetUser.username,
 						}),
@@ -166,11 +151,11 @@ export default class StealPlaylist extends Command {
 				],
 			});
 		} catch (error) {
-			client.logger.error(error);
+			logger.error(error);
 			return await ctx.sendMessage({
 				embeds: [
 					{
-						description: ctx.locale("cmd.steal.messages.error_occurred"),
+						description: ctx.locale(I18N.commands.steal.messages.error_occurred),
 						color: this.client.color.red,
 					},
 				],
@@ -207,9 +192,7 @@ export default class StealPlaylist extends Command {
 
 			if (!playlists || playlists.length === 0) {
 				await interaction
-					.respond([
-						{ name: "No playlists found for this user.", value: "NoPlaylists" },
-					])
+					.respond([{ name: "No playlists found for this user.", value: "NoPlaylists" }])
 					.catch(console.error);
 				return;
 			}
@@ -226,7 +209,7 @@ export default class StealPlaylist extends Command {
 					})),
 				)
 				.catch(console.error);
-		} catch (error) {
+		} catch (_error) {
 			return await interaction
 				.respond([
 					{

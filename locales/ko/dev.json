@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "코드 실행",
+		"success": "코드가 성공적으로 실행되었어요",
+		"error": "코드 실행 실패"
+	},
+	"guilds": {
+		"description": "봇 길드 관리 및 목록",
+		"list": "길드 목록",
+		"leave": {
+			"success": "길드에서 성공적으로 나갔어요: {name}",
+			"fail": "길드 {name}에서 나가는 데 실패했어요",
+			"log": "봇이 길드에서 나갔어요: {name} (ID: {id})"
+		},
+		"not_found": "길드를 찾을 수 없어요."
+	},
+	"restart": {
+		"description": "봇 프로세스 재시작",
+		"prompt": "정말로 **{client}**를 재시작하시겠어요?",
+		"status": {
+			"restarting": "재시작 중...",
+			"canceled": "재시작이 취소되었어요.",
+			"error": "봇을 재시작하는 도중 오류가 발생했어요."
+		},
+		"restart_by": "{user}에 의해 재시작됨"
+	},
+	"shutdown": {
+		"description": "봇 프로세스 종료",
+		"prompt": "정말로 종료하시겠어요?",
+		"status": "종료 중...",
+		"canceled": "종료가 취소되었어요."
+	},
+	"deploy": {
+		"description": "Discord API와 슬래시 명령어 동기화",
+		"prompt": "어디에 명령어를 배포/제거하시겠어요?",
+		"status": {
+			"deployed_global": "명령어가 전역으로 배포되었어요.",
+			"deployed_guild": "명령어가 이 길드에 배포되었어요.",
+			"removed_global": "명령어가 전역에서 제거되었어요.",
+			"removed_guild": "명령어가 이 길드에서 제거되었어요.",
+			"failed": "명령어 배포 실패: {command}"
+		},
+		"buttons": {
+			"deploy_global": "전역 배포",
+			"deploy_guild": "길드 배포",
+			"remove_global": "전역 제거",
+			"remove_guild": "길드 제거"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "특정 길드의 초대 링크 생성",
+			"errors": {
+				"guild_not_found": "길드를 찾을 수 없어요. ID가 올바른지 확인해주세요.",
+				"no_suitable_channel": "해당 길드에서 초대를 생성할 권한이 있는 적절한 채널을 찾을 수 없어요."
+			},
+			"success": "**{guildName}**의 초대 링크: [여기를 클릭]({url})"
+		},
+		"destroy": {
+			"description": "길드에서 봇이 생성한 모든 초대 링크 삭제",
+			"errors": {
+				"guild_not_found": "길드를 찾을 수 없어요. 올바른 ID를 입력해주세요.",
+				"generic": "초대를 삭제하지 못했어요. 해당 길드에서 '서버 관리' 권한이 있는지 확인해주세요."
+			},
+			"success": "**{guildName}**에서 제가 생성한 **{count}**개의 초대를 삭제했어요.",
+			"not_found": "이 길드에서 제가 생성한 초대를 찾을 수 없어요."
+		}
+	}
+}

@@ -92,16 +92,10 @@ export default class Command {
 		this.category = options.category ?? "general";
 	}
 
-	public async run(
-		_client: Lavamusic,
-		_message: any,
-		_args: string[],
-	): Promise<any> {
+	public async run(_client: Lavamusic, _message: any, _args: string[]): Promise<any> {
 		return await Promise.resolve();
 	}
-	public async autocomplete(
-		_interaction: AutocompleteInteraction,
-	): Promise<void> {
+	public async autocomplete(_interaction: AutocompleteInteraction): Promise<void> {
 		return await Promise.resolve();
 	}
 }

@@ -1,0 +1,13 @@
+{
+	"invite": "Mời",
+	"support": "Máy chủ hỗ trợ",
+	"previous": "Trước",
+	"resume": "Tiếp tục",
+	"stop": "Dừng",
+	"skip": "Bỏ qua",
+	"loop": "Lặp lại",
+	"next": "Tiếp theo",
+	"errors": {
+		"not_author": "Bạn không thể sử dụng nút này."
+	}
+}

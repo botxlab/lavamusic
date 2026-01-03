@@ -1,9 +1,27 @@
-import { ShardingManager } from "discord.js";
+import path from "node:path";
+import { ShardEvents, ShardingManager } from "discord.js";
 import { env } from "./env";
-import type Logger from "./structures/Logger";
+import logger from "./structures/Logger";
 
-export async function shardStart(logger: Logger) {
-	const manager = new ShardingManager("./dist/LavaClient.js", {
+/**
+ * Starts the Sharding Manager
+ */
+export async function start() {
+	/**
+	 * Determine the file extension based on the current environment
+	 *
+	 * If this file is running as .ts, we assume the bot file is also .ts
+	 */
+	const fileExtension = __filename.endsWith(".ts") ? "ts" : "js";
+
+	/**
+	 * Resolve the absolute path to the shard entry point
+	 *
+	 * This constant removes the dependency on relative paths like "./dist"
+	 */
+	const shardPath = path.join(__dirname, `LavaClient.${fileExtension}`);
+
+	const manager = new ShardingManager(shardPath, {
 		respawn: true,
 		token: env.TOKEN,
 		totalShards: "auto",
@@ -11,16 +29,26 @@ export async function shardStart(logger: Logger) {
 	});
 
 	manager.on("shardCreate", (shard) => {
-		shard.on("ready", () => {
-			logger.start(
-				`[CLIENT] Shard ${shard.id} connected to Discord's Gateway.`,
-			);
+		logger.info(`[CLIENT] Launching Shard ${shard.id}...`);
+
+		shard.on(ShardEvents.Ready, () => {
+			logger.start(`[CLIENT] Shard ${shard.id} connected to Discord's Gateway.`);
+		});
+
+		shard.on(ShardEvents.Death, () => {
+			logger.error(`[CLIENT] Shard ${shard.id} died unexpectedly.`);
 		});
 	});
 
-	await manager.spawn();
-
-	logger.start(`[CLIENT] ${manager.totalShards} shard(s) spawned.`);
+	try {
+		await manager.spawn();
+		const totalShards = manager.shards.size;
+		logger.start(
+			`[CLIENT] ${totalShards} shard${totalShards > 1 ? "s" : ""} spawned successfully.`,
+		);
+	} catch (error) {
+		logger.error("[CLIENT] Failed to spawn shards:", error);
+	}
 }
 
 /**

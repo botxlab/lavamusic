@@ -1,224 +1,296 @@
+import { existsSync, lstatSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import {
 	ActionRowBuilder,
+	type ActivitiesOptions,
 	ActivityType,
+	type APIEmbed,
+	type BaseMessageOptions,
 	ButtonBuilder,
+	type ButtonInteraction,
 	ButtonStyle,
-	CommandInteraction,
-	Message,
+	ComponentType,
+	type JSONEncodable,
+	type Message,
 	MessageFlags,
 	type TextChannel,
 } from "discord.js";
 import type { Context, Lavamusic } from "../structures/index";
+import logger from "../structures/Logger";
+import { DAY_MS, HOUR_MS, MINUTE_MS, SECOND_MS, TIME_UNITS_MS, type TimeUnit } from "../types/time";
 
-export class Utils {
-	public static formatTime(ms: number): string {
-		const minuteMs = 60 * 1000;
-		const hourMs = 60 * minuteMs;
-		const dayMs = 24 * hourMs;
-		if (ms < minuteMs) return `${ms / 1000}s`;
-		if (ms < hourMs)
-			return `${Math.floor(ms / minuteMs)}m ${Math.floor((ms % minuteMs) / 1000)}s`;
-		if (ms < dayMs)
-			return `${Math.floor(ms / hourMs)}h ${Math.floor((ms % hourMs) / minuteMs)}m`;
-		return `${Math.floor(ms / dayMs)}d ${Math.floor((ms % dayMs) / hourMs)}h`;
+type PageEmbed = (JSONEncodable<APIEmbed> | APIEmbed)[];
+
+/**
+ * Interface representing the file info yielded by the walker.
+ */
+export interface FileWalkerResult {
+	path: string;
+	category: string;
+	file: string;
+}
+
+const timeFormatter = new Intl.DurationFormat("en-US", {
+	style: "digital",
+	fractionalDigits: 0,
+	hoursDisplay: "auto",
+});
+
+const numberFormatter = new Intl.NumberFormat("en-US", {
+	maximumFractionDigits: 2,
+});
+
+/**
+ * Formats milliseconds into a digital duration string (e.g., 01:30:00).
+ */
+export function formatTime(ms: number): string {
+	if (!ms || ms < 0 || Number.isNaN(ms)) return "00:00";
+
+	const seconds = Math.floor((ms / SECOND_MS) % 60);
+	const minutes = Math.floor((ms / MINUTE_MS) % 60);
+	const hours = Math.floor((ms / HOUR_MS) % 24);
+	const days = Math.floor(ms / DAY_MS);
+
+	return timeFormatter.format({ days: days > 0 ? days : undefined, hours, minutes, seconds });
+}
+
+/**
+ * Updates the bot's presence based on the current track
+ */
+export function updateStatus(client: Lavamusic, guildId?: string): void {
+	const { user, env, manager } = client;
+	if (!user || !env.GUILD_ID || guildId !== env.GUILD_ID) return;
+
+	const player = manager.getPlayer(env.GUILD_ID);
+	const currentTrack = player?.queue?.current;
+
+	const activity: ActivitiesOptions = {
+		name: currentTrack ? `🎶 | ${currentTrack.info.title}` : env.BOT_ACTIVITY,
+		type: currentTrack ? ActivityType.Listening : env.BOT_ACTIVITY_TYPE,
+	};
+
+	user.setPresence({ activities: [activity], status: env.BOT_STATUS });
+}
+
+/**
+ * Sets the voice channel status
+ */
+export async function setVoiceStatus(
+	client: Lavamusic,
+	channelId: string,
+	message: string,
+): Promise<void> {
+	if (!channelId || !message) return;
+
+	try {
+		await client.rest.put(`/channels/${channelId}/voice-status`, { body: { status: message } });
+	} catch (error) {
+		logger.error(`[Voice Status] Failed for channel ${channelId}: ${error}`);
+	}
+}
+
+/**
+ * Splits an array into chunks of a specified size
+ */
+export function chunk<T>(array: T[], size: number): T[][] {
+	const chunks: T[][] = [];
+	for (let i = 0; i < array.length; i += size) {
+		chunks.push(array.slice(i, size + i));
+	}
+	return chunks;
+}
+
+/**
+ * Formats bytes into human readable sizes (KB, MB, GB)
+ */
+export function formatBytes(bytes: number): string {
+	if (bytes === 0) return "0 B Bytes";
+
+	const k = 1024;
+	const sizes = ["B", "KB", "MB", "GB", "TB", "PB"];
+	const i = Math.floor(Math.log2(bytes) / 10);
+	const index = Math.min(i, sizes.length - 1);
+	const value = bytes / k ** index;
+
+	return `${numberFormatter.format(value)} ${sizes[index]}`;
+}
+
+export function formatNumber(number: number): string {
+	return numberFormatter.format(number);
+}
+
+/**
+ * Parses time string (e.g., "10m 5s") into milliseconds
+ */
+export function parseTime(string: string): number {
+	const timeMatches = string.match(/(\d+)\s*([dhms])/g);
+	if (!timeMatches) return 0;
+
+	return timeMatches.reduce((total, t) => {
+		const unit = t.slice(-1) as TimeUnit;
+		const amount = Number(t.slice(0, -1));
+		return total + amount * (TIME_UNITS_MS[unit] ?? 0);
+	}, 0);
+}
+
+/**
+ * Generates progress bar
+ */
+export function progressBar(current: number, total: number, size = 20): string {
+	if (total === 0) return `${"░".repeat(size)} 0%`;
+
+	const percent = Math.round((current / total) * 100);
+	const filledSize = Math.max(0, Math.min(size, Math.round((size * current) / total)));
+
+	const filledBar = "▓".repeat(filledSize);
+	const emptyBar = "░".repeat(size - filledSize);
+
+	return `${filledBar}${emptyBar} ${percent}%`;
+}
+
+/**
+ * Handles pagination
+ */
+export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbed): Promise<void> {
+	// If only one page, send without pagination buttons
+	if (embeds.length < 2) {
+		const payload: BaseMessageOptions = { embeds: embeds };
+		if (ctx.isInteraction) {
+			ctx.deferred
+				? await ctx.interaction!.followUp(payload)
+				: await ctx.interaction!.reply(payload);
+		} else {
+			await (ctx.channel as TextChannel).send(payload);
+		}
+		return;
 	}
 
-	public static updateStatus(client: Lavamusic, guildId?: string): void {
-		const { user } = client;
-		if (user && client.env.GUILD_ID && guildId === client.env.GUILD_ID) {
-			const player = client.manager.getPlayer(client.env.GUILD_ID);
-			user.setPresence({
-				activities: [
-					{
-						name: player?.queue?.current
-							? `🎶 | ${player.queue?.current.info.title}`
-							: client.env.BOT_ACTIVITY,
-						type: player?.queue?.current
-							? ActivityType.Listening
-							: client.env.BOT_ACTIVITY_TYPE,
-					},
-				],
-				status: client.env.BOT_STATUS as any,
+	let page = 0;
+
+	// Build buttons based on current page state
+	const getComponents = (currentPage: number): ActionRowBuilder<ButtonBuilder>[] => {
+		const isFirst = currentPage === 0;
+		const isLast = currentPage === embeds.length - 1;
+
+		const buildButton = (
+			id: string,
+			emoji: string,
+			style: ButtonStyle,
+			disabled: boolean = false,
+		) => new ButtonBuilder().setCustomId(id).setEmoji(emoji).setStyle(style).setDisabled(disabled);
+
+		const buttons = [
+			buildButton("first", client.emoji.page.first, ButtonStyle.Primary, isFirst),
+			buildButton("back", client.emoji.page.back, ButtonStyle.Primary, isFirst),
+			buildButton("stop", client.emoji.page.cancel, ButtonStyle.Danger),
+			buildButton("next", client.emoji.page.next, ButtonStyle.Primary, isLast),
+			buildButton("last", client.emoji.page.last, ButtonStyle.Primary, isLast),
+		];
+
+		return [new ActionRowBuilder<ButtonBuilder>().addComponents(buttons)];
+	};
+
+	const options = { embeds: [embeds[0]], components: getComponents(0) };
+	let message: Message;
+
+	// Send initial message based on context type
+	if (ctx.isInteraction) {
+		const interaction = ctx.interaction!;
+		ctx.deferred ? await interaction.followUp(options) : await interaction.reply(options);
+		message = await interaction.fetchReply();
+	} else {
+		message = await (ctx.channel as TextChannel).send(options);
+	}
+
+	// Determine author ID
+	const authorId = ctx.isInteraction ? ctx.interaction!.user.id : ctx.author?.id;
+	if (!authorId) return;
+
+	const collector = message.createMessageComponentCollector({
+		componentType: ComponentType.Button,
+		filter: (i) => i.user.id === authorId,
+		time: 60_000,
+	});
+
+	collector.on("collect", async (interaction: ButtonInteraction) => {
+		if (interaction.user.id !== authorId) {
+			await interaction.reply({
+				content: ctx.locale("buttons.errors.not_author"),
+				flags: MessageFlags.Ephemeral,
 			});
-		}
-	}
-
-	public static async setVoiceStatus(
-		client: Lavamusic,
-		channelId: string,
-		message: string,
-	): Promise<void> {
-		await client.rest
-			.put(`/channels/${channelId}/voice-status`, { body: { status: message } })
-			.catch(() => {});
-	}
-
-	public static chunk(array: any[], size: number) {
-		const chunked_arr: any[][] = [];
-		for (let index = 0; index < array.length; index += size) {
-			chunked_arr.push(array.slice(index, size + index));
-		}
-		return chunked_arr;
-	}
-
-	public static formatBytes(bytes: number, decimals = 2): string {
-		if (bytes === 0) return "0 Bytes";
-		const k = 1024;
-		const dm = decimals < 0 ? 0 : decimals;
-		const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return `${Number.parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
-	}
-
-	public static formatNumber(number: number): string {
-		return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-	}
-
-	public static parseTime(string: string): number {
-		const time = string.match(/(\d+[dhms])/g);
-		if (!time) return 0;
-		let ms = 0;
-		for (const t of time) {
-			const unit = t[t.length - 1];
-			const amount = Number(t.slice(0, -1));
-			if (unit === "d") ms += amount * 24 * 60 * 60 * 1000;
-			else if (unit === "h") ms += amount * 60 * 60 * 1000;
-			else if (unit === "m") ms += amount * 60 * 1000;
-			else if (unit === "s") ms += amount * 1000;
-		}
-		return ms;
-	}
-
-	public static progressBar(current: number, total: number, size = 20): string {
-		const percent = Math.round((current / total) * 100);
-		const filledSize = Math.round((size * current) / total);
-		const filledBar = "▓".repeat(filledSize);
-		const emptyBar = "░".repeat(size - filledSize);
-		return `${filledBar}${emptyBar} ${percent}%`;
-	}
-
-	public static async paginate(
-		client: Lavamusic,
-		ctx: Context,
-		embed: any[],
-	): Promise<void> {
-		if (embed.length < 2) {
-			if (ctx.isInteraction) {
-				ctx.deferred
-					? await ctx.interaction?.followUp({ embeds: embed })
-					: await ctx.interaction?.reply({ embeds: embed });
-				return;
-			}
-			await (ctx.channel as TextChannel).send({ embeds: embed });
 			return;
 		}
 
-		let page = 0;
-		let stoppedManually = false;
-
-		const getButton = (page: number): any => {
-			const firstEmbed = page === 0;
-			const lastEmbed = page === embed.length - 1;
-			const pageEmbed = embed[page];
-			const first = new ButtonBuilder()
-				.setCustomId("first")
-				.setEmoji(client.emoji.page.first)
-				.setStyle(ButtonStyle.Primary)
-				.setDisabled(firstEmbed);
-			const back = new ButtonBuilder()
-				.setCustomId("back")
-				.setEmoji(client.emoji.page.back)
-				.setStyle(ButtonStyle.Primary)
-				.setDisabled(firstEmbed);
-			const next = new ButtonBuilder()
-				.setCustomId("next")
-				.setEmoji(client.emoji.page.next)
-				.setStyle(ButtonStyle.Primary)
-				.setDisabled(lastEmbed);
-			const last = new ButtonBuilder()
-				.setCustomId("last")
-				.setEmoji(client.emoji.page.last)
-				.setStyle(ButtonStyle.Primary)
-				.setDisabled(lastEmbed);
-			const stop = new ButtonBuilder()
-				.setCustomId("stop")
-				.setEmoji(client.emoji.page.cancel)
-				.setStyle(ButtonStyle.Danger);
-			const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-				first,
-				back,
-				stop,
-				next,
-				last,
-			);
-			return { embeds: [pageEmbed], components: [row] };
-		};
-
-		const msgOptions = getButton(0);
-		let msg: Message;
-
-		if (ctx.isInteraction) {
-			if (ctx.deferred) {
-				await ctx.interaction!.followUp(msgOptions);
-				msg = (await ctx.interaction!.fetchReply()) as Message;
-			} else {
-				await ctx.interaction!.reply(msgOptions);
-				msg = (await ctx.interaction!.fetchReply()) as Message;
-			}
-		} else {
-			msg = await (ctx.channel as TextChannel).send(msgOptions);
+		if (interaction.customId === "stop") {
+			collector.stop("stopped_by_user");
+			await interaction.deferUpdate();
+			return;
 		}
 
-		const author = ctx instanceof CommandInteraction ? ctx.user : ctx.author;
+		// Update page index based on action
+		switch (interaction.customId) {
+			case "first":
+				page = 0;
+				break;
+			case "back":
+				page = Math.max(0, page - 1);
+				break;
+			case "next":
+				page = Math.min(embeds.length - 1, page + 1);
+				break;
+			case "last":
+				page = embeds.length - 1;
+				break;
+		}
 
-		const filter = (int: any): any => int.user.id === author?.id;
-		const collector = msg.createMessageComponentCollector({
-			filter,
-			time: 60000,
-		});
+		await interaction
+			.update({ embeds: [embeds[page]], components: getComponents(page) })
+			.catch(() => collector.stop("message_deleted"));
+	});
 
-		collector.on("collect", async (interaction) => {
-			if (interaction.user.id !== author?.id) {
-				await interaction.reply({
-					content: ctx.locale("buttons.errors.not_author"),
-					flags: MessageFlags.Ephemeral,
-				});
-				return;
-			}
+	collector.on("end", async (_, reason) => {
+		if (!message.editable) return;
 
-			await interaction.deferUpdate();
+		try {
+			// If stopped by user, remove buttons completely
+			// Otherwise, keep embed but disable components
+			const cleanupOptions =
+				reason === "stopped_by_user"
+					? { components: [] }
+					: { embeds: [embeds[page]], components: [] };
 
-			switch (interaction.customId) {
-				case "first":
-					if (page !== 0) page = 0;
-					break;
-				case "back":
-					if (page > 0) page--;
-					break;
-				case "next":
-					if (page < embed.length - 1) page++;
-					break;
-				case "last":
-					if (page !== embed.length - 1) page = embed.length - 1;
-					break;
-				case "stop":
-					stoppedManually = true;
-					collector.stop();
-					try {
-						await msg.edit({ components: [] });
-					} catch {}
-					return;
-			}
+			await message.edit(cleanupOptions);
+		} catch (error) {
+			logger.error(`[Pagination Error]: ${error}`);
+		}
+	});
+}
 
-			await interaction.editReply(getButton(page));
-		});
+/**
+ * Recursively walks through a directory looking for subfolders and files.
+ */
+export function* walkDirectory(dirPath: string): Generator<FileWalkerResult> {
+	if (!existsSync(dirPath)) return;
 
-		collector.on("end", async () => {
-			if (stoppedManually) return;
-			try {
-				await msg.edit({ embeds: [embed[page]], components: [] });
-			} catch {}
-		});
+	const categories = readdirSync(dirPath);
+
+	for (const category of categories) {
+		const categoryPath = join(dirPath, category);
+
+		// Ensure we are looking at a directory, not a random file at root
+		if (!lstatSync(categoryPath).isDirectory()) continue;
+
+		const files = readdirSync(categoryPath).filter(
+			(file) => file.endsWith(".js") || file.endsWith(".ts"),
+		);
+
+		for (const file of files) {
+			yield {
+				path: join(categoryPath, file),
+				category,
+				file,
+			};
+		}
 	}
 }
 

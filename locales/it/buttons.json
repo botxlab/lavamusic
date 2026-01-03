@@ -1,0 +1,13 @@
+{
+	"invite": "Invita",
+	"support": "Server di Supporto",
+	"previous": "Precedente",
+	"resume": "Riprendi",
+	"stop": "Ferma",
+	"skip": "Salta",
+	"loop": "Ripeti",
+	"next": "Prossima",
+	"errors": {
+		"not_author": "Non puoi usare questo pulsante."
+	}
+}

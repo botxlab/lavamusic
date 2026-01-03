@@ -11,11 +11,7 @@ import type { Requester } from "../../types";
  */
 export const requesterTransformer = (requester: any): Requester => {
 	// if it's already the transformed requester
-	if (
-		typeof requester === "object" &&
-		"avatar" in requester &&
-		Object.keys(requester).length === 3
-	)
+	if (typeof requester === "object" && "avatar" in requester && Object.keys(requester).length === 3)
 		return requester as Requester;
 	// if it's still a string
 	if (typeof requester === "object" && "displayAvatarURL" in requester) {
@@ -39,10 +35,7 @@ export const requesterTransformer = (requester: any): Requester => {
  * @param {Track} lastTrack The last played track.
  * @returns {Promise<void>} A promise that resolves when the function is done.
  */
-export async function autoPlayFunction(
-	player: Player,
-	lastTrack?: Track,
-): Promise<void> {
+export async function autoPlayFunction(player: Player, lastTrack?: Track): Promise<void> {
 	if (!player.get("autoplay")) return;
 	if (!lastTrack) return;
 
@@ -75,24 +68,19 @@ export async function autoPlayFunction(
 				.catch(console.warn);
 			if (res && res.tracks.length > 0)
 				await player.queue.add(
-					res.tracks
-						.slice(0, 5)
-						.map((track: { pluginInfo: { clientData: any } }) => {
-							// transform the track plugininfo so you can figure out if the track is from autoplay or not.
-							track.pluginInfo.clientData = {
-								...(track.pluginInfo.clientData || {}),
-								fromAutoplay: true,
-							};
-							return track;
-						}),
+					res.tracks.slice(0, 5).map((track: { pluginInfo: { clientData: any } }) => {
+						// transform the track plugininfo so you can figure out if the track is from autoplay or not.
+						track.pluginInfo.clientData = {
+							...(track.pluginInfo.clientData || {}),
+							fromAutoplay: true,
+						};
+						return track;
+					}),
 				);
 		}
 		return;
 	}
-	if (
-		lastTrack.info.sourceName === "youtube" ||
-		lastTrack.info.sourceName === "youtubemusic"
-	) {
+	if (lastTrack.info.sourceName === "youtube" || lastTrack.info.sourceName === "youtubemusic") {
 		const res = await player
 			.search(
 				{
@@ -103,24 +91,21 @@ export async function autoPlayFunction(
 			)
 			.then((response: any) => {
 				response.tracks = response.tracks.filter(
-					(v: { info: { identifier: string } }) =>
-						v.info.identifier !== lastTrack.info.identifier,
+					(v: { info: { identifier: string } }) => v.info.identifier !== lastTrack.info.identifier,
 				); // remove the lastPlayed track if it's in there..
 				return response;
 			})
 			.catch(console.warn);
 		if (res && res.tracks.length > 0)
 			await player.queue.add(
-				res.tracks
-					.slice(0, 5)
-					.map((track: { pluginInfo: { clientData: any } }) => {
-						// transform the track plugininfo so you can figure out if the track is from autoplay or not.
-						track.pluginInfo.clientData = {
-							...(track.pluginInfo.clientData || {}),
-							fromAutoplay: true,
-						};
-						return track;
-					}),
+				res.tracks.slice(0, 5).map((track: { pluginInfo: { clientData: any } }) => {
+					// transform the track plugininfo so you can figure out if the track is from autoplay or not.
+					track.pluginInfo.clientData = {
+						...(track.pluginInfo.clientData || {}),
+						fromAutoplay: true,
+					};
+					return track;
+				}),
 			);
 		return;
 	}
@@ -130,9 +115,7 @@ export async function autoPlayFunction(
 			lastTrack.requester,
 		);
 		if (res.tracks.length > 0) {
-			const track = res.tracks.filter(
-				(v) => v.info.identifier !== lastTrack.info.identifier,
-			)[0];
+			const track = res.tracks.filter((v) => v.info.identifier !== lastTrack.info.identifier)[0];
 			await player.queue.add(track);
 		}
 	}

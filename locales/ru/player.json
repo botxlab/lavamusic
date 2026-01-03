@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "На этом сервере нет активного плеера.",
+		"no_channel": "Вам нужно быть в голосовом канале, чтобы использовать эту команду.",
+		"queue_empty": "Очередь пуста.",
+		"no_previous": "В очереди нет предыдущих песен.",
+		"no_song": "В очереди нет песен.",
+		"already_paused": "Песня уже на паузе.",
+		"user_not_in_voice_channel": "Вы не подключены к голосовому каналу."
+	},
+	"trackStart": {
+		"now_playing": "Сейчас играет",
+		"requested_by": "Запрошено {user}",
+		"duration": "Длительность",
+		"author": "Автор",
+		"not_connected_to_voice_channel": "Вы не подключены к <#{channel}>, чтобы использовать эти кнопки.",
+		"need_dj_role": "Вам нужна роль DJ, чтобы использовать эту команду.",
+		"previous_by": "Предыдущая {user}",
+		"no_previous_song": "Нет предыдущей песни.",
+		"paused_by": "Поставлено на паузу {user}",
+		"resumed_by": "Возобновлено {user}",
+		"skipped_by": "Пропущено {user}",
+		"no_more_songs_in_queue": "В очереди нет больше песен.",
+		"looping_by": "Зацикливание {user}",
+		"looping_queue_by": "Зацикливание очереди {user}",
+		"looping_off_by": "Зацикливание отключено {user}"
+	},
+	"setupStart": {
+		"now_playing": "Сейчас играет",
+		"description": "[{title}]({uri}) автор {author} • `[{length}]` - Запрошено <@{requester}>",
+		"error_searching": "Произошла ошибка во время поиска.",
+		"no_results": "Результаты не найдены.",
+		"nothing_playing": "Сейчас ничего не играет.",
+		"queue_too_long": "Очередь слишком длинная. Максимальная длина - {maxQueueSize} песен.",
+		"playlist_too_long": "Список воспроизведения слишком длинный. Максимальная длина - {maxPlaylistSize} песен.",
+		"added_to_queue": "Добавлено [{title}]({uri}) в очередь.",
+		"added_playlist_to_queue": "Добавлено [{length}] песен из плейлиста в очередь."
+	}
+}

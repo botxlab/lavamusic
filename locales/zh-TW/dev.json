@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "評估代碼",
+    "success": "代碼評估成功",
+    "error": "評估代碼失敗"
+  },
+  "guilds": {
+    "description": "管理和列出機器人所在的伺服器",
+    "list": "伺服器清單",
+    "leave": {
+      "success": "成功離開伺服器: {name}",
+      "fail": "離開伺服器 {name} 失敗",
+      "log": "機器人已離開伺服器: {name} (ID: {id})"
+    },
+    "not_found": "找不到伺服器。"
+  },
+  "restart": {
+    "description": "重啟機器人進程",
+    "prompt": "您確定要重啟 **{client}** 嗎？",
+    "status": {
+      "restarting": "正在重啟...",
+      "canceled": "重啟已取消。",
+      "error": "重啟機器人時出錯。"
+    },
+    "restart_by": "由 {user} 發起重啟"
+  },
+  "shutdown": {
+    "description": "關閉機器人進程",
+    "prompt": "您確定要關閉嗎？",
+    "status": "正在關閉...",
+    "canceled": "關閉已取消。"
+  },
+  "deploy": {
+    "description": "與 Discord API 同步斜線指令",
+    "prompt": "您要在哪裡部屬/移除指令？",
+    "status": {
+      "deployed_global": "指令已全域部屬。",
+      "deployed_guild": "指令已在此伺服器部屬。",
+      "removed_global": "指令已全域移除。",
+      "removed_guild": "指令已從此伺服器移除。",
+      "failed": "透過指令部屬失敗: {command}"
+    },
+    "buttons": {
+      "deploy_global": "全域部屬",
+      "deploy_guild": "伺服器部屬",
+      "remove_global": "全域移除",
+      "remove_guild": "伺服器移除"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "為特定伺服器創建邀請連結。",
+      "errors": {
+        "guild_not_found": "找不到伺服器。請確保 ID 正確。",
+        "no_suitable_channel": "在該伺服器中未找到具有足夠權限創建邀請的合適頻道。"
+      },
+      "success": "**{guildName}** 的邀請連結: [點擊此處]({url})"
+    },
+    "destroy": {
+      "description": "銷毀機器人在伺服器中創建的所有邀請連結",
+      "errors": {
+        "guild_not_found": "找不到伺服器。請提供有效的 ID。",
+        "generic": "銷毀邀請失敗。請檢查我是否有在該伺服器的「管理伺服器」權限。"
+      },
+      "success": "成功銷毀我在 **{guildName}** 中創建的 **{count}** 個邀請。",
+      "not_found": "在此伺服器中未找到由我創建的邀請。"
+    }
+  }
+}

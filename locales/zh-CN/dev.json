@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "评估代码",
+		"success": "代码评估成功",
+		"error": "代码评估失败"
+	},
+	"guilds": {
+		"description": "管理和列出机器人所在的服务器",
+		"list": "服务器列表",
+		"leave": {
+			"success": "已成功离开服务器: {name}",
+			"fail": "离开服务器 {name} 失败",
+			"log": "机器人已离开服务器: {name} (ID: {id})"
+		},
+		"not_found": "未找到服务器。"
+	},
+	"restart": {
+		"description": "重启机器人进程",
+		"prompt": "您确定要重启 **{client}** 吗？",
+		"status": {
+			"restarting": "正在重启...",
+			"canceled": "重启已取消。",
+			"error": "重启机器人时出错。"
+		},
+		"restart_by": "重启由 {user} 发起"
+	},
+	"shutdown": {
+		"description": "关闭机器人进程",
+		"prompt": "您确定要关闭吗？",
+		"status": "正在关闭...",
+		"canceled": "关闭已取消。"
+	},
+	"deploy": {
+		"description": "与 Discord API 同步斜杠命令",
+		"prompt": "您想在何处部署/取消部署命令？",
+		"status": {
+			"deployed_global": "命令已全局部署。",
+			"deployed_guild": "命令已在此服务器部署。",
+			"removed_global": "命令已全局移除。",
+			"removed_guild": "命令已从此服务器移除。",
+			"failed": "通过命令部署失败: {command}"
+		},
+		"buttons": {
+			"deploy_global": "全局部署",
+			"deploy_guild": "服务器部署",
+			"remove_global": "全局移除",
+			"remove_guild": "服务器移除"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "为特定服务器创建邀请链接。",
+			"errors": {
+				"guild_not_found": "未找到服务器。请确保 ID 正确。",
+				"no_suitable_channel": "未找到具有足够权限在该服务器中创建邀请的合适频道。"
+			},
+			"success": "**{guildName}** 的邀请链接: [点击此处]({url})"
+		},
+		"destroy": {
+			"description": "销毁机器人在服务器中创建的所有邀请链接",
+			"errors": {
+				"guild_not_found": "未找到服务器。请提供有效的 ID。",
+				"generic": "销毁邀请失败。请检查我是否在该服务器中拥有“管理服务器”权限。"
+			},
+			"success": "已成功销毁我在 **{guildName}** 中创建的 **{count}** 个邀请。",
+			"not_found": "在此服务器中未找到我创建的邀请。"
+		}
+	}
+}

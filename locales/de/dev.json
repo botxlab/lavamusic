@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Führe Code aus",
+		"success": "Code erfolgreich ausgeführt",
+		"error": "Fehler bei der Code-Ausführung"
+	},
+	"guilds": {
+		"description": "Verwalte Bot-Server",
+		"list": "Serverliste",
+		"leave": {
+			"success": "Server verlassen: {name}",
+			"fail": "Konnte Server {name} nicht verlassen",
+			"log": "Bot hat Server verlassen: {name} (ID: {id})"
+		},
+		"not_found": "Server nicht gefunden."
+	},
+	"restart": {
+		"description": "Starte den Bot neu",
+		"prompt": "Bist du sicher, dass du **{client}** neu starten willst?",
+		"status": {
+			"restarting": "Starte neu...",
+			"canceled": "Neustart abgebrochen.",
+			"error": "Fehler beim Neustart."
+		},
+		"restart_by": "Neustart initiiert von {user}"
+	},
+	"shutdown": {
+		"description": "Fahre den Bot herunter",
+		"prompt": "Soll der Bot wirklich heruntergefahren werden?",
+		"status": "Fahre herunter...",
+		"canceled": "Shutdown abgebrochen."
+	},
+	"deploy": {
+		"description": "Synchronisiere Slash-Commands mit Discord API",
+		"prompt": "Wo sollen die Befehle installiert/entfernt werden?",
+		"status": {
+			"deployed_global": "Befehle global installiert.",
+			"deployed_guild": "Befehle auf diesem Server installiert.",
+			"removed_global": "Globale Befehle entfernt.",
+			"removed_guild": "Server-Befehle entfernt.",
+			"failed": "Deploy fehlgeschlagen: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Deploy Global",
+			"deploy_guild": "Deploy Server",
+			"remove_global": "Löschen Global",
+			"remove_guild": "Löschen Server"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Erstelle einen Invite-Link für einen Server.",
+			"errors": {
+				"guild_not_found": "Server nicht gefunden. Prüfe die ID.",
+				"no_suitable_channel": "Kein Kanal mit Invite-Rechten gefunden."
+			},
+			"success": "Invite für **{guildName}**: [Hier klicken]({url})"
+		},
+		"destroy": {
+			"description": "Lösche alle Bot-Invites auf einem Server",
+			"errors": {
+				"guild_not_found": "Server nicht gefunden.",
+				"generic": "Fehler beim Löschen. Habe ich 'Server verwalten' Rechte?"
+			},
+			"success": "**{count}** eigene Invites auf **{guildName}** gelöscht.",
+			"not_found": "Keine eigenen Invites auf diesem Server gefunden."
+		}
+	}
+}

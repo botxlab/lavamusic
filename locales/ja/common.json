@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "確認",
+		"cancel": "キャンセル",
+		"yes": "はい",
+		"no": "いいえ",
+		"back": "戻る",
+		"next": "次へ",
+		"previous": "前へ",
+		"save": "保存",
+		"close": "閉じる"
+	},
+	"status": {
+		"enabled": "有効",
+		"disabled": "無効",
+		"on": "オン",
+		"off": "オフ",
+		"loading": "読み込み中...",
+		"processing": "処理中...",
+		"success": "成功！",
+		"failed": "失敗！"
+	},
+	"errors": {
+		"generic": "予期しないエラーが発生しました。後でもう一度お試しください。\n{error}",
+		"timeout": "このアクションの制限時間が切れました。",
+		"no_permissions": "このアクションを実行するために必要な権限がありません。",
+		"dev_only": "このコマンドは開発者のみに制限されています。",
+		"db_error": "データベースへのアクセス中にエラーが発生しました。"
+	},
+	"labels": {
+		"author": "作成者",
+		"duration": "期間",
+		"requested_by": "リクエスト者",
+		"volume": "音量",
+		"page": "ページ {current} / {total}"
+	}
+}

@@ -1,0 +1,69 @@
+{
+  "eval": {
+    "description": "Evaluasi kode",
+    "success": "Kode berhasil dievaluasi",
+    "error": "Gagal mengevaluasi kode"
+  },
+  "guilds": {
+    "description": "Kelola dan tampilkan daftar server bot",
+    "list": "Daftar Server",
+    "leave": {
+      "success": "Berhasil meninggalkan server: {name}",
+      "fail": "Gagal meninggalkan server {name}",
+      "log": "Bot telah meninggalkan server: {name} (ID: {id})"
+    },
+    "not_found": "Server tidak ditemukan."
+  },
+  "restart": {
+    "description": "Restart proses bot",
+    "prompt": "Apakah Anda yakin ingin merestart **{client}**?",
+    "status": {
+      "restarting": "Merestart...",
+      "canceled": "Restart dibatalkan.",
+      "error": "Terjadi kesalahan saat merestart bot."
+    },
+    "restart_by": "Restart dimulai oleh {user}"
+  },
+  "shutdown": {
+    "description": "Matikan proses bot",
+    "prompt": "Apakah Anda yakin ingin mematikan bot?",
+    "status": "Mematikan...",
+    "canceled": "Shutdown dibatalkan."
+  },
+  "deploy": {
+    "description": "Sinkronisasi slash command dengan API Discord",
+    "prompt": "Di mana Anda ingin un/deploy command?",
+    "status": {
+      "deployed_global": "Command dikerahkan (deployed) secara global.",
+      "deployed_guild": "Command dikerahkan (deployed) di server ini.",
+      "removed_global": "Command dihapus secara global.",
+      "removed_guild": "Command dihapus dari server ini.",
+      "failed": "Deployment gagal melalui command: {command}"
+    },
+    "buttons": {
+      "deploy_global": "Deploy Global",
+      "deploy_guild": "Deploy Server",
+      "remove_global": "Hapus Global",
+      "remove_guild": "Hapus Server"
+    }
+  },
+  "invite": {
+    "create": {
+      "description": "Buat link undangan untuk server tertentu.",
+      "errors": {
+        "guild_not_found": "Server tidak ditemukan. Pastikan ID-nya benar.",
+        "no_suitable_channel": "Tidak ditemukan channel yang cocok dengan izin yang cukup untuk membuat undangan di server itu."
+      },
+      "success": "Link undangan untuk **{guildName}**: [Klik di sini]({url})"
+    },
+    "destroy": {
+      "description": "Hancurkan semua link undangan yang dibuat oleh bot di sebuah server",
+      "errors": {
+        "guild_not_found": "Server tidak ditemukan. Harap berikan ID yang valid.",
+        "generic": "Gagal menghancurkan undangan. Periksa apakah saya memiliki izin 'Manage Server' di server itu."
+      },
+      "success": "Berhasil menghancurkan **{count}** undangan yang dibuat oleh saya di **{guildName}**.",
+      "not_found": "Tidak ditemukan undangan yang dibuat oleh saya di server ini."
+    }
+  }
+}

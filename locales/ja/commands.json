@@ -1,0 +1,639 @@
+{
+	"247": {
+		"description": "ボットをボイスチャンネルに留まらせるように設定します",
+		"errors": {
+			"not_in_voice": "このコマンドを使用するにはボイスチャンネルにいる必要があります。",
+			"generic": "このコマンドを実行しようとしたときにエラーが発生しました。"
+		},
+		"messages": {
+			"disabled": "`✅` | 24/7モードが`無効`になりました。",
+			"enabled": "`✅` | 24/7モードが`有効`になりました。"
+		}
+	},
+	"fairplay": {
+		"description": "ユーザー間で公平に音楽を再生するようにボットを設定します。",
+		"errors": {
+			"not_in_voice": "このコマンドを使用するにはボイスチャンネルにいる必要があります。",
+			"generic": "このコマンドを実行しようとしたときにエラーが発生しました。"
+		},
+		"messages": {
+			"disabled": "`✅` | フェアプレイモードが`無効`になりました。",
+			"enabled": "`✅` | フェアプレイモードが`有効`になりました。"
+		}
+	},
+	"ping": {
+		"description": "ボットのピングを表示します。",
+		"content": "ピング中...",
+		"bot_latency": "ボットのレイテンシ",
+		"api_latency": "APIのレイテンシ",
+		"requested_by": "{author}によってリクエストされました"
+	},
+	"lavalink": {
+		"description": "現在のLavalinkノードの統計情報を表示します。",
+		"title": "Lavalinkの統計情報",
+		"content": "プレーヤー: {players}\n再生中のプレーヤー: {playingPlayers}\n稼働時間: {uptime}\nコア: {cores} コア\nメモリ使用量: {used} / {reservable}\nシステム負荷: {systemLoad}%\nLavalink負荷: {lavalinkLoad}%",
+		"page_info": "ページ {index} / {total}"
+	},
+	"invite": {
+		"description": "ボットの招待リンクを取得します。",
+		"content": "以下のボタンをクリックして私を招待できます。バグや障害がある場合は、サポートサーバーに参加してください！"
+	},
+	"help": {
+		"description": "ヘルプメニューを表示します。",
+		"options": {
+			"command": "情報を取得したいコマンド"
+		},
+		"content": "こんにちは！私は{bot}、[Lavamusic](https://github.com/appujet/lavamusic)とDiscord.jsで作られた音楽ボットです。`{prefix}help <command>`を使用して、コマンドの詳細を取得できます。",
+		"title": "ヘルプメニュー",
+		"not_found": "この`{cmdName}`コマンドは存在しません。",
+		"help_cmd": "**説明:** {description}\n**使用法:** {usage}\n**例:** {examples}\n**別名:** {aliases}\n**カテゴリ:** {category}\n**クールダウン:** {cooldown}秒\n**権限:** {premUser}\n**ボットの権限:** {premBot}\n**開発者専用:** {dev}\n**スラッシュコマンド:** {slash}\n**引数:** {args}\n**プレーヤー:** {player}\n**DJ:** {dj}\n**DJの権限:** {djPerm}\n**ボイス:** {voice}",
+		"footer": "コマンドの詳細を取得するには {prefix}help <command> を使用してください"
+	},
+	"botinfo": {
+		"description": "ボットに関する情報",
+		"content": "ボット情報:\n- **オペレーティングシステム**: {osInfo}\n- **稼働時間**: {osUptime}\n- **ホスト名**: {osHostname}\n- **CPUアーキテクチャ**: {cpuInfo}\n- **CPU使用率**: {cpuUsed}%\n- **メモリ使用量**: {memUsed}MB / {memTotal}GB\n- **Nodeバージョン**: {nodeVersion}\n- **Discord.jsバージョン**: {discordJsVersion}\n- **接続中**: {guilds} サーバー, {channels} チャンネル, {users} ユーザー\n- **合計コマンド数**: {commands}"
+	},
+	"about": {
+		"description": "ボットに関する情報を表示します",
+		"fields": {
+			"creator": "作成者",
+			"repository": "リポジトリ",
+			"support": "サポート",
+			"description": "彼はより多くのコーディング経験を積むために、初めてのオープンソースプロジェクトを作りたいと思っていました。このプロジェクトでは、バグの少ないプロジェクトを作ることに挑戦しました。LavaMusicを楽しんでいただけると嬉しいです！"
+		}
+	},
+	"dj": {
+		"description": "DJモードと関連するロールを管理します",
+		"errors": {
+			"provide_role": "ロールを指定してください。",
+			"no_roles": "DJロールが設定されていません。",
+			"invalid_subcommand": "有効なサブコマンドを指定してください。"
+		},
+		"messages": {
+			"role_exists": "DJロール <@&{roleId}> は既に追加されています。",
+			"role_added": "DJロール <@&{roleId}> が追加されました。",
+			"role_not_found": "DJロール <@&{roleId}> は追加されていません。",
+			"role_removed": "DJロール <@&{roleId}> が削除されました。",
+			"all_roles_cleared": "すべてのDJロールが削除されました。",
+			"toggle": "DJモードが {status} に切り替えられました。"
+		},
+		"options": {
+			"add": "追加するDJロール",
+			"remove": "削除するDJロール",
+			"clear": "すべてのDJロールをクリア",
+			"toggle": "DJロールを切り替え",
+			"role": "DJロール"
+		},
+		"subcommands": "サブコマンド"
+	},
+	"language": {
+		"description": "ボットの言語を設定します",
+		"invalid_language": "有効な言語を指定してください。例: `ja` (日本語)\n\nサポートされている言語のリストは[こちら](https://discord.com/developers/docs/reference#locales)をご覧ください\n\n**利用可能な言語:**\n{languages}",
+		"already_set": "言語はすでに `{language}` に設定されています",
+		"not_set": "言語が設定されていません。",
+		"set": "言語が `{language}` に設定されました",
+		"reset": "言語がデフォルト言語にリセットされました。",
+		"options": {
+			"set": "ボットの言語を設定",
+			"language": "設定したい言語",
+			"reset": "言語をデフォルトに戻します"
+		}
+	},
+	"prefix": {
+		"description": "ボットのプレフィックスを表示または設定します",
+		"errors": {
+			"prefix_too_long": "プレフィックスは3文字以内でなければなりません。"
+		},
+		"messages": {
+			"current_prefix": "このサーバーのプレフィックスは `{prefix}` です",
+			"prefix_set": "このサーバーのプレフィックスは `{prefix}` に設定されました",
+			"prefix_reset": "このサーバーのプレフィックスは `{prefix}` にリセットされました"
+		},
+		"options": {
+			"set": "プレフィックスを設定",
+			"prefix": "設定したいプレフィックス",
+			"reset": "プレフィックスをデフォルトにリセット"
+		}
+	},
+	"setup": {
+		"description": "ボットを設定します",
+		"errors": {
+			"channel_exists": "曲のリクエストチャンネルは既に存在します。",
+			"channel_not_exists": "曲のリクエストチャンネルが存在しません。",
+			"channel_delete_fail": "セットアップチャンネルがデータベースから削除されましたが、テキストチャンネルの手動削除が必要です。"
+		},
+		"messages": {
+			"channel_created": "曲のリクエストチャンネルが <#{channelId}> に作成されました。",
+			"channel_deleted": "曲のリクエストチャンネルが削除されました。",
+			"channel_info": "曲のリクエストチャンネルは <#{channelId}> です。"
+		},
+		"options": {
+			"create": "曲のリクエストチャンネルを作成します",
+			"delete": "曲のリクエストチャンネルを削除します",
+			"info": "曲のリクエストチャンネルを表示します"
+		}
+	},
+	"defaultvolume": {
+		"description": "このサーバーでのボットのデフォルト音量を設定します",
+		"options": {
+			"volume": "設定したいデフォルト音量 (0-200)"
+		},
+		"messages": {
+			"current": "このサーバーの現在のデフォルト音量は **{volume}** です。",
+			"set": "`✅` | デフォルト音量が **{volume}** に設定されました。",
+			"invalid_number": "有効な数値を指定してください。",
+			"too_low": "音量は0より低くすることはできません。",
+			"too_high": "音量は200より高くすることはできません。"
+		}
+	},
+	"8d": {
+		"description": "8Dフィルターのオン/オフ",
+		"messages": {
+			"filter_enabled": "`✅` | 8Dフィルターが`有効`になりました。",
+			"filter_disabled": "`✅` | 8Dフィルターが`無効`になりました。"
+		}
+	},
+	"bassboost": {
+		"description": "ベースブーストフィルターのオン/オフ",
+		"options": {
+			"level": "設定したいベースブーストレベル"
+		},
+		"messages": {
+			"high": "`✅` | 高ベースブーストフィルターが`有効`になりました。",
+			"low": "`✅` | 低ベースブーストフィルターが`有効`になりました。",
+			"medium": "`✅` | 中ベースブーストフィルターが`有効`になりました。",
+			"off": "`✅` | ベースブーストフィルターが`無効`になりました。",
+			"invalid_level": "有効なベースブーストレベルを指定してください。利用可能なレベル: `high`, `medium`, `low`, `off`."
+		}
+	},
+	"distortion": {
+		"description": "ディストーションフィルターのオン/オフ",
+		"messages": {
+			"filter_enabled": "`✅` | ディストーションフィルターが`有効`になりました。",
+			"filter_disabled": "`✅` | ディストーションフィルターが`無効`になりました。"
+		}
+	},
+	"karaoke": {
+		"description": "カラオケフィルターのオン/オフ",
+		"messages": {
+			"filter_enabled": "`✅` | カラオケフィルターが`有効`になりました。",
+			"filter_disabled": "`✅` | カラオケフィルターが`無効`になりました。"
+		}
+	},
+	"lowpass": {
+		"description": "ローパスフィルターのオン/オフ",
+		"messages": {
+			"filter_enabled": "`✅` | ローパスフィルターが`有効`になりました。",
+			"filter_disabled": "`✅` | ローパスフィルターが`無効`になりました。"
+		}
+	},
+	"nightcore": {
+		"description": "ナイトコアフィルターのオン/オフ",
+		"messages": {
+			"filter_enabled": "`✅` | ナイトコアフィルターが`有効`になりました。",
+			"filter_disabled": "`✅` | ナイトコアフィルターが`無効`になりました。"
+		}
+	},
+	"pitch": {
+		"description": "ピッチフィルターのオン/オフ",
+		"options": {
+			"pitch": "ピッチを設定したい数値 (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "0.5から5の間の有効な数値を指定してください。"
+		},
+		"messages": {
+			"pitch_set": "`✅` | ピッチが **{pitch}** に設定されました。"
+		}
+	},
+	"rate": {
+		"description": "曲のレート（速度）を変更します",
+		"options": {
+			"rate": "レートを設定したい数値 (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "0.5から5の間の有効な数値を指定してください。"
+		},
+		"messages": {
+			"rate_set": "`✅` | レートが **{rate}** に設定されました。"
+		}
+	},
+	"reset": {
+		"description": "アクティブなフィルターをリセットします",
+		"messages": {
+			"filters_reset": "`✅` | フィルターがリセットされました。"
+		}
+	},
+	"rotation": {
+		"description": "ローテーションフィルターのオン/オフ",
+		"messages": {
+			"enabled": "`✅` | ローテーションフィルターが`有効`になりました。",
+			"disabled": "`✅` | ローテーションフィルターが`無効`になりました。"
+		}
+	},
+	"speed": {
+		"description": "曲の速度を変更します",
+		"options": {
+			"speed": "設定したい速度 (0.5 - 5)"
+		},
+		"messages": {
+			"invalid_number": "0.5から5の間の有効な数値を指定してください。",
+			"set_speed": "`✅` | 速度が **{speed}** に設定されました。"
+		}
+	},
+	"tremolo": {
+		"description": "トレモロフィルターのオン/オフ",
+		"messages": {
+			"enabled": "`✅` | トレモロフィルターが`有効`になりました。",
+			"disabled": "`✅` | トレモロフィルターが`無効`になりました。"
+		}
+	},
+	"vibrato": {
+		"description": "ビブラートフィルターのオン/オフ",
+		"messages": {
+			"enabled": "`✅` | ビブラートフィルターが`有効`になりました。",
+			"disabled": "`✅` | ビブラートフィルターが`無効`になりました。"
+		}
+	},
+	"autoplay": {
+		"description": "自動再生モードを切り替えます",
+		"messages": {
+			"enabled": "`✅` | 自動再生が`有効`になりました。",
+			"disabled": "`✅` | 自動再生が`無効`になりました。"
+		}
+	},
+	"clearqueue": {
+		"description": "キューをクリアします",
+		"messages": {
+			"cleared": "キューがクリアされました。"
+		}
+	},
+	"grab": {
+		"description": "現在再生中の曲をDMに保存します",
+		"loading": "読み込み中...",
+		"content": "**再生時間:** {length}\n**リクエスト者:** <@{requester}>\n**リンク:** [ここをクリック]({uri})",
+		"check_dm": "DMを確認してください。",
+		"dm_failed": "DMを送信できませんでした。DMが開放されているか確認してください。"
+	},
+	"join": {
+		"description": "ボットをボイスチャンネルに参加させます",
+		"already_connected": "すでに <#{channelId}> に接続しています。",
+		"no_voice_channel": "このコマンドを使用するにはボイスチャンネルに参加する必要があります。",
+		"joined": "<#{channelId}> に正常に参加しました。"
+	},
+	"leave": {
+		"description": "ボイスチャンネルからボットを切断します",
+		"left": "<#{channelId}> から正常に退出しました。",
+		"not_in_channel": "ボイスチャンネルに参加していません。"
+	},
+	"loop": {
+		"description": "現在の曲またはキューをループします",
+		"options": {
+			"mode": "設定したいループモード"
+		},
+		"messages": {
+			"looping_song": "**曲をループしています。**",
+			"looping_queue": "**キューをループしています。**",
+			"looping_off": "**ループは現在オフです。**",
+			"invalid_mode": "無効なループモード"
+		}
+	},
+	"lyrics": {
+		"description": "現在のトラックの歌詞を表示します",
+		"lyrics_for_track": "### 歌詞: [{trackTitle}]({trackUrl})",
+		"no_lyrics_on_page": "このページには歌詞が見つかりませんでした。",
+		"searching": "🔍 **{trackTitle}** の歌詞を検索中...",
+		"session_expired": "セッションが期限切れです。コマンドを再度使用して更新してください。",
+		"page_indicator": "ページ {current}/{total}",
+		"artwork_description": "{trackTitle} のアートワーク",
+		"no_lyrics_available": "歌詞が利用できません",
+		"button_subscribe": "📌 ライブ歌詞を購読",
+		"button_unsubscribe": "📌 ライブ歌詞の購読を解除",
+		"subscribed": "ライブ歌詞の更新を購読しました！",
+		"unsubscribed": "ライブ歌詞の更新の購読を解除しました。",
+		"errors": {
+			"no_results": "現在のトラックの歌詞が見つかりませんでした。",
+			"lyrics_error": "歌詞の取得中にエラーが発生しました。",
+			"no_player_for_lyrics": "アクティブなプレーヤーなしでこの曲の歌詞を取得することはできません。"
+		},
+		"options": {
+			"song": "歌詞を取得したい曲"
+		}
+	},
+	"nowplaying": {
+		"description": "現在再生中の曲を表示します",
+		"now_playing": "再生中",
+		"track_info": "[{title}]({uri}) - リクエスト者: <@{requester}>\n\n`{bar}`"
+	},
+	"pause": {
+		"description": "現在の曲を一時停止します",
+		"successfully_paused": "曲を正常に一時停止しました。"
+	},
+	"play": {
+		"description": "YouTube, Spotify, URLなどから曲を再生します",
+		"options": {
+			"song": "再生したい曲またはURL"
+		},
+		"loading": "読み込み中...",
+		"errors": {
+			"search_error": "検索中にエラーが発生しました。",
+			"no_results": "結果が見つかりませんでした。",
+			"queue_too_long": "キューが長すぎます。最大長は {maxQueueSize} 曲です。",
+			"playlist_too_long": "プレイリストが長すぎます。最大長は {maxPlaylistSize} 曲です。"
+		},
+		"added_to_queue": "[{title}]({uri}) をキューに追加しました。",
+		"added_playlist_to_queue": "{length} 曲をキューに追加しました。"
+	},
+	"playlocal": {
+		"description": "ローカルオーディオファイルを再生します",
+		"options": {
+			"file": "再生したいオーディオファイル"
+		},
+		"loading": "読み込み中...",
+		"errors": {
+			"empty_query": "再生するオーディオファイルを添付してください。",
+			"invalid_format": "再生できるのは MP3, WAV, OGG, FLAC, AAC, M4A ファイルのみです。",
+			"no_results": "オーディオファイルの再生に失敗しました。ファイルが破損している可能性があります。"
+		},
+		"added_to_queue": "[{title}]({url}) をキューに追加しました"
+	},
+	"playnext": {
+		"description": "曲をキューの一番上に追加します",
+		"options": {
+			"song": "再生したい曲"
+		},
+		"loading": "読み込み中...",
+		"errors": {
+			"search_error": "検索中にエラーが発生しました。",
+			"no_results": "結果が見つかりませんでした。",
+			"queue_too_long": "キューが長すぎます。最大長は {maxQueueSize} 曲です。",
+			"playlist_too_long": "プレイリストが長すぎます。最大長は {maxPlaylistSize} 曲です。"
+		},
+		"added_to_play_next": "キューの次に再生するために [{title}]({uri}) を追加しました。",
+		"added_playlist_to_play_next": "キューの次に再生するために {length} 曲を追加しました。"
+	},
+	"queue": {
+		"description": "現在の曲のキューを表示します。",
+		"now_playing": "現在再生中: [{title}]({uri}) - リクエスト者: <@{requester}> - 再生時間: `{duration}`",
+		"live": "ライブ",
+		"track_info": "{index}. [{title}]({uri}) - リクエスト者: <@{requester}> - 再生時間: `{duration}`",
+		"title": "キュー",
+		"page_info": "ページ {index} / {total}",
+		"duration": "キューの長さ: `{totalDuration}`"
+	},
+	"remove": {
+		"description": "キューから特定の曲を削除します",
+		"options": {
+			"song": "削除したい曲の番号"
+		},
+		"errors": {
+			"no_songs": "キューに曲がありません。",
+			"invalid_number": "有効な曲番号を指定してください。"
+		},
+		"messages": {
+			"removed": "キューから曲番号 {songNumber} を削除しました。"
+		}
+	},
+	"replay": {
+		"description": "現在のトラックをリプレイします",
+		"errors": {
+			"not_seekable": "シークできないため、このトラックをリプレイできません。"
+		},
+		"messages": {
+			"replaying": "現在のトラックをリプレイしています。"
+		}
+	},
+	"resume": {
+		"description": "一時停止した曲を再開します",
+		"errors": {
+			"not_paused": "プレーヤーは一時停止していません。"
+		},
+		"messages": {
+			"resumed": "プレーヤーを再開しました。"
+		}
+	},
+	"search": {
+		"description": "曲を検索します",
+		"options": {
+			"song": "探している曲"
+		},
+		"select": "リストから曲を選択してください...",
+		"errors": {
+			"no_results": "結果が見つかりませんでした。",
+			"no_results_title": "検索結果が見つかりませんでした！",
+			"no_results_description": "クエリに一致する曲が見つかりませんでした。キーワードを変更するか、リンクを提供してみてください。",
+			"invalid_selection_title": "無効な選択！",
+			"invalid_selection_description": "選択されたオプションが無効です。リストから曲番号を選択してください。",
+			"search_error": "曲の検索中にエラーが発生しました。",
+			"vc_connect_fail_title": "ボイスチャンネル接続エラー",
+			"vc_connect_fail_description": "ボイスチャンネルに接続できませんでした。適切な権限があることを確認してください。"
+		},
+		"messages": {
+			"results_found": "**{count}** 曲が見つかりました。",
+			"select_prompt": "番号を選択して曲をキューに追加します。",
+			"page_info": "ページ {currentPage}/{maxPages}",
+			"added_to_queue": "**[{title}]({uri})** をキューに追加しました！",
+			"selection_timed_out_title": "時間切れ！",
+			"selection_timed_out_description": "指定時間内に曲が選択されませんでした。検索はキャンセルされました。もう一度お試しください。",
+			"selection_timed_out_short": "選択がタイムアウトしました。"
+		}
+	},
+	"seek": {
+		"description": "曲の特定の時間にシークします",
+		"options": {
+			"duration": "シークする時間 (例: 1m 30s)"
+		},
+		"errors": {
+			"invalid_format": "無効な時間形式です。例: seek 1m, seek 1h 30m",
+			"not_seekable": "このトラックはシークできません。",
+			"beyond_duration": "曲の長さ {length} を超えてシークすることはできません。"
+		},
+		"messages": {
+			"seeked_to": "{duration} にシークしました"
+		}
+	},
+	"shuffle": {
+		"description": "キューをシャッフルします",
+		"messages": {
+			"shuffled": "キューをシャッフルしました。"
+		},
+		"errors": {
+			"fairplay": "フェアプレイモードが有効です。キューをシャッフルすることはできません。"
+		}
+	},
+	"skip": {
+		"description": "現在の曲をスキップします",
+		"messages": {
+			"skipped": "[{title}]({uri}) をスキップしました。"
+		}
+	},
+	"skipto": {
+		"description": "キュー内の特定の曲にスキップします",
+		"options": {
+			"number": "スキップしたい曲の番号"
+		},
+		"errors": {
+			"invalid_number": "有効な番号を指定してください。"
+		},
+		"messages": {
+			"skipped_to": "曲番号 {number} にスキップしました。"
+		}
+	},
+	"move": {
+		"description": "キュー内のトラックの位置を移動します",
+		"options": {
+			"from": "移動するトラックの位置",
+			"to": "トラックの移動先"
+		},
+		"errors": {
+			"no_tracks": "キューにトラックがありません。",
+			"invalid_usage": "使用法が無効です。移動元と移動先の位置を指定してください。",
+			"invalid_numbers": "有効なトラック位置を指定してください。",
+			"invalid_positions": "キュー内の有効なトラック位置を指定してください。",
+			"same_position": "移動元と移動先の位置が同じです。"
+		},
+		"messages": {
+			"moved": "**{title}** を位置 {from} から {to} に移動しました。"
+		}
+	},
+	"stop": {
+		"description": "音楽を停止し、キューをクリアします",
+		"messages": {
+			"stopped": "音楽を停止し、キューをクリアしました。"
+		}
+	},
+	"volume": {
+		"description": "プレーヤーの音量を設定します",
+		"options": {
+			"number": "設定したい音量 (0-200)"
+		},
+		"messages": {
+			"invalid_number": "有効な数値を指定してください。",
+			"too_low": "音量は0より低くすることはできません。",
+			"too_high": "音量は200より高くすることはできません。聴覚やスピーカーを傷つけたいですか？うーん、それは良い考えではないと思います。",
+			"set": "音量を {volume} に設定しました"
+		}
+	},
+	"addsong": {
+		"description": "保存されたプレイリストに曲を追加します",
+		"options": {
+			"playlist": "追加したいプレイリスト",
+			"song": "追加したい曲"
+		},
+		"messages": {
+			"no_playlist": "プレイリストを指定してください",
+			"no_song": "曲を指定してください",
+			"playlist_not_found": "そのプレイリストは存在しません",
+			"no_songs_found": "曲が見つかりません",
+			"added": "{count} 曲を {playlist} に追加しました"
+		}
+	},
+	"create": {
+		"description": "新しいプレイリストを作成します。",
+		"options": {
+			"name": "プレイリストの名前"
+		},
+		"messages": {
+			"name_too_long": "プレイリスト名は50文字以内である必要があります。",
+			"playlist_exists": "その名前のプレイリストは既に存在します。別の名前を使用してください。",
+			"playlist_created": "プレイリスト **{name}** が作成されました。",
+			"name_empty": "プレイリスト名を指定する必要があります。"
+		}
+	},
+	"delete": {
+		"description": "プレイリストを削除します",
+		"options": {
+			"playlist": "削除したいプレイリスト"
+		},
+		"messages": {
+			"playlist_not_found": "そのプレイリストは存在しません。",
+			"playlist_deleted": "プレイリスト **{playlistName}** を削除しました。"
+		}
+	},
+	"list": {
+		"description": "ユーザーのすべてのプレイリストをリストします",
+		"options": {
+			"user": "プレイリストを取得したいユーザー"
+		},
+		"messages": {
+			"no_playlists": "このユーザーにはプレイリストがありません。",
+			"your": "あなたの",
+			"playlists_title": "{username} のプレイリスト",
+			"error": "プレイリストの取得中にエラーが発生しました。",
+			"invalid_username": "無効なユーザー名か、ユーザーが見つかりません。",
+			"invalid_userid": "無効なユーザーIDです。"
+		}
+	},
+	"load": {
+		"description": "保存されたプレイリストをキューにロードします。",
+		"options": {
+			"playlist": "ロードしたいプレイリスト"
+		},
+		"messages": {
+			"playlist_not_exist": "そのプレイリストは存在しません。",
+			"playlist_empty": "そのプレイリストは空です。",
+			"playlist_loaded": "`{name}` をロードしました（`{count}` 曲）。",
+			"no_lavalink_nodes": "プレイリストをロードするために利用可能なLavalinkノードがありません。"
+		}
+	},
+	"removesong": {
+		"description": "プレイリストから曲を削除します",
+		"options": {
+			"playlist": "削除元のプレイリスト",
+			"song": "削除したい曲"
+		},
+		"messages": {
+			"provide_playlist": "プレイリストを指定してください。",
+			"provide_song": "曲を指定してください。",
+			"playlist_not_exist": "そのプレイリストは存在しません。",
+			"song_not_found": "一致する曲が見つかりません。",
+			"song_removed": "{playlist} から {song} を削除しました。",
+			"error_occurred": "曲の削除中にエラーが発生しました。"
+		}
+	},
+	"steal": {
+		"description": "他のユーザーからプレイリストを盗んで自分のプレイリストに追加します",
+		"options": {
+			"playlist": "盗みたいプレイリスト",
+			"user": "プレイリストを盗みたいユーザー"
+		},
+		"messages": {
+			"provide_playlist": "プレイリスト名を指定してください。",
+			"provide_user": "ユーザーをメンションしてください。",
+			"playlist_not_exist": "そのプレイリストはメンションされたユーザーには存在しません。",
+			"playlist_exists": "既に `{playlist}` という名前のプレイリストを持っています。",
+			"playlist_stolen": "{user} からプレイリスト `{playlist}` を正常に盗みました。",
+			"error_occurred": "プレイリストの盗難中にエラーが発生しました。"
+		}
+	},
+	"movenode": {
+		"description": "プレーヤーを別のLavalinkノードに移動します",
+		"options": {
+			"node": "プレーヤーを移動させるノードID"
+		},
+		"messages": {
+			"no_player": "このサーバーにはアクティブな音楽プレーヤーがありません。",
+			"no_available_nodes": "移動できるノードがありません。",
+			"available_nodes_title": "利用可能なノード",
+			"current_node": "現在のノード",
+			"available_nodes": "利用可能なノード",
+			"usage_hint": "使用法: movenode <nodeId>",
+			"node_not_found": "ノード `{node}` が見つかりませんでした。",
+			"node_not_connected": "ノード `{node}` は接続されていません。",
+			"same_node": "プレーヤーは既にノード `{node}` にあります。",
+			"moving": "プレーヤーを `{from}` から `{to}` へ移動中...",
+			"success_title": "プレーヤーの移動に成功しました",
+			"success_description": "プレーヤーが `{from}` から `{to}` へ移動されました。",
+			"error": "プレーヤーの移動に失敗しました: {error}",
+			"moving_all_players": "すべてのプレーヤーをノード `{node}` へ移動中...",
+			"results_title": "MoveNode 結果",
+			"moved_players": "**以下のギルドでプレーヤーを移動しました:**\n{list}",
+			"guild_move": "• `{guildId}` ({from} → {to})",
+			"failed_moves": "**以下のギルドでプレーヤーの移動に失敗しました:**\n{list}",
+			"guild_move_failed": "• `{guildId}`: {error}",
+			"no_players_moved": "移動が必要なプレーヤーはありませんでした。",
+			"unknown_error": "不明なエラー",
+			"no_players": "移動するプレーヤーがいません。"
+		}
+	}
+}

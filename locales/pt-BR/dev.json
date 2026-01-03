@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Avaliar código",
+		"success": "Código avaliado com sucesso",
+		"error": "Falha ao avaliar código"
+	},
+	"guilds": {
+		"description": "Gerenciar e listar servidores do bot",
+		"list": "Lista de Servidores",
+		"leave": {
+			"success": "Saiu com sucesso do servidor: {name}",
+			"fail": "Falha ao sair do servidor {name}",
+			"log": "Bot saiu do servidor: {name} (ID: {id})"
+		},
+		"not_found": "Servidor não encontrado."
+	},
+	"restart": {
+		"description": "Reiniciar o processo do bot",
+		"prompt": "Você tem certeza que deseja reiniciar o **{client}**?",
+		"status": {
+			"restarting": "Reiniciando...",
+			"canceled": "Reinício cancelado.",
+			"error": "Ocorreu um erro ao reiniciar o bot."
+		},
+		"restart_by": "Reinício iniciado por {user}"
+	},
+	"shutdown": {
+		"description": "Desligar o processo do bot",
+		"prompt": "Você tem certeza que deseja desligar?",
+		"status": "Desligando...",
+		"canceled": "Desligamento cancelado."
+	},
+	"deploy": {
+		"description": "Sincronizar comandos slash com a API do Discord",
+		"prompt": "Onde você quer (des)implantar os comandos?",
+		"status": {
+			"deployed_global": "Comandos implantados globalmente.",
+			"deployed_guild": "Comandos implantados neste servidor.",
+			"removed_global": "Comandos removidos globalmente.",
+			"removed_guild": "Comandos removidos deste servidor.",
+			"failed": "Falha na implantação via comando: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Implantar Global",
+			"deploy_guild": "Implantar Servidor",
+			"remove_global": "Remover Global",
+			"remove_guild": "Remover Servidor"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Criar um link de convite para um servidor específico.",
+			"errors": {
+				"guild_not_found": "Servidor não encontrado. Verifique se o ID está correto.",
+				"no_suitable_channel": "Nenhum canal adequado encontrado com permissões suficientes para criar um convite nesse servidor."
+			},
+			"success": "Link de convite para **{guildName}**: [Clique aqui]({url})"
+		},
+		"destroy": {
+			"description": "Destruir todos os links de convite criados pelo bot em um servidor",
+			"errors": {
+				"guild_not_found": "Servidor não encontrado. Por favor, forneça um ID válido.",
+				"generic": "Falha ao destruir convites. Verifique se tenho permissões de 'Gerenciar Servidor' nesse servidor."
+			},
+			"success": "Sucesso ao destruir **{count}** convite(s) criado(s) por mim em **{guildName}**.",
+			"not_found": "Nenhum convite criado por mim foi encontrado neste servidor."
+		}
+	}
+}

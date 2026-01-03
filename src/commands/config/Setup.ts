@@ -1,14 +1,23 @@
 /** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import { ChannelType, OverwriteType, PermissionFlagsBits } from "discord.js";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
 import { getButtons } from "../../utils/Buttons";
+import {
+	EmbedLinks,
+	ManageChannels,
+	ManageGuild,
+	ReadMessageHistory,
+	SendMessages,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 export default class Setup extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "setup",
 			description: {
-				content: "cmd.setup.description",
+				content: I18N.commands.setup.description,
 				examples: ["setup create", "setup delete", "setup info"],
 				usage: "setup",
 			},
@@ -25,44 +34,32 @@ export default class Setup extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"ManageChannels",
-				],
-				user: ["ManageGuild"],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks, ManageChannels],
+				user: [ManageGuild],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "create",
-					description: "cmd.setup.options.create",
+					description: I18N.commands.setup.options.create,
 					type: 1,
 				},
 				{
 					name: "delete",
-					description: "cmd.setup.options.delete",
+					description: I18N.commands.setup.options.delete,
 					type: 1,
 				},
 				{
 					name: "info",
-					description: "cmd.setup.options.info",
+					description: I18N.commands.setup.options.info,
 					type: 1,
 				},
 			],
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
-		const subCommand = ctx.isInteraction
-			? ctx.options.getSubCommand()
-			: args[0];
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
+		const subCommand = ctx.isInteraction ? ctx.options.getSubCommand() : args[0];
 		const embed = client.embed().setColor(this.client.color.main);
 		switch (subCommand) {
 			case "create": {
@@ -71,7 +68,7 @@ export default class Setup extends Command {
 					return await ctx.sendMessage({
 						embeds: [
 							{
-								description: ctx.locale("cmd.setup.errors.channel_exists"),
+								description: ctx.locale(I18N.commands.setup.errors.channel_exists),
 								color: client.color.red,
 							},
 						],
@@ -84,7 +81,7 @@ export default class Setup extends Command {
 					permissionOverwrites: [
 						{
 							type: OverwriteType.Member,
-							id: client.user?.id!,
+							id: client.user?.id ?? "",
 							allow: [
 								PermissionFlagsBits.ViewChannel,
 								PermissionFlagsBits.SendMessages,
@@ -107,7 +104,7 @@ export default class Setup extends Command {
 				const image = this.client.config.links.img;
 				const desc = player?.queue.current
 					? `[${player.queue.current.info.title}](${player.queue.current.info.uri})`
-					: ctx.locale("player.setupStart.nothing_playing");
+					: ctx.locale(I18N.player.setupStart.nothing_playing);
 				embed.setDescription(desc).setImage(image);
 				await textChannel
 					.send({
@@ -120,7 +117,7 @@ export default class Setup extends Command {
 				await ctx.sendMessage({
 					embeds: [
 						{
-							description: ctx.locale("cmd.setup.messages.channel_created", {
+							description: ctx.locale(I18N.commands.setup.messages.channel_created, {
 								channelId: textChannel.id,
 							}),
 							color: this.client.color.main,
@@ -135,7 +132,7 @@ export default class Setup extends Command {
 					return await ctx.sendMessage({
 						embeds: [
 							{
-								description: ctx.locale("cmd.setup.errors.channel_not_exists"),
+								description: ctx.locale(I18N.commands.setup.errors.channel_not_exists),
 								color: client.color.red,
 							},
 						],
@@ -150,7 +147,7 @@ export default class Setup extends Command {
 				await ctx.sendMessage({
 					embeds: [
 						{
-							description: ctx.locale("cmd.setup.messages.channel_deleted"),
+							description: ctx.locale(I18N.commands.setup.messages.channel_deleted),
 							color: this.client.color.main,
 						},
 					],
@@ -163,7 +160,7 @@ export default class Setup extends Command {
 					return await ctx.sendMessage({
 						embeds: [
 							{
-								description: ctx.locale("cmd.setup.errors.channel_not_exists"),
+								description: ctx.locale(I18N.commands.setup.errors.channel_not_exists),
 								color: client.color.red,
 							},
 						],
@@ -172,7 +169,7 @@ export default class Setup extends Command {
 				const channel = ctx.guild.channels.cache.get(data3.textId);
 				if (channel) {
 					embed.setDescription(
-						ctx.locale("cmd.setup.messages.channel_info", {
+						ctx.locale(I18N.commands.setup.messages.channel_info, {
 							channelId: channel.id,
 						}),
 					);
@@ -181,7 +178,7 @@ export default class Setup extends Command {
 					await ctx.sendMessage({
 						embeds: [
 							{
-								description: ctx.locale("cmd.setup.errors.channel_not_exists"),
+								description: ctx.locale(I18N.commands.setup.errors.channel_not_exists),
 								color: client.color.red,
 							},
 						],

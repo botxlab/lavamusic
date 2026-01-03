@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"lib": ["ESNext", "WebWorker"],
-		"module": "CommonJS",
+		"module": "esnext",
 		"moduleResolution": "node",
 		"declaration": true,
 		"sourceMap": false,
@@ -25,7 +25,9 @@
 		"skipLibCheck": true,
 		"noErrorTruncation": true,
 		"outDir": "./dist",
-		"stripInternal": true
+		"stripInternal": true,
+		"resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
 	},
 	"exclude": ["dist/", "node_modules/"],
 	"include": ["src/**/*"]

@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import {
 	type APIInteractionGuildMember,
 	ChatInputCommandInteraction,
@@ -7,6 +6,7 @@ import {
 	type GuildMemberResolvable,
 	type InteractionEditReplyOptions,
 	type InteractionReplyOptions,
+	Locale,
 	Message,
 	type MessageCreateOptions,
 	type MessageEditOptions,
@@ -16,7 +16,7 @@ import {
 	type User,
 } from "discord.js";
 import { env } from "../env";
-import { T } from "./I18n";
+import { t } from "./I18n";
 import type { Lavamusic } from "./index";
 
 export default class Context {
@@ -31,11 +31,7 @@ export default class Context {
 	public guild: Guild;
 	public createdAt: Date;
 	public createdTimestamp: number;
-	public member:
-		| GuildMemberResolvable
-		| GuildMember
-		| APIInteractionGuildMember
-		| null;
+	public member: GuildMemberResolvable | GuildMember | APIInteractionGuildMember | null;
 	public args: any[];
 	public msg: any;
 	public guildLocale: string | undefined;
@@ -59,7 +55,7 @@ export default class Context {
 	}
 
 	private async setUpLocale(): Promise<void> {
-		const defaultLanguage = env.DEFAULT_LANGUAGE || "EnglishUS";
+		const defaultLanguage = env.DEFAULT_LANGUAGE || Locale.EnglishUS;
 		this.guildLocale = this.guild
 			? await this.client.db.getLanguage(this.guild.id)
 			: defaultLanguage;
@@ -70,17 +66,11 @@ export default class Context {
 	}
 
 	public setArgs(args: any[]): void {
-		this.args = this.isInteraction
-			? args.map((arg: { value: any }) => arg.value)
-			: args;
+		this.args = this.isInteraction ? args.map((arg: { value: any }) => arg.value) : args;
 	}
 
 	public async sendMessage(
-		content:
-			| string
-			| MessagePayload
-			| MessageCreateOptions
-			| InteractionReplyOptions,
+		content: string | MessagePayload | MessageCreateOptions | InteractionReplyOptions,
 	): Promise<Message> {
 		if (this.isInteraction) {
 			if (typeof content === "string" || isInteractionReplyOptions(content)) {
@@ -95,11 +85,7 @@ export default class Context {
 	}
 
 	public async editMessage(
-		content:
-			| string
-			| MessagePayload
-			| InteractionEditReplyOptions
-			| MessageEditOptions,
+		content: string | MessagePayload | InteractionEditReplyOptions | MessageEditOptions,
 	): Promise<Message> {
 		if (this.isInteraction && this.msg) {
 			this.msg = await this.interaction?.editReply(content);
@@ -125,18 +111,20 @@ export default class Context {
 		return this.msg;
 	}
 
-	public locale(key: string, ...args: any) {
-		if (!this.guildLocale)
-			this.guildLocale = env.DEFAULT_LANGUAGE || "EnglishUS";
-		return T(this.guildLocale, key, ...args);
+	/**
+	 * Translates a key using the context's guild locale.
+	 * @param key - Proxy object or string key
+	 * @param params - Translation variables
+	 */
+	public locale(key: any, params: Record<string, any> = {}): string {
+		const defaultLanguage = env.DEFAULT_LANGUAGE || Locale.EnglishUS;
+		const lng = this.guildLocale || defaultLanguage;
+
+		return t(String(key), { lng, ...params });
 	}
 
 	public async sendFollowUp(
-		content:
-			| string
-			| MessagePayload
-			| MessageCreateOptions
-			| InteractionReplyOptions,
+		content: string | MessagePayload | MessageCreateOptions | InteractionReplyOptions,
 	): Promise<void> {
 		if (this.isInteraction) {
 			if (typeof content === "string" || isInteractionReplyOptions(content)) {
@@ -170,9 +158,7 @@ export default class Context {
 	};
 }
 
-function isInteractionReplyOptions(
-	content: any,
-): content is InteractionReplyOptions {
+function isInteractionReplyOptions(content: any): content is InteractionReplyOptions {
 	return content instanceof Object;
 }
 

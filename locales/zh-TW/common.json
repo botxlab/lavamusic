@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "確認",
+		"cancel": "取消",
+		"yes": "是",
+		"no": "否",
+		"back": "返回",
+		"next": "下一步",
+		"previous": "上一步",
+		"save": "儲存",
+		"close": "關閉"
+	},
+	"status": {
+		"enabled": "啟用",
+		"disabled": "停用",
+		"on": "開啟",
+		"off": "關閉",
+		"loading": "載入中...",
+		"processing": "處理中...",
+		"success": "成功！",
+		"failed": "失敗！"
+	},
+	"errors": {
+		"generic": "發生意外錯誤。請稍後再試。\n{error}",
+		"timeout": "此操作的時間限制已過。",
+		"no_permissions": "您沒有執行此操作所需的權限。",
+		"dev_only": "此指令僅限開發者使用。",
+		"db_error": "存取資料庫時出錯。"
+	},
+	"labels": {
+		"author": "作者",
+		"duration": "時長",
+		"requested_by": "請求者",
+		"volume": "音量",
+		"page": "第 {current} 頁，共 {total} 頁"
+	}
+}

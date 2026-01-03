@@ -1,12 +1,14 @@
 import type { AutocompleteInteraction } from "discord.js";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import { EmbedLinks, ReadMessageHistory, SendMessages, ViewChannel } from "../../utils/Permissions";
 
 export default class DeletePlaylist extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "delete",
 			description: {
-				content: "cmd.delete.description",
+				content: I18N.commands.delete.description,
 				examples: ["delete <playlist name>"],
 				usage: "delete <playlist name>",
 			},
@@ -23,19 +25,14 @@ export default class DeletePlaylist extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "playlist",
-					description: "cmd.delete.options.playlist",
+					description: I18N.commands.delete.options.playlist,
 					type: 3,
 					required: true,
 					autocomplete: true,
@@ -44,39 +41,30 @@ export default class DeletePlaylist extends Command {
 		});
 	}
 
-	public async run(
-		client: Lavamusic,
-		ctx: Context,
-		args: string[],
-	): Promise<any> {
+	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		const playlistName = args.join(" ").trim();
 		const embed = this.client.embed();
 
-		const playlistExists = await client.db.getPlaylist(
-			ctx.author?.id!,
-			playlistName,
-		);
+		const playlistExists = await client.db.getPlaylist(ctx.author?.id ?? "", playlistName);
 		if (!playlistExists) {
 			return await ctx.sendMessage({
 				embeds: [
 					embed
-						.setDescription(
-							ctx.locale("cmd.delete.messages.playlist_not_found"),
-						)
+						.setDescription(ctx.locale(I18N.commands.delete.messages.playlist_not_found))
 						.setColor(this.client.color.red),
 				],
 			});
 		}
 
 		// First, delete all songs from the playlist
-		await client.db.deleteSongsFromPlaylist(ctx.author?.id!, playlistName);
+		await client.db.deleteSongsFromPlaylist(ctx.author?.id ?? "", playlistName);
 
-		await client.db.deletePlaylist(ctx.author?.id!, playlistName);
+		await client.db.deletePlaylist(ctx.author?.id ?? "", playlistName);
 		return await ctx.sendMessage({
 			embeds: [
 				embed
 					.setDescription(
-						ctx.locale("cmd.delete.messages.playlist_deleted", {
+						ctx.locale(I18N.commands.delete.messages.playlist_deleted, {
 							playlistName,
 						}),
 					)
@@ -85,9 +73,7 @@ export default class DeletePlaylist extends Command {
 		});
 	}
 
-	public async autocomplete(
-		interaction: AutocompleteInteraction,
-	): Promise<void> {
+	public async autocomplete(interaction: AutocompleteInteraction): Promise<void> {
 		const focusedValue = interaction.options.getFocused();
 		const userId = interaction.user.id;
 

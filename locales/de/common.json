@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Bestätigen",
+		"cancel": "Abbrechen",
+		"yes": "Ja",
+		"no": "Nein",
+		"back": "Zurück",
+		"next": "Weiter",
+		"previous": "Vorherige",
+		"save": "Speichern",
+		"close": "Schließen"
+	},
+	"status": {
+		"enabled": "Aktiviert",
+		"disabled": "Deaktiviert",
+		"on": "An",
+		"off": "Aus",
+		"loading": "Lade...",
+		"processing": "Verarbeite...",
+		"success": "Erfolg!",
+		"failed": "Fehlgeschlagen!"
+	},
+	"errors": {
+		"generic": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später erneut.\n{error}",
+		"timeout": "Zeitüberschreitung bei dieser Aktion.",
+		"no_permissions": "Du hast nicht die erforderlichen Berechtigungen.",
+		"dev_only": "Dieser Befehl ist nur für Entwickler.",
+		"db_error": "Fehler beim Datenbankzugriff."
+	},
+	"labels": {
+		"author": "Autor",
+		"duration": "Dauer",
+		"requested_by": "Gewünscht von",
+		"volume": "Lautstärke",
+		"page": "Seite {current} von {total}"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "此伺服器中沒有活躍的播放器。",
+		"no_channel": "您需要在語音頻道中才能使用此指令。",
+		"queue_empty": "佇列為空。",
+		"no_previous": "佇列中沒有上一首歌曲。",
+		"no_song": "佇列中沒有歌曲。",
+		"already_paused": "歌曲已暫停。",
+		"user_not_in_voice_channel": "您未連接到語音頻道。"
+	},
+	"trackStart": {
+		"now_playing": "正在播放",
+		"requested_by": "由 {user} 請求",
+		"duration": "時長",
+		"author": "作者",
+		"not_connected_to_voice_channel": "您未連接到 <#{channel}> 以使用這些按鈕。",
+		"need_dj_role": "您需要擁有 DJ 身份組才能使用此指令。",
+		"previous_by": "由 {user} 上一首",
+		"no_previous_song": "沒有上一首歌曲。",
+		"paused_by": "由 {user} 暫停",
+		"resumed_by": "由 {user} 恢復",
+		"skipped_by": "由 {user} 跳過",
+		"no_more_songs_in_queue": "佇列中沒有更多歌曲。",
+		"looping_by": "由 {user} 循環播放",
+		"looping_queue_by": "由 {user} 循環播放佇列",
+		"looping_off_by": "由 {user} 關閉循環播放"
+	},
+	"setupStart": {
+		"now_playing": "正在播放",
+		"description": "[{title}]({uri}) 作者: {author} • `[{length}]` - 請求者: <@{requester}>",
+		"error_searching": "搜尋時出錯。",
+		"no_results": "未找到結果。",
+		"nothing_playing": "現在沒有播放任何內容。",
+		"queue_too_long": "佇列太長。最大長度為 {maxQueueSize} 首歌曲。",
+		"playlist_too_long": "播放清單太長。最大長度為 {maxPlaylistSize} 首歌曲。",
+		"added_to_queue": "已將 [{title}]({uri}) 新增到佇列。",
+		"added_playlist_to_queue": "已將播放清單中的 [{length}] 首歌曲新增到佇列。"
+	}
+}

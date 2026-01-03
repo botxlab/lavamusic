@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Không có trình phát đang hoạt động trong máy chủ này.",
+		"no_channel": "Bạn cần phải ở trong một kênh thoại để sử dụng lệnh này.",
+		"queue_empty": "Hàng chờ trống.",
+		"no_previous": "Không có bài hát trước trong hàng chờ.",
+		"no_song": "Không có bài hát nào trong hàng chờ.",
+		"already_paused": "Bài hát đã được tạm dừng.",
+		"user_not_in_voice_channel": "Bạn không kết nối với một kênh thoại."
+	},
+	"trackStart": {
+		"now_playing": "Đang phát",
+		"requested_by": "Yêu cầu bởi {user}",
+		"duration": "Thời lượng",
+		"author": "Tác giả",
+		"not_connected_to_voice_channel": "Bạn không kết nối với <#{channel}> để sử dụng các nút này.",
+		"need_dj_role": "Bạn cần có vai trò DJ để sử dụng lệnh này.",
+		"previous_by": "Trước đó bởi {user}",
+		"no_previous_song": "Không có bài hát trước.",
+		"paused_by": "Tạm dừng bởi {user}",
+		"resumed_by": "Tiếp tục bởi {user}",
+		"skipped_by": "Bỏ qua bởi {user}",
+		"no_more_songs_in_queue": "Không còn bài hát nào trong hàng chờ.",
+		"looping_by": "Lặp lại bởi {user}",
+		"looping_queue_by": "Lặp lại hàng chờ bởi {user}",
+		"looping_off_by": "Tắt lặp lại bởi {user}"
+	},
+	"setupStart": {
+		"now_playing": "Đang phát",
+		"description": "[{title}]({uri}) bởi {author} • `[{length}]` - Yêu cầu bởi <@{requester}>",
+		"error_searching": "Đã xảy ra lỗi khi tìm kiếm.",
+		"no_results": "Không tìm thấy kết quả.",
+		"nothing_playing": "Hiện tại không có gì đang phát",
+		"queue_too_long": "Hàng chờ quá dài. Độ dài tối đa là {maxQueueSize} bài hát.",
+		"playlist_too_long": "Danh sách phát quá dài. Độ dài tối đa là {maxPlaylistSize} bài hát.",
+		"added_to_queue": "Đã thêm [{title}]({uri}) vào hàng chờ.",
+		"added_playlist_to_queue": "Đã thêm [{length}] bài hát từ danh sách phát vào hàng chờ."
+	}
+}

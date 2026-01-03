@@ -1,17 +1,22 @@
-import {
-	ApplicationCommandOptionType,
-	type Attachment,
-	type GuildMember,
-} from "discord.js";
+import { ApplicationCommandOptionType, type Attachment, type GuildMember } from "discord.js";
 import type { SearchResult } from "lavalink-client";
+import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";
+import {
+	Connect,
+	EmbedLinks,
+	ReadMessageHistory,
+	SendMessages,
+	Speak,
+	ViewChannel,
+} from "../../utils/Permissions";
 
 export default class PlayLocal extends Command {
 	constructor(client: Lavamusic) {
 		super(client, {
 			name: "playlocal",
 			description: {
-				content: "cmd.playlocal.description",
+				content: I18N.commands.playlocal.description,
 				examples: ["playlocal <file>"],
 				usage: "playlocal <file>",
 			},
@@ -28,21 +33,14 @@ export default class PlayLocal extends Command {
 			},
 			permissions: {
 				dev: false,
-				client: [
-					"SendMessages",
-					"ReadMessageHistory",
-					"ViewChannel",
-					"EmbedLinks",
-					"Connect",
-					"Speak",
-				],
+				client: [SendMessages, ReadMessageHistory, ViewChannel, EmbedLinks, Connect, Speak],
 				user: [],
 			},
 			slashCommand: true,
 			options: [
 				{
 					name: "file",
-					description: "cmd.playlocal.options.file",
+					description: I18N.commands.playlocal.options.file,
 					type: ApplicationCommandOptionType.Attachment,
 					required: true,
 				},
@@ -53,7 +51,7 @@ export default class PlayLocal extends Command {
 	public async run(client: Lavamusic, ctx: Context): Promise<any> {
 		const attachment = ctx.isInteraction
 			? (ctx.interaction!.options.get("file")?.attachment as Attachment)
-			: ctx.message?.attachments.first()!;
+			: ctx.message?.attachments.first();
 
 		if (!attachment) {
 			return ctx.sendMessage({
@@ -61,7 +59,7 @@ export default class PlayLocal extends Command {
 					this.client
 						.embed()
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.playlocal.errors.empty_query")),
+						.setDescription(ctx.locale(I18N.commands.playlocal.errors.empty_query)),
 				],
 			});
 		}
@@ -73,12 +71,12 @@ export default class PlayLocal extends Command {
 					this.client
 						.embed()
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.playlocal.errors.invalid_format")),
+						.setDescription(ctx.locale(I18N.commands.playlocal.errors.invalid_format)),
 				],
 			});
 		}
 
-		await ctx.sendDeferMessage(ctx.locale("cmd.playlocal.loading"));
+		await ctx.sendDeferMessage(ctx.locale(I18N.commands.playlocal.loading));
 
 		let player = client.manager.getPlayer(ctx.guild.id);
 		if (!player) {
@@ -89,9 +87,7 @@ export default class PlayLocal extends Command {
 						this.client
 							.embed()
 							.setColor(this.client.color.red)
-							.setDescription(
-								ctx.locale("player.errors.user_not_in_voice_channel"),
-							),
+							.setDescription(ctx.locale(I18N.player.errors.user_not_in_voice_channel)),
 					],
 				});
 			}
@@ -124,7 +120,7 @@ export default class PlayLocal extends Command {
 					this.client
 						.embed()
 						.setColor(this.client.color.red)
-						.setDescription(ctx.locale("cmd.playlocal.errors.no_results")),
+						.setDescription(ctx.locale(I18N.commands.playlocal.errors.no_results)),
 				],
 			});
 		}
@@ -138,7 +134,7 @@ export default class PlayLocal extends Command {
 					.embed()
 					.setColor(this.client.color.main)
 					.setDescription(
-						ctx.locale("cmd.playlocal.added_to_queue", {
+						ctx.locale(I18N.commands.playlocal.added_to_queue, {
 							title: attachment.name,
 							url: attachment.url,
 						}),

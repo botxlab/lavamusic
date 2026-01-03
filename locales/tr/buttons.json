@@ -1,0 +1,13 @@
+{
+	"invite": "Davet Et",
+	"support": "Destek Sunucusu",
+	"previous": "Önceki",
+	"resume": "Devam Et",
+	"stop": "Durdur",
+	"skip": "Geç",
+	"loop": "Tekrarla",
+	"next": "Sonraki",
+	"errors": {
+		"not_author": "Bu butonu kullanamazsınız."
+	}
+}

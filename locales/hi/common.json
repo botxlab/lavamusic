@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Pushti karein",
+		"cancel": "Radd karein",
+		"yes": "Haan",
+		"no": "Nahin",
+		"back": "Wapas",
+		"next": "Agla",
+		"previous": "Pichhla",
+		"save": "Save karein",
+		"close": "Band karein"
+	},
+	"status": {
+		"enabled": "Sakriya",
+		"disabled": "Nirakriya",
+		"on": "Chalu",
+		"off": "Band",
+		"loading": "Loading...",
+		"processing": "Process ho raha hai...",
+		"success": "Safal!",
+		"failed": "Vifal!"
+	},
+	"errors": {
+		"generic": "Ek apratyashit error aaya. Kripya baad mein punah prayas karein.\n{error}",
+		"timeout": "Is action ki samay seema samapt ho gayi hai.",
+		"no_permissions": "Is action ko karne ke liye aapke paas avashyak permissions nahin hain.",
+		"dev_only": "Yeh command keval developers tak seemit hai.",
+		"db_error": "Database access karne mein ek error aaya."
+	},
+	"labels": {
+		"author": "Lekhak",
+		"duration": "Aawadhi",
+		"requested_by": "Anurodh karta",
+		"volume": "Volume",
+		"page": "Page {current} of {total}"
+	}
+}

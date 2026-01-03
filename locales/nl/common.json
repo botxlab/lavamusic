@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Bevestigen",
+		"cancel": "Annuleren",
+		"yes": "Ja",
+		"no": "Nee",
+		"back": "Terug",
+		"next": "Volgende",
+		"previous": "Vorige",
+		"save": "Opslaan",
+		"close": "Sluiten"
+	},
+	"status": {
+		"enabled": "Ingeschakeld",
+		"disabled": "Uitgeschakeld",
+		"on": "Aan",
+		"off": "Uit",
+		"loading": "Laden...",
+		"processing": "Verwerken...",
+		"success": "Succes!",
+		"failed": "Mislukt!"
+	},
+	"errors": {
+		"generic": "Er is een onverwachte fout opgetreden. Probeer het later opnieuw.\n{error}",
+		"timeout": "De tijdslimiet voor deze actie is verstreken.",
+		"no_permissions": "Je hebt niet de benodigde rechten om deze actie uit te voeren.",
+		"dev_only": "Dit commando is beperkt tot alleen ontwikkelaars.",
+		"db_error": "Er is een fout opgetreden bij toegang tot de database."
+	},
+	"labels": {
+		"author": "Auteur",
+		"duration": "Duur",
+		"requested_by": "Aangevraagd door",
+		"volume": "Volume",
+		"page": "Pagina {current} van {total}"
+	}
+}

@@ -1,10 +1,6 @@
-import {
-	EmbedBuilder,
-	type Guild,
-	type GuildMember,
-	type TextChannel,
-} from "discord.js";
+import { EmbedBuilder, type Guild, type GuildMember, type TextChannel } from "discord.js";
 import { Event, type Lavamusic } from "../../structures/index";
+import logger from "../../structures/Logger";
 
 export default class GuildCreate extends Event {
 	constructor(client: Lavamusic, file: string) {
@@ -18,9 +14,7 @@ export default class GuildCreate extends Event {
 		try {
 			owner = await guild.members.fetch(guild.ownerId);
 		} catch (e) {
-			this.client.logger.error(
-				`Error fetching owner for guild ${guild.id}: ${e}`,
-			);
+			logger.error(`Error fetching owner for guild ${guild.id}: ${e}`);
 		}
 
 		const embed = new EmbedBuilder()
@@ -58,16 +52,14 @@ export default class GuildCreate extends Event {
 
 		const logChannelId = this.client.env.LOG_CHANNEL_ID;
 		if (!logChannelId) {
-			this.client.logger.error("Log channel ID not found in configuration.");
+			logger.error("Log channel ID not found in configuration.");
 			return;
 		}
 
 		try {
-			const channel = (await this.client.channels.fetch(
-				logChannelId,
-			)) as TextChannel;
+			const channel = (await this.client.channels.fetch(logChannelId)) as TextChannel;
 			if (!channel) {
-				this.client.logger.error(
+				logger.error(
 					`Log channel not found with ID ${logChannelId}. Please change the settings in .env or, if you have a channel, invite me to that guild.`,
 				);
 				return;
@@ -75,9 +67,7 @@ export default class GuildCreate extends Event {
 
 			await channel.send({ embeds: [embed] });
 		} catch (error) {
-			this.client.logger.error(
-				`Error sending message to log channel ${logChannelId}: ${error}`,
-			);
+			logger.error(`Error sending message to log channel ${logChannelId}: ${error}`);
 		}
 	}
 }

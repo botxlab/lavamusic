@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Bu sunucuda aktif bir oynatıcı yok.",
+		"no_channel": "Bu komutu kullanmak için bir ses kanalında olmanız gerekiyor.",
+		"queue_empty": "Kuyruk boş.",
+		"no_previous": "Kuyrukta önceki şarkı yok.",
+		"no_song": "Kuyrukta şarkı yok.",
+		"already_paused": "Şarkı zaten duraklatılmış.",
+		"user_not_in_voice_channel": "Bir ses kanalına bağlı değilsiniz."
+	},
+	"trackStart": {
+		"now_playing": "Şu An Çalıyor",
+		"requested_by": "{user} tarafından istendi",
+		"duration": "Süre",
+		"author": "Yazar",
+		"not_connected_to_voice_channel": "Bu butonları kullanmak için <#{channel}> kanalına bağlı değilsiniz.",
+		"need_dj_role": "Bu komutu kullanmak için DJ rolüne sahip olmalısınız.",
+		"previous_by": "{user} tarafından önceki",
+		"no_previous_song": "Önceki şarkı yok.",
+		"paused_by": "{user} tarafından duraklatıldı",
+		"resumed_by": "{user} tarafından devam ettirildi",
+		"skipped_by": "{user} tarafından geçildi",
+		"no_more_songs_in_queue": "Kuyrukta başka şarkı yok.",
+		"looping_by": "{user} tarafından döngüye alındı",
+		"looping_queue_by": "{user} tarafından kuyruk döngüye alındı",
+		"looping_off_by": "{user} tarafından döngü kapatıldı"
+	},
+	"setupStart": {
+		"now_playing": "Şu An Çalıyor",
+		"description": "[{title}]({uri}) - {author} • `[{length}]` - <@{requester}> tarafından istendi",
+		"error_searching": "Arama sırasında bir hata oluştu.",
+		"no_results": "Sonuç bulunamadı.",
+		"nothing_playing": "Şu anda hiçbir şey çalmıyor",
+		"queue_too_long": "Kuyruk çok uzun. Maksimum uzunluk {maxQueueSize} şarkıdır.",
+		"playlist_too_long": "Çalma listesi çok uzun. Maksimum uzunluk {maxPlaylistSize} şarkıdır.",
+		"added_to_queue": "[{title}]({uri}) kuyruğa eklendi.",
+		"added_playlist_to_queue": "Çalma listesinden [{length}] şarkı kuyruğa eklendi."
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"invite": "Einladen",
+	"support": "Support-Server",
+	"previous": "Vorheriger",
+	"resume": "Fortsetzen",
+	"stop": "Stoppen",
+	"skip": "Überspringen",
+	"loop": "Wiederholen",
+	"next": "Nächster",
+	"errors": {
+		"not_author": "Du kannst diesen Button nicht verwenden."
+	}
+}

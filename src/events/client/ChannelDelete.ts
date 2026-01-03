@@ -1,8 +1,4 @@
-import {
-	ChannelType,
-	type GuildChannel,
-	type VoiceBasedChannel,
-} from "discord.js";
+import { ChannelType, type GuildChannel, type VoiceBasedChannel } from "discord.js";
 import { Event, type Lavamusic } from "../../structures/index";
 
 export default class ChannelDelete extends Event {
@@ -19,28 +15,18 @@ export default class ChannelDelete extends Event {
 
 		if (Array.isArray(stay)) {
 			for (const s of stay) {
-				if (
-					channel.type === ChannelType.GuildVoice &&
-					s.voiceId === channel.id
-				) {
+				if (channel.type === ChannelType.GuildVoice && s.voiceId === channel.id) {
 					await this.client.db.delete_247(guild.id);
 					break;
 				}
 			}
 		} else if (stay) {
-			if (
-				channel.type === ChannelType.GuildVoice &&
-				stay.voiceId === channel.id
-			) {
+			if (channel.type === ChannelType.GuildVoice && stay.voiceId === channel.id) {
 				await this.client.db.delete_247(guild.id);
 			}
 		}
 
-		if (
-			setup &&
-			channel.type === ChannelType.GuildText &&
-			setup.textId === channel.id
-		) {
+		if (setup && channel.type === ChannelType.GuildText && setup.textId === channel.id) {
 			await this.client.db.deleteSetup(guild.id);
 		}
 

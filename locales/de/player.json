@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Kein Player auf diesem Server.",
+		"no_channel": "Du musst in einem Sprachkanal sein.",
+		"queue_empty": "Warteschlange leer.",
+		"no_previous": "Keine vorherigen Songs.",
+		"no_song": "Keine Songs in der Schlange.",
+		"already_paused": "Musik ist bereits pausiert.",
+		"user_not_in_voice_channel": "Du bist nicht verbunden."
+	},
+	"trackStart": {
+		"now_playing": "Läuft Jetzt",
+		"requested_by": "Von {user}",
+		"duration": "Dauer",
+		"author": "Autor",
+		"not_connected_to_voice_channel": "Du musst in <#{channel}> sein.",
+		"need_dj_role": "Du brauchst die DJ-Rolle.",
+		"previous_by": "Zurück von {user}",
+		"no_previous_song": "Kein Song davor.",
+		"paused_by": "Pausiert von {user}",
+		"resumed_by": "Fortgesetzt von {user}",
+		"skipped_by": "Übersprungen von {user}",
+		"no_more_songs_in_queue": "Ende der Warteschlange.",
+		"looping_by": "Loop aktiv von {user}",
+		"looping_queue_by": "Queue-Loop von {user}",
+		"looping_off_by": "Loop aus von {user}"
+	},
+	"setupStart": {
+		"now_playing": "Läuft Jetzt",
+		"description": "[{title}]({uri}) von {author} • `[{length}]` - Von <@{requester}>",
+		"error_searching": "Fehler bei der Suche.",
+		"no_results": "Nichts gefunden.",
+		"nothing_playing": "Stille...",
+		"queue_too_long": "Warteschlange voll. Limit: {maxQueueSize}.",
+		"playlist_too_long": "Playlist zu groß. Limit: {maxPlaylistSize}.",
+		"added_to_queue": "[{title}]({uri}) hinzugefügt.",
+		"added_playlist_to_queue": "[{length}] Songs hinzugefügt."
+	}
+}

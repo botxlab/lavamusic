@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Konfirmasi",
+		"cancel": "Batal",
+		"yes": "Ya",
+		"no": "Tidak",
+		"back": "Kembali",
+		"next": "Lanjut",
+		"previous": "Sebelumnya",
+		"save": "Simpan",
+		"close": "Tutup"
+	},
+	"status": {
+		"enabled": "Diaktifkan",
+		"disabled": "Dinonaktifkan",
+		"on": "Nyala",
+		"off": "Mati",
+		"loading": "Memuat...",
+		"processing": "Memproses...",
+		"success": "Berhasil!",
+		"failed": "Gagal!"
+	},
+	"errors": {
+		"generic": "Terjadi kesalahan yang tidak terduga. Silakan coba lagi nanti.\n{error}",
+		"timeout": "Batas waktu untuk tindakan ini telah berakhir.",
+		"no_permissions": "Anda tidak memiliki izin yang diperlukan untuk melakukan tindakan ini.",
+		"dev_only": "Command ini dibatasi hanya untuk developer.",
+		"db_error": "Terjadi kesalahan saat mengakses database."
+	},
+	"labels": {
+		"author": "Artis",
+		"duration": "Durasi",
+		"requested_by": "Direquest oleh",
+		"volume": "Volume",
+		"page": "Halaman {current} dari {total}"
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"ui": {
+		"confirm": "Confirmar",
+		"cancel": "Cancelar",
+		"yes": "Sí",
+		"no": "No",
+		"back": "Atrás",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"save": "Guardar",
+		"close": "Cerrar"
+	},
+	"status": {
+		"enabled": "Habilitado",
+		"disabled": "Deshabilitado",
+		"on": "Encendido",
+		"off": "Apagado",
+		"loading": "Cargando...",
+		"processing": "Procesando...",
+		"success": "¡Éxito!",
+		"failed": "¡Fallo!"
+	},
+	"errors": {
+		"generic": "Ocurrió un error inesperado. Por favor intenta más tarde.\n{error}",
+		"timeout": "El tiempo límite para esta acción ha expirado.",
+		"no_permissions": "No tienes los permisos necesarios para realizar esta acción.",
+		"dev_only": "Este comando está restringido solo para desarrolladores.",
+		"db_error": "Hubo un error accediendo a la base de datos."
+	},
+	"labels": {
+		"author": "Autor",
+		"duration": "Duración",
+		"requested_by": "Pedido por",
+		"volume": "Volumen",
+		"page": "Página {current} de {total}"
+	}
+}

@@ -1,26 +1,25 @@
-# Stage 1: Build TypeScript
-FROM node:23-alpine AS builder
+# Stage 1: Build
+FROM oven/bun:alpine AS builder
 
 WORKDIR /opt/lavamusic
 
-# Install pnpm and build dependencies
-RUN corepack enable && corepack prepare pnpm@latest --activate && \
-    apk add --no-cache python3 make g++
+# Install build dependencies
+RUN apk add --no-cache python3 make g++
 
 # Copy package files first for better layer caching
-COPY package.json pnpm-lock.yaml ./
+COPY package.json bun.lock ./
 
-# Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile
+# Install dependencies using bun
+RUN bun install --frozen-lockfile --verbose
 
 # Copy remaining source files
 COPY . .
 
 # Build
-RUN pnpm run build
+RUN bun run build
 
 # Stage 2: Production image
-FROM node:23-alpine
+FROM oven/bun:alpine
 
 ENV NODE_ENV=production \
     PORT=80 \
@@ -29,31 +28,29 @@ ENV NODE_ENV=production \
 WORKDIR /opt/lavamusic
 
 # Install pnpm and runtime dependencies
-RUN corepack enable && corepack prepare pnpm@latest --activate && \
-    apk add --no-cache --virtual .runtime-deps \
+RUN apk add --no-cache --virtual .runtime-deps \
     openssl \
     ca-certificates \
     tzdata \
     curl
 
-
 # Copy package files for production dependencies
-COPY --from=builder --chown=node:node /opt/lavamusic/package.json /opt/lavamusic/pnpm-lock.yaml ./
+COPY --from=builder --chown=bun:bun /opt/lavamusic/package.json /opt/lavamusic/bun.lock ./
 
 # Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile
+RUN bun install --frozen-lockfile --production
 
 # Copy built files from builder
-COPY --from=builder --chown=node:node /opt/lavamusic/dist ./dist
-COPY --from=builder --chown=node:node /opt/lavamusic/src/utils/LavaLogo.txt ./src/utils/LavaLogo.txt
-COPY --from=builder --chown=node:node /opt/lavamusic/locales ./locales
-COPY --chown=node:node entrypoint.sh ./entrypoint.sh
+COPY --from=builder --chown=bun:bun /opt/lavamusic/dist ./dist
+COPY --from=builder --chown=bun:bun /opt/lavamusic/locales ./locales
+
+# Setup entrypoint
+COPY --chown=bun:bun entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 # Create non-root user and set permissions
-RUN chown -R node:node /opt/lavamusic
-USER node
-
+RUN chown -R bun:bun /opt/lavamusic
+USER bun
 
 # Metadata labels
 LABEL maintainer="appujet <sdipedit@gmail.com>" \
@@ -63,4 +60,4 @@ LABEL maintainer="appujet <sdipedit@gmail.com>" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["node", "dist/index.js"]
+CMD ["bun", "dist/index.js"]

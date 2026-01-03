@@ -4,10 +4,7 @@ import {
 	type SearchPlatform,
 	type SearchResult,
 } from "lavalink-client";
-import {
-	autoPlayFunction,
-	requesterTransformer,
-} from "../utils/functions/player";
+import { autoPlayFunction, requesterTransformer } from "../utils/functions/player";
 import type Lavamusic from "./Lavamusic";
 
 export default class LavalinkClient extends LavalinkManager {
@@ -15,8 +12,7 @@ export default class LavalinkClient extends LavalinkManager {
 	constructor(client: Lavamusic) {
 		super({
 			nodes: client.env.NODES as LavalinkNodeOptions[],
-			sendToShard: (guildId, payload) =>
-				client.guilds.cache.get(guildId)?.shard?.send(payload),
+			sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
 			autoSkip: true,
 			client: {
 				id: client.env.CLIENT_ID,

@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Evaluer kode",
+		"success": "Kode evaluert vellykket",
+		"error": "Kunne ikke evaluere kode"
+	},
+	"guilds": {
+		"description": "Administrer og list opp bot-servere",
+		"list": "Liste over servere",
+		"leave": {
+			"success": "Vellykket forlot server: {name}",
+			"fail": "Kunne ikke forlate server {name}",
+			"log": "Bot har forlatt server: {name} (ID: {id})"
+		},
+		"not_found": "Server ikke funnet."
+	},
+	"restart": {
+		"description": "Start bot-prosessen på nytt",
+		"prompt": "Er du sikker på at du vil starte **{client}** på nytt?",
+		"status": {
+			"restarting": "Starter på nytt...",
+			"canceled": "Omstart avbrutt.",
+			"error": "Det oppstod en feil under omstart av boten."
+		},
+		"restart_by": "Omstart initiert av {user}"
+	},
+	"shutdown": {
+		"description": "Slå av bot-prosessen",
+		"prompt": "Er du sikker på at du vil slå av?",
+		"status": "Slår av...",
+		"canceled": "Avslåing avbrutt."
+	},
+	"deploy": {
+		"description": "Synkroniser skråstrekkommandoer med Discord API",
+		"prompt": "Hvor vil du distribuere/fjerne kommandoene?",
+		"status": {
+			"deployed_global": "Kommandoer distribuert globalt.",
+			"deployed_guild": "Kommandoer distribuert på denne serveren.",
+			"removed_global": "Kommandoer fjernet globalt.",
+			"removed_guild": "Kommandoer fjernet fra denne serveren.",
+			"failed": "Distribusjon mislyktes via kommando: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Distribuer globalt",
+			"deploy_guild": "Distribuer server",
+			"remove_global": "Fjern globalt",
+			"remove_guild": "Fjern server"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Opprett en invitasjonslenke for en spesifikk server.",
+			"errors": {
+				"guild_not_found": "Server ikke funnet. Sørg for at ID-en er riktig.",
+				"no_suitable_channel": "Ingen passende kanal funnet med nok tillatelser til å opprette en invitasjon på den serveren."
+			},
+			"success": "Invitasjonslenke for **{guildName}**: [Klikk her]({url})"
+		},
+		"destroy": {
+			"description": "Ødelegg alle invitasjonslenker opprettet av boten på en server",
+			"errors": {
+				"guild_not_found": "Server ikke funnet. Angi en gyldig ID.",
+				"generic": "Kunne ikke ødelegge invitasjoner. Sjekk om jeg har 'Administrer Server'-tillatelser på den serveren."
+			},
+			"success": "Vellykket ødelagt **{count}** invitasjon(er) opprettet av meg i **{guildName}**.",
+			"not_found": "Ingen invitasjoner opprettet av meg ble funnet på denne serveren."
+		}
+	}
+}

@@ -1,0 +1,635 @@
+{
+	"247": {
+		"description": "Lässt den Bot rund um die Uhr (24/7) im Sprachkanal.",
+		"errors": {
+			"not_in_voice": "Du musst in einem Sprachkanal sein, um diesen Befehl zu nutzen.",
+			"generic": "Ein Fehler ist bei der Ausführung dieses Befehls aufgetreten."
+		},
+		"messages": {
+			"disabled": "`✅` | 24/7-Modus wurde `DEAKTIVIERT`.",
+			"enabled": "`✅` | 24/7-Modus wurde `AKTIVIERT`. Der Bot verlässt den Kanal nicht, auch wenn er alleine ist."
+		}
+	},
+	"fairplay": {
+		"description": "Aktiviert den Fairplay-Modus für gerechte Musikwiedergabe.",
+		"errors": {
+			"not_in_voice": "Du musst in einem Sprachkanal sein, um diesen Befehl zu nutzen.",
+			"generic": "Ein Fehler ist bei der Ausführung dieses Befehls aufgetreten."
+		},
+		"messages": {
+			"disabled": "`✅` | Fairplay-Modus wurde `DEAKTIVIERT`.",
+			"enabled": "`✅` | Fairplay-Modus wurde `AKTIVIERT`."
+		}
+	},
+	"ping": {
+		"description": "Zeigt die Latenz des Bots an.",
+		"content": "Berechne Ping...",
+		"bot_latency": "Bot-Latenz",
+		"api_latency": "API-Latenz",
+		"requested_by": "Angefordert von {author}"
+	},
+	"lavalink": {
+		"description": "Zeigt aktuelle Statistiken der Lavalink-Nodes.",
+		"title": "Lavalink-Statistiken",
+		"content": "Player: {players}\nAktive Player: {playingPlayers}\nLaufzeit: {uptime}\nKerne: {cores} Kern(e)\nSpeicher: {used} / {reservable}\nSystemlast: {systemLoad}%\nLavalink-Last: {lavalinkLoad}%",
+		"page_info": "Seite {index} von {total}"
+	},
+	"invite": {
+		"description": "Hole dir den Einladungslink für den Bot.",
+		"content": "Klicke auf den Button unten, um mich einzuladen. Fehler gefunden? Komm auf unseren Support-Server!"
+	},
+	"help": {
+		"description": "Zeigt das Hilfemenü an.",
+		"options": {
+			"command": "Der Befehl, über den du mehr wissen möchtest"
+		},
+		"content": "Hallo! Ich bin {bot}, ein Musik-Bot basierend auf [Lavamusic](https://github.com/appujet/lavamusic) und Discord.js.\nNutze `{prefix}help <befehl>` für detaillierte Infos.",
+		"title": "Hilfemenü",
+		"not_found": "Der Befehl `{cmdName}` existiert nicht.",
+		"help_cmd": "**Beschreibung:** {description}\n**Nutzung:** {usage}\n**Beispiele:** {examples}\n**Aliase:** {aliases}\n**Kategorie:** {category}\n**Cooldown:** {cooldown} Sekunden\n**Berechtigungen:** {premUser}\n**Bot-Rechte:** {premBot}\n**Nur Entwickler:** {dev}\n**Slash-Befehl:** {slash}\n**Args:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**DJ-Rechte:** {djPerm}\n**Sprache:** {voice}",
+		"footer": "Nutze {prefix}help <befehl> für mehr Informationen"
+	},
+	"botinfo": {
+		"description": "Zeigt technische Informationen über den Bot.",
+		"content": "Bot-Informationen:\n- **Betriebssystem**: {osInfo}\n- **Laufzeit**: {osUptime}\n- **Hostname**: {osHostname}\n- **CPU-Architektur**: {cpuInfo}\n- **CPU-Last**: {cpuUsed}%\n- **Speicher**: {memUsed}MB / {memTotal}GB\n- **Node-Version**: {nodeVersion}\n- **Discord.js**: {discordJsVersion}\n- **Verbunden mit**: {guilds} Servern, {channels} Kanälen und {users} Benutzern\n- **Befehle gesamt**: {commands}"
+	},
+	"about": {
+		"description": "Informationen über das Projekt.",
+		"fields": {
+			"creator": "Ersteller",
+			"repository": "Repository",
+			"support": "Support",
+			"description": "Er wollte sein erstes Open-Source-Projekt erstellen, um mehr Programmiererfahrung zu sammeln. Ziel war ein Projekt mit möglichst wenigen Bugs. Viel Spaß mit LavaMusic!"
+		}
+	},
+	"dj": {
+		"description": "Verwalte den DJ-Modus und zugehörige Rollen.",
+		"errors": {
+			"provide_role": "Bitte gib eine Rolle an.",
+			"no_roles": "Die DJ-Rollenliste ist leer.",
+			"invalid_subcommand": "Bitte gib einen gültigen Unterbefehl an."
+		},
+		"messages": {
+			"role_exists": "Die DJ-Rolle <@&{roleId}> ist bereits hinzugefügt.",
+			"role_added": "Die DJ-Rolle <@&{roleId}> wurde hinzugefügt.",
+			"role_not_found": "Die DJ-Rolle <@&{roleId}> ist nicht in der Liste.",
+			"role_removed": "Die DJ-Rolle <@&{roleId}> wurde entfernt.",
+			"all_roles_cleared": "Alle DJ-Rollen wurden entfernt.",
+			"toggle": "DJ-Modus wurde umgeschaltet auf: {status}."
+		},
+		"options": {
+			"add": "Füge eine DJ-Rolle hinzu",
+			"remove": "Entferne eine DJ-Rolle",
+			"clear": "Lösche alle DJ-Rollen",
+			"toggle": "Schalte den DJ-Modus an/aus",
+			"role": "Die Zielrolle"
+		},
+		"subcommands": "Unterbefehle"
+	},
+	"language": {
+		"description": "Konfiguriere die Sprache des Bots.",
+		"invalid_language": "Bitte gib eine gültige Sprache an. Beispiel: `de` für Deutsch.\n\nListe der unterstützten Sprachen: [Hier klicken](https://discord.com/developers/docs/reference#locales)\n\n**Verfügbare Sprachen:**\n{languages}",
+		"already_set": "Die Sprache ist bereits auf `{language}` eingestellt.",
+		"not_set": "Die Sprache ist nicht eingestellt.",
+		"set": "`✅` | Sprache wurde auf `{language}` geändert.",
+		"reset": "`✅` | Sprache wurde auf den Standard zurückgesetzt.",
+		"options": {
+			"set": "Setze die Sprache für den Bot",
+			"language": "Die gewünschte Sprache",
+			"reset": "Setze die Sprache zurück"
+		}
+	},
+	"prefix": {
+		"description": "Zeigt oder ändert das Bot-Präfix.",
+		"errors": {
+			"prefix_too_long": "Das Präfix darf maximal 3 Zeichen lang sein."
+		},
+		"messages": {
+			"current_prefix": "Das aktuelle Präfix ist `{prefix}`",
+			"prefix_set": "Das Präfix wurde auf `{prefix}` gesetzt.",
+			"prefix_reset": "Das Präfix wurde auf `{prefix}` zurückgesetzt."
+		},
+		"options": {
+			"set": "Setze ein neues Präfix",
+			"prefix": "Das gewünschte Präfix",
+			"reset": "Setze das Präfix zurück"
+		}
+	},
+	"setup": {
+		"description": "Konfiguriere den Song-Request-Kanal.",
+		"errors": {
+			"channel_exists": "Der Song-Request-Kanal existiert bereits.",
+			"channel_not_exists": "Der Song-Request-Kanal existiert nicht.",
+			"channel_delete_fail": "Der Kanal wurde aus der Datenbank entfernt. Bitte lösche den Textkanal manuell."
+		},
+		"messages": {
+			"channel_created": "Song-Request-Kanal wurde erstellt: <#{channelId}>.",
+			"channel_deleted": "Song-Request-Kanal wurde gelöscht.",
+			"channel_info": "Aktueller Song-Request-Kanal: <#{channelId}>."
+		},
+		"options": {
+			"create": "Erstelle den Request-Kanal",
+			"delete": "Lösche den Request-Kanal",
+			"info": "Zeige Infos zum Kanal"
+		}
+	},
+	"defaultvolume": {
+		"description": "Setzt die Standardlautstärke für diesen Server.",
+		"options": {
+			"volume": "Die Standardlautstärke (0-200)"
+		},
+		"messages": {
+			"current": "Die aktuelle Standardlautstärke ist **{volume}**.",
+			"set": "`✅` | Standardlautstärke auf **{volume}** gesetzt.",
+			"invalid_number": "Bitte gib eine gültige Zahl an.",
+			"too_low": "Lautstärke kann nicht unter 0 sein.",
+			"too_high": "Lautstärke kann nicht über 200 sein."
+		}
+	},
+	"8d": {
+		"description": "Schalte den 8D-Audiofilter um.",
+		"messages": {
+			"filter_enabled": "`✅` | 8D-Filter `AKTIVIERT`.",
+			"filter_disabled": "`✅` | 8D-Filter `DEAKTIVIERT`."
+		}
+	},
+	"bassboost": {
+		"description": "Schalte den Bassboost-Filter um.",
+		"options": {
+			"level": "Das gewünschte Bassboost-Level"
+		},
+		"messages": {
+			"high": "`✅` | Bassboost: `HOCH`.",
+			"low": "`✅` | Bassboost: `NIEDRIG`.",
+			"medium": "`✅` | Bassboost: `MITTEL`.",
+			"off": "`✅` | Bassboost `DEAKTIVIERT`.",
+			"invalid_level": "Ungültiges Level. Wähle: `high`, `medium`, `low` oder `off`."
+		}
+	},
+	"distortion": {
+		"description": "Schalte den Verzerrungsfilter um.",
+		"messages": {
+			"filter_enabled": "`✅` | Verzerrung `AKTIVIERT`.",
+			"filter_disabled": "`✅` | Verzerrung `DEAKTIVIERT`."
+		}
+	},
+	"karaoke": {
+		"description": "Schalte den Karaoke-Filter um.",
+		"messages": {
+			"filter_enabled": "`✅` | Karaoke `AKTIVIERT`.",
+			"filter_disabled": "`✅` | Karaoke `DEAKTIVIERT`."
+		}
+	},
+	"lowpass": {
+		"description": "Schalte den Tiefpassfilter (Lowpass) um.",
+		"messages": {
+			"filter_enabled": "`✅` | Lowpass `AKTIVIERT`.",
+			"filter_disabled": "`✅` | Lowpass `DEAKTIVIERT`."
+		}
+	},
+	"nightcore": {
+		"description": "Schalte den Nightcore-Filter um.",
+		"messages": {
+			"filter_enabled": "`✅` | Nightcore `AKTIVIERT`.",
+			"filter_disabled": "`✅` | Nightcore `DEAKTIVIERT`."
+		}
+	},
+	"pitch": {
+		"description": "Passe die Tonhöhe (Pitch) an.",
+		"options": {
+			"pitch": "Der Wert für die Tonhöhe (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "Bitte gib eine Zahl zwischen 0.5 und 5 ein."
+		},
+		"messages": {
+			"pitch_set": "`✅` | Tonhöhe auf **{pitch}** gesetzt."
+		}
+	},
+	"rate": {
+		"description": "Passe die Abspielrate an.",
+		"options": {
+			"rate": "Der Wert für die Rate (0.5 - 5)"
+		},
+		"errors": {
+			"invalid_number": "Bitte gib eine Zahl zwischen 0.5 und 5 ein."
+		},
+		"messages": {
+			"rate_set": "`✅` | Rate auf **{rate}** gesetzt."
+		}
+	},
+	"reset": {
+		"description": "Setzt alle aktiven Filter zurück.",
+		"messages": {
+			"filters_reset": "`✅` | Alle Filter wurden zurückgesetzt."
+		}
+	},
+	"rotation": {
+		"description": "Schalte den Rotationsfilter (3D) um.",
+		"messages": {
+			"enabled": "`✅` | Rotation `AKTIVIERT`.",
+			"disabled": "`✅` | Rotation `DEAKTIVIERT`."
+		}
+	},
+	"speed": {
+		"description": "Passe die Geschwindigkeit an.",
+		"options": {
+			"speed": "Die gewünschte Geschwindigkeit (0.5 - 5)"
+		},
+		"messages": {
+			"invalid_number": "Bitte gib eine Zahl zwischen 0.5 und 5 ein.",
+			"set_speed": "`✅` | Geschwindigkeit auf **{speed}** gesetzt."
+		}
+	},
+	"tremolo": {
+		"description": "Schalte den Tremolo-Filter um.",
+		"messages": {
+			"enabled": "`✅` | Tremolo `AKTIVIERT`.",
+			"disabled": "`✅` | Tremolo `DEAKTIVIERT`."
+		}
+	},
+	"vibrato": {
+		"description": "Schalte den Vibrato-Filter um.",
+		"messages": {
+			"enabled": "`✅` | Vibrato `AKTIVIERT`.",
+			"disabled": "`✅` | Vibrato `DEAKTIVIERT`."
+		}
+	},
+	"autoplay": {
+		"description": "Schalte den Autoplay-Modus um.",
+		"messages": {
+			"enabled": "`✅` | Autoplay `AKTIVIERT`.",
+			"disabled": "`✅` | Autoplay `DEAKTIVIERT`."
+		}
+	},
+	"clearqueue": {
+		"description": "Leere die aktuelle Warteschlange.",
+		"messages": {
+			"cleared": "Die Warteschlange wurde geleert."
+		}
+	},
+	"grab": {
+		"description": "Sende den aktuellen Song an deine Direktnachrichten (DM).",
+		"loading": "Lade...",
+		"content": "**Dauer:** {length}\n**Angefordert von:** <@{requester}>\n**Link:** [Hier klicken]({uri})",
+		"check_dm": "Bitte überprüfe deine Direktnachrichten.",
+		"dm_failed": "Konnte dir keine DM senden. Sind deine DMs offen?"
+	},
+	"join": {
+		"description": "Holt den Bot in deinen Sprachkanal.",
+		"already_connected": "Ich bin bereits verbunden mit <#{channelId}>.",
+		"no_voice_channel": "Du musst in einem Sprachkanal sein.",
+		"joined": "Erfolgreich verbunden mit <#{channelId}>."
+	},
+	"leave": {
+		"description": "Trennt den Bot vom Sprachkanal.",
+		"left": "Verlassen: <#{channelId}>.",
+		"not_in_channel": "Ich bin in keinem Sprachkanal."
+	},
+	"loop": {
+		"description": "Wiederhole den Song oder die Warteschlange.",
+		"options": {
+			"mode": "Der Wiederholungsmodus"
+		},
+		"messages": {
+			"looping_song": "**Song wird wiederholt.**",
+			"looping_queue": "**Warteschlange wird wiederholt.**",
+			"looping_off": "**Wiederholung deaktiviert.**",
+			"invalid_mode": "Ungültiger Modus."
+		}
+	},
+	"lyrics": {
+		"description": "Zeigt den Songtext des aktuellen Liedes.",
+		"lyrics_for_track": "### Songtext für: [{trackTitle}]({trackUrl})",
+		"no_lyrics_on_page": "Kein Text auf dieser Seite gefunden.",
+		"searching": "🔍 Suche Songtext für **{trackTitle}**...",
+		"session_expired": "Sitzung abgelaufen. Nutze den Befehl erneut.",
+		"page_indicator": "Seite {current}/{total}",
+		"artwork_description": "Cover für {trackTitle}",
+		"no_lyrics_available": "Kein Songtext verfügbar.",
+		"button_subscribe": "📌 Live-Lyrics abonnieren",
+		"button_unsubscribe": "📌 Live-Lyrics abbestellen",
+		"subscribed": "Du hast Live-Lyrics Updates abonniert!",
+		"unsubscribed": "Live-Lyrics Updates abbestellt.",
+		"errors": {
+			"no_results": "Kein Songtext für diesen Titel gefunden.",
+			"lyrics_error": "Fehler beim Abrufen des Textes.",
+			"no_player_for_lyrics": "Kein aktiver Player gefunden."
+		},
+		"options": {
+			"song": "Der Song für den Text"
+		}
+	},
+	"nowplaying": {
+		"description": "Zeigt, was gerade läuft.",
+		"now_playing": "Wird abgespielt",
+		"track_info": "[{title}]({uri}) - Gewünscht von: <@{requester}>\n\n`{bar}`"
+	},
+	"pause": {
+		"description": "Pausiert den aktuellen Song.",
+		"successfully_paused": "Musik erfolgreich pausiert."
+	},
+	"play": {
+		"description": "Spielt Musik von YouTube, Spotify, etc.",
+		"options": {
+			"song": "Songtitel oder URL"
+		},
+		"loading": "Lade...",
+		"errors": {
+			"search_error": "Fehler bei der Suche.",
+			"no_results": "Keine Ergebnisse gefunden.",
+			"queue_too_long": "Warteschlange voll. Limit: {maxQueueSize} Songs.",
+			"playlist_too_long": "Playlist zu groß. Limit: {maxPlaylistSize} Songs."
+		},
+		"added_to_queue": "[{title}]({uri}) zur Warteschlange hinzugefügt.",
+		"added_playlist_to_queue": "{length} Songs zur Warteschlange hinzugefügt."
+	},
+	"playlocal": {
+		"description": "Spielt eine lokale Audiodatei ab.",
+		"options": {
+			"file": "Die Audiodatei"
+		},
+		"loading": "Lade...",
+		"errors": {
+			"empty_query": "Bitte hänge eine Datei an.",
+			"invalid_format": "Unterstützte Formate: MP3, WAV, OGG, FLAC, AAC oder M4A.",
+			"no_results": "Konnte Datei nicht abspielen. Sie ist evtl. beschädigt."
+		},
+		"added_to_queue": "[{title}]({url}) zur Warteschlange hinzugefügt."
+	},
+	"playnext": {
+		"description": "Fügt einen Song als Nächstes in die Warteschlange ein.",
+		"options": {
+			"song": "Der Song, der als nächstes laufen soll"
+		},
+		"loading": "Lade...",
+		"errors": {
+			"search_error": "Fehler bei der Suche.",
+			"no_results": "Keine Ergebnisse gefunden.",
+			"queue_too_long": "Warteschlange voll.",
+			"playlist_too_long": "Playlist zu groß."
+		},
+		"added_to_play_next": "[{title}]({uri}) als Nächstes hinzugefügt.",
+		"added_playlist_to_play_next": "{length} Songs als Nächstes hinzugefügt."
+	},
+	"queue": {
+		"description": "Zeigt die aktuelle Warteschlange.",
+		"now_playing": "Gerade: [{title}]({uri}) - Von: <@{requester}> - Dauer: `{duration}`",
+		"live": "LIVE",
+		"track_info": "{index}. [{title}]({uri}) - Von: <@{requester}> - Dauer: `{duration}`",
+		"title": "Warteschlange",
+		"page_info": "Seite {index} von {total}",
+		"duration": "Gesamtdauer: `{totalDuration}`"
+	},
+	"remove": {
+		"description": "Entfernt einen Song aus der Warteschlange.",
+		"options": {
+			"song": "Nummer des Songs"
+		},
+		"errors": {
+			"no_songs": "Die Warteschlange ist leer.",
+			"invalid_number": "Bitte gib eine gültige Nummer an."
+		},
+		"messages": {
+			"removed": "Song Nummer {songNumber} entfernt."
+		}
+	},
+	"replay": {
+		"description": "Startet den aktuellen Song neu.",
+		"errors": {
+			"not_seekable": "Dieser Stream kann nicht neu gestartet werden."
+		},
+		"messages": {
+			"replaying": "Starte Song neu."
+		}
+	},
+	"resume": {
+		"description": "Setzt die Wiedergabe fort.",
+		"errors": {
+			"not_paused": "Die Musik ist nicht pausiert."
+		},
+		"messages": {
+			"resumed": "Wiedergabe fortgesetzt."
+		}
+	},
+	"search": {
+		"description": "Suche nach Songs und wähle aus Ergebnissen.",
+		"options": {
+			"song": "Der Suchbegriff"
+		},
+		"select": "Wähle einen Song...",
+		"errors": {
+			"no_results": "Keine Ergebnisse.",
+			"no_results_title": "Nichts gefunden!",
+			"no_results_description": "Versuche andere Begriffe oder einen direkten Link.",
+			"invalid_selection_title": "Ungültige Auswahl!",
+			"invalid_selection_description": "Bitte wähle eine Nummer aus der Liste.",
+			"search_error": "Fehler bei der Suche.",
+			"vc_connect_fail_title": "Verbindungsfehler",
+			"vc_connect_fail_description": "Konnte Sprachkanal nicht beitreten. Berechtigungen prüfen."
+		},
+		"messages": {
+			"results_found": "**{count}** Songs gefunden.",
+			"select_prompt": "Wähle eine Nummer für die Warteschlange.",
+			"page_info": "Seite {currentPage}/{maxPages}",
+			"added_to_queue": "**[{title}]({uri})** hinzugefügt!",
+			"selection_timed_out_title": "Zeit abgelaufen!",
+			"selection_timed_out_description": "Keine Auswahl getroffen. Suche abgebrochen.",
+			"selection_timed_out_short": "Zeit abgelaufen."
+		}
+	},
+	"seek": {
+		"description": "Springt zu einer bestimmten Zeit im Song.",
+		"options": {
+			"duration": "Die Zielzeit (z.B. 1m 30s)"
+		},
+		"errors": {
+			"invalid_format": "Ungültiges Format. Bsp: `seek 1m`, `seek 1h 30m`",
+			"not_seekable": "Spulen nicht möglich.",
+			"beyond_duration": "Kann nicht über das Ende des Songs ({length}) hinaus spulen."
+		},
+		"messages": {
+			"seeked_to": "Gesprungen zu {duration}"
+		}
+	},
+	"shuffle": {
+		"description": "Mischt die Warteschlange.",
+		"messages": {
+			"shuffled": "Warteschlange gemischt."
+		},
+		"errors": {
+			"fairplay": "Fairplay-Modus aktiv. Mischen deaktiviert."
+		}
+	},
+	"skip": {
+		"description": "Überspringt den aktuellen Song.",
+		"messages": {
+			"skipped": "Übersprungen: [{title}]({uri})."
+		}
+	},
+	"skipto": {
+		"description": "Springt zu einem bestimmten Song in der Schlange.",
+		"options": {
+			"number": "Die Nummer in der Schlange"
+		},
+		"errors": {
+			"invalid_number": "Ungültige Nummer."
+		},
+		"messages": {
+			"skipped_to": "Gesprungen zu Song #{number}."
+		}
+	},
+	"move": {
+		"description": "Verschiebt einen Song in der Warteschlange.",
+		"options": {
+			"from": "Aktuelle Position",
+			"to": "Neue Position"
+		},
+		"errors": {
+			"no_tracks": "Die Warteschlange ist leer.",
+			"invalid_usage": "Bitte gib Start- und Zielposition an.",
+			"invalid_numbers": "Ungültige Positionen.",
+			"invalid_positions": "Position außerhalb des Bereichs.",
+			"same_position": "Start und Ziel sind identisch."
+		},
+		"messages": {
+			"moved": "**{title}** von {from} nach {to} verschoben."
+		}
+	},
+	"stop": {
+		"description": "Stoppt Musik und leert die Warteschlange.",
+		"messages": {
+			"stopped": "Musik gestoppt, Warteschlange geleert."
+		}
+	},
+	"volume": {
+		"description": "Ändert die Lautstärke.",
+		"options": {
+			"number": "Lautstärke (0-200)"
+		},
+		"messages": {
+			"invalid_number": "Ungültige Nummer.",
+			"too_low": "Lautstärke kann nicht negativ sein.",
+			"too_high": "Lautstärke über 200 kann schädlich sein.",
+			"set": "Lautstärke auf {volume} gesetzt."
+		}
+	},
+	"addsong": {
+		"description": "Fügt einen Song zu einer Playlist hinzu.",
+		"options": {
+			"playlist": "Deine Playlist",
+			"song": "Der Song"
+		},
+		"messages": {
+			"no_playlist": "Bitte gib eine Playlist an.",
+			"no_song": "Bitte gib einen Song an.",
+			"playlist_not_found": "Playlist nicht gefunden.",
+			"no_songs_found": "Keine Songs gefunden.",
+			"added": "{count} Song(s) zu {playlist} hinzugefügt."
+		}
+	},
+	"create": {
+		"description": "Erstellt eine neue Playlist.",
+		"options": {
+			"name": "Name der Playlist"
+		},
+		"messages": {
+			"name_too_long": "Name darf max. 50 Zeichen lang sein.",
+			"playlist_exists": "Playlist mit diesem Namen existiert bereits.",
+			"playlist_created": "Playlist **{name}** erfolgreich erstellt.",
+			"name_empty": "Bitte gib einen Namen an."
+		}
+	},
+	"delete": {
+		"description": "Löscht eine deiner Playlists.",
+		"options": {
+			"playlist": "Name der Playlist"
+		},
+		"messages": {
+			"playlist_not_found": "Playlist nicht gefunden.",
+			"playlist_deleted": "Playlist **{playlistName}** gelöscht."
+		}
+	},
+	"list": {
+		"description": "Listet alle Playlists eines Users.",
+		"options": {
+			"user": "Der Benutzer"
+		},
+		"messages": {
+			"no_playlists": "Keine Playlists gefunden.",
+			"your": "Deine",
+			"playlists_title": "Playlists von {username}",
+			"error": "Fehler beim Abrufen der Playlists.",
+			"invalid_username": "Benutzer nicht gefunden.",
+			"invalid_userid": "Ungültige User-ID."
+		}
+	},
+	"load": {
+		"description": "Lädt eine Playlist in die Warteschlange.",
+		"options": {
+			"playlist": "Name der Playlist"
+		},
+		"messages": {
+			"playlist_not_exist": "Playlist existiert nicht.",
+			"playlist_empty": "Playlist ist leer.",
+			"playlist_loaded": "`{name}` mit `{count}` Songs geladen.",
+			"no_lavalink_nodes": "Keine Musik-Server verfügbar."
+		}
+	},
+	"removesong": {
+		"description": "Entfernt einen Song aus einer Playlist.",
+		"options": {
+			"playlist": "Name der Playlist",
+			"song": "Songname oder Nummer"
+		},
+		"messages": {
+			"provide_playlist": "Bitte gib die Playlist an.",
+			"provide_song": "Bitte gib den Song an.",
+			"playlist_not_exist": "Playlist nicht gefunden.",
+			"song_not_found": "Song nicht in der Playlist gefunden.",
+			"song_removed": "{song} aus {playlist} entfernt.",
+			"error_occurred": "Fehler beim Entfernen."
+		}
+	},
+	"steal": {
+		"description": "Kopiert eine Playlist von einem anderen User.",
+		"options": {
+			"playlist": "Name der Playlist",
+			"user": "Der Besitzer"
+		},
+		"messages": {
+			"provide_playlist": "Bitte gib den Playlist-Namen an.",
+			"provide_user": "Bitte erwähne einen Benutzer.",
+			"playlist_not_exist": "Dieser Benutzer hat diese Playlist nicht.",
+			"playlist_exists": "Du hast bereits eine Playlist namens `{playlist}`.",
+			"playlist_stolen": "Playlist `{playlist}` von {user} kopiert!",
+			"error_occurred": "Fehler beim Kopieren."
+		}
+	},
+	"movenode": {
+		"description": "Verschiebt Player auf einen anderen Node.",
+		"options": {
+			"node": "Die ID des Ziel-Nodes"
+		},
+		"messages": {
+			"no_player": "Kein aktiver Player auf diesem Server.",
+			"no_available_nodes": "Keine anderen Nodes verfügbar.",
+			"available_nodes_title": "Verfügbare Nodes",
+			"current_node": "Aktueller Node",
+			"available_nodes": "Verfügbar",
+			"usage_hint": "Nutze: movenode <NodeID>",
+			"node_not_found": "Node `{node}` nicht gefunden.",
+			"node_not_connected": "Node `{node}` ist nicht verbunden.",
+			"same_node": "Player ist bereits auf `{node}`.",
+			"moving_all_players": "Verschiebe alle Player nach `{node}`...",
+			"moved_players": "**Verschoben in:**\n{list}",
+			"guild_move": "• `{guildId}` ({from} → {to})",
+			"failed_moves": "**Fehlgeschlagen in:**\n{list}",
+			"guild_move_failed": "• `{guildId}`: {error}",
+			"no_players_moved": "Keine Player mussten verschoben werden.",
+			"unknown_error": "Unbekannter Fehler",
+			"error": "Fehler beim Verschieben: {error}",
+			"results_title": "MoveNode Ergebnisse"
+		}
+	}
+}

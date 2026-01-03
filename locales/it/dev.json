@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Valuta il codice",
+		"success": "Codice valutato con successo",
+		"error": "Impossibile valutare il codice"
+	},
+	"guilds": {
+		"description": "Gestisci ed elenca i server del bot",
+		"list": "Lista dei Server",
+		"leave": {
+			"success": "Uscito con successo dal server: {name}",
+			"fail": "Impossibile uscire dal server {name}",
+			"log": "Il bot è uscito dal server: {name} (ID: {id})"
+		},
+		"not_found": "Server non trovato."
+	},
+	"restart": {
+		"description": "Riavvia il processo del bot",
+		"prompt": "Sei sicuro di voler riavviare **{client}**?",
+		"status": {
+			"restarting": "Riavvio in corso...",
+			"canceled": "Riavvio annullato.",
+			"error": "Si è verificato un errore durante il riavvio del bot."
+		},
+		"restart_by": "Riavvio avviato da {user}"
+	},
+	"shutdown": {
+		"description": "Spegni il processo del bot",
+		"prompt": "Sei sicuro di voler spegnere?",
+		"status": "Spegnimento in corso...",
+		"canceled": "Spegnimento annullato."
+	},
+	"deploy": {
+		"description": "Sincronizza i comandi slash con l'API di Discord",
+		"prompt": "Dove vuoi (dis)attivare i comandi?",
+		"status": {
+			"deployed_global": "Comandi attivati globalmente.",
+			"deployed_guild": "Comandi attivati in questo server.",
+			"removed_global": "Comandi rimossi globalmente.",
+			"removed_guild": "Comandi rimossi da questo server.",
+			"failed": "Attivazione fallita tramite comando: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Attiva Globale",
+			"deploy_guild": "Attiva Server",
+			"remove_global": "Rimuovi Globale",
+			"remove_guild": "Rimuovi Server"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Crea un link di invito per un server specifico.",
+			"errors": {
+				"guild_not_found": "Server non trovato. Assicurati che l'ID sia corretto.",
+				"no_suitable_channel": "Nessun canale adatto trovato con permessi sufficienti per creare un invito in quel server."
+			},
+			"success": "Link di invito per **{guildName}**: [Clicca qui]({url})"
+		},
+		"destroy": {
+			"description": "Distruggi tutti i link di invito creati dal bot in un server",
+			"errors": {
+				"guild_not_found": "Server non trovato. Per favore, fornisci un ID valido.",
+				"generic": "Impossibile distruggere gli inviti. Controlla se ho i permessi di 'Gestire Server' in quel server."
+			},
+			"success": "Distrutti con successo **{count}** invito/i creati da me in **{guildName}**.",
+			"not_found": "Nessun invito creato da me è stato trovato in questo server."
+		}
+	}
+}

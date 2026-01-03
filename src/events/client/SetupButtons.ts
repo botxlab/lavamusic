@@ -1,5 +1,5 @@
 import type { Message } from "discord.js";
-import { T } from "../../structures/I18n";
+import { I18N, t } from "../../structures/I18n";
 import { Event, type Lavamusic } from "../../structures/index";
 import type { Requester } from "../../types";
 import { getButtons } from "../../utils/Buttons";
@@ -23,20 +23,19 @@ export default class SetupButtons extends Event {
 		if (!interaction.member.voice.channel) {
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.no_voice_channel_button"),
+				t(I18N.events.setupButton.no_voice_channel_button),
 				this.client.color.red,
 			);
 		}
-		const clientMember = interaction.guild.members.cache.get(
-			this.client.user?.id,
-		);
+		const clientMember = interaction.guild.members.cache.get(this.client.user?.id);
 		if (
 			clientMember.voice.channel &&
 			clientMember.voice.channelId !== interaction.member.voice.channelId
 		) {
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.different_voice_channel_button", {
+				t(I18N.events.setupButton.different_voice_channel_button, {
+					lng: locale,
 					channel: clientMember.voice.channel,
 				}),
 				this.client.color.red,
@@ -46,24 +45,23 @@ export default class SetupButtons extends Event {
 		if (!player)
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.no_music_playing"),
+				t(I18N.events.setupButton.no_music_playing),
 				this.client.color.red,
 			);
 		if (!player.queue)
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.no_music_playing"),
+				t(I18N.events.setupButton.no_music_playing),
 				this.client.color.red,
 			);
 		if (!player.queue.current)
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.no_music_playing"),
+				t(I18N.events.setupButton.no_music_playing),
 				this.client.color.red,
 			);
 		const data = await this.client.db.getSetup(interaction.guildId);
-		const { title, uri, duration, artworkUrl, sourceName, isStream } =
-			player.queue.current.info;
+		const { title, uri, duration, artworkUrl, sourceName, isStream } = player.queue.current.info;
 		let message: Message | undefined;
 		try {
 			message = await interaction.channel.messages.fetch(data?.messageId, {
@@ -79,22 +77,20 @@ export default class SetupButtons extends Event {
 		const embed = this.client
 			.embed()
 			.setAuthor({
-				name: T(locale, "event.setupButton.now_playing"),
+				name: t(I18N.events.setupButton.now_playing),
 				iconURL: iconUrl,
 			})
 			.setColor(this.client.color.main)
 			.setDescription(
-				`[${title}](${uri}) - ${isStream ? T(locale, "event.setupButton.live") : this.client.utils.formatTime(duration)} - ${T(locale, "event.setupButton.requested_by", { requester: (player.queue.current.requester as Requester).id })}`,
+				`[${title}](${uri}) - ${isStream ? t(I18N.events.setupButton.live) : this.client.utils.formatTime(duration)} - ${t(I18N.events.setupButton.requested_by, { lng: locale, requester: (player.queue.current.requester as Requester).id })}`,
 			)
-			.setImage(
-				artworkUrl || this.client.user?.displayAvatarURL({ extension: "png" })!,
-			);
+			.setImage((artworkUrl || this.client.user?.displayAvatarURL({ extension: "png" })) ?? "");
 
 		if (!interaction.isButton()) return;
 		if (!(await checkDj(this.client, interaction))) {
 			return await buttonReply(
 				interaction,
-				T(locale, "event.setupButton.no_dj_permission"),
+				t(I18N.events.setupButton.no_dj_permission),
 				this.client.color.red,
 			);
 		}
@@ -104,13 +100,14 @@ export default class SetupButtons extends Event {
 				player.setVolume(vol);
 				await buttonReply(
 					interaction,
-					T(locale, "event.setupButton.volume_set", { vol }),
+					t(I18N.events.setupButton.volume_set, { lng: locale, vol }),
 					this.client.color.main,
 				);
 				await message.edit({
 					embeds: [
 						embed.setFooter({
-							text: T(locale, "event.setupButton.volume_footer", {
+							text: t(I18N.events.setupButton.volume_footer, {
+								lng: locale,
 								vol,
 								displayName: interaction.member.displayName,
 							}),
@@ -124,7 +121,7 @@ export default class SetupButtons extends Event {
 					if (!player.queue.previous) {
 						return await buttonReply(
 							interaction,
-							T(locale, "event.setupButton.no_previous_track"),
+							t(I18N.events.setupButton.no_previous_track),
 							this.client.color.main,
 						);
 					}
@@ -133,13 +130,14 @@ export default class SetupButtons extends Event {
 					});
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.playing_previous"),
+						t(I18N.events.setupButton.playing_previous),
 						this.client.color.main,
 					);
 					await message.edit({
 						embeds: [
 							embed.setFooter({
-								text: T(locale, "event.setupButton.previous_footer", {
+								text: t(I18N.events.setupButton.previous_footer, {
+									lng: locale,
 									displayName: interaction.member.displayName,
 								}),
 								iconURL: interaction.member.displayAvatarURL({}),
@@ -157,13 +155,14 @@ export default class SetupButtons extends Event {
 					}
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.rewinded"),
+						t(I18N.events.setupButton.rewinded),
 						this.client.color.main,
 					);
 					await message.edit({
 						embeds: [
 							embed.setFooter({
-								text: T(locale, "event.setupButton.rewind_footer", {
+								text: t(I18N.events.setupButton.rewind_footer, {
+									lng: locale,
 									displayName: interaction.member.displayName,
 								}),
 								iconURL: interaction.member.displayAvatarURL({}),
@@ -174,8 +173,8 @@ export default class SetupButtons extends Event {
 				}
 				case "PAUSE_BUT": {
 					const name = player.paused
-						? T(locale, "event.setupButton.resumed")
-						: T(locale, "event.setupButton.paused");
+						? t(I18N.events.setupButton.resumed)
+						: t(I18N.events.setupButton.paused);
 					if (player.paused) {
 						player.resume();
 					} else {
@@ -183,13 +182,14 @@ export default class SetupButtons extends Event {
 					}
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.pause_resume", { name }),
+						t(I18N.events.setupButton.pause_resume, { lng: locale, name }),
 						this.client.color.main,
 					);
 					await message.edit({
 						embeds: [
 							embed.setFooter({
-								text: T(locale, "event.setupButton.pause_resume_footer", {
+								text: t(I18N.events.setupButton.pause_resume_footer, {
+									lng: locale,
 									name,
 									displayName: interaction.member.displayName,
 								}),
@@ -205,20 +205,21 @@ export default class SetupButtons extends Event {
 					if (time > player.queue.current.info.duration) {
 						return await buttonReply(
 							interaction,
-							T(locale, "event.setupButton.forward_limit"),
+							t(I18N.events.setupButton.forward_limit),
 							this.client.color.main,
 						);
 					}
 					player.seek(time);
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.forwarded"),
+						t(I18N.events.setupButton.forwarded),
 						this.client.color.main,
 					);
 					await message.edit({
 						embeds: [
 							embed.setFooter({
-								text: T(locale, "event.setupButton.forward_footer", {
+								text: t(I18N.events.setupButton.forward_footer, {
+									lng: locale,
 									displayName: interaction.member.displayName,
 								}),
 								iconURL: interaction.member.displayAvatarURL({}),
@@ -231,7 +232,7 @@ export default class SetupButtons extends Event {
 					if (player.queue.tracks.length === 0) {
 						return await buttonReply(
 							interaction,
-							T(locale, "event.setupButton.no_music_to_skip"),
+							t(I18N.events.setupButton.no_music_to_skip),
 							this.client.color.main,
 						);
 					}
@@ -239,7 +240,7 @@ export default class SetupButtons extends Event {
 					player.skip();
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.skipped"),
+						t(I18N.events.setupButton.skipped),
 						this.client.color.main,
 					);
 
@@ -247,18 +248,18 @@ export default class SetupButtons extends Event {
 					const newEmbed = this.client
 						.embed()
 						.setAuthor({
-							name: T(locale, "event.setupButton.now_playing"),
+							name: t(I18N.events.setupButton.now_playing),
 							iconURL:
 								this.client.config.icons[newTrack?.sourceName || ""] ||
 								this.client.user?.displayAvatarURL({ extension: "png" }),
 						})
 						.setColor(this.client.color.main)
 						.setDescription(
-							`[${newTrack?.title}](${newTrack?.uri}) - ${newTrack?.isStream ? T(locale, "event.setupButton.live") : this.client.utils.formatTime(newTrack?.duration)} - ${T(locale, "event.setupButton.requested_by", { requester: (player.queue.current?.requester as Requester).id })}`,
+							`[${newTrack?.title}](${newTrack?.uri}) - ${newTrack?.isStream ? t(I18N.events.setupButton.live) : this.client.utils.formatTime(newTrack?.duration)} - ${t(I18N.events.setupButton.requested_by, { lng: locale, requester: (player.queue.current?.requester as Requester).id })}`,
 						)
 						.setImage(
-							newTrack?.artworkUrl ||
-								this.client.user?.displayAvatarURL({ extension: "png" })!,
+							(newTrack?.artworkUrl || this.client.user?.displayAvatarURL({ extension: "png" })) ??
+								"",
 						);
 
 					if (message) {
@@ -273,19 +274,14 @@ export default class SetupButtons extends Event {
 					await handleVolumeChange(-10);
 					break;
 				case "LOOP_BUT": {
-					const loopOptions: Array<"off" | "queue" | "track"> = [
-						"off",
-						"queue",
-						"track",
-					];
+					const loopOptions: Array<"off" | "queue" | "track"> = ["off", "queue", "track"];
 					const newLoop =
-						loopOptions[
-							(loopOptions.indexOf(player.repeatMode) + 1) % loopOptions.length
-						];
+						loopOptions[(loopOptions.indexOf(player.repeatMode) + 1) % loopOptions.length];
 					player.setRepeatMode(newLoop);
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.loop_set", {
+						t(I18N.events.setupButton.loop_set, {
+							lng: locale,
 							loop: newLoop,
 						}),
 						this.client.color.main,
@@ -293,7 +289,8 @@ export default class SetupButtons extends Event {
 					await message.edit({
 						embeds: [
 							embed.setFooter({
-								text: T(locale, "event.setupButton.loop_footer", {
+								text: t(I18N.events.setupButton.loop_footer, {
+									lng: locale,
 									loop: newLoop,
 									displayName: interaction.member.displayName,
 								}),
@@ -307,25 +304,27 @@ export default class SetupButtons extends Event {
 					player.stopPlaying(true, false);
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.stopped"),
+						t(I18N.events.setupButton.stopped),
 						this.client.color.main,
 					);
 					await message.edit({
 						embeds: [
 							embed
 								.setFooter({
-									text: T(locale, "event.setupButton.stopped_footer", {
+									text: t(I18N.events.setupButton.stopped_footer, {
+										lng: locale,
 										displayName: interaction.member.displayName,
 									}),
 									iconURL: interaction.member.displayAvatarURL({}),
 								})
-								.setDescription(T(locale, "event.setupButton.nothing_playing"))
+								.setDescription(t(I18N.events.setupButton.nothing_playing))
 								.setImage(this.client.config.links.img)
 								.setAuthor({
-									name: this.client.user?.username!,
-									iconURL: this.client.user?.displayAvatarURL({
-										extension: "png",
-									})!,
+									name: this.client.user?.username ?? "",
+									iconURL:
+										this.client.user?.displayAvatarURL({
+											extension: "png",
+										}) ?? "",
 								}),
 						],
 					});
@@ -335,7 +334,7 @@ export default class SetupButtons extends Event {
 					player.queue.shuffle();
 					await buttonReply(
 						interaction,
-						T(locale, "event.setupButton.shuffled"),
+						t(I18N.events.setupButton.shuffled),
 						this.client.color.main,
 					);
 					break;

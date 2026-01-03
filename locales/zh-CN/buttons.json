@@ -1,0 +1,13 @@
+{
+	"invite": "邀请",
+	"support": "支持服务器",
+	"previous": "上一首",
+	"resume": "恢复",
+	"stop": "停止",
+	"skip": "跳过",
+	"loop": "循环",
+	"next": "下一首",
+	"errors": {
+		"not_author": "您不能使用此按钮。"
+	}
+}

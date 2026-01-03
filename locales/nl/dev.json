@@ -1,0 +1,69 @@
+{
+	"eval": {
+		"description": "Code evalueren",
+		"success": "Code succesvol geëvalueerd",
+		"error": "Evalueren van code mislukt"
+	},
+	"guilds": {
+		"description": "Beheer en lijst bot servers",
+		"list": "Lijst van Servers",
+		"leave": {
+			"success": "Server succesvol verlaten: {name}",
+			"fail": "Kon server {name} niet verlaten",
+			"log": "Bot heeft server verlaten: {name} (ID: {id})"
+		},
+		"not_found": "Server niet gevonden."
+	},
+	"restart": {
+		"description": "Herstart het botproces",
+		"prompt": "Weet je zeker dat je **{client}** wilt herstarten?",
+		"status": {
+			"restarting": "Herstarten...",
+			"canceled": "Herstart geannuleerd.",
+			"error": "Er is een fout opgetreden bij het herstarten van de bot."
+		},
+		"restart_by": "Herstart geïnitieerd door {user}"
+	},
+	"shutdown": {
+		"description": "Sluit het botproces af",
+		"prompt": "Weet je zeker dat je wilt afsluiten?",
+		"status": "Afsluiten...",
+		"canceled": "Afsluiten geannuleerd."
+	},
+	"deploy": {
+		"description": "Synchroniseer slash-commando's met Discord API",
+		"prompt": "Waar wil je de commando's (de)implementeren?",
+		"status": {
+			"deployed_global": "Commando's wereldwijd geïmplementeerd.",
+			"deployed_guild": "Commando's in deze server geïmplementeerd.",
+			"removed_global": "Commando's wereldwijd verwijderd.",
+			"removed_guild": "Commando's uit deze server verwijderd.",
+			"failed": "Implementatie mislukt via commando: {command}"
+		},
+		"buttons": {
+			"deploy_global": "Implementeer Wereldwijd",
+			"deploy_guild": "Implementeer Server",
+			"remove_global": "Verwijder Wereldwijd",
+			"remove_guild": "Verwijder Server"
+		}
+	},
+	"invite": {
+		"create": {
+			"description": "Maak een uitnodigingslink voor een specifieke server.",
+			"errors": {
+				"guild_not_found": "Server niet gevonden. Controleer of het ID correct is.",
+				"no_suitable_channel": "Geen geschikt kanaal gevonden met voldoende rechten om een uitnodiging te maken in die server."
+			},
+			"success": "Uitnodigingslink voor **{guildName}**: [Klik hier]({url})"
+		},
+		"destroy": {
+			"description": "Vernietig alle door de bot gemaakte uitnodigingslinks in een server",
+			"errors": {
+				"guild_not_found": "Server niet gevonden. Geef een geldig ID op.",
+				"generic": "Kon uitnodigingen niet vernietigen. Controleer of ik 'Server Beheren' rechten heb in die server."
+			},
+			"success": "Succesvol **{count}** uitnodiging(en) vernietigd die door mij zijn gemaakt in **{guildName}**.",
+			"not_found": "Er zijn geen door mij gemaakte uitnodigingen gevonden in deze server."
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"invite": "Uitnodigen",
+	"support": "Ondersteuningsserver",
+	"previous": "Vorige",
+	"resume": "Hervatten",
+	"stop": "Stoppen",
+	"skip": "Overslaan",
+	"loop": "Herhalen",
+	"next": "Volgende",
+	"errors": {
+		"not_author": "Je kunt deze knop niet gebruiken."
+	}
+}

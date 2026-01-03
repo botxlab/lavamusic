@@ -1,0 +1,13 @@
+{
+	"invite": "Inviter",
+	"support": "Serveur d'assistance",
+	"previous": "Précédent",
+	"resume": "Reprendre",
+	"stop": "Arrêter",
+	"skip": "Passer",
+	"loop": "Boucle",
+	"next": "Suivant",
+	"errors": {
+		"not_author": "Vous ne pouvez pas utiliser ce bouton."
+	}
+}

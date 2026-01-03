@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "このギルドにはアクティブなプレイヤーがありません。",
+		"no_channel": "このコマンドを使用するにはボイスチャンネルにいる必要があります。",
+		"queue_empty": "キューは空です。",
+		"no_previous": "キューには前の曲がありません。",
+		"no_song": "キューには曲がありません。",
+		"already_paused": "曲はすでに一時停止されています。",
+		"user_not_in_voice_channel": "You are not connected to a voice channel."
+	},
+	"trackStart": {
+		"now_playing": "再生中",
+		"requested_by": "{user} によってリクエストされました",
+		"duration": "再生時間",
+		"author": "アーティスト",
+		"not_connected_to_voice_channel": "これらのボタンを使用するには <#{channel}> に接続されていません。",
+		"need_dj_role": "このコマンドを使用するにはDJロールが必要です。",
+		"previous_by": "{user} によって前の曲",
+		"no_previous_song": "前の曲がありません。",
+		"paused_by": "{user} によって一時停止されました",
+		"resumed_by": "{user} によって再開されました",
+		"skipped_by": "{user} によってスキップされました",
+		"no_more_songs_in_queue": "キューにはもう曲がありません。",
+		"looping_by": "{user} によってループ中",
+		"looping_queue_by": "{user} によってキューをループ中",
+		"looping_off_by": "{user} によってループオフ"
+	},
+	"setupStart": {
+		"now_playing": "再生中",
+		"description": "[{title}]({uri}) by {author} • `[{length}]` - <@{requester}> によってリクエストされました",
+		"error_searching": "検索中にエラーが発生しました。",
+		"no_results": "結果が見つかりませんでした。",
+		"nothing_playing": "現在再生中の曲はありません。",
+		"queue_too_long": "キューが長すぎます。最大長は {maxQueueSize} 曲です。",
+		"playlist_too_long": "プレイリストが長すぎます。最大長は {maxPlaylistSize} 曲です。",
+		"added_to_queue": "[{title}]({uri}) をキューに追加しました。",
+		"added_playlist_to_queue": "プレイリストから [{length}] 曲をキューに追加しました。"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"errors": {
+		"no_player": "Non c'è nessun riproduttore attivo in questo server.",
+		"no_channel": "Devi essere in un canale vocale per usare questo comando.",
+		"queue_empty": "La coda è vuota.",
+		"no_previous": "Non ci sono canzoni precedenti nella coda.",
+		"no_song": "Non ci sono canzoni nella coda.",
+		"already_paused": "La canzone è già in pausa.",
+		"user_not_in_voice_channel": "Non sei connesso a un canale vocale."
+	},
+	"trackStart": {
+		"now_playing": "Ora in Riproduzione",
+		"requested_by": "Richiesta da {user}",
+		"duration": "Durata",
+		"author": "Autore",
+		"not_connected_to_voice_channel": "Non sei connesso a <#{channel}> per usare questi pulsanti.",
+		"need_dj_role": "Devi avere il ruolo DJ per usare questo comando.",
+		"previous_by": "Precedente di {user}",
+		"no_previous_song": "Non c'è nessuna canzone precedente.",
+		"paused_by": "Messa in pausa da {user}",
+		"resumed_by": "Ripresa da {user}",
+		"skipped_by": "Saltata da {user}",
+		"no_more_songs_in_queue": "Non ci sono altre canzoni nella coda.",
+		"looping_by": "Ripetizione di {user}",
+		"looping_queue_by": "Ripetizione Coda di {user}",
+		"looping_off_by": "Ripetizione Disattivata da {user}"
+	},
+	"setupStart": {
+		"now_playing": "Ora in Riproduzione",
+		"description": "[{title}]({uri}) di {author} • `[{length}]` - Richiesta da <@{requester}>",
+		"error_searching": "Si è verificato un errore durante la ricerca.",
+		"no_results": "Nessun risultato trovato.",
+		"nothing_playing": "Non c'è nulla in riproduzione al momento",
+		"queue_too_long": "La coda è troppo lunga. La lunghezza massima è di {maxQueueSize} canzoni.",
+		"playlist_too_long": "La playlist è troppo lunga. La lunghezza massima è di {maxPlaylistSize} canzoni.",
+		"added_to_queue": "Aggiunta [{title}]({uri}) alla coda.",
+		"added_playlist_to_queue": "Aggiunte [{length}] canzoni dalla playlist alla coda."
+	}
+}

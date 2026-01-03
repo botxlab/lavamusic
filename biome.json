@@ -1,24 +1,25 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
 	"vcs": {
-		"enabled": false,
+		"enabled": true,
 		"clientKind": "git",
-		"useIgnoreFile": false
+		"useIgnoreFile": true
 	},
 	"files": {
 		"ignoreUnknown": false,
 		"includes": [
 			"**/src/**",
-			"!**/node_modules/**",
-			"!**/dist/**",
-			"!/package.json",
-			"!/tsconfig.json",
-			"!/.vscode"
+			"!!**/node_modules",
+			"!!**/dist",
+			"!!/.vscode",
+			"biome.json",
+			"**/scripts/**"
 		]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"lineWidth": 100
 	},
 	"linter": {
 		"enabled": true,
@@ -48,7 +49,7 @@
 		"enabled": true,
 		"actions": {
 			"source": {
-				"organizeImports": "off"
+				"organizeImports": "on"
 			}
 		}
 	}
