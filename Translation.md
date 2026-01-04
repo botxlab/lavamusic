@@ -9,6 +9,7 @@
 ### 📚 Available Translations
 
 - [x] English (US) - `EnglishUS.json` (Default)
+- [x] Bangla (IN) - `BanglaIN.json` [by @notdeltaxd](https://github.com/notdeltaxd)
 - [ ] Bulgarian - `Bulgarian.json` (Not Started)
 - [x] Chinese (CN) - `ChineseCN.json` [by @appujet](https://github.com/Appujet) (Ai Translation - Not Accurate)
 - [x] Chinese (TW) - `ChineseTW.json` [by @apple050620312](https://github.com/apple050620312)

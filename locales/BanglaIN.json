@@ -1,0 +1,767 @@
+{
+    "cmd": {
+        "247": {
+            "description": "Bot ke voice channel e rakhte set korun",
+            "errors": {
+                "not_in_voice": "Ei command use korar jonno apnake voice channel e thakte hobe.",
+                "generic": "Ei command execute korte giye ekta problem hoyeche."
+            },
+            "messages": {
+                "disabled": "`✅` | 24/7 mode `BONDHO` kora hoyeche.",
+                "enabled": "`✅` | 24/7 mode `CHALU` kora hoyeche."
+            }
+        },
+        "fairplay": {
+            "description": "Bot ke fair vabe music play korate set korun",
+            "errors": {
+                "not_in_voice": "Ei command use korar jonno apnake voice channel e thakte hobe.",
+                "generic": "Ei command execute korte giye ekta problem hoyeche."
+            },
+            "messages": {
+                "disabled": "`✅` | Fairplay mode `BONDHO` kora hoyeche.",
+                "enabled": "`✅` | Fairplay mode `CHALU` kora hoyeche."
+            }
+        },
+        "ping": {
+            "description": "Bot er ping dekhun.",
+            "content": "Ping korchi...",
+            "bot_latency": "Bot Latency",
+            "api_latency": "API Latency",
+            "requested_by": "{author} er request e"
+        },
+        "lavalink": {
+            "description": "Current Lavalink stats dekhun.",
+            "title": "Lavalink Stats",
+            "content": "Player: {players}\nPlaying Players: {playingPlayers}\nUptime: {uptime}\nCores: {cores} Core(s)\nMemory Use: {used} / {reservable}\nSystem Load: {systemLoad}%\nLavalink Load: {lavalinkLoad}%",
+            "page_info": "Page {index} of {total}"
+        },
+        "invite": {
+            "description": "Bot er invite link pan.",
+            "content": "Niche button e click kore amake invite korte paren. Kono bug ba problem? Support server e join hon!"
+        },
+        "help": {
+            "description": "Help menu dekhun.",
+            "options": {
+                "command": "Jar info apni pete chan"
+            },
+            "content": "Hello! Ami {bot}, [Lavamusic](https://github.com/appujet/lavamusic) ar Discord.js diye banano ekta music bot. Command er beshi info pete `{prefix}help <command>` use korun.",
+            "title": "Help Menu",
+            "not_found": "Ei `{cmdName}` command ta exist kore na.",
+            "help_cmd": "**Description:** {description}\n**Use:** {usage}\n**Examples:** {examples}\n**Aliases:** {aliases}\n**Category:** {category}\n**Cooldown:** {cooldown} seconds\n**Permissions:** {premUser}\n**Bot Permissions:** {premBot}\n**Developer Only:** {dev}\n**Slash Command:** {slash}\n**Args:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**DJ Permissions:** {djPerm}\n**Voice:** {voice}",
+            "footer": "Beshi info pete {prefix}help <command> use korun"
+        },
+        "botinfo": {
+            "description": "Bot er information",
+            "content": "Bot Information:\n- **Operating System**: {osInfo}\n- **Uptime**: {osUptime}\n- **Hostname**: {osHostname}\n- **CPU Architecture**: {cpuInfo}\n- **CPU Use**: {cpuUsed}%\n- **Memory Use**: {memUsed}MB / {memTotal}GB\n- **Node Version**: {nodeVersion}\n- **Discord.js Version**: {discordJsVersion}\n- **Connected to** {guilds} guilds, {channels} channels, ar {users} users\n- **Total Commands**: {commands}"
+        },
+        "about": {
+            "description": "Bot er information dekhun",
+            "fields": {
+                "creator": "Creator",
+                "repository": "Repository",
+                "support": "Support",
+                "description": "Tini coding experience baranor jonno tar prothom open source project banate cheyechilen. Ei project e tini kom bug diye ekta project banate challenge niyechilen. Asha kori LavaMusic use korte apnar bhalo lagbe!"
+            }
+        },
+        "dj": {
+            "description": "DJ mode ar associated roles manage korun",
+            "errors": {
+                "provide_role": "Ekta role din.",
+                "no_roles": "DJ role khali ache.",
+                "invalid_subcommand": "Thik ekta subcommand din."
+            },
+            "messages": {
+                "role_exists": "DJ role <@&{roleId}> agei add kora ache.",
+                "role_added": "DJ role <@&{roleId}> add kora hoyeche.",
+                "role_not_found": "DJ role <@&{roleId}> add kora nei.",
+                "role_removed": "DJ role <@&{roleId}> remove kora hoyeche.",
+                "all_roles_cleared": "Shob DJ role remove kora hoyeche.",
+                "toggle": "DJ mode {status} kora hoyeche."
+            },
+            "options": {
+                "add": "DJ role jeta apni add korte chan",
+                "remove": "DJ role jeta apni remove korte chan",
+                "clear": "Shob DJ role clear korun",
+                "toggle": "DJ role toggle korun",
+                "role": "DJ role"
+            },
+            "subcommands": "Subcommands"
+        },
+        "language": {
+            "description": "Bot er language set korun",
+            "invalid_language": "Thik ekta language din. Example: `EnglishUS` English (United States) er jonno\n\nSupported languages er list [ekhane](https://discord.com/developers/docs/reference#locales) paben\n\n**Available Languages:**\n{languages}",
+            "already_set": "Language agei `{language}` e set ache",
+            "not_set": "Language set kora nei.",
+            "set": "`✅` | Language `{language}` e set kora hoyeche",
+            "reset": "`✅` | Language reset kore default e neya hoyeche.",
+            "options": {
+                "set": "Bot er language set korun",
+                "language": "Language jeta set korte chan",
+                "reset": "Language default e change korun"
+            }
+        },
+        "prefix": {
+            "description": "Bot er prefix dekhun ba set korun",
+            "errors": {
+                "prefix_too_long": "Prefix 3 character er beshi hote parbe na."
+            },
+            "messages": {
+                "current_prefix": "Ei server er prefix `{prefix}`",
+                "prefix_set": "Ei server er prefix ekhon `{prefix}`",
+                "prefix_reset": "Ei server er prefix ekhon `{prefix}`"
+            },
+            "options": {
+                "set": "Prefix set korun",
+                "prefix": "Prefix jeta set korte chan",
+                "reset": "Prefix default e reset korun"
+            }
+        },
+        "setup": {
+            "description": "Bot ke setup korun",
+            "errors": {
+                "channel_exists": "Song request channel agei exist kore.",
+                "channel_not_exists": "Song request channel exist kore na.",
+                "channel_delete_fail": "Setup channel database theke delete kora hoyeche. Channel nijei delete korun."
+            },
+            "messages": {
+                "channel_created": "Song request channel <#{channelId}> e create kora hoyeche.",
+                "channel_deleted": "Song request channel delete kora hoyeche.",
+                "channel_info": "Song request channel <#{channelId}>."
+            },
+            "options": {
+                "create": "Song request channel create korun",
+                "delete": "Song request channel delete korun",
+                "info": "Song request channel dekhun"
+            }
+        },
+        "defaultvolume": {
+            "description": "Ei server e bot er default volume set korun",
+            "options": {
+                "volume": "Default volume jeta set korte chan (0-200)"
+            },
+            "messages": {
+                "current": "Ei server er current default volume **{volume}**.",
+                "set": "`✅` | Default volume **{volume}** e set kora hoyeche.",
+                "invalid_number": "Thik ekta number din.",
+                "too_low": "Volume 0 er kom hote parbe na.",
+                "too_high": "Volume 200 er beshi hote parbe na."
+            }
+        },
+        "8d": {
+            "description": "8d filter on/off korun",
+            "messages": {
+                "filter_enabled": "`✅` | 8D filter `CHALU` kora hoyeche.",
+                "filter_disabled": "`✅` | 8D filter `BONDHO` kora hoyeche."
+            }
+        },
+        "bassboost": {
+            "description": "bassboost filter on/off korun",
+            "options": {
+                "level": "Bassboost level jeta set korte chan"
+            },
+            "messages": {
+                "high": "`✅` | High bassboost filter `CHALU` kora hoyeche.",
+                "low": "`✅` | Low bassboost filter `CHALU` kora hoyeche.",
+                "medium": "`✅` | Medium bassboost filter `CHALU` kora hoyeche.",
+                "off": "`✅` | Bassboost filter `BONDHO` kora hoyeche.",
+                "invalid_level": "Thik bassboost level din. Available levels: `high`, `medium`, `low`, `off`."
+            }
+        },
+        "distortion": {
+            "description": "Distortion filter on/off korun",
+            "messages": {
+                "filter_enabled": "`✅` | Distortion filter `CHALU` kora hoyeche.",
+                "filter_disabled": "`✅` | Distortion filter `BONDHO` kora hoyeche."
+            }
+        },
+        "karaoke": {
+            "description": "Karaoke filter on/off korun",
+            "messages": {
+                "filter_enabled": "`✅` | Karaoke filter `CHALU` kora hoyeche.",
+                "filter_disabled": "`✅` | Karaoke filter `BONDHO` kora hoyeche."
+            }
+        },
+        "lowpass": {
+            "description": "Lowpass filter on/off korun",
+            "messages": {
+                "filter_enabled": "`✅` | Lowpass filter `CHALU` kora hoyeche.",
+                "filter_disabled": "`✅` | Lowpass filter `BONDHO` kora hoyeche."
+            }
+        },
+        "nightcore": {
+            "description": "Nightcore filter on/off korun",
+            "messages": {
+                "filter_enabled": "`✅` | Nightcore filter `CHALU` kora hoyeche.",
+                "filter_disabled": "`✅` | Nightcore filter `BONDHO` kora hoyeche."
+            }
+        },
+        "pitch": {
+            "description": "Pitch filter on/off korun",
+            "options": {
+                "pitch": "Number jeta pitch e set korte chan (0.5 ar 5 er majhe)"
+            },
+            "errors": {
+                "invalid_number": "Thik ekta number din 0.5 ar 5 er majhe."
+            },
+            "messages": {
+                "pitch_set": "`✅` | Pitch **{pitch}** e set kora hoyeche."
+            }
+        },
+        "rate": {
+            "description": "Song er rate change korun",
+            "options": {
+                "rate": "Number jeta rate e set korte chan (0.5 ar 5 er majhe)"
+            },
+            "errors": {
+                "invalid_number": "Thik ekta number din 0.5 ar 5 er majhe."
+            },
+            "messages": {
+                "rate_set": "`✅` | Rate **{rate}** e set kora hoyeche."
+            }
+        },
+        "reset": {
+            "description": "Active filters reset korun",
+            "messages": {
+                "filters_reset": "`✅` | Filters reset kora hoyeche."
+            }
+        },
+        "rotation": {
+            "description": "Rotation filter on/off korun",
+            "messages": {
+                "enabled": "`✅` | Rotation filter `CHALU` kora hoyeche.",
+                "disabled": "`✅` | Rotation filter `BONDHO` kora hoyeche."
+            }
+        },
+        "speed": {
+            "description": "Song er speed change korun",
+            "options": {
+                "speed": "Speed jeta set korte chan"
+            },
+            "messages": {
+                "invalid_number": "Thik ekta number din 0.5 ar 5 er majhe.",
+                "set_speed": "`✅` | Speed **{speed}** e set kora hoyeche."
+            }
+        },
+        "tremolo": {
+            "description": "Tremolo filter on/off korun",
+            "messages": {
+                "enabled": "`✅` | Tremolo filter `CHALU` kora hoyeche.",
+                "disabled": "`✅` | Tremolo filter `BONDHO` kora hoyeche."
+            }
+        },
+        "vibrato": {
+            "description": "Vibrato filter on/off korun",
+            "messages": {
+                "enabled": "`✅` | Vibrato filter `CHALU` kora hoyeche.",
+                "disabled": "`✅` | Vibrato filter `BONDHO` kora hoyeche."
+            }
+        },
+        "autoplay": {
+            "description": "Autoplay toggle korun",
+            "messages": {
+                "enabled": "`✅` | Autoplay `CHALU` kora hoyeche.",
+                "disabled": "`✅` | Autoplay `BONDHO` kora hoyeche."
+            }
+        },
+        "clearqueue": {
+            "description": "Queue clear korun",
+            "messages": {
+                "cleared": "Queue clear kora hoyeche."
+            }
+        },
+        "grab": {
+            "description": "Current playing song DM e pan",
+            "loading": "Loading...",
+            "content": "**Duration:** {length}\n**Requested by:** <@{requester}>\n**Link:** [Ekhane click korun]({uri})",
+            "check_dm": "DM check korun.",
+            "dm_failed": "DM pathate parini. Direct messages allow kora ache kina check korun."
+        },
+        "join": {
+            "description": "Voice channel e join korun",
+            "already_connected": "Ami agei <#{channelId}> e connected achi.",
+            "no_voice_channel": "Ei command use korar jonno voice channel e thakte hobe.",
+            "joined": "Successfully <#{channelId}> e join hoyeche."
+        },
+        "leave": {
+            "description": "Voice channel theke leave korun",
+            "left": "Successfully <#{channelId}> theke leave hoyeche.",
+            "not_in_channel": "Ami voice channel e nei."
+        },
+        "loop": {
+            "description": "Current song ba queue loop korun",
+            "looping_song": "**Song loop korchi.**",
+            "looping_queue": "**Queue loop korchi.**",
+            "looping_off": "**Looping ekhon off.**"
+        },
+        "lyrics": {
+            "description": "Currently playing track er lyrics pan",
+            "lyrics_for_track": "### Lyrics for: [{trackTitle}]({trackUrl})",
+            "no_lyrics_on_page": "Ei page e lyrics paoa jaini.",
+            "searching": "🔍 **{trackTitle}** er lyrics khujchi...",
+            "session_expired": "Session expire hoyeche. Refresh korar jonno command abar use korun.",
+            "page_indicator": "Page {current}/{total}",
+            "artwork_description": "{trackTitle} er artwork",
+            "no_lyrics_available": "Lyrics available nei",
+            "button_subscribe": "📌 Live Lyrics e subscribe hon",
+            "button_unsubscribe": "📌 Live Lyrics theke unsubscribe hon",
+            "subscribed": "Live lyrics updates e subscribe hoyeche!",
+            "unsubscribed": "Live lyrics updates theke unsubscribe hoyeche.",
+            "errors": {
+                "no_results": "Current track er lyrics paoa jaini.",
+                "lyrics_error": "Lyrics pete giye ekta problem hoyeche.",
+                "no_player_for_lyrics": "Active player chara ei song er lyrics paoa jabe na."
+            },
+            "options": {
+                "song": {
+                    "description": "Song jeta lyrics pete chan."
+                }
+            }
+        },
+        "nowplaying": {
+            "description": "Currently playing song dekhun",
+            "now_playing": "Ekhon Bajche",
+            "track_info": "[{title}]({uri}) - Requested By: <@{requester}>\n\n`{bar}`"
+        },
+        "pause": {
+            "description": "Current song pause korun",
+            "successfully_paused": "Successfully song pause kora hoyeche."
+        },
+        "play": {
+            "description": "YouTube, Spotify ba http theke song play korun",
+            "options": {
+                "song": "Song jeta play korte chan"
+            },
+            "loading": "Loading...",
+            "errors": {
+                "search_error": "Search korte giye ekta problem hoyeche.",
+                "no_results": "Kono result paoa jaini.",
+                "queue_too_long": "Queue beshi boro. Maximum length {maxQueueSize} songs.",
+                "playlist_too_long": "Playlist beshi boro. Maximum length {maxPlaylistSize} songs."
+            },
+            "added_to_queue": "[{title}]({uri}) queue te add kora hoyeche.",
+            "added_playlist_to_queue": "{length} songs queue te add kora hoyeche."
+        },
+        "playlocal": {
+            "description": "Local audio files play korun",
+            "options": {
+                "file": "Audio file jeta play korte chan"
+            },
+            "loading": "Loading...",
+            "errors": {
+                "empty_query": "Play korar jonno audio file attach korun.",
+                "invalid_format": "MP3, WAV, OGG, FLAC, AAC ba M4A files play korte paren.",
+                "no_results": "Audio file play korte parini. Corrupted hote pare."
+            },
+            "added_to_queue": "[{title}]({url}) queue te add kora hoyeche"
+        },
+        "playnext": {
+            "description": "Song ke queue te next kore add korun",
+            "options": {
+                "song": "Song jeta play korte chan"
+            },
+            "loading": "Loading...",
+            "errors": {
+                "search_error": "Search korte giye ekta problem hoyeche.",
+                "no_results": "Kono result paoa jaini.",
+                "queue_too_long": "Queue beshi boro. Maximum length {maxQueueSize} songs.",
+                "playlist_too_long": "Playlist beshi boro. Maximum length {maxPlaylistSize} songs."
+            },
+            "added_to_play_next": "[{title}]({uri}) queue te next kore add kora hoyeche.",
+            "added_playlist_to_play_next": "{length} songs queue te next kore add kora hoyeche."
+        },
+        "queue": {
+            "description": "Current queue dekhun",
+            "now_playing": "Ekhon bajche: [{title}]({uri}) - Requested By: <@{requester}> - Duration: `{duration}`",
+            "live": "LIVE",
+            "track_info": "{index}. [{title}]({uri}) - Requested By: <@{requester}> - Duration: `{duration}`",
+            "title": "Queue",
+            "page_info": "Page {index} of {total}",
+            "duration": "Queue Duration: `{totalDuration}`"
+        },
+        "remove": {
+            "description": "Queue theke ekta song remove korun",
+            "options": {
+                "song": "Song number jeta remove korte chan"
+            },
+            "errors": {
+                "no_songs": "Queue e kono song nei.",
+                "invalid_number": "Thik ekta song number din."
+            },
+            "messages": {
+                "removed": "Song number {songNumber} queue theke remove kora hoyeche."
+            }
+        },
+        "replay": {
+            "description": "Current track ta abar shuru theke play korun",
+            "errors": {
+                "not_seekable": "Ei track ta replay kora jabe na karon eta seekable na."
+            },
+            "messages": {
+                "replaying": "Current track ta abar shuru theke play korchi."
+            }
+        },
+        "resume": {
+            "description": "Current song resume korun",
+            "errors": {
+                "not_paused": "Player pause kora nei."
+            },
+            "messages": {
+                "resumed": "Player resume kora hoyeche."
+            }
+        },
+        "search": {
+            "description": "Song er jonno search korun",
+            "options": {
+                "song": "Song jeta khujchen"
+            },
+            "select": "List theke ekta song select korun...",
+            "errors": {
+                "no_results": "Kono result paoa jaini.",
+                "no_results_title": "Kono Search Result Paoa Jaini!",
+                "no_results_description": "Apnar query match kore kono song paoa jaini. Keyword change korun ba link din.",
+                "invalid_selection_title": "Bhul Selection!",
+                "invalid_selection_description": "Selected option bhul. List theke ekta song number select korun.",
+                "search_error": "Song search korte giye ekta problem hoyeche.",
+                "vc_connect_fail_title": "Voice channel connection error",
+                "vc_connect_fail_description": "Apnar voice channel e connect korte parini. Amar proper permissions ache kina check korun."
+            },
+            "messages": {
+                "results_found": "**{count}** songs paoa geche.",
+                "select_prompt": "Queue te add korar jonno ekta number select korun.",
+                "page_info": "Page {currentPage}/{maxPages}",
+                "added_to_queue": "**[{title}]({uri})** queue te add kora hoyeche!",
+                "selection_timed_out_title": "Somoy Shesh!",
+                "selection_timed_out_description": "Deyar somoy er moddhe kono song select kora hoy nei. Search cancel kora hoyeche. Abar try korun.",
+                "selection_timed_out_short": "Selection somoy shesh."
+            }
+        },
+        "seek": {
+            "description": "Song e nirdishto somoy e seek korun",
+            "options": {
+                "duration": "Somoy jekhane seek korte chan"
+            },
+            "errors": {
+                "invalid_format": "Bhul somoy format. Examples: seek 1m, seek 1h 30m",
+                "not_seekable": "Ei track seekable na.",
+                "beyond_duration": "{length} er beshi seek kora jabe na."
+            },
+            "messages": {
+                "seeked_to": "{duration} e seek kora hoyeche"
+            }
+        },
+        "shuffle": {
+            "description": "Queue shuffle korun",
+            "messages": {
+                "shuffled": "Queue shuffle kora hoyeche."
+            },
+            "errors": {
+                "fairplay": "Fairplay mode chalu ache. Apni queue shuffle korte parben na."
+            }
+        },
+        "skip": {
+            "description": "Current song skip korun",
+            "messages": {
+                "skipped": "[{title}]({uri}) skip kora hoyeche."
+            }
+        },
+        "skipto": {
+            "description": "Queue te specific song e skip korun",
+            "options": {
+                "number": "Song number jekhane skip korte chan"
+            },
+            "errors": {
+                "invalid_number": "Thik ekta number din."
+            },
+            "messages": {
+                "skipped_to": "Song number {number} e skip kora hoyeche."
+            }
+        },
+        "move": {
+            "description": "Queue te ekta track one position theke onno position e move korun",
+            "options": {
+                "from": "Track er position jeta move korte chan",
+                "to": "Position jekhane move korte chan"
+            },
+            "errors": {
+                "no_tracks": "Queue e kono track nei.",
+                "invalid_usage": "Bhul use. From ar to positions din.",
+                "invalid_numbers": "Thik track positions din.",
+                "invalid_positions": "Queue er moddhe thik track positions din.",
+                "same_position": "From ar to positions same."
+            },
+            "messages": {
+                "moved": "**{title}** position {from} theke {to} e move kora hoyeche."
+            }
+        },
+        "stop": {
+            "description": "Music stop korun ar queue clear korun",
+            "messages": {
+                "stopped": "Music stop kora hoyeche ar queue clear kora hoyeche."
+            }
+        },
+        "volume": {
+            "description": "Player er volume set korun",
+            "options": {
+                "number": "Volume jeta set korte chan"
+            },
+            "messages": {
+                "invalid_number": "Thik ekta number din.",
+                "too_low": "Volume 0 er kom hote parbe na.",
+                "too_high": "Volume 200 er beshi hote parbe na. Apnar hearing ba speakers damage korte chan? Hmmm, ami mone kori eta bhalo idea na.",
+                "set": "Volume {volume} e set kora hoyeche"
+            }
+        },
+        "addsong": {
+            "description": "Playlist e ekta song add korun",
+            "options": {
+                "playlist": "Je playlist e apni add korte chan",
+                "song": "Je song ta apni add korte chan"
+            },
+            "messages": {
+                "no_playlist": "Ekta playlist er naam din.",
+                "no_song": "Ekta song er naam din.",
+                "playlist_not_found": "Ei playlist ta khuje paoa jacche na.",
+                "no_songs_found": "Kono song khuje paoa jaini.",
+                "added": "{count} ta song {playlist} e add kora hoyeche."
+            }
+        },
+        "create": {
+            "description": "Playlist create korun",
+            "options": {
+                "name": "Playlist er naam"
+            },
+            "messages": {
+                "name_too_long": "Playlist naam 50 character er beshi hote parbe na.",
+                "playlist_exists": "Oi naam er playlist agei exist kore. Onno naam use korun.",
+                "playlist_created": "Playlist **{name}** create kora hoyeche.",
+                "name_empty": "Playlist er naam din."
+            }
+        },
+        "delete": {
+            "description": "Playlist delete korun",
+            "options": {
+                "playlist": "Playlist jeta delete korte chan"
+            },
+            "messages": {
+                "playlist_not_found": "Ei playlist ta khuje paoa jacche na.",
+                "playlist_deleted": "Playlist **{playlistName}** delete kora hoyeche."
+            }
+        },
+        "list": {
+            "description": "User er shob playlist dekhun",
+            "options": {
+                "user": "User jar playlist dekhte chan"
+            },
+            "messages": {
+                "no_playlists": "Ei user er kono playlist nei.",
+                "your": "Apnar",
+                "playlists_title": "{username}'s Playlists",
+                "error": "Playlists dekhte giye ekta problem hoyeche."
+            }
+        },
+        "load": {
+            "description": "Playlist load korun",
+            "options": {
+                "playlist": "Playlist jeta load korte chan"
+            },
+            "messages": {
+                "playlist_not_exist": "Ei playlist ta khuje paoa jacche na.",
+                "playlist_empty": "Ei playlist khali.",
+                "playlist_loaded": "`{name}` load kora hoyeche `{count}` ta song(s) diye.",
+                "no_lavalink_nodes": "Playlist load korar jonno kono available Lavalink nodes nei."
+            }
+        },
+        "removesong": {
+            "description": "Playlist theke ekta song remove korun",
+            "options": {
+                "playlist": "Playlist jeta theke remove korte chan",
+                "song": "Song jeta remove korte chan"
+            },
+            "messages": {
+                "provide_playlist": "Playlist er naam din.",
+                "provide_song": "Song er naam din.",
+                "playlist_not_exist": "Ei playlist ta khuje paoa jacche na.",
+                "song_not_found": "Erokom kono song khuje paoa jaini.",
+                "song_removed": "{song} {playlist} theke remove kora hoyeche.",
+                "error_occurred": "Song remove korte giye ekta problem hoyeche."
+            }
+        },
+        "steal": {
+            "description": "Onno user er theke playlist churi korun ar apnar playlists e add korun",
+            "options": {
+                "playlist": "Playlist jeta churi korte chan",
+                "user": "User jar theke churi korte chan"
+            },
+            "messages": {
+                "provide_playlist": "Playlist er naam din.",
+                "provide_user": "Ekta user mention korun.",
+                "playlist_not_exist": "Mentioned user er jonno ei playlist khuje paoa jacche na.",
+                "playlist_stolen": "Successfully playlist `{playlist}` {user} er theke churi kora hoyeche.",
+                "error_occurred": "Playlist churi korte giye ekta problem hoyeche."
+            }
+        },
+        "movenode": {
+            "description": "Players gulo ke different Lavalink node e move korun",
+            "options": {
+                "node": "Node ID jekhane players gulo move korte chan"
+            },
+            "no_player": "Ei server e kono active music player nei.",
+            "no_available_nodes": "Move korar jonno kono available nodes nei.",
+            "available_nodes_title": "Available Nodes",
+            "current_node": "Current Node",
+            "available_nodes": "Available Nodes",
+            "usage_hint": "Use: movenode <nodeId>",
+            "node_not_found": "Node `{node}` paoa jaini.",
+            "node_not_connected": "Node `{node}` connected nei.",
+            "same_node": "Player agei node `{node}` e ache.",
+            "moving": "Player `{from}` theke `{to}` e move korchi...",
+            "success_title": "Player Successfully Move Kora Hoyeche",
+            "success_description": "Player `{from}` theke `{to}` e move kora hoyeche.",
+            "error": "Player move korte parini: {error}",
+            "moving_all_players": "Shob players ke node `{node}` e move korchi...",
+            "results_title": "MoveNode Results",
+            "moved_players": "**Guilds e moved players:**\n{list}",
+            "guild_move": "• `{guildId}` ({from} → {to})",
+            "failed_moves": "**Guilds e players move korte parini:**\n{list}",
+            "guild_move_failed": "• `{guildId}`: {error}",
+            "no_players_moved": "Kono players ke move korar dorkar nei.",
+            "unknown_error": "Unknown error",
+            "no_players": "Move korar jonno kono player nei."
+        }
+    },
+    "buttons": {
+        "invite": "Invite",
+        "support": "Support Server",
+        "previous": "Previous",
+        "resume": "Resume",
+        "stop": "Stop",
+        "skip": "Skip",
+        "loop": "Loop",
+        "next": "Next",
+        "errors": {
+            "not_author": "Apni ei button use korte parben na."
+        }
+    },
+    "player": {
+        "errors": {
+            "no_player": "Ei guild e kono active player nei.",
+            "no_channel": "Ei command use korar jonno apnake voice channel e connected thakte hobe.",
+            "queue_empty": "Queue khali.",
+            "no_previous": "Queue e kono previous songs nei.",
+            "no_song": "Queue e kono songs nei.",
+            "already_paused": "Song agei pause kora ache.",
+            "user_not_in_voice_channel": "Apni voice channel e connected nei."
+        },
+        "trackStart": {
+            "now_playing": "Ekhon Bajche",
+            "requested_by": "{user} er request e",
+            "duration": "Duration",
+            "author": "Author",
+            "not_connected_to_voice_channel": "Ei buttons use korar jonno apnake <#{channel}> e connected thakte hobe.",
+            "need_dj_role": "Ei command use korar jonno DJ role dorkar.",
+            "previous_by": "Previous {user} er dwara",
+            "no_previous_song": "Kono previous song nei.",
+            "paused_by": "{user} pause korche",
+            "resumed_by": "{user} resume korche",
+            "skipped_by": "{user} skip korche",
+            "no_more_songs_in_queue": "Queue e ar kono song nei.",
+            "looping_by": "{user} loop korche",
+            "looping_queue_by": "{user} queue loop korche",
+            "looping_off_by": "{user} loop off korche"
+        },
+        "setupStart": {
+            "now_playing": "Ekhon Bajche",
+            "description": "[{title}]({uri}) by {author} • `[{length}]` - Requested by <@{requester}>",
+            "error_searching": "Search korte giye ekta problem hoyeche.",
+            "no_results": "Kono result paoa jaini.",
+            "nothing_playing": "Ekhon kichu bajche na",
+            "queue_too_long": "Queue beshi boro. Maximum length {maxQueueSize} songs.",
+            "playlist_too_long": "Playlist beshi boro. Maximum length {maxPlaylistSize} songs.",
+            "added_to_queue": "[{title}]({uri}) queue te add kora hoyeche.",
+            "added_playlist_to_queue": "[{length}] songs playlist theke queue te add kora hoyeche."
+        }
+    },
+    "event": {
+        "interaction": {
+            "setup_channel": "Apni setup channel e ei command use korte parben na.",
+            "no_send_message": "Amar **`SendMessage`**, **`ViewChannel`**, **`EmbedLinks`** ba **`ReadMessageHistory`** permission nei.",
+            "no_permission": "Amar {permissions} permission nei.",
+            "no_user_permission": "Ei command use korar jonno apnar kache enough permissions nei.",
+            "no_voice_channel": "Ei `{command}` command use korar jonno apnake voice channel e connected thakte hobe.",
+            "no_connect_permission": "Ei `{command}` command execute korar jonno amar `CONNECT` permission nei.",
+            "no_speak_permission": "Ei `{command}` command execute korar jonno amar `SPEAK` permission nei.",
+            "no_request_to_speak": "Ei `{command}` command execute korar jonno amar `REQUEST TO SPEAK` permission nei.",
+            "different_voice_channel": "Ei `{command}` command use korar jonno apnake {channel} e connected thakte hobe.",
+            "no_music_playing": "Ekhon kichu bajche na.",
+            "no_dj_role": "DJ role set kora nei.",
+            "no_dj_permission": "Ei command use korar jonno DJ role dorkar.",
+            "cooldown": "`{command}` command abar use korar aage {time} second(s) wait korun.",
+            "error": "Ekta problem hoyeche: `{error}`",
+            "vote_button": "Amake vote den!",
+            "vote_message": "Daran! Ei command use korar jonno top.gg e vote dite hobe. Dhonyobad."
+        },
+        "message": {
+            "prefix_mention": "Hello, ei server e amar prefix `{prefix}`. Beshi info chan? tahole `{prefix}help` korun\nSafe thakun, Awesome thakun!",
+            "no_send_message": "Amar **`SendMessage`**, **`ViewChannel`**, **`EmbedLinks`** ba **`ReadMessageHistory`** permission nei.",
+            "no_permission": "Amar {permissions} permission nei.",
+            "no_user_permission": "Ei command use korar jonno apnar kache enough permissions nei.",
+            "no_voice_channel": "Ei `{command}` command use korar jonno apnake voice channel e connected thakte hobe.",
+            "no_connect_permission": "Ei `{command}` command execute korar jonno amar `CONNECT` permission nei.",
+            "no_speak_permission": "Ei `{command}` command execute korar jonno amar `SPEAK` permission nei.",
+            "no_request_to_speak": "Ei `{command}` command execute korar jonno amar `REQUEST TO SPEAK` permission nei.",
+            "different_voice_channel": "Ei `{command}` command use korar jonno apnake {channel} e connected thakte hobe.",
+            "no_music_playing": "Ekhon kichu bajche na.",
+            "no_dj_role": "DJ role set kora nei.",
+            "no_dj_permission": "Ei command use korar jonno DJ role dorkar.",
+            "missing_arguments": "Arguments Missing",
+            "missing_arguments_description": "`{command}` command er jonno required arguments din.\n\nExamples:\n{examples}",
+            "syntax_footer": "Syntax: [] = optional, <> = required",
+            "cooldown": "`{command}` command abar use korar aage {time} second(s) wait korun.",
+            "no_mention_everyone": "Apni everyone ba here diye ei command use korte parben na. Slash command use korun.",
+            "error": "Ekta problem hoyeche: `{error}`",
+            "no_voice_channel_queue": "Songs queue korar jonno apnake voice channel e connected thakte hobe.",
+            "no_permission_connect_speak": "Amar <#{channel}> e connect/speak korar enough permission nei.",
+            "different_voice_channel_queue": "Songs queue korar jonno apnake <#{channel}> e connected thakte hobe.",
+            "vote_button": "Amake vote den!",
+            "vote_message": "Darao! Ei command use korar jonno top.gg e vote dite hobe. Dhonyobad."
+        },
+        "setupButton": {
+            "no_voice_channel_button": "Ei button use korar jonno apnake voice channel e connected thakte hobe.",
+            "different_voice_channel_button": "Ei buttons use korar jonno apnake {channel} e connected thakte hobe.",
+            "now_playing": "Ekhon Bajche",
+            "live": "LIVE",
+            "requested_by": "<@{requester}> er request e",
+            "no_dj_permission": "Ei button use korar jonno DJ role dorkar.",
+            "volume_set": "Volume {vol}% e set kora hoyeche",
+            "volume_footer": "Volume: {vol}%",
+            "paused": "Pause kora hoyeche",
+            "resumed": "Resume kora hoyeche",
+            "pause_resume": "Music {name} kora hoyeche.",
+            "pause_resume_footer": "{displayName} {name} koreche",
+            "no_music_to_skip": "Skip korar jonno kono music nei.",
+            "skipped": "Music skip kora hoyeche.",
+            "skipped_footer": "{displayName} skip koreche",
+            "stopped": "Music bondho kora hoyeche.",
+            "stopped_footer": "{displayName} bondho koreche",
+            "nothing_playing": "Ekhon kichu bajche na",
+            "loop_set": "Loop {loop} e set kora hoyeche.",
+            "loop_footer": "{displayName} loop {loop} e set koreche",
+            "shuffled": "Queue shuffle kora hoyeche.",
+            "no_previous_track": "Kono aager track nei.",
+            "playing_previous": "Aager track ta play korchi.",
+            "previous_footer": "{displayName} aager track play korche",
+            "rewinded": "Music rewind kora hoyeche.",
+            "rewind_footer": "{displayName} rewind koreche",
+            "forward_limit": "Song er length er cheye beshi forward kora jabe na.",
+            "forwarded": "Music forward kora hoyeche.",
+            "forward_footer": "{displayName} forward koreche",
+            "button_not_available": "Ei button ekhon available nei.",
+            "no_music_playing": "Ei server e kono music bajche na."
+        }
+    },
+    "Evaluate code": "Code evaluate korun",
+    "Leave a guild": "Guild theke leave korun",
+    "List all guilds the bot is in": "Bot jekhane ache shob guilds er list korun",
+    "Restart the bot": "Bot restart korun",
+    "The loop mode you want to set": "Loop mode jeta set korte chan"
+}
