@@ -1,0 +1,69 @@
+{
+    "eval": {
+        "description": "Utvärdera kod",
+        "success": "Koden utvärderades framgångsrikt",
+        "error": "Misslyckades med att utvärdera kod"
+    },
+    "guilds": {
+        "description": "Hantera och lista botens servrar",
+        "list": "Serverlista",
+        "leave": {
+            "success": "Lämnade servern framgångsrikt: {name}",
+            "fail": "Misslyckades med att lämna servern {name}",
+            "log": "Boten har lämnat servern: {name} (ID: {id})"
+        },
+        "not_found": "Servern hittades inte."
+    },
+    "restart": {
+        "description": "Starta om botens process",
+        "prompt": "Är du säker på att du vill starta om **{client}**?",
+        "status": {
+            "restarting": "Startar om...",
+            "canceled": "Omstart avbruten.",
+            "error": "Ett fel uppstod vid omstart av boten."
+        },
+        "restart_by": "Omstart inledd av {user}"
+    },
+    "shutdown": {
+        "description": "Stäng av botens process",
+        "prompt": "Är du säker på att du vill stänga av?",
+        "status": "Stänger av...",
+        "canceled": "Avstängning avbruten."
+    },
+    "deploy": {
+        "description": "Synkronisera slash-kommandon med Discord API",
+        "prompt": "Var vill du distribuera/ta bort kommandon?",
+        "status": {
+            "deployed_global": "Kommandon distribuerade globalt.",
+            "deployed_guild": "Kommandon distribuerade på denna server.",
+            "removed_global": "Kommandon borttagna globalt.",
+            "removed_guild": "Kommandon borttagna från denna server.",
+            "failed": "Distributionen misslyckades via kommandot: {command}"
+        },
+        "buttons": {
+            "deploy_global": "Distribuera globalt",
+            "deploy_guild": "Distribuera på server",
+            "remove_global": "Ta bort globalt",
+            "remove_guild": "Ta bort från server"
+        }
+    },
+    "invite": {
+        "create": {
+            "description": "Skapa en inbjudningslänk för en specifik server.",
+            "errors": {
+                "guild_not_found": "Servern hittades inte. Se till att ID:t är korrekt.",
+                "no_suitable_channel": "Ingen lämplig kanal med tillräckliga behörigheter för att skapa en inbjudan hittades på den servern."
+            },
+            "success": "Inbjudningslänk för servern **{guildName}**: [Klicka här]({url})"
+        },
+        "destroy": {
+            "description": "Förstör alla inbjudningslänkar skapade av boten på en server",
+            "errors": {
+                "guild_not_found": "Servern hittades inte. Ange ett giltigt ID.",
+                "generic": "Misslyckades med att förstöra inbjudningar. Kontrollera om jag har 'Hantera server'-behörighet på den servern."
+            },
+            "success": "Förstörde framgångsrikt **{count}** inbjudningar skapade av mig på servern **{guildName}**.",
+            "not_found": "Inga inbjudningar skapade av mig hittades på denna server."
+        }
+    }
+}

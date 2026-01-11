@@ -1,0 +1,13 @@
+{
+    "invite": "Bjud in",
+    "support": "Supportserver",
+    "previous": "Föregående",
+    "resume": "Återuppta",
+    "stop": "Stopp",
+    "skip": "Hoppa över",
+    "loop": "Upprepa",
+    "next": "Nästa",
+    "errors": {
+        "not_author": "Du kan inte använda den här knappen."
+    }
+}

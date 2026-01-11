@@ -1,0 +1,639 @@
+{
+    "247": {
+        "description": "Ställ in boten att stanna kvar i röstkanalen",
+        "errors": {
+            "not_in_voice": "Du måste vara i en röstkanal för att använda detta kommando.",
+            "generic": "Ett fel uppstod vid försök att köra detta kommando."
+        },
+        "messages": {
+            "disabled": "`✅` | 24/7-läge är `INAKTIVERAT`.",
+            "enabled": "`✅` | 24/7-läge är `AKTIVERAT`."
+        }
+    },
+    "fairplay": {
+        "description": "Ställ in boten att spela musik rättvist mellan användare.",
+        "errors": {
+            "not_in_voice": "Du måste vara i en röstkanal för att använda detta kommando.",
+            "generic": "Ett fel uppstod vid försök att köra detta kommando."
+        },
+        "messages": {
+            "disabled": "`✅` | Fairplay-läge är `INAKTIVERAT`.",
+            "enabled": "`✅` | Fairplay-läge är `AKTIVERAT`."
+        }
+    },
+    "ping": {
+        "description": "Visar botens latens.",
+        "content": "Pingar...",
+        "bot_latency": "Bot latens",
+        "api_latency": "API latens",
+        "requested_by": "Efterfrågad av {author}"
+    },
+    "lavalink": {
+        "description": "Visar aktuell Lavalink-nodstatistik.",
+        "title": "Lavalink-statistik",
+        "content": "Spelare: {players}\nSpelande spelare: {playingPlayers}\nUptime: {uptime}\nKärnor: {cores} kärnor\nMinnesanvändning: {used} / {reservable}\nSystembelastning: {systemLoad}%\nLavalinkbelastning: {lavalinkLoad}%",
+        "page_info": "Sida {index} av {total}"
+    },
+    "invite": {
+        "description": "Få botens inbjudningslänk.",
+        "content": "Du kan bjuda in mig genom att klicka på knappen nedan. Några buggar eller avbrott? Gå med i supportservern!"
+    },
+    "help": {
+        "description": "Visar hjälpmenyn.",
+        "options": {
+            "command": "Kommandot du vill ha information om"
+        },
+        "content": "Hej! Jag är `{bot}`, en musikbot skapad med [`Lavamusic`](https://github.com/appujet/lavamusic) och `Discord.js`.\nDu kan använda `{prefix}help <kommando>` för att få mer information om ett kommando.",
+        "title": "Hjälpmeny",
+        "not_found": "Detta kommando `{cmdName}` finns inte.",
+        "help_cmd": "**Beskrivning:** {description}\n**Användning:** {usage}\n**Exempel:** {examples}\n**Alias:** {aliases}\n**Kategori:** {category}\n**Cooldown:** {cooldown} sekunder\n**Behörigheter:** {premUser}\n**Botbehörigheter:** {premBot}\n**Endast utvecklare:** {dev}\n**Slash-kommando:** {slash}\n**Argument:** {args}\n**Spelare:** {player}\n**DJ:** {dj}\n**DJ-behörigheter:** {djPerm}\n**Röst:** {voice}",
+        "footer": "Använd {prefix}help <kommando> för mer information"
+    },
+    "botinfo": {
+        "description": "Information om boten",
+        "content": "Botinformation:\n- **Operativsystem**: {osInfo}\n- **Uptime**: {osUptime}\n- **Värdnamn**: {osHostname}\n- **CPU-arkitektur**: {cpuInfo}\n- **CPU-användning**: {cpuUsed}%\n- **Minnesanvändning**: {memUsed}MB / {memTotal}GB\n- **Node-version**: {nodeVersion}\n- **Discord.js-version**: {discordJsVersion}\n- **Ansluten till** {guilds} servrar, {channels} kanaler och {users} användare\n- **Totalt antal kommandon**: {commands}"
+    },
+    "about": {
+        "description": "Visar information om boten",
+        "fields": {
+            "creator": "Skapare",
+            "repository": "Repository",
+            "support": "Support",
+            "description": "Hen ville verkligen göra sitt första open source-projekt för mer erfarenhet av kodning. I det här projektet utmanade hen sig själv att göra ett projekt med färre buggar. Vi hoppas att du gillar att använda LavaMusic!"
+        }
+    },
+    "dj": {
+        "description": "Hantera DJ-läge och relaterade roller",
+        "errors": {
+            "provide_role": "Vänligen ange en roll.",
+            "no_roles": "DJ-rollen är tom.",
+            "invalid_subcommand": "Vänligen ange ett giltigt underkommando."
+        },
+        "messages": {
+            "role_exists": "DJ-rollen <@&{roleId}> har redan lagts till.",
+            "role_added": "DJ-rollen <@&{roleId}> har lagts till.",
+            "role_not_found": "DJ-rollen <@&{roleId}> har inte lagts till.",
+            "role_removed": "DJ-rollen <@&{roleId}> har tagits bort.",
+            "all_roles_cleared": "Alla DJ-roller har tagits bort.",
+            "toggle": "DJ-läge har ändrats till {status}."
+        },
+        "options": {
+            "add": "DJ-rollen du vill lägga till",
+            "remove": "DJ-rollen du vill ta bort",
+            "clear": "Tar bort alla DJ-roller",
+            "toggle": "Växlar DJ-rollen",
+            "role": "DJ-roll"
+        },
+        "subcommands": "Underkommandon"
+    },
+    "language": {
+        "description": "Konfigurera botens språk.",
+        "invalid_language": "Vänligen ange ett giltigt språk. Exempel: `en-US` för engelska (USA)\n\nDu hittar listan över språk som stöds [här](https://discord.com/developers/docs/reference#locales)\n\n**Tillgängliga språk:**\n{languages}",
+        "already_set": "Språket är redan inställt på `{language}`",
+        "not_set": "Språket är inte inställt.",
+        "set": "Språket ställdes in på `{language}`",
+        "reset": "Språket återställdes till standardspråket.",
+        "options": {
+            "set": "Ställ in språket för boten",
+            "language": "Språket du vill ställa in",
+            "reset": "Ändra tillbaka språket till standard"
+        }
+    },
+    "prefix": {
+        "description": "Visar eller ställer in botens prefix",
+        "errors": {
+            "prefix_too_long": "Prefixet kan inte vara längre än 3 tecken."
+        },
+        "messages": {
+            "current_prefix": "Prefixet för denna server är `{prefix}`",
+            "prefix_set": "Prefixet för denna server är nu `{prefix}`",
+            "prefix_reset": "Prefixet för denna server är nu `{prefix}`"
+        },
+        "options": {
+            "set": "Ställer in prefixet",
+            "prefix": "Prefixet du vill ställa in",
+            "reset": "Återställer prefixet till standard"
+        }
+    },
+    "setup": {
+        "description": "Ställer in boten",
+        "errors": {
+            "channel_exists": "Låtförfrågningskanalen finns redan.",
+            "channel_not_exists": "Låtförfrågningskanalen finns inte.",
+            "channel_delete_fail": "Inställningskanalen har tagits bort från databasen. Vänligen ta bort textkanalen manuellt."
+        },
+        "messages": {
+            "channel_created": "Låtförfrågningskanalen skapades i <#{channelId}>.",
+            "channel_deleted": "Låtförfrågningskanalen har tagits bort.",
+            "channel_info": "Låtförfrågningskanalen är <#{channelId}>."
+        },
+        "options": {
+            "create": "Skapar låtförfrågningskanalen",
+            "delete": "Tar bort låtförfrågningskanalen",
+            "info": "Visar låtförfrågningskanalen"
+        }
+    },
+    "defaultvolume": {
+        "description": "Ställer in standardvolymen för boten på denna server",
+        "options": {
+            "volume": "Standardvolymen du vill ställa in (0-200)"
+        },
+        "messages": {
+            "current": "Den aktuella standardvolymen för denna server är **{volume}**.",
+            "set": "`✅` | Standardvolymen ställdes in på **{volume}**.",
+            "invalid_number": "Vänligen ange ett giltigt nummer.",
+            "too_low": "Volymen kan inte vara lägre än 0.",
+            "too_high": "Volymen kan inte vara högre än 200."
+        }
+    },
+    "8d": {
+        "description": "Växlar 8D-filtret",
+        "messages": {
+            "filter_enabled": "`✅` | 8D-filtret är `AKTIVERAT`.",
+            "filter_disabled": "`✅` | 8D-filtret är `INAKTIVERAT`."
+        }
+    },
+    "bassboost": {
+        "description": "Växlar bassboost-filtret",
+        "options": {
+            "level": "Nivån på bassboost"
+        },
+        "messages": {
+            "high": "`✅` | High bassboost-filter är `AKTIVERAT`.",
+            "low": "`✅` | Low bassboost-filter är `AKTIVERAT`.",
+            "medium": "`✅` | Medium bassboost-filter är `AKTIVERAT`.",
+            "off": "`✅` | Bassboost-filter är `INAKTIVERAT`.",
+            "invalid_level": "Vänligen ange en giltig bassboost-nivå. Tillgängliga nivåer: `high`, `medium`, `low`, `off`."
+        }
+    },
+    "distortion": {
+        "description": "Växlar distorsionsfiltret",
+        "messages": {
+            "filter_enabled": "`✅` | Distorsionsfiltret är `AKTIVERAT`.",
+            "filter_disabled": "`✅` | Distorsionsfiltret är `INAKTIVERAT`."
+        }
+    },
+    "karaoke": {
+        "description": "Växlar karaoke-filtret",
+        "messages": {
+            "filter_enabled": "`✅` | Karaoke-filtret är `AKTIVERAT`.",
+            "filter_disabled": "`✅` | Karaoke-filtret är `INAKTIVERAT`."
+        }
+    },
+    "lowpass": {
+        "description": "Växlar lowpass-filtret",
+        "messages": {
+            "filter_enabled": "`✅` | Lowpass-filtret är `AKTIVERAT`.",
+            "filter_disabled": "`✅` | Lowpass-filtret är `INAKTIVERAT`."
+        }
+    },
+    "nightcore": {
+        "description": "Växlar nightcore-filtret",
+        "messages": {
+            "filter_enabled": "`✅` | Nightcore-filtret är `AKTIVERAT`.",
+            "filter_disabled": "`✅` | Nightcore-filtret är `INAKTIVERAT`."
+        }
+    },
+    "pitch": {
+        "description": "Växlar tonhöjdsfiltret",
+        "options": {
+            "pitch": "Värdet för tonhöjdsinställning (0.5 - 5)"
+        },
+        "errors": {
+            "invalid_number": "Vänligen ange ett giltigt nummer mellan 0.5 och 5."
+        },
+        "messages": {
+            "pitch_set": "`✅` | Tonhöjden ställdes in på **{pitch}**."
+        }
+    },
+    "rate": {
+        "description": "Ändrar takten på låten",
+        "options": {
+            "rate": "Värdet för taktinställning (0.5 - 5)"
+        },
+        "errors": {
+            "invalid_number": "Vänligen ange ett giltigt nummer mellan 0.5 och 5."
+        },
+        "messages": {
+            "rate_set": "`✅` | Takten ställdes in på **{rate}**."
+        }
+    },
+    "reset": {
+        "description": "Återställer alla aktiva filter",
+        "messages": {
+            "filters_reset": "`✅` | Filtren har återställts."
+        }
+    },
+    "rotation": {
+        "description": "Växlar rotationsfiltret",
+        "messages": {
+            "enabled": "`✅` | Rotationsfiltret är `AKTIVERAT`.",
+            "disabled": "`✅` | Rotationsfiltret är `INAKTIVERAT`."
+        }
+    },
+    "speed": {
+        "description": "Ändrar låtens hastighet",
+        "options": {
+            "speed": "Hastigheten du vill ställa in (0.5 - 5)"
+        },
+        "messages": {
+            "invalid_number": "Vänligen ange ett giltigt nummer mellan 0.5 och 5.",
+            "set_speed": "`✅` | Hastigheten ställdes in på **{speed}**."
+        }
+    },
+    "tremolo": {
+        "description": "Växlar tremolo-filtret",
+        "messages": {
+            "enabled": "`✅` | Tremolo-filtret är `AKTIVERAT`.",
+            "disabled": "`✅` | Tremolo-filtret är `INAKTIVERAT`."
+        }
+    },
+    "vibrato": {
+        "description": "Växlar vibrato-filtret",
+        "messages": {
+            "enabled": "`✅` | Vibrato-filtret är `AKTIVERAT`.",
+            "disabled": "`✅` | Vibrato-filtret är `INAKTIVERAT`."
+        }
+    },
+    "autoplay": {
+        "description": "Växlar autoplay-läge.",
+        "messages": {
+            "enabled": "`✅` | Autoplay är `AKTIVERAT`.",
+            "disabled": "`✅` | Autoplay är `INAKTIVERAT`."
+        }
+    },
+    "clearqueue": {
+        "description": "Rensa aktuell kö.",
+        "messages": {
+            "cleared": "Kön har rensats."
+        }
+    },
+    "grab": {
+        "description": "Spara den aktuella låten i dina DM.",
+        "loading": "Laddar...",
+        "content": "**Varaktighet:** {length}\n**Efterfrågad av:** <@{requester}>\n**Länk:** [Klicka här]({uri})",
+        "check_dm": "Vänligen kontrollera dina DM.",
+        "dm_failed": "Jag kunde inte skicka DM till dig. Se till att dina DM är öppna."
+    },
+    "join": {
+        "description": "Ansluter boten till din röstkanal",
+        "already_connected": "Jag är redan ansluten till <#{channelId}>.",
+        "no_voice_channel": "Du måste vara i en röstkanal för att använda detta kommando.",
+        "joined": "Anslöt framgångsrikt till <#{channelId}>."
+    },
+    "leave": {
+        "description": "Kopplar bort boten från röstkanalen",
+        "left": "Lämnade <#{channelId}> framgångsrikt.",
+        "not_in_channel": "Jag är inte i en röstkanal."
+    },
+    "loop": {
+        "description": "Loopa den aktuella låten eller kön",
+        "options": {
+            "mode": "Loop-läge"
+        },
+        "messages": {
+            "looping_song": "**Loopar låt.**",
+            "looping_queue": "**Loopar kö.**",
+            "looping_off": "**Loop är nu avstängd.**",
+            "invalid_mode": "Ogiltigt loop-läge"
+        }
+    },
+    "lyrics": {
+        "description": "Visa låttext för det aktuella spåret",
+        "lyrics_for_track": "### Låttext för: [{trackTitle}]({trackUrl})",
+        "no_lyrics_on_page": "Ingen låttext hittades på den här sidan.",
+        "searching": "🔍 Söker efter låttext för **{trackTitle}**...",
+        "session_expired": "Sessionen har gått ut. Använd kommandot igen för att uppdatera.",
+        "page_indicator": "Sida {current}/{total}",
+        "artwork_description": "Omslag för {trackTitle}",
+        "no_lyrics_available": "Ingen låttext tillgänglig",
+        "button_subscribe": "📌 Prenumerera på Live Lyrics",
+        "button_unsubscribe": "📌 Avsluta prenumeration på Live Lyrics",
+        "subscribed": "Du har prenumererat på live-låttextuppdateringar!",
+        "unsubscribed": "Du har avslutat prenumerationen på live-låttextuppdateringar.",
+        "errors": {
+            "no_results": "Ingen låttext hittades för det aktuella spåret.",
+            "lyrics_error": "Ett fel uppstod vid hämtning av låttext.",
+            "no_player_for_lyrics": "Kan inte hämta låttext för den här låten utan en aktiv spelare."
+        },
+        "options": {
+            "song": "Låten du vill ha texten till"
+        }
+    },
+    "nowplaying": {
+        "description": "Visar låten som spelas just nu",
+        "now_playing": "Spelas nu",
+        "track_info": "[{title}]({uri}) - Efterfrågad av: <@{requester}>\n\n`{bar}`"
+    },
+    "pause": {
+        "description": "Pausar den aktuella låten",
+        "successfully_paused": "Låten pausades framgångsrikt."
+    },
+    "play": {
+        "description": "Spelar en låt från YouTube, Spotify, URL etc.",
+        "options": {
+            "song": "Låten eller URL:en du vill spela"
+        },
+        "loading": "Laddar...",
+        "errors": {
+            "search_error": "Ett fel uppstod vid sökning.",
+            "no_results": "Inga resultat hittades.",
+            "queue_too_long": "Kön är för lång. Maxlängden är {maxQueueSize} låtar.",
+            "playlist_too_long": "Spellistan är för lång. Maxlängden är {maxPlaylistSize} låtar."
+        },
+        "added_to_queue": "Lade till [{title}]({uri}) i kön.",
+        "added_playlist_to_queue": "Lade till {length} låtar i kön."
+    },
+    "playlocal": {
+        "description": "Spelar en lokal ljudfil",
+        "options": {
+            "file": "Ljudfilen du vill spela"
+        },
+        "loading": "Laddar...",
+        "errors": {
+            "empty_query": "Bifoga en ljudfil för att spela den.",
+            "invalid_format": "Du kan bara spela MP3-, WAV-, OGG-, FLAC-, AAC- eller M4A-filer.",
+            "no_results": "Misslyckades med att spela ljudfilen. Den kan vara skadad."
+        },
+        "added_to_queue": "Lade till [{title}]({url}) i kön"
+    },
+    "playnext": {
+        "description": "Lägger till en låt högst upp i kön",
+        "options": {
+            "song": "Låten du vill spela"
+        },
+        "loading": "Laddar...",
+        "errors": {
+            "search_error": "Ett fel uppstod vid sökning.",
+            "no_results": "Inga resultat hittades.",
+            "queue_too_long": "Kön är för lång. Maxlängden är {maxQueueSize} låtar.",
+            "playlist_too_long": "Spellistan är för lång. Maxlängden är {maxPlaylistSize} låtar."
+        },
+        "added_to_play_next": "Lade till [{title}]({uri}) att spelas näst i kön.",
+        "added_playlist_to_play_next": "Lade till {length} låtar att spelas näst i kön."
+    },
+    "queue": {
+        "description": "Visar aktuell låtkö.",
+        "now_playing": "Spelas nu: [{title}]({uri}) - Efterfrågad av: <@{requester}> - Varaktighet: `{duration}`",
+        "live": "LIVE",
+        "track_info": "{index}. [{title}]({uri}) - Efterfrågad av: <@{requester}> - Varaktighet: `{duration}`",
+        "title": "Kö",
+        "page_info": "Sida {index} av {total}",
+        "duration": "Köns varaktighet: `{totalDuration}`"
+    },
+    "remove": {
+        "description": "Tar bort en specifik låt från kön",
+        "options": {
+            "song": "Låtnumret du vill ta bort"
+        },
+        "errors": {
+            "no_songs": "Det finns inga låtar i kön.",
+            "invalid_number": "Vänligen ange ett giltigt låtnummer."
+        },
+        "messages": {
+            "removed": "Tog bort låt nummer {songNumber} från kön."
+        }
+    },
+    "replay": {
+        "description": "Spelar om det aktuella spåret",
+        "errors": {
+            "not_seekable": "Det går inte att spela om det här spåret eftersom det inte går att spola i."
+        },
+        "messages": {
+            "replaying": "Spelar om det aktuella spåret."
+        }
+    },
+    "resume": {
+        "description": "Återupptar låten som är pausad",
+        "errors": {
+            "not_paused": "Spelaren är inte pausad."
+        },
+        "messages": {
+            "resumed": "Återupptog spelaren."
+        }
+    },
+    "search": {
+        "description": "Sök efter en låt",
+        "options": {
+            "song": "Låten du söker efter"
+        },
+        "select": "Välj en låt från listan...",
+        "errors": {
+            "no_results": "Inga resultat hittades.",
+            "no_results_title": "Inga sökresultat hittades!",
+            "no_results_description": "Jag kunde inte hitta några låtar som matchade din sökning. Försök att ändra sökorden eller ange en länk.",
+            "invalid_selection_title": "Ogiltigt val!",
+            "invalid_selection_description": "Det valda alternativet är ogiltigt. Välj ett låtnummer från listan.",
+            "search_error": "Ett fel uppstod vid sökning efter låten.",
+            "vc_connect_fail_title": "Fel vid anslutning till röstkanal",
+            "vc_connect_fail_description": "Jag kunde inte ansluta till din röstkanal. Se till att jag har rätt behörigheter."
+        },
+        "messages": {
+            "results_found": "Hittade **{count}** låtar.",
+            "select_prompt": "Välj ett nummer för att lägga till låten i kön.",
+            "page_info": "Sida {currentPage}/{maxPages}",
+            "added_to_queue": "Låten **[{title}]({uri})** lades till i kön!",
+            "selection_timed_out_title": "Tiden gick ut!",
+            "selection_timed_out_description": "Ingen låt valdes inom den angivna tiden. Sökningen har avbrutits. Försök igen.",
+            "selection_timed_out_short": "Valet tog för lång tid."
+        }
+    },
+    "seek": {
+        "description": "Spolar till en specifik tid i låten",
+        "options": {
+            "duration": "Tiden du vill spola till (ex: 1m 30s)"
+        },
+        "errors": {
+            "invalid_format": "Ogiltigt tidsformat. Exempel: seek 1m, seek 1h 30m",
+            "not_seekable": "Det här spåret går inte att spola i.",
+            "beyond_duration": "Går inte att spola bortom låtens längd {length}."
+        },
+        "messages": {
+            "seeked_to": "Spolade till {duration}"
+        }
+    },
+    "shuffle": {
+        "description": "Blandar kön",
+        "messages": {
+            "shuffled": "Kön blandades."
+        },
+        "errors": {
+            "fairplay": "Fairplay-läge är aktiverat. Du kan inte blanda kön."
+        }
+    },
+    "skip": {
+        "description": "Hoppar över den aktuella låten",
+        "messages": {
+            "skipped": "Hoppade över [{title}]({uri})."
+        }
+    },
+    "skipto": {
+        "description": "Hoppar till en specifik låt i kön",
+        "options": {
+            "number": "Låtnumret du vill hoppa till"
+        },
+        "errors": {
+            "invalid_number": "Vänligen ange ett giltigt nummer."
+        },
+        "messages": {
+            "skipped_to": "Hoppade till låt nummer {number}."
+        }
+    },
+    "move": {
+        "description": "Flytta ett spår i kön",
+        "options": {
+            "from": "Positionen för spåret som ska flyttas",
+            "to": "Positionen spåret ska flyttas till"
+        },
+        "errors": {
+            "no_tracks": "Det finns inga spår i kön.",
+            "invalid_usage": "Ogiltig användning. Vänligen ange från- och till-positioner.",
+            "invalid_numbers": "Vänligen ange giltiga spårpositioner.",
+            "invalid_positions": "Vänligen ange giltiga spårpositioner inom kön.",
+            "same_position": "Från- och till-positionerna är desamma."
+        },
+        "messages": {
+            "moved": "Flyttade **{title}** från position {from} till {to}."
+        }
+    },
+    "stop": {
+        "description": "Stoppar musiken och rensar kön",
+        "messages": {
+            "stopped": "Musiken stoppades och kön rensades."
+        }
+    },
+    "volume": {
+        "description": "Ställer in spelarens volym",
+        "options": {
+            "number": "Volymen du vill ställa in (0-200)"
+        },
+        "messages": {
+            "invalid_number": "Vänligen ange ett giltigt nummer.",
+            "too_low": "Volymen kan inte vara lägre än 0.",
+            "too_high": "Volymen kan inte vara högre än 200. Vill du förstöra din hörsel eller dina högtalare? Hmmm, jag tror inte det är en så bra idé.",
+            "set": "Volymen sattes till {volume}"
+        }
+    },
+    "addsong": {
+        "description": "Lägger till en låt i en sparad spellista",
+        "options": {
+            "playlist": "Spellistan du vill lägga till i",
+            "song": "Låten du vill lägga till"
+        },
+        "messages": {
+            "no_playlist": "Vänligen ange en spellista",
+            "no_song": "Vänligen ange en låt",
+            "playlist_not_found": "Den spellistan finns inte",
+            "no_songs_found": "Inga låtar hittades",
+            "added": "Lade till {count} låtar till spellistan {playlist}"
+        }
+    },
+    "create": {
+        "description": "Skapar en ny spellista.",
+        "options": {
+            "name": "Spellistans namn"
+        },
+        "messages": {
+            "name_too_long": "Spellistans namn kan vara max 50 tecken långt.",
+            "playlist_exists": "En spellista med det namnet finns redan. Vänligen använd ett annat namn.",
+            "playlist_created": "Spellistan **{name}** skapades.",
+            "name_empty": "Du måste ange ett namn på spellistan."
+        }
+    },
+    "delete": {
+        "description": "Tar bort en spellista",
+        "options": {
+            "playlist": "Spellistan du vill ta bort"
+        },
+        "messages": {
+            "playlist_not_found": "Den spellistan finns inte.",
+            "playlist_deleted": "Tog bort spellistan **{playlistName}**."
+        }
+    },
+    "list": {
+        "description": "Listar alla spellistor för en användare",
+        "options": {
+            "user": "Användaren vars spellistor du vill hämta"
+        },
+        "messages": {
+            "no_playlists": "Den här användaren har inga spellistor.",
+            "your": "Dina",
+            "playlists_title": "{username}'s spellistor",
+            "error": "Ett fel uppstod vid hämtning av spellistor.",
+            "invalid_username": "Ogiltigt användarnamn eller användaren hittades inte.",
+            "invalid_userid": "Ogiltigt användar-ID."
+        }
+    },
+    "load": {
+        "description": "Laddar en sparad spellista i kön.",
+        "options": {
+            "playlist": "Spellistan du vill ladda"
+        },
+        "messages": {
+            "playlist_not_exist": "Den spellistan finns inte.",
+            "playlist_empty": "Den spellistan är tom.",
+            "playlist_loaded": "Laddade `{name}` med `{count}` låtar.",
+            "no_lavalink_nodes": "Inga Lavalink-noder är tillgängliga för att ladda spellistan."
+        }
+    },
+    "removesong": {
+        "description": "Tar bort en låt från en spellista",
+        "options": {
+            "playlist": "Spellistan du vill ta bort från",
+            "song": "Låten du vill ta bort"
+        },
+        "messages": {
+            "provide_playlist": "Vänligen ange en spellista.",
+            "provide_song": "Vänligen ange en låt.",
+            "playlist_not_exist": "Den spellistan finns inte.",
+            "song_not_found": "Ingen matchande låt hittades.",
+            "song_removed": "Tog bort {song} från spellistan {playlist}.",
+            "error_occurred": "Ett fel uppstod när låten togs bort."
+        }
+    },
+    "steal": {
+        "description": "Snor en spellista från en annan användare och lägger till den i dina spellistor",
+        "options": {
+            "playlist": "Spellistan du vill sno",
+            "user": "Användaren du vill sno spellistan från"
+        },
+        "messages": {
+            "provide_playlist": "Vänligen ange ett spellistenamn.",
+            "provide_user": "Vänligen nämna en användare.",
+            "playlist_not_exist": "Den spellistan finns inte för den nämnda användaren.",
+            "playlist_exists": "Du har redan en spellista som heter `{playlist}`.",
+            "playlist_stolen": "Snotts spellistan `{playlist}` från {user}.",
+            "error_occurred": "Ett fel uppstod när spellistan snotts."
+        }
+    },
+    "movenode": {
+        "description": "Flytta spelare till en annan Lavalink-nod",
+        "options": {
+            "node": "Nodens ID att flytta spelarna till"
+        },
+        "messages": {
+            "no_player": "Det finns ingen aktiv musikspelare på den här servern.",
+            "no_available_nodes": "Det finns inga tillgängliga noder att flytta till.",
+            "available_nodes_title": "Tillgängliga noder",
+            "current_node": "Nuvarande nod",
+            "available_nodes": "Tillgängliga noder",
+            "usage_hint": "Användning: movenode <nodeId>",
+            "node_not_found": "Nod `{node}` hittades inte.",
+            "node_not_connected": "Nod `{node}` är inte ansluten.",
+            "same_node": "Spelaren är redan på nod `{node}`.",
+            "moving": "Flyttar spelare från `{from}` till `{to}`...",
+            "success_title": "Spelaren flyttades framgångsrikt",
+            "success_description": "Spelaren flyttades från `{from}` till `{to}`.",
+            "error": "Misslyckades med att flytta spelaren: {error}",
+            "moving_all_players": "Flyttar alla spelare till nod `{node}`...",
+            "results_title": "MoveNode-resultat",
+            "moved_players": "**Flyttade spelare på servrar:**\n{list}",
+            "guild_move": "• `{guildId}` ({from} → {to})",
+            "failed_moves": "**Misslyckades med att flytta spelare på servrar:**\n{list}",
+            "guild_move_failed": "• `{guildId}`: {error}",
+            "no_players_moved": "Inga spelare behövde flyttas.",
+            "unknown_error": "Okänt fel",
+            "no_players": "Det finns inga spelare att flytta."
+        }
+    }
+}

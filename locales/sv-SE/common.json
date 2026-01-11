@@ -1,0 +1,37 @@
+{
+    "ui": {
+        "confirm": "Bekräfta",
+        "cancel": "Avbryt",
+        "yes": "Ja",
+        "no": "Nej",
+        "back": "Tillbaka",
+        "next": "Nästa",
+        "previous": "Föregående",
+        "save": "Spara",
+        "close": "Stäng"
+    },
+    "status": {
+        "enabled": "Aktiverad",
+        "disabled": "Inaktiverad",
+        "on": "På",
+        "off": "Av",
+        "loading": "Laddar...",
+        "processing": "Bearbetar...",
+        "success": "Lyckades!",
+        "failed": "Misslyckades!"
+    },
+    "errors": {
+        "generic": "Ett oväntat fel uppstod. Försök igen senare.\n{error}",
+        "timeout": "Tidsgränsen för denna åtgärd har löpt ut.",
+        "no_permissions": "Du har inte de nödvändiga behörigheterna för att utföra denna åtgärd.",
+        "dev_only": "Detta kommando är begränsat till utvecklare.",
+        "db_error": "Ett fel uppstod vid åtkomst till databasen."
+    },
+    "labels": {
+        "author": "Upphovsman",
+        "duration": "Varaktighet",
+        "requested_by": "Efterfrågad av",
+        "volume": "Volym",
+        "page": "Sida {current} av {total}"
+    }
+}

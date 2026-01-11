@@ -1,0 +1,39 @@
+{
+    "errors": {
+        "no_player": "Det finns ingen aktiv spelare på den här servern.",
+        "no_channel": "Du måste vara i en röstkanal för att använda detta kommando.",
+        "queue_empty": "Kön är tom.",
+        "no_previous": "Det finns inga föregående låtar i kön.",
+        "no_song": "Det finns inga låtar i kön.",
+        "already_paused": "Låten är redan pausad.",
+        "user_not_in_voice_channel": "Du är inte ansluten till en röstkanal."
+    },
+    "trackStart": {
+        "now_playing": "Spelas nu",
+        "requested_by": "Efterfrågad av {user}",
+        "duration": "Varaktighet",
+        "author": "Upphovsman",
+        "not_connected_to_voice_channel": "Du är inte ansluten till <#{channel}> för att använda dessa knappar.",
+        "need_dj_role": "Du måste ha DJ-rollen för att använda detta kommando.",
+        "previous_by": "Föregående av {user}",
+        "no_previous_song": "Det finns ingen föregående låt.",
+        "paused_by": "Pausad av {user}",
+        "resumed_by": "Återupptagen av {user}",
+        "skipped_by": "Hoppas över av {user}",
+        "no_more_songs_in_queue": "Inga fler låtar i kön.",
+        "looping_by": "Loop aktiverad av {user}",
+        "looping_queue_by": "Kuloop aktiverad av {user}",
+        "looping_off_by": "Loop inaktiverad av {user}"
+    },
+    "setupStart": {
+        "now_playing": "Spelas nu",
+        "description": "[{title}]({uri}) av {author} • `[{length}]` - Efterfrågad av <@{requester}>",
+        "error_searching": "Ett fel uppstod vid sökning.",
+        "no_results": "Inga resultat hittades.",
+        "nothing_playing": "Ingenting spelas för tillfället",
+        "queue_too_long": "Kön är för lång. Maxlängden är {maxQueueSize} låtar.",
+        "playlist_too_long": "Spellistan är för lång. Maxlängden är {maxPlaylistSize} låtar.",
+        "added_to_queue": "Lade till [{title}]({uri}) i kön.",
+        "added_playlist_to_queue": "Lade till [{length}] låtar från spellistan i kön."
+    }
+}
