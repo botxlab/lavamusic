@@ -38,7 +38,9 @@
 		"error": "Fehler: `{error}`",
 		"no_voice_channel_queue": "Geh in einen Sprachkanal für Musik.",
 		"no_permission_connect_speak": "Darf in <#{channel}> nicht reden/verbinden.",
-		"different_voice_channel_queue": "Geh in <#{channel}>."
+		"different_voice_channel_queue": "Geh in <#{channel}>.",
+		"vote_button": "Vote für mich!",
+		"vote_message": "Warte! Du musst auf top.gg voten, um diesen Befehl zu nutzen. Danke."
 	},
 	"setupButton": {
 		"no_voice_channel_button": "Du musst im Sprachkanal sein.",

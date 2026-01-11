@@ -629,7 +629,11 @@
 			"no_players_moved": "Keine Player mussten verschoben werden.",
 			"unknown_error": "Unbekannter Fehler",
 			"error": "Fehler beim Verschieben: {error}",
-			"results_title": "MoveNode Ergebnisse"
+			"results_title": "MoveNode Ergebnisse",
+			"moving": "Verschiebe Player von `{from}` nach `{to}`...",
+			"success_title": "Player erfolgreich verschoben",
+			"success_description": "Der Player wurde erfolgreich von `{from}` nach `{to}` verschoben.",
+			"no_players": "Es gibt keine Player zum Verschieben."
 		}
 	}
 }

@@ -629,7 +629,11 @@
 			"no_players_moved": "Ningún reproductor necesitaba ser movido.",
 			"unknown_error": "Error desconocido",
 			"error": "Fallo al mover reproductor: {error}",
-			"results_title": "Resultados MoveNode"
+			"results_title": "Resultados MoveNode",
+			"moving": "Moviendo reproductor de `{from}` a `{to}`...",
+			"success_title": "Reproductor movido con éxito",
+			"success_description": "El reproductor ha sido movido de `{from}` a `{to}`.",
+			"no_players": "No hay reproductores para mover."
 		}
 	}
 }
