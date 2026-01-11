@@ -43,36 +43,36 @@ locales/
 | Language           | Code    | Status | Contributors                                                                       |
 | :----------------- | :------ | :----: | :--------------------------------------------------------------------------------- |
 | 🇺🇸 English (US)    | `en-US` |   ✅   | -                                                                                  |
-| 🇧🇬 Bulgarian       | `bg`    |   ❌   | -                                                                                  |
+| 🇧🇬 Bulgarian       | `bg`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇨🇳 Chinese (CN)    | `zh-CN` |   🤖   | [@appujet](https://github.com/Appujet)                                             |
 | 🇹🇼 Chinese (TW)    | `zh-TW` |   ✅   | [@apple050620312](https://github.com/apple050620312)                               |
-| 🇭🇷 Croatian        | `hr`    |   ❌   | -                                                                                  |
-| 🇨🇿 Czech           | `cs`    |   ❌   | -                                                                                  |
-| 🇩🇰 Danish          | `da`    |   ❌   | -                                                                                  |
-| 🇳🇱 Dutch           | `nl`    |   ❌   | -                                                                                  |
-| 🇬🇧 English (GB)    | `en-GB` |   ❌   | -                                                                                  |
-| 🇫🇮 Finnish         | `fi`    |   ❌   | -                                                                                  |
+| 🇭🇷 Croatian        | `hr`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
+| 🇨🇿 Czech           | `cs`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
+| 🇩🇰 Danish          | `da`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
+| 🇳🇱 Dutch           | `nl`    |   ✅   | [@Appujet](https://github.com/Appujet)                                             |
+| 🇬🇧 English (GB)    | `en-GB` |   ✅   | [@Appujet](https://github.com/Appujet)                                             |
+| 🇫🇮 Finnish         | `fi`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇫🇷 French          | `fr`    |   ✅   | [@LucasB25](https://github.com/LucasB25)                                           |
 | 🇩🇪 German          | `de`    |   ✅   | [@LucasB25](https://github.com/LucasB25)                                           |
-| 🇬🇷 Greek           | `el`    |   ❌   | -                                                                                  |
+| 🇬🇷 Greek           | `el`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇮🇳 Hindi           | `hi`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
-| 🇭🇺 Hungarian       | `hu`    |   ❌   | -                                                                                  |
+| 🇭🇺 Hungarian       | `hu`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇮🇩 Indonesian      | `id`    |   ✅   | [@iaMJ](https://github.com/idMJA)                                                  |
 | 🇮🇹 Italian         | `it`    |   ✅   | [@lori28167](https://github.com/lori28167)                                         |
 | 🇯🇵 Japanese        | `ja`    |   ✅   | [@hatry4](https://github.com/hatry4)                                               |
 | 🇰🇷 Korean          | `ko`    |   ✅   | [@hwangsihu](https://github.com/hwangsihu)                                         |
-| 🇱🇹 Lithuanian      | `lt`    |   ❌   | -                                                                                  |
+| 🇱🇹 Lithuanian      | `lt`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇳🇴 Norwegian       | `no`    |   🤖   | [@appujet](https://github.com/Appujet)                                             |
 | 🇵🇱 Polish          | `pl`    |   ✅   | [@InfNibor](https://github.com/infnibor), [@LucasB25](https://github.com/LucasB25) |
 | 🇧🇷 Portuguese (BR) | `pt-BR` |   ✅   | [@AndreAugustoDev](https://github.com/andreaugustodev)                             |
 | 🇵🇹 Portuguese (PT) | `pt-PT` |   ✅   | [@LucasB25](https://github.com/LucasB25)                                           |
-| 🇷🇴 Romanian        | `ro`    |   ❌   | -                                                                                  |
+| 🇷🇴 Romanian        | `ro`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇷🇺 Russian         | `ru`    |   ✅   | [@LucasB25](https://github.com/LucasB25)                                           |
 | 🇪🇸 Spanish (ES)    | `es-ES` |   ✅   | [@LucasB25](https://github.com/LucasB25)                                           |
-| 🇸🇪 Swedish         | `sv-SE` |   ❌   | -                                                                                  |
+| 🇸🇪 Swedish         | `sv-SE` |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇹🇭 Thai            | `th`    |   ✅   | [@fexncns](https://github.com/fexncns)                                             |
 | 🇹🇷 Turkish         | `tr`    |   ✅   | [@IlkayAksoy](https://github.com/IlkayAksoy)                                       |
-| 🇺🇦 Ukrainian       | `uk`    |   ❌   | -                                                                                  |
+| 🇺🇦 Ukrainian       | `uk`    |   🤖   | [@Appujet](https://github.com/Appujet)                                             |
 | 🇻🇳 Vietnamese      | `vi`    |   🤖   | [@nhutlamm](https://github.com/nhutlamm)                                           |
 
 ## 📝 Translation Guidelines
