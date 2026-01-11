@@ -1,27 +1,47 @@
-import { type ClientOptions, GatewayIntentBits, Options } from "discord.js";
+import { type ClientOptions, GatewayIntentBits, Options, Sweepers } from "discord.js";
 import { env } from "./env";
 import Lavamusic from "./structures/Lavamusic";
 
-const { MessageContent, GuildVoiceStates, GuildMessages, Guilds, GuildMessageTyping } =
+const { MessageContent, GuildVoiceStates, GuildMessages, Guilds } =
 	GatewayIntentBits;
 
 export async function launch() {
 	const clientOptions: ClientOptions = {
-		intents: [Guilds, GuildMessages, MessageContent, GuildVoiceStates, GuildMessageTyping],
+		intents: [Guilds, GuildMessages, MessageContent, GuildVoiceStates],
 		allowedMentions: { parse: ["users", "roles"], repliedUser: false },
 		makeCache: Options.cacheWithLimits({
 			...Options.DefaultMakeCacheSettings,
-			ReactionManager: 0,
-			GuildScheduledEventManager: 0,
-			DMMessageManager: 0,
-			StageInstanceManager: 0,
+			MessageManager: 0,
+			ThreadManager: 0,
+			ThreadMemberManager: 0,
+			GuildMemberManager: { maxSize: 10, keepOverLimit: (m) => m.id === m.client.user.id },
+			UserManager: { maxSize: 10, keepOverLimit: (u) => u.id === u.client.user.id },
 			GuildEmojiManager: 0,
 			GuildStickerManager: 0,
-			MessageManager: { maxSize: 100, keepOverLimit: (m) => m.author.id === m.client.user.id },
-			GuildMemberManager: { maxSize: 100, keepOverLimit: (m) => m.user.id === m.client.user.id },
-			UserManager: 100,
+			GuildBanManager: 0,
+			GuildInviteManager: 0,
+			GuildScheduledEventManager: 0,
+			ReactionManager: 0,
 			PresenceManager: 0,
+			StageInstanceManager: 0,
+			AutoModerationRuleManager: 0,
+			DMMessageManager: 0,
 		}),
+		sweepers: {
+			...Options.DefaultSweeperSettings,
+			messages: {
+				interval: 3600,
+				filter: Sweepers.outdatedMessageSweepFilter(1800),
+			},
+			threads: {
+				interval: 3600,
+				filter: Sweepers.archivedThreadSweepFilter(1800),
+			},
+			invites: {
+				interval: 3600,
+				filter: Sweepers.expiredInviteSweepFilter(),
+			},
+		},
 	};
 
 	const client = new Lavamusic(clientOptions);
