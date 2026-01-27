@@ -62,14 +62,14 @@ export default class Move extends Command {
 		let from: number;
 		let to: number;
 
-		if (args.length === 2) {
+		if (args.length === 3 && args[1].toLowerCase() === 'to') {
 			// 'move 2 to 1' - args = ['2', 'to', '1']
 			from = Number(args[0]);
 			to = Number(args[2]);
-		} else if (args.length === 3) {
-			// 'move 2 to 1' as ['move', '2', 'to', '1']
-			from = Number(args[1]);
-			to = Number(args[3]);
+		} else if (args.length === 2) {
+			// 'move 2 1' - args = ['2', '1']
+			from = Number(args[0]);
+			to = Number(args[1]);
 		} else {
 			return await ctx.sendMessage({
 				embeds: [
