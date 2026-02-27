@@ -1,32 +1,29 @@
+<p align="center">
+  <img src="https://pub-19903466d24c44f9a9d94c9a3b2f4932.r2.dev/lavamusic.png" alt="Lavamusic Logo" width="200" height="200">
+</p>
 
-<div align="center">
+<h1 align="center">Lavamusic</h1>
 
-## 🔥 Lavamusic - Ultimate Discord Music Bot
-
-### 🎵 Your All-in-One Discord Music Companion
-
-**High quality • Powerful • Customizable • Open Source**
-
-[🚀 Invite Lavamusic](https://mintone.tech/invite)
-
-[![Discord](https://img.shields.io/badge/Discord-Invite-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://mintone.tech/invite)
-[![GitHub Stars](https://img.shields.io/github/stars/botxlab/lavamusic?style=social)](https://github.com/bongodevs/lavamusic)
-[![GitHub Forks](https://img.shields.io/github/forks/botxlab/lavamusic?style=social)](https://github.com/bongodevs/lavamusic)
-
-</div>
-
----
-
-## 🎧 About Lavamusic
-
-**Lavamusic** is a powerful, modern Discord music bot built for performance, stability, and flexibility.  
-Designed by the **[bongodevs](https://github.com/bongodevs)** team, it delivers smooth audio playback, advanced filters, playlist systems, and full server customization — perfect for communities of any size.
-
-Whether you're running a gaming server, study group, or chill community, Lavamusic brings nonstop vibes to your voice channels.
+<p align="center">
+  <a href="https://github.com/bongodevs/lavamusic/releases"><img src="https://img.shields.io/github/v/release/bongodevs/lavamusic?style=for-the-badge&color=blue&logo=github" alt="Release"></a>
+  <a href="https://github.com/bongodevs/lavamusic/actions"><img src="https://img.shields.io/github/actions/workflow/status/bongodevs/lavamusic/release.yml?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status"></a>
+  <a href="https://github.com/bongodevs/lavamusic/blob/HEAD/LICENSE"><img src="https://img.shields.io/github/license/bongodevs/lavamusic?style=for-the-badge&color=blue" alt="License"></a>
+  <br>
+  <img src="https://img.shields.io/badge/Language-TypeScript-blue?style=for-the-badge&logo=typescript" alt="Language">
+  <a href="https://discord.gg/jgGEbxFbyM"><img src="https://img.shields.io/badge/Discord-blue?style=for-the-badge&logo=Discord" alt="Discord"></a>
+  <a href="https://github.com/bongodevs/lavamusic/stargazers"><img src="https://img.shields.io/github/stars/bongodevs/lavamusic?style=for-the-badge&color=yellow&logo=github" alt="Stars"></a>
+</p>
 
 ---
 
-## ✨ Features
+<p align="center">
+  <b>Lavamusic</b> is a high-performance, standalone Discord audio sending node written in <b>TypeScript</b>.<br>
+  Designed for efficiency, reliability, and modern features.
+</p>
+
+---
+
+## Key Features
 
 🎵 **High-Quality Audio**  
 Powered by Lavalink for smooth, lag-free, crystal-clear playback.
@@ -75,7 +72,7 @@ One-command deployment with Docker support.
 
 ---
 
-## 📘 Documentation
+## Documentation
 
 - 🚀 **[Installation Guide](https://bongodevs.github.io/lavamusic/installation.html)**  
 - 🐳 **[Docker Setup](https://bongodevs.github.io/lavamusic/docker.html)**  
@@ -86,56 +83,16 @@ One-command deployment with Docker support.
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions from everyone ❤️  
-
-- Read **[CONTRIBUTING.md](CONTRIBUTING.md)**  
-- Submit pull requests  
-- Report bugs  
-- Suggest features  
-
-Every contribution matters.
+```bash
+git clone https://github.com/bongodevs/lavamusic.git
+cd lavamusic
+pnpm install
+pnpm build
+```
 
 ---
 
-## 🆘 Support & Community
+## 📄 License
 
-- 🔗 **[Invite the Bot](https://mintone.tech/invite)**  
-- 🐛 **[Report Issues](https://github.com/bongodevs/lavamusic/issues)**  
-- 💬 **[Join Our Discord](https://discord.gg/jgGEbxFbyM)**  
-- ⚡ **[Common Quick Fixes](https://github.com/bongodevs/lavamusic/blob/master/CONTRIBUTING.md#-common-quick-fixes)**  
-
----
-
-## ⭐ Support the Project
-
-If you enjoy using **Lavamusic**, please consider giving the repository a ⭐  
-It helps the project grow and keeps us motivated!
-
----
-
-## 👨‍💻 Team
-
-Built with ❤️ by **[BotxLab](https://github.com/bongodevs)**  
-A passionate team focused on creating powerful Discord tools for communities worldwide.
-
-Special thanks to all contributors and supporters 💙
-
----
-
-## 📜 License
-
-This project is licensed under the **GPL-3.0 License**.
-
-You are free to:
-- Fork
-- Modify
-- Self-host
-- Contribute back
-
-See the full license here: **[LICENSE](LICENSE)**
-
----
-
-🎶 *Let the music play with Lavamusic.*
+Lavamusic is published under the **Apache License 2.0**.  
+See the [LICENSE](https://github.com/bongodevs/lavamusic/blob/HEAD/LICENSE) file for more details.

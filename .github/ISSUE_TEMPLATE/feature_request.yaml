@@ -1,64 +1,44 @@
-name: "Feature Request"
-description: "Propose a new idea or improvement for this repository"
-title: "[Feature Request]: "
-labels: ["enhancement", "feature-request"]
-assignees:
-  - appujet
+name: Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees: []
+
 body:
   - type: markdown
     attributes:
       value: |
-        ## Feature Request
+        Have an idea to improve Lavamusic? Awesome!
+        Tell us about it below.
 
-        Please provide a detailed description of the feature you're suggesting. If applicable, describe any related problem and the potential benefits of implementing this feature.
-  - type: input
-    id: title
-    attributes:
-      label: "Feature Title"
-      description: "Provide a brief title for your feature request"
-      placeholder: "Enter a concise title"
-    validations:
-      required: true
   - type: textarea
-    id: problem_description
+    id: problem
     attributes:
-      label: "Is your feature request related to a problem?"
-      description: "Describe the problem you're trying to solve, if applicable"
-      placeholder: "Describe the problem"
+      label: Problem Statement
+      description: What problem does this solve?
     validations:
-      required: false
+      required: true
+
   - type: textarea
-    id: suggestion_description
+    id: solution
     attributes:
-      label: "Feature Description"
-      description: "Provide a detailed description of your idea. Include examples, screenshots, or mockups if possible."
-      placeholder: "Explain your idea in detail"
+      label: Proposed Solution
+      description: How should this feature work?
     validations:
       required: true
-  - type: dropdown
-    id: priority
-    attributes:
-      label: "Priority Level"
-      description: "Indicate how important this feature is"
-      options:
-        - "Low"
-        - "Medium"
-        - "High"
-    validations:
-      required: true
+
   - type: textarea
     id: alternatives
     attributes:
-      label: "Alternatives Considered"
-      description: "Have you considered any alternative solutions? Please describe them here."
-      placeholder: "Mention any alternative approaches"
+      label: Alternatives Considered
+      description: Any alternative approaches?
     validations:
       required: false
+
   - type: textarea
-    id: additional_context
+    id: additional
     attributes:
-      label: "Additional Context"
-      description: "Add any other context or screenshots that could help explain your feature request."
-      placeholder: "Additional context, links, or references"
+      label: Additional Context
+      description: Add screenshots, examples, links, etc.
     validations:
       required: false

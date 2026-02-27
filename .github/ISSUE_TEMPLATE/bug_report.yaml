@@ -1,77 +1,61 @@
 name: Bug Report
-description: Report incorrect or unexpected behavior.
+description: Report a bug or unexpected behavior in Lavamusic
 title: "[Bug]: "
 labels: ["bug"]
-assignees:
-  - appujet
+assignees: []
+
 body:
   - type: markdown
     attributes:
-      value: "## 🐞 Bug Report\n\nPlease fill out the information below to help us resolve the issue as quickly as possible."
-      
+      value: |
+        Thanks for taking the time to report a bug!
+        Please fill out the details below so we can reproduce and fix it quickly.
+
+  - type: input
+    id: version
+    attributes:
+      label: Lavamusic Version
+      placeholder: e.g. v0.1.0 or commit hash
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
-      label: "Bug description"
-      description: "Provide a clear and concise description of the bug."
-      placeholder: "Describe the issue..."
+      label: What happened?
+      description: Describe the bug clearly.
     validations:
       required: true
 
   - type: textarea
-    id: reproduce-step
+    id: steps
     attributes:
-      label: "Steps to reproduce"
-      description: "Detail the steps to reproduce the bug. Include any specific setup information that might be important."
-      placeholder: "Step 1: ...\nStep 2: ...\nStep 3: ..."
-    validations:
-      required: true
-
-  - type: input
-    id: os
-    attributes:
-      label: "Operating System"
-      description: "Which operating system and version are you using?"
-      placeholder: "e.g., Windows 11 24H2, macOS 15.1, Ubuntu 20.04"
-    validations:
-      required: true
-
-  - type: input
-    id: nodejs-version
-    attributes:
-      label: "Node.js version"
-      description: "Specify the version of Node.js that you are using."
-      placeholder: "e.g., 14.17.0"
-    validations:
-      required: true
-  - type: input
-    id: java-version
-    attributes:
-      label: "java version"
-      description: "Specify the version of Java that you are using. If you are not self-hosting a Lavalink server, you can leave this blank."
-      placeholder: "e.g., 17"
+      label: Steps to Reproduce
+      description: How can we reproduce this?
+      placeholder: |
+        1. Start server with ...
+        2. Send request ...
+        3. Observe error ...
     validations:
       required: false
 
-  - type: input
-    id: app-version
+  - type: textarea
+    id: expected
     attributes:
-      label: "Application/Library version"
-      description: "Specify the version of the application or library where the bug occurred."
-      placeholder: "e.g., v1.2.3"
+      label: Expected Behavior
+      description: What should have happened instead?
     validations:
-      required: true
+      required: false
 
   - type: textarea
-    id: error-logs
+    id: logs
     attributes:
-      label: "Error logs or screenshots"
-      description: "Include relevant error logs or screenshots that might help in diagnosing the issue."
-      placeholder: "<!-- Paste your logs here -->"
-      
-  - type: textarea
-    id: additional-info
+      label: Logs / Error Output
+      description: Paste relevant logs here.
+      render: shell
+
+  - type: input
+    id: environment
     attributes:
-      label: "Additional context"
-      description: "Provide any other context or information that might be helpful."
-      placeholder: "Any additional details..."
+      label: Environment
+      placeholder: Docker / Linux / Windows / macOS / Arch etc.
