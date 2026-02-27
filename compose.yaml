@@ -57,7 +57,7 @@ services:
   # --------------------------------
   lavamusic:
     container_name: lavamusic
-    image: ghcr.io/botxlab/lavamusic:main
+    image: ghcr.io/bongodevs/lavamusic:main
     restart: on-failure
     # Load environment variables from the local .env file
     env_file:

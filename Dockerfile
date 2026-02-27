@@ -50,5 +50,5 @@ LABEL \
   maintainer="appujet <sdipedit@gmail.com>" \
   org.opencontainers.image.title="LavaMusic" \
   org.opencontainers.image.description="LavaMusic - Advanced Music Bot" \
-  org.opencontainers.image.source="https://github.com/botxlab/lavamusic" \
+  org.opencontainers.image.source="https://github.com/bongodevs/lavamusic" \
   org.opencontainers.image.licenses="MIT"

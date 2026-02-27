@@ -44,7 +44,7 @@ features:
 
 Getting started with LavaMusic is easier than ever. Follow these simple steps to bring music to your server.
 
-1. **Clone the Repo**: `git clone https://github.com/botxlab/lavamusic.git`
+1. **Clone the Repo**: `git clone https://github.com/bongodevs/lavamusic.git`
 2. **Configure .env**: Fill in your Bot Token and Client ID.
 3. **Run with Bun**: `bun run start` (Make sure you have [Bun](https://bun.sh) installed!)
 
