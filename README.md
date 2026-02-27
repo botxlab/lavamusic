@@ -1,5 +1,6 @@
 
 <div align="center">
+
 ## 🔥 Lavamusic - Ultimate Discord Music Bot
 
 ### 🎵 Your All-in-One Discord Music Companion
