@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import {
 	ActionRowBuilder,
 	ButtonBuilder,

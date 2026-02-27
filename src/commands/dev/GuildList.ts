@@ -40,7 +40,6 @@ export default class GuildList extends Command {
 				);
 				allGuilds = results.flat();
 			} catch {
-				// Fallback to local cache if cross-shard request fails
 				allGuilds = client.guilds.cache.map((g) => ({
 					name: g.name,
 					id: g.id,

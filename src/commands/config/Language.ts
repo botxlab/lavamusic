@@ -12,10 +12,8 @@ import {
 	ViewChannel,
 } from "../../utils/Permissions";
 
-/** Persistent cache for Intl.DisplayNames instances */
 const displayNamesCache = new Map<string, Intl.DisplayNames>();
 
-/** Gets or creates an Intl.DisplayNames instance for a specific locale. */
 function getDisplayNames(locale: string): Intl.DisplayNames {
 	let instance = displayNamesCache.get(locale);
 	if (!instance) {
@@ -25,13 +23,6 @@ function getDisplayNames(locale: string): Intl.DisplayNames {
 	return instance;
 }
 
-/**
- * Resolves localized components of a language.
- *
- * Returns the flag, the plain localized name, and a combined "full" version.
- *
- * @example full: "🇺🇸 English"
- */
 function getLocalizedName(langCode: string, targetLocale: string) {
 	const flag = getEmojiFlag(langCode);
 	let name: string;
@@ -107,7 +98,6 @@ export default class LanguageCommand extends Command {
 				? (ctx.options.get("language")?.value as string)
 				: args[0];
 
-			/** Resolve key names (e.g. "EnglishUS") to codes (e.g. "en-US") */
 			let langCode: string = targetInput;
 			if (targetInput in Locale) langCode = Locale[targetInput as keyof typeof Locale];
 
@@ -190,13 +180,10 @@ export default class LanguageCommand extends Command {
 			};
 		});
 
-		/** Use language-sensitive sorting */
 		choices.sort((a, b) => a.sortKey.localeCompare(b.sortKey, userLocale));
 
-		// If there's no input, return the first 25 sorted choices
 		if (!input) return void (await interaction.respond(choices.slice(0, 25)).catch(() => null));
 
-		// If user is typing, filter and return results
 		const filtered = choices
 			.filter((choice) => choice.name.toLowerCase().includes(input))
 			.slice(0, 25);

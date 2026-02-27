@@ -58,7 +58,6 @@ export default class Lyrics extends Command {
 	}
 
 	public async run(client: Lavamusic, ctx: Context): Promise<any> {
-		// Get the song query from options or arguments
 		let songQuery = "";
 		if (ctx.options && typeof ctx.options.get === "function") {
 			let songOpt = null;
@@ -77,7 +76,6 @@ export default class Lyrics extends Command {
 
 		const player = client.manager.getPlayer(ctx.guild!.id);
 
-		// If there is no player and no song title is given, lyrics cannot be fetched
 		if (!songQuery && !player) {
 			const noMusicContainer = new ContainerBuilder()
 				.setAccentColor(client.color.red)
@@ -89,7 +87,7 @@ export default class Lyrics extends Command {
 				flags: MessageFlags.IsComponentsV2,
 			});
 		}
-		// If songQuery is given, fetch lyrics for the specified song
+
 		let trackTitle = "";
 		let artistName = "";
 		let trackUrl = "";
@@ -109,7 +107,6 @@ export default class Lyrics extends Command {
 			trackUrl = result.trackUrl;
 			artworkUrl = result.artworkUrl;
 		} else if (player?.queue.current) {
-			// If no songquery is given, fetch lyrics for the currently playing song
 			lyricsResult = await player.getCurrentLyrics(false);
 			const track = player.queue.current;
 			trackTitle =
@@ -134,7 +131,6 @@ export default class Lyrics extends Command {
 		});
 
 		try {
-			// Handle lyricsResult as an object with lines (Musixmatch, Spotify, etc.)
 			let lyricsText: string | null = null;
 			if (
 				lyricsResult &&
@@ -225,7 +221,6 @@ export default class Lyrics extends Command {
 					);
 				};
 
-				// Add subscribe/unsubscribe buttons to lyrics
 				const liveLyricsRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
 					new ButtonBuilder()
 						.setCustomId("lyrics_subscribe")
@@ -351,7 +346,7 @@ export default class Lyrics extends Command {
 							});
 							break;
 						}
-						// If subscription is active, do not show navigation buttons
+
 						if (subscriptionActive) {
 							await interaction.update({
 								components: [createLyricsContainer(currentPage), liveLyricsRow],
@@ -369,10 +364,10 @@ export default class Lyrics extends Command {
 						collectorActive = false;
 					}
 				}
-				// After collecting is finished
+
 				if (ctx.guild?.members.me?.permissionsIn(ctx.channelId).has("SendMessages")) {
 					const finalContainer = createLyricsContainer(currentPage, true);
-					// Deactivate subscription buttons after the song ends
+
 					const disabledLiveLyricsRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
 						new ButtonBuilder()
 							.setCustomId("lyrics_subscribe")
@@ -430,7 +425,7 @@ export default class Lyrics extends Command {
 		client: Lavamusic;
 		ctx: Context;
 		songQuery: string;
-		player?: any; // Use proper player type from lavalink-client
+		player?: any;
 	}) {
 		let trackTitle = "";
 		let artistName = "";

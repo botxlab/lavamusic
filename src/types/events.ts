@@ -1,6 +1,3 @@
-/**
- * Defines mapping between event types and emitter targets
- */
 export const LavamusicEventType = {
 	Client: "client",
 	Node: "node",

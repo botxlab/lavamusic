@@ -32,7 +32,7 @@ export default class Pitch extends Command {
 				{
 					name: "pitch",
 					description: I18N.commands.pitch.options.pitch,
-					// 10 = ApplicationCommandOptionType.Number
+
 					type: 10,
 					required: true,
 				},

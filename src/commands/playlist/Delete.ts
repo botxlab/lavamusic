@@ -56,7 +56,6 @@ export default class DeletePlaylist extends Command {
 			});
 		}
 
-		// First, delete all songs from the playlist
 		await client.db.deleteSongsFromPlaylist(ctx.author?.id ?? "", playlistName);
 
 		await client.db.deletePlaylist(ctx.author?.id ?? "", playlistName);

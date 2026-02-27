@@ -7,7 +7,6 @@ import type dev from "../../locales/en-US/dev.json";
 import type events from "../../locales/en-US/events.json";
 import type player from "../../locales/en-US/player.json";
 
-/** Define i18n structure */
 export interface I18nResourceSchema {
 	commands: typeof commands;
 	common: typeof common;

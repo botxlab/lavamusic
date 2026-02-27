@@ -28,18 +28,6 @@ export default class SetupSystem extends Event {
 		const clientUser = this.client.user;
 		const clientMember = message.guild?.members.cache.get(clientUser!.id);
 
-		/*  if (voiceChannel && clientUser && !voiceChannel?.permissionsFor(clientUser!).has(PermissionsBitField.Flags.Connect | PermissionsBitField.Flags.Speak)) {
-            await oops(
-                channel,
-                t(I18N.events.message.no_permission_connect_speak, {
-                    lng: locale,
-                    channel: voiceChannel.id,
-                }),
-            );
-            await message.delete().catch(() => {});
-            return;
-        } */
-
 		if (clientMember?.voice.channel && clientMember.voice.channelId !== voiceChannel.id) {
 			await oops(
 				channel,

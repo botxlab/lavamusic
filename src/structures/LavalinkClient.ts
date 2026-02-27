@@ -36,13 +36,7 @@ export default class LavalinkClient extends LavalinkManager {
 		});
 		this.client = client;
 	}
-	/**
-	 * Searches for a song and returns the tracks.
-	 * @param query The query to search for.
-	 * @param user The user who requested the search.
-	 * @param source The source to search in. Defaults to youtube.
-	 * @returns An array of tracks that match the query.
-	 */
+
 	public async search(
 		query: string | { query: string; source?: SearchPlatform },
 		user: unknown,

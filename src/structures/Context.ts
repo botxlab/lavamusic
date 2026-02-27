@@ -97,11 +97,6 @@ export default class Context {
 		return this.msg;
 	}
 
-	/**
-	 * Translates a key using the context's guild locale.
-	 * @param key - Proxy object or string key
-	 * @param params - Translation variables
-	 */
 	public locale(key: any, params: Record<string, any> = {}): string {
 		const defaultLanguage = env.DEFAULT_LANGUAGE || Locale.EnglishUS;
 		const lng = this.guildLocale || defaultLanguage;

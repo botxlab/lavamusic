@@ -32,7 +32,7 @@ export default class Rate extends Command {
 				{
 					name: "rate",
 					description: I18N.commands.rate.options.rate,
-					// 10 = ApplicationCommandOptionType.Number
+
 					type: 10,
 					required: true,
 				},

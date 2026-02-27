@@ -31,7 +31,7 @@ export default class Ready extends Event {
 				autoPoster.on("posted", (_stats) => {
 					logger.info("Successfully posted stats to Top.gg!");
 				});
-			}, 86400000); // 24 hours in milliseconds
+			}, 86400000);
 		} else {
 			logger.warn("Top.gg token not found. Skipping auto poster.");
 		}

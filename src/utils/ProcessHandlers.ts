@@ -1,9 +1,6 @@
 import type { Lavamusic } from "../structures/index";
 import logger from "../structures/Logger";
 
-/**
- * AntiCrash handler to prevent the bot from crashing on unhandled errors.
- */
 export function setupAntiCrash(client: Lavamusic): void {
 	process.on("unhandledRejection", (reason, promise) => {
 		logger.error("Unhandled Rejection at:", promise, "reason:", reason);

@@ -13,14 +13,6 @@ import logger from "../structures/Logger";
 import type { Requester } from "../types";
 import { getButtons } from "./Buttons";
 
-/**
- * A function that will generate an embed based on the player's current track.
- * @param embed The embed that will be modified.
- * @param player The player to get the current track from.
- * @param client The client to get the config from.
- * @param locale The locale to translate the strings.
- * @returns The modified embed.
- */
 function neb(embed: EmbedBuilder, player: Player, client: Lavamusic, locale: string): EmbedBuilder {
 	if (!player?.queue.current?.info) return embed;
 	const iconUrl =
@@ -46,15 +38,6 @@ function neb(embed: EmbedBuilder, player: Player, client: Lavamusic, locale: str
 		.setColor(client.color.main);
 }
 
-/**
- * A function that will generate a setup message or edit an existing one
- * with the current song playing.
- * @param client The client to get the config from.
- * @param query The query to search for.
- * @param player The player to get the current track from.
- * @param message The message to edit or send the setup message.
- * @returns A promise that resolves when the function is done.
- */
 async function setupStart(
 	client: Lavamusic,
 	query: string,
@@ -144,16 +127,6 @@ async function setupStart(
 	}
 }
 
-/**
- * A function that will generate an embed based on the player's current track.
- * @param msgId The message ID of the setup message.
- * @param channel The channel to send the message in.
- * @param player The player to get the current track from.
- * @param track The track to generate the embed for.
- * @param client The client to get the config from.
- * @param locale The locale to translate the strings.
- * @returns A promise that resolves when the function is done.
- */
 async function trackStart(
 	msgId: any,
 	channel: TextChannel,

@@ -6,8 +6,8 @@ export default {
 		yellow: 0xffff00,
 		main: 0x2f3136,
 	},
+	// You can add custom emoji with ID format (e.g., <:emojiName:123456789012345678>)
 	emoji: {
-		// You can add custom emoji with ID format (e.g., <:emojiName:123456789012345678>)
 		pause: "⏸️",
 		resume: "▶️",
 		stop: "⏹️",

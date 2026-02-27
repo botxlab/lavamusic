@@ -6,9 +6,6 @@ import * as pgSchema from "./schemas";
 import * as sqliteSchema from "./schemas.sqlite";
 import { DatabaseType, type IDatabaseProvider } from "./types";
 
-/**
- * Detects the database type from the connection URL
- */
 export function detectDatabaseType(url?: string): DatabaseType {
 	if (!url) return DatabaseType.PGLite;
 
@@ -26,22 +23,16 @@ export function detectDatabaseType(url?: string): DatabaseType {
 	}
 
 	if (url.startsWith("file:")) {
-		// If it has query parameters (e.g., ?mode=ro), it is a valid SQLite URI
 		if (url.includes("?")) return DatabaseType.SQLite;
 
-		// If it has a file extension, it is likely a SQLite file
 		if (/\.(db|sqlite3?)$/i.test(url)) return DatabaseType.SQLite;
 
-		// If it starts with 'file:' but has no extension or query, assume it's a PGLite directory
 		return DatabaseType.PGLite;
 	}
 
 	return DatabaseType.PGLite;
 }
 
-/**
- * Creates and returns a database provider based on the DATABASE_URL
- */
 export async function createDatabaseProvider(): Promise<IDatabaseProvider> {
 	const dbType = detectDatabaseType(env.DATABASE_URL);
 
@@ -63,10 +54,8 @@ export async function createDatabaseProvider(): Promise<IDatabaseProvider> {
 
 			let client: any;
 
-			// PGLite bundle workaround
 			if (process.env.NODE_ENV === "production") {
 				try {
-					// Dynamic import to not break dev if assets don't exist
 					const { createPGlite } = await import("./pglite-wrapper");
 					client = await createPGlite(dataDir);
 					logger.info("[DB] Using bundled PGlite");
@@ -107,14 +96,8 @@ export async function createDatabaseProvider(): Promise<IDatabaseProvider> {
 	}
 }
 
-/**
- * Singleton instance holder
- */
 let _provider: IDatabaseProvider | null = null;
 
-/**
- * Gets the database provider instance (creates it if not exists)
- */
 export async function getDatabase(): Promise<IDatabaseProvider> {
 	if (!_provider) {
 		_provider = await createDatabaseProvider();
@@ -122,9 +105,6 @@ export async function getDatabase(): Promise<IDatabaseProvider> {
 	return _provider;
 }
 
-/**
- * Resets the database provider (useful for testing)
- */
 export function resetDatabase(): void {
 	_provider = null;
 }

@@ -95,7 +95,6 @@ export default class Deploy extends Command {
 
 			await interaction.deferUpdate();
 
-			// customId format is "action-scope" (e.g., "undeploy-guild")
 			const [action, scope] = interaction.customId.split("-") as [ActionType, ScopeType];
 			const isClear = action === "undeploy";
 			const guildId = scope === "guild" ? interaction.guildId! : undefined;

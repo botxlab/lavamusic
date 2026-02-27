@@ -47,7 +47,6 @@ export default class CreateInvite extends Command {
 			});
 		}
 
-		// Search for a channel where the bot has invite permissions
 		const textChannel = guild.channels.cache.find(
 			(channel) =>
 				channel.type === ChannelType.GuildText &&

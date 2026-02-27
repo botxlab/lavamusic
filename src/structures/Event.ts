@@ -3,7 +3,6 @@ import type { LavalinkManagerEvents, NodeManagerEvents } from "lavalink-client";
 import type { LavamusicEventType } from "../types/events";
 import type Lavamusic from "./Lavamusic";
 
-// custom client events setupSystem and setupButtons
 interface CustomClientEvents {
 	setupSystem: (message: Message) => void;
 	setupButtons: (interaction: ButtonInteraction) => void;

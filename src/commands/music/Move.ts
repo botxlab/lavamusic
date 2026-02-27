@@ -63,11 +63,9 @@ export default class Move extends Command {
 		let to: number;
 
 		if (args.length === 3 && args[1].toLowerCase() === "to") {
-			// 'move 2 to 1' - args = ['2', 'to', '1']
 			from = Number(args[0]);
 			to = Number(args[2]);
 		} else if (args.length === 2) {
-			// 'move 2 1' - args = ['2', '1']
 			from = Number(args[0]);
 			to = Number(args[1]);
 		} else {
@@ -90,7 +88,6 @@ export default class Move extends Command {
 			});
 		}
 
-		// Adjust to 0-based indexing
 		const fromIndex = from - 1;
 		const toIndex = to - 1;
 
@@ -100,7 +97,6 @@ export default class Move extends Command {
 			toIndex < 0 ||
 			toIndex >= player.queue.tracks.length + 1
 		) {
-			// Allow toIndex up to length for inserting at end
 			return await ctx.sendMessage({
 				embeds: [
 					embed
@@ -120,7 +116,6 @@ export default class Move extends Command {
 			});
 		}
 
-		// Move the track
 		const track = player.queue.tracks.splice(fromIndex, 1)[0];
 		player.queue.tracks.splice(toIndex, 0, track);
 

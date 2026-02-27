@@ -2,13 +2,6 @@ import { ChannelType } from "discord.js";
 import type { Lavamusic } from "../structures/index";
 import { type EmbedLogLevel, LOG_COLORS } from "../types/log";
 
-/**
- * Sends a log message to the configured log channel.
- *
- * @param client - The bot client instance.
- * @param message - The message content to log.
- * @param level - The severity level of the log.
- */
 export async function sendLog(client: Lavamusic, message: string, level: EmbedLogLevel) {
 	const logChannelId = client?.env?.LOG_CHANNEL_ID;
 
@@ -16,7 +9,6 @@ export async function sendLog(client: Lavamusic, message: string, level: EmbedLo
 
 	const channel = client.channels.cache.get(logChannelId);
 
-	// Ensure channel exists and is a text channel
 	if (!channel || channel.type !== ChannelType.GuildText) return;
 
 	const color = LOG_COLORS[level] || LOG_COLORS.INFO;

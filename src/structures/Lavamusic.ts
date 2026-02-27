@@ -25,37 +25,29 @@ import LavalinkClient from "./LavalinkClient";
 import logger from "./Logger";
 
 export default class Lavamusic extends Client {
-	// Collections for internal state management
 	public commands: Collection<string, Command> = new Collection();
 	public aliases: Collection<string, string> = new Collection();
 	public cooldown: Collection<string, any> = new Collection();
 	public components: Collection<string, Component> = new Collection();
 
-	// Database and config
 	public db = new ServerData();
 	public config = config;
 	public readonly emoji = config.emoji;
 	public readonly color = config.color;
 
-	// Utilities and Environment
 	public utils = Utils;
 	public env: typeof env = env;
 
-	// Services
 	public topGG!: Api;
 	public manager!: LavalinkClient;
 	public rest = new REST({ version: "10" }).setToken(env.TOKEN ?? "");
 
-	// Private members
 	private body: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
 
 	public embed(): EmbedBuilder {
 		return new EmbedBuilder();
 	}
 
-	/**
-	 * Initializes the bot, loads resources and login
-	 */
 	public async start(token: string): Promise<void> {
 		await initI18n();
 
@@ -80,30 +72,15 @@ export default class Lavamusic extends Client {
 		}
 	}
 
-
-
-	/**
-	 * Loads commands from registry.
-	 */
 	public async loadCommands(): Promise<void> {
-		// Reset collections to allow reloads (if ever needed in dev)
 		this.commands.clear();
 		this.aliases.clear();
 		this.body = [];
 
 		for (const CommandClass of CommandList) {
 			try {
-				/**
-				 * We assume the class exports as default or named export in the registry.  \
-				 * Registry generator handles import, so here we have the Class constructor directly.  \
-				 * Pass the class name as 'file' identifier for debugging purposes.
-				 */
 				const command = new (CommandClass as any)(this, CommandClass.name);
 
-				/**
-				 * Ensure category is set
-				 * It should be set in the Command constructor via super options
-				 */
 				if (!command.category) command.category = "general";
 
 				this.commands.set(command.name, command);
@@ -121,9 +98,6 @@ export default class Lavamusic extends Client {
 		}
 	}
 
-	/**
-	 * Prepares data for a slash command, handling localizations and options
-	 */
 	private prepareCommandData(command: Command): RESTPostAPIChatInputApplicationCommandsJSONBody {
 		const baseDescription = t(command.description.content, { lng: Locale.EnglishUS });
 
@@ -147,9 +121,6 @@ export default class Lavamusic extends Client {
 		return data;
 	}
 
-	/**
-	 * Processes command options to apply translations
-	 */
 	private processCommandOptions(option: any): APIApplicationCommandOption {
 		const localizedOption: APIApplicationCommandOption = {
 			...option,
@@ -162,12 +133,6 @@ export default class Lavamusic extends Client {
 		return localizedOption;
 	}
 
-	/**
-	 * Synchronizes slash commands with the Discord API.
-	 *
-	 * @param guildId - If provided, syncs to a specific guild. Otherwise, syncs globally.
-	 * @param clear - If true, removes all commands (undeploy). Defaults to false.
-	 */
 	public async syncCommands(guildId?: string, clear = false): Promise<void> {
 		const userId = this.user?.id;
 		if (!userId) {
@@ -177,10 +142,8 @@ export default class Lavamusic extends Client {
 			return;
 		}
 
-		// Determine target body: empty array for undeploy, current body for deploy
 		let commandsBody = clear ? [] : this.body;
 
-		// If deploying and body is empty, try loading once
 		if (!clear && commandsBody.length === 0) {
 			logger.warn("Command body is empty. Attempting to reload commands before deployment...");
 			this.loadCommands();
@@ -203,14 +166,11 @@ export default class Lavamusic extends Client {
 		}
 	}
 
-	/**
-	 * Loads events from registry
-	 */
 	private async loadEvents(): Promise<void> {
 		for (const EventClass of EventList) {
 			try {
 				const event = new (EventClass as any)(this, EventClass.name);
-				// Register event listeners based on category
+
 				switch (event.type) {
 					case LavamusicEventType.Player:
 						this.manager.on(event.name as any, (...args: any[]) => event.run(...args));
@@ -233,9 +193,6 @@ export default class Lavamusic extends Client {
 		}
 	}
 
-	/**
-	 * Loads components from registry
-	 */
 	private loadComponents(): void {
 		for (const ComponentClass of ComponentList) {
 			try {
@@ -251,14 +208,3 @@ export default class Lavamusic extends Client {
 		}
 	}
 }
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

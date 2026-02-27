@@ -1,8 +1,5 @@
 import { PermissionFlagsBits } from "discord.js";
 
-/**
- * Permissions for bot functionality.
- */
 export const {
 	ViewChannel,
 	EmbedLinks,

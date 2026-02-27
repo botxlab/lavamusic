@@ -2,9 +2,6 @@ import { ShardEvents, ShardingManager } from "discord.js";
 import { env } from "./env";
 import logger from "./structures/Logger";
 
-/**
- * Starts the Sharding Manager
- */
 export async function start() {
 	const shardPath = process.argv[1];
 
@@ -33,7 +30,6 @@ export async function start() {
 	});
 
 	try {
-		// Disable timeout to allow heavy DB initialization (prevent ShardingReadyDied)
 		await manager.spawn({ timeout: -1 });
 		const totalShards = manager.shards.size;
 		logger.start(
