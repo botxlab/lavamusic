@@ -20,7 +20,7 @@ import { env } from "../env";
 import { LavamusicEventType } from "../types/events";
 import * as Utils from "../utils/Utils";
 import { initI18n, resolveLocalizations, t } from "./I18n";
-import { Component, type Command } from "./index";
+import type { Component, Command } from "./index";
 import LavalinkClient from "./LavalinkClient";
 import logger from "./Logger";
 

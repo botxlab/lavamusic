@@ -43,7 +43,7 @@
         "options": {
             "command": "Den kommando du ønsker info om"
         },
-        "content": "Hej med dig! Jeg er `{bot}`, en musik-bot lavet med [`Lavamusic`](https://github.com/appujet/lavamusic) og `Discord.js`.\nDu kan bruge `{prefix}help <kommando>` for at få mere info om en kommando.",
+        "content": "Hej med dig! Jeg er `{bot}`, en musik-bot lavet med [`Lavamusic`](https://github.com/bongodevs/lavamusic) og `Discord.js`.\nDu kan bruge `{prefix}help <kommando>` for at få mere info om en kommando.",
         "title": "Help Menu",
         "not_found": "Denne `{cmdName}` kommando eksisterer ikke.",
         "help_cmd": "**Beskrivelse:** {description}\n**Brug:** {usage}\n**Eksempler:** {examples}\n**Aliaser:** {aliases}\n**Kategori:** {category}\n**Cooldown:** {cooldown} sekunder\n**Tilladelser:** {premUser}\n**Bot tilladelser:** {premBot}\n**Kun for udviklere:** {dev}\n**Slash kommando:** {slash}\n**Argumenter:** {args}\n**Afspiller:** {player}\n**DJ:** {dj}\n**DJ tilladelser:** {djPerm}\n**Stemme:** {voice}",

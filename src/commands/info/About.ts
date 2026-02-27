@@ -58,18 +58,13 @@ export default class About extends Command {
 			.setColor(this.client.color.main)
 			.addFields(
 				{
-					name: ctx.locale(I18N.commands.about.fields.creator),
-					value: "[appujet](https://github.com/appujet)",
-					inline: true,
-				},
-				{
 					name: ctx.locale(I18N.commands.about.fields.repository),
-					value: "[Here](https://github.com/appujet/lavamusic)",
+					value: "[Here](https://github.com/bongodevs/lavamusic)",
 					inline: true,
 				},
 				{
 					name: ctx.locale(I18N.commands.about.fields.support),
-					value: "[Here](https://discord.gg/YQsGbTwPBx)",
+					value: "[Here](https://discord.gg/jgGEbxFbyM)",
 					inline: true,
 				},
 				{

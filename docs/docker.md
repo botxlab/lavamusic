@@ -80,5 +80,5 @@ The database data is stored in a volume named `lavamusic_data` by default. This 
 Most configuration can be done directly in the `.env` file. Docker Compose will automatically inject these into the container environments.
 
 ::: info NEED HELP?
-If you encounter any issues with Docker, feel free to join our [Support Server](https://mintone.tech/support) for assistance!
+If you encounter any issues with Docker, feel free to join our [Support Server](https://discord.gg/jgGEbxFbyM) for assistance!
 :::

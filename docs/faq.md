@@ -57,5 +57,5 @@ Use the `/dj add <role>` command to register roles that can control the music pl
 ---
 
 ::: tip STILL STUCK?
-If your question isn't answered here, join our community on [Discord](https://mintone.tech/support) for instant support!
+If your question isn't answered here, join our community on [Discord](https://discord.gg/jgGEbxFbyM) for instant support!
 :::

@@ -43,7 +43,7 @@
 		"options": {
 			"command": "情報を取得したいコマンド"
 		},
-		"content": "こんにちは！私は{bot}、[Lavamusic](https://github.com/appujet/lavamusic)とDiscord.jsで作られた音楽ボットです。`{prefix}help <command>`を使用して、コマンドの詳細を取得できます。",
+		"content": "こんにちは！私は{bot}、[Lavamusic](https://github.com/bongodevs/lavamusic)とDiscord.jsで作られた音楽ボットです。`{prefix}help <command>`を使用して、コマンドの詳細を取得できます。",
 		"title": "ヘルプメニュー",
 		"not_found": "この`{cmdName}`コマンドは存在しません。",
 		"help_cmd": "**説明:** {description}\n**使用法:** {usage}\n**例:** {examples}\n**別名:** {aliases}\n**カテゴリ:** {category}\n**クールダウン:** {cooldown}秒\n**権限:** {premUser}\n**ボットの権限:** {premBot}\n**開発者専用:** {dev}\n**スラッシュコマンド:** {slash}\n**引数:** {args}\n**プレーヤー:** {player}\n**DJ:** {dj}\n**DJの権限:** {djPerm}\n**ボイス:** {voice}",

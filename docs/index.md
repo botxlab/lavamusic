@@ -73,11 +73,10 @@ Built with modern technologies like TypeScript and Drizzle ORM, ensuring your da
 ---
 
 ::: warning NEED HELP?
-Join our community on [Discord](https://mintone.tech/support) for instant support from our friendly developers!
+Join our community on [Discord](https://discord.gg/jgGEbxFbyMt) for instant support from our friendly developers!
 :::
 
 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px; opacity: 0.8;">
-  <a href="https://github.com/appujet/lavamusic">GitHub</a>
-  <a href="https://mintone.tech/support">Support</a>
-  <a href="https://mintone.tech/invite">Invite Bot</a>
+  <a href="https://github.com/bongodevs/lavamusic">GitHub</a>
+  <a href="https://discord.gg/jgGEbxFbyM">Support</a>
 </div>

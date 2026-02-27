@@ -43,7 +43,7 @@
         "options": {
             "command": "A parancs, amiről információt szeretnél kapni"
         },
-        "content": "Szia! Én vagyok a(z) `{bot}`, egy zenebot, ami a [`Lavamusic`](https://github.com/appujet/lavamusic) és a `Discord.js` segítségével készült.\nA `{prefix}help <command>` paranccsal több információt kaphatsz egy adott parancsról.",
+        "content": "Szia! Én vagyok a(z) `{bot}`, egy zenebot, ami a [`Lavamusic`](https://github.com/bongodevs/lavamusic) és a `Discord.js` segítségével készült.\nA `{prefix}help <command>` paranccsal több információt kaphatsz egy adott parancsról.",
         "title": "Súgó Menü",
         "not_found": "Ez a parancs ({cmdName}) nem létezik.",
         "help_cmd": "**Leírás:** {description}\n**Használat:** {usage}\n**Példák:** {examples}\n**Alternatív nevek:** {aliases}\n**Kategória:** {category}\n**Újratöltési idő:** {cooldown} másodperc\n**Jogosultságok:** {premUser}\n**Bot jogosultságok:** {premBot}\n**Csak fejlesztőknek:** {dev}\n**Slash parancs:** {slash}\n**Érvek:** {args}\n**Lejátszó:** {player}\n**DJ:** {dj}\n**DJ jogosultságok:** {djPerm}\n**Hang:** {voice}",

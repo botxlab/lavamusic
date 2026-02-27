@@ -43,7 +43,7 @@
         "options": {
             "command": "Η εντολή για την οποία θέλετε πληροφορίες"
         },
-        "content": "Γεια σας! Είμαι ο `{bot}`, ένα μουσικό bot φτιαγμένο με το [`Lavamusic`](https://github.com/appujet/lavamusic) και το `Discord.js`.\nΜπορείτε να χρησιμοποιήσετε το `{prefix}help <command>` για να πάρετε περισσότερες πληροφορίες για μια εντολή.",
+        "content": "Γεια σας! Είμαι ο `{bot}`, ένα μουσικό bot φτιαγμένο με το [`Lavamusic`](https://github.com/bongodevs/lavamusic) και το `Discord.js`.\nΜπορείτε να χρησιμοποιήσετε το `{prefix}help <command>` για να πάρετε περισσότερες πληροφορίες για μια εντολή.",
         "title": "Μενού Βοήθειας",
         "not_found": "Αυτή η εντολή `{cmdName}` δεν υπάρχει.",
         "help_cmd": "**Περιγραφή:** {description}\n**Χρήση:** {usage}\n**Παραδείγματα:** {examples}\n**Συνώνυμα:** {aliases}\n**Κατηγορία:** {category}\n**Χρόνος Αναμονής:** {cooldown} δευτερόλεπτα\n**Δικαιώματα:** {premUser}\n**Δικαιώματα Bot:** {premBot}\n**Μόνο για Προγραμματιστές:** {dev}\n**Εντολή Slash:** {slash}\n**Ορίσματα:** {args}\n**Παίκτης:** {player}\n**DJ:** {dj}\n**Δικαιώματα DJ:** {djPerm}\n**Φωνή:** {voice}",

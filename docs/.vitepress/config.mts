@@ -1,4 +1,3 @@
-import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
@@ -16,8 +15,8 @@ export default withMermaid({
       {
         text: 'v4.7.0',
         items: [
-          { text: 'Changelog', link: 'https://github.com/appujet/lavamusic/releases' },
-          { text: 'Contributing', link: 'https://github.com/appujet/lavamusic/blob/main/CONTRIBUTING.md' }
+          { text: 'Changelog', link: 'https://github.com/bongodevs/lavamusic/releases' },
+          { text: 'Contributing', link: 'https://github.com/bongodevs/lavamusic/blob/main/CONTRIBUTING.md' }
         ]
       }
     ],
@@ -61,8 +60,8 @@ export default withMermaid({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/appujet/lavamusic' },
-      { icon: 'discord', link: 'https://mintone.tech/support' }
+      { icon: 'github', link: 'https://github.com/bongodevs/lavamusic' },
+      { icon: 'discord', link: 'https://discord.gg/jgGEbxFbyM' }
     ],
 
     footer: {
@@ -80,7 +79,7 @@ export default withMermaid({
     },
 
     editLink: {
-      pattern: 'https://github.com/appujet/lavamusic/edit/main/docs/:path',
+      pattern: 'https://github.com/bongodevs/lavamusic/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     },
 

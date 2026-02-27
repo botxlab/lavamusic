@@ -43,7 +43,7 @@
 		"options": {
 			"command": "Команда, о которой вы хотите получить информацию"
 		},
-		"content": "Привет! Я {bot}, музыкальный бот, созданный с помощью [Lavamusic](https://github.com/appujet/lavamusic) и Discord. Вы можете использовать `{prefix}help <command>`, чтобы получить больше информации о команде.",
+		"content": "Привет! Я {bot}, музыкальный бот, созданный с помощью [Lavamusic](https://github.com/bongodevs/lavamusic) и Discord. Вы можете использовать `{prefix}help <command>`, чтобы получить больше информации о команде.",
 		"title": "Меню справки",
 		"not_found": "Команда `{cmdName}` не существует.",
 		"help_cmd": "**Описание:** {description}\n**Использование:** {usage}\n**Примеры:** {examples}\n**Псевдонимы:** {aliases}\n**Категория:** {category}\n**Охлаждение:** {cooldown} секунд\n**Разрешения:** {premUser}\n**Разрешения бота:** {premBot}\n**Только для разработчиков:** {dev}\n**Команда Slash:** {slash}\n**Аргументы:** {args}\n**Проигрыватель:** {player}\n**DJ:** {dj}\n**Разрешения DJ:** {djPerm}\n**Голос:** {voice}",

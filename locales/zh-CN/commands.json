@@ -43,7 +43,7 @@
 		"options": {
 			"command": "您想获取信息的命令"
 		},
-		"content": "大家好！我是 `{bot}`，一个使用 [`Lavamusic`](https://github.com/appujet/lavamusic) 和 `Discord.js` 制作的音乐机器人。\n您可以使用 `{prefix}help <command>` 获取有关命令的更多信息。",
+		"content": "大家好！我是 `{bot}`，一个使用 [`Lavamusic`](https://github.com/bongodevs/lavamusic) 和 `Discord.js` 制作的音乐机器人。\n您可以使用 `{prefix}help <command>` 获取有关命令的更多信息。",
 		"title": "帮助菜单",
 		"not_found": "此 `{cmdName}` 命令不存在。",
 		"help_cmd": "**描述:** {description}\n**用法:** {usage}\n**示例:** {examples}\n**别名:** {aliases}\n**类别:** {category}\n**冷却时间:** {cooldown} 秒\n**权限:** {premUser}\n**机器人权限:** {premBot}\n**仅限开发者:** {dev}\n**斜杠命令:** {slash}\n**参数:** {args}\n**播放器:** {player}\n**DJ:** {dj}\n**DJ 权限:** {djPerm}\n**语音:** {voice}",

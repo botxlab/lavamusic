@@ -43,7 +43,7 @@
         "options": {
             "command": "Komento, josta haluat lisätietoja"
         },
-        "content": "Hei siellä! Olen `{bot}`, musiikkibotti, joka on tehty käyttäen [`Lavamusic`-projektia](https://github.com/appujet/lavamusic) ja `Discord.js`-kirjastoa.\nVoit käyttää komentoa `{prefix}help <komento>` saadaksesi lisätietoja tietystä komennosta.",
+        "content": "Hei siellä! Olen `{bot}`, musiikkibotti, joka on tehty käyttäen [`Lavamusic`-projektia](https://github.com/bongodevs/lavamusic) ja `Discord.js`-kirjastoa.\nVoit käyttää komentoa `{prefix}help <komento>` saadaksesi lisätietoja tietystä komennosta.",
         "title": "Ohjevalikko",
         "not_found": "Tätä `{cmdName}` -komentoa ei ole olemassa.",
         "help_cmd": "**Kuvaus:** {description}\n**Käyttö:** {usage}\n**Esimerkit:** {examples}\n**Aliakset:** {aliases}\n**Kategoria:** {category}\n**Latausaika:** {cooldown} sekuntia\n**Oikeudet:** {premUser}\n**Botin oikeudet:** {premBot}\n**Vain kehittäjille:** {dev}\n**Vinoviivakomento:** {slash}\n**Argumentit:** {args}\n**Soitin:** {player}\n**DJ:** {dj}\n**DJ-oikeudet:** {djPerm}\n**Puhe:** {voice}",

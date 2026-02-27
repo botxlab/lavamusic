@@ -43,7 +43,7 @@
 		"options": {
 			"command": "특정 명령어의 정보를 얻고 싶다면 여기에 입력해주세요"
 		},
-		"content": "안녕하세요! 저는 [`Lavamusic`](https://github.com/appujet/lavamusic)과 `Discord.js`로 만들어진 음악 봇, `{bot}`이에요.\n명령어에 대한 자세한 정보를 얻고 싶다면 `{prefix}help <명령어>`를 사용해보세요.",
+		"content": "안녕하세요! 저는 [`Lavamusic`](https://github.com/bongodevs/lavamusic)과 `Discord.js`로 만들어진 음악 봇, `{bot}`이에요.\n명령어에 대한 자세한 정보를 얻고 싶다면 `{prefix}help <명령어>`를 사용해보세요.",
 		"title": "도움말 메뉴",
 		"not_found": "`{cmdName}` 명령어는 존재하지 않아요.",
 		"help_cmd": "**설명:** {description}\n**사용 방법:** {usage}\n**예시:** {examples}\n**별칭:** {aliases}\n**카테고리:** {category}\n**쿨다운:** {cooldown}초\n**필요한 권한:** {premUser}\n**봇에게 필요한 권한:** {premBot}\n**개발자 전용:** {dev}\n**빗금 명령어 사용 가능:** {slash}\n**인수:** {args}\n**플레이어:** {player}\n**DJ:** {dj}\n**DJ 권한:** {djPerm}\n**음성:** {voice}",

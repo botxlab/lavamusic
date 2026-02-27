@@ -86,10 +86,10 @@ export default class Search extends Command {
 					`**${ctx.locale(I18N.commands.search.messages.results_found, {
 						count: tracks.length,
 					})}**\n*${ctx.locale(I18N.commands.search.messages.select_prompt)}*` +
-					`\n\n**${ctx.locale(I18N.commands.search.messages.page_info, {
-						currentPage: currentPage + 1,
-						maxPages: maxPages,
-					})}**`,
+						`\n\n**${ctx.locale(I18N.commands.search.messages.page_info, {
+							currentPage: currentPage + 1,
+							maxPages: maxPages,
+						})}**`,
 				),
 			);
 

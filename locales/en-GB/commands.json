@@ -43,7 +43,7 @@
 		"options": {
 			"command": "The command you want to get info on"
 		},
-		"content": "Hey there! I'm `{bot}`, a music bot made with [`Lavamusic`](https://github.com/appujet/lavamusic) and `Discord.js`.\nYou can use `{prefix}help <command>` to get more info on a command.",
+		"content": "Hey there! I'm `{bot}`, a music bot made with [`Lavamusic`](https://github.com/bongodevs/lavamusic) and `Discord.js`.\nYou can use `{prefix}help <command>` to get more info on a command.",
 		"title": "Help Menu",
 		"not_found": "This `{cmdName}` command does not exist.",
 		"help_cmd": "**Description:** {description}\n**Usage:** {usage}\n**Examples:** {examples}\n**Aliases:** {aliases}\n**Category:** {category}\n**Cooldown:** {cooldown} seconds\n**Permissions:** {premUser}\n**Bot Permissions:** {premBot}\n**Developer Only:** {dev}\n**Slash Command:** {slash}\n**Args:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**DJ Permissions:** {djPerm}\n**Voice:** {voice}",

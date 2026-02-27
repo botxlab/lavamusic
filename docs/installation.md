@@ -28,7 +28,7 @@ This project **requires Bun**. Standard Node.js might not work for some automati
 Open your terminal and clone the repository:
 
 ```bash
-git clone https://github.com/botxlab/lavamusic.git
+git clone https://github.com/bongodevs/lavamusic.git
 cd lavamusic
 ```
 
@@ -102,9 +102,6 @@ bun run start
 
 ## 🎈 Invite Your Bot
 
-Once the bot is online, you can invite it to your server using this link:
-**[🎉 Add LavaMusic to Your Server 🎉](https://mintone.tech/invite)**
-
 Alternatively, replace `YOUR_CLIENT_ID` in the link below:
 
 ```text
@@ -124,5 +121,5 @@ In any server channel, type `!deploy` to register your slash commands with Disco
 Check out the **[Commands Guide](/commands)** to learn how to use filters, autoplay, and more.
 
 ::: info NEED SUPPORT?
-Join our community on [Discord](https://mintone.tech/support) if you run into any trouble!
+Join our community on [Discord](https://discord.gg/jgGEbxFbyM) if you run into any trouble!
 :::

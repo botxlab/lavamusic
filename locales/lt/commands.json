@@ -43,7 +43,7 @@
         "options": {
             "command": "Komanda, apie kurią norite gauti informacijos"
         },
-        "content": "Sveiki! Aš esu `{bot}`, muzikos botas, sukurtas naudojant [`Lavamusic`](https://github.com/appujet/lavamusic) ir `Discord.js`.\nGalite naudoti `{prefix}help <komanda>`, kad gautumėte daugiau informacijos apie komandą.",
+        "content": "Sveiki! Aš esu `{bot}`, muzikos botas, sukurtas naudojant [`Lavamusic`](https://github.com/bongodevs/lavamusic) ir `Discord.js`.\nGalite naudoti `{prefix}help <komanda>`, kad gautumėte daugiau informacijos apie komandą.",
         "title": "Pagalbos meniu",
         "not_found": "Ši komanda `{cmdName}` neegzistuoja.",
         "help_cmd": "**Aprašymas:** {description}\n**Naudojimas:** {usage}\n**Pavyzdžiai:** {examples}\n**Slapyvardžiai:** {aliases}\n**Kategorija:** {category}\n**Atsigavimo laikas:** {cooldown} sekundės\n**Leidimai:** {premUser}\n**Boto leidimai:** {premBot}\n**Tik kūrėjams:** {dev}\n**Slash komanda:** {slash}\n**Argumentai:** {args}\n**Grotuvas:** {player}\n**DJ:** {dj}\n**DJ leidimai:** {djPerm}\n**Balsas:** {voice}",

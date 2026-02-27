@@ -1,5 +1,5 @@
 import { type ButtonInteraction, MessageFlags } from "discord.js";
-import { Component, Lavamusic } from "../../structures";
+import { Component, type Lavamusic } from "../../structures";
 import { I18N, t } from "../../structures/I18n";
 import { handlePlayerInteraction, updatePlayerMessage } from "../../utils/PlayerUIUtils";
 

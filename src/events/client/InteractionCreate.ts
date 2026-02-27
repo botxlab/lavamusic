@@ -6,7 +6,7 @@ import {
 	ChannelType,
 	Collection,
 	EmbedBuilder,
-	GuildMember,
+	type GuildMember,
 	type Interaction,
 	InteractionType,
 	MessageFlags,

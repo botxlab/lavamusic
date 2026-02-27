@@ -43,7 +43,7 @@
 		"options": {
 			"command": "Lệnh bạn muốn xem thông tin"
 		},
-		"content": "Chào bạn! Tôi là {bot}, một bot phát nhạc được tạo bởi [Lavamusic](https://github.com/appujet/lavamusic) và Discord. Bạn có thể sử dụng `{prefix}help <command>` để biết thêm thông tin về lệnh.",
+		"content": "Chào bạn! Tôi là {bot}, một bot phát nhạc được tạo bởi [Lavamusic](https://github.com/bongodevs/lavamusic) và Discord. Bạn có thể sử dụng `{prefix}help <command>` để biết thêm thông tin về lệnh.",
 		"title": "Menu trợ giúp",
 		"not_found": "Lệnh `{cmdName}` này không tồn tại.",
 		"help_cmd": "**Mô tả:** {description}\n**Cách sử dụng:** {usage}\n**Ví dụ:** {examples}\n**Biệt danh:** {aliases}\n**Danh mục:** {category}\n**Thời gian chờ:** {cooldown} giây\n**Quyền:** {premUser}\n**Quyền của bot:** {premBot}\n**Chỉ dành cho nhà phát triển:** {dev}\n**Lệnh Slash:** {slash}\n**Tham số:** {args}\n**Trình phát:** {player}\n**DJ:** {dj}\n**Quyền của DJ:** {djPerm}\n**Giọng nói:** {voice}",

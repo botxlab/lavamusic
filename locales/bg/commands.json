@@ -43,7 +43,7 @@
         "options": {
             "command": "Командата, за която искате информация"
         },
-        "content": "Здравейте! Аз съм `{bot}`, музикален бот, направен с [`Lavamusic`](https://github.com/appujet/lavamusic) и `Discord.js`.\nМожете да използвате `{prefix}help <команда>`, за да получите повече информация за конкретна команда.",
+        "content": "Здравейте! Аз съм `{bot}`, музикален бот, направен с [`Lavamusic`](https://github.com/bongodevs/lavamusic) и `Discord.js`.\nМожете да използвате `{prefix}help <команда>`, за да получите повече информация за конкретна команда.",
         "title": "Меню за помощ",
         "not_found": "Командата `{cmdName}` не съществува.",
         "help_cmd": "**Описание:** {description}\n**Употреба:** {usage}\n**Примери:** {examples}\n**Алиаси:** {aliases}\n**Категория:** {category}\n**Изчакване:** {cooldown} секунди\n**Разрешения:** {premUser}\n**Разрешения на бота:** {premBot}\n**Само за разработчици:** {dev}\n**Slash команда:** {slash}\n**Аргументи:** {args}\n**Плейър:** {player}\n**DJ:** {dj}\n**DJ разрешения:** {djPerm}\n**Глас:** {voice}",

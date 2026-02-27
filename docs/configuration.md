@@ -62,5 +62,5 @@ To add support for Spotify or YouTube, you need the **[LavaSrc](https://github.c
 ---
 
 ::: info NEED HELP?
-If you're unsure about a specific setting, check the `.env.example` file for detailed comments or join our [Support Server](https://mintone.tech/support).
+If you're unsure about a specific setting, check the `.env.example` file for detailed comments or join our [Support Server](https://discord.gg/jgGEbxFbyM).
 :::

@@ -43,7 +43,7 @@
 		"options": {
 			"command": "Command yang ingin Anda dapatkan infonya"
 		},
-		"content": "Halo! Aku adalah `{bot}`, bot musik yang dibuat dengan [`Lavamusic`](https://github.com/appujet/lavamusic) dan `Discord.js`.\nAnda dapat menggunakan `{prefix}help <command>` untuk mendapatkan info lebih lanjut tentang sebuah command.",
+		"content": "Halo! Aku adalah `{bot}`, bot musik yang dibuat dengan [`Lavamusic`](https://github.com/bongodevs/lavamusic) dan `Discord.js`.\nAnda dapat menggunakan `{prefix}help <command>` untuk mendapatkan info lebih lanjut tentang sebuah command.",
 		"title": "Menu Bantuan",
 		"not_found": "Command `{cmdName}` ini tidak ada.",
 		"help_cmd": "**Deskripsi:** {description}\n**Penggunaan:** {usage}\n**Contoh:** {examples}\n**Alias:** {aliases}\n**Kategori:** {category}\n**Cooldown:** {cooldown} detik\n**Izin:** {premUser}\n**Izin Bot:** {premBot}\n**Khusus Developer:** {dev}\n**Slash Command:** {slash}\n**Argumen:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**Izin DJ:** {djPerm}\n**Suara:** {voice}",

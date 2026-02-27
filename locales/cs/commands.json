@@ -43,7 +43,7 @@
         "options": {
             "command": "Příkaz, o kterém chcete získat informace"
         },
-        "content": "Ahoj! Jsem `{bot}`, hudební bot vytvořený pomocí [`Lavamusic`](https://github.com/appujet/lavamusic) a `Discord.js`.\nMůžete použít `{prefix}help <příkaz>` pro získání více informací o příkazu.",
+        "content": "Ahoj! Jsem `{bot}`, hudební bot vytvořený pomocí [`Lavamusic`](https://github.com/bongodevs/lavamusic) a `Discord.js`.\nMůžete použít `{prefix}help <příkaz>` pro získání více informací o příkazu.",
         "title": "Nápověda",
         "not_found": "Tento příkaz `{cmdName}` neexistuje.",
         "help_cmd": "**Popis:** {description}\n**Použití:** {usage}\n**Příklady:** {examples}\n**Aliasy:** {aliases}\n**Kategorie:** {category}\n**Cooldown:** {cooldown} sekund\n**Oprávnění:** {premUser}\n**Oprávnění bota:** {premBot}\n**Pouze pro vývojáře:** {dev}\n**Slash příkaz:** {slash}\n**Argumenty:** {args}\n**Hráč:** {player}\n**DJ:** {dj}\n**DJ oprávnění:** {djPerm}\n**Hlas:** {voice}",

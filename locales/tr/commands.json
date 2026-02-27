@@ -43,7 +43,7 @@
 		"options": {
 			"command": "Hakkında bilgi almak istediğiniz komut"
 		},
-		"content": "Merhaba! Ben {bot}, [Lavamusic](https://github.com/appujet/lavamusic) ve Discord.js ile yapılmış bir müzik botuyum. {prefix}help <command> yazarak bir komut hakkında daha fazla bilgi alabilirsiniz.",
+		"content": "Merhaba! Ben {bot}, [Lavamusic](https://github.com/bongodevs/lavamusic) ve Discord.js ile yapılmış bir müzik botuyum. {prefix}help <command> yazarak bir komut hakkında daha fazla bilgi alabilirsiniz.",
 		"title": "Yardım Menüsü",
 		"not_found": "Bu `{cmdName}` komutu mevcut değil.",
 		"help_cmd": "**Açıklama**: {description}\n**Kullanım**: {usage}\n**Örnekler**: {examples}\n**Alternatifler**: {aliases}\n**Kategori**: {category}\n**Bekleme Süresi**: {cooldown} saniye\n**İzinler**: {premUser}\n**Bot İzinleri**: {premBot}\n**Sadece Geliştirici**: {dev}\n**Slash Komut**: {slash}\n**Argümanlar**: {args}\n**Oynatıcı**: {player}\n**DJ**: {dj}\n**DJ İzinleri**: {djPerm}\n**Ses**: {voice}",

@@ -43,7 +43,7 @@
         "options": {
             "command": "Naredba o kojoj želite dobiti informacije"
         },
-        "content": "Hej! Ja sam `{bot}`, glazbeni bot napravljen pomoću [`Lavamusic`](https://github.com/appujet/lavamusic) i `Discord.js`.\nMožete koristiti `{prefix}help <naredba>` da biste dobili više informacija o naredbi.",
+        "content": "Hej! Ja sam `{bot}`, glazbeni bot napravljen pomoću [`Lavamusic`](https://github.com/bongodevs/lavamusic) i `Discord.js`.\nMožete koristiti `{prefix}help <naredba>` da biste dobili više informacija o naredbi.",
         "title": "Izbornik za pomoć",
         "not_found": "Ova naredba `{cmdName}` ne postoji.",
         "help_cmd": "**Opis:** {description}\n**Upotreba:** {usage}\n**Primjeri:** {examples}\n**Aliasi:** {aliases}\n**Kategorija:** {category}\n**Vrijeme hlađenja:** {cooldown} sekundi\n**Dozvole:** {premUser}\n**Dozvole bota:** {premBot}\n**Samo za programere:** {dev}\n**Slash naredba:** {slash}\n**Argumenti:** {args}\n**Svirač:** {player}\n**DJ:** {dj}\n**DJ dozvole:** {djPerm}\n**Glas:** {voice}",

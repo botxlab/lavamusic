@@ -1,12 +1,11 @@
 <p align="center">
-  <img src="https://pub-19903466d24c44f9a9d94c9a3b2f4932.r2.dev/lavamusic.png" alt="Lavamusic Logo" width="200" height="200">
+  <img src="docs/public/logo.png" alt="Lavamusic Logo" width="200" height="200">
 </p>
 
 <h1 align="center">Lavamusic</h1>
 
 <p align="center">
   <a href="https://github.com/bongodevs/lavamusic/releases"><img src="https://img.shields.io/github/v/release/bongodevs/lavamusic?style=for-the-badge&color=blue&logo=github" alt="Release"></a>
-  <a href="https://github.com/bongodevs/lavamusic/actions"><img src="https://img.shields.io/github/actions/workflow/status/bongodevs/lavamusic/release.yml?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status"></a>
   <a href="https://github.com/bongodevs/lavamusic/blob/HEAD/LICENSE"><img src="https://img.shields.io/github/license/bongodevs/lavamusic?style=for-the-badge&color=blue" alt="License"></a>
   <br>
   <img src="https://img.shields.io/badge/Language-TypeScript-blue?style=for-the-badge&logo=typescript" alt="Language">

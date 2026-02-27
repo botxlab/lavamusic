@@ -43,7 +43,7 @@
 		"options": {
 			"command": "Der Befehl, über den du mehr wissen möchtest"
 		},
-		"content": "Hallo! Ich bin {bot}, ein Musik-Bot basierend auf [Lavamusic](https://github.com/appujet/lavamusic) und Discord.js.\nNutze `{prefix}help <befehl>` für detaillierte Infos.",
+		"content": "Hallo! Ich bin {bot}, ein Musik-Bot basierend auf [Lavamusic](https://github.com/bongodevs/lavamusic) und Discord.js.\nNutze `{prefix}help <befehl>` für detaillierte Infos.",
 		"title": "Hilfemenü",
 		"not_found": "Der Befehl `{cmdName}` existiert nicht.",
 		"help_cmd": "**Beschreibung:** {description}\n**Nutzung:** {usage}\n**Beispiele:** {examples}\n**Aliase:** {aliases}\n**Kategorie:** {category}\n**Cooldown:** {cooldown} Sekunden\n**Berechtigungen:** {premUser}\n**Bot-Rechte:** {premBot}\n**Nur Entwickler:** {dev}\n**Slash-Befehl:** {slash}\n**Args:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**DJ-Rechte:** {djPerm}\n**Sprache:** {voice}",

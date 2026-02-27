@@ -43,7 +43,7 @@
         "options": {
             "command": "Comanda despre care dorești informații"
         },
-        "content": "Bună! Eu sunt `{bot}`, un bot de muzică creat cu [`Lavamusic`](https://github.com/appujet/lavamusic) și `Discord.js`.\nPoți folosi `{prefix}help <command>` pentru a obține mai multe informații despre o comandă.",
+        "content": "Bună! Eu sunt `{bot}`, un bot de muzică creat cu [`Lavamusic`](https://github.com/bongodevs/lavamusic) și `Discord.js`.\nPoți folosi `{prefix}help <command>` pentru a obține mai multe informații despre o comandă.",
         "title": "Meniu Ajutor",
         "not_found": "Această comandă `{cmdName}` nu există.",
         "help_cmd": "**Descriere:** {description}\n**Utilizare:** {usage}\n**Exemple:** {examples}\n**Alias-uri:** {aliases}\n**Categorie:** {category}\n**Cooldown:** {cooldown} secunde\n**Permisiuni Utilizator:** {premUser}\n**Permisiuni Bot:** {premBot}\n**Doar Dezvoltatori:** {dev}\n**Comandă Slash:** {slash}\n**Argumente:** {args}\n**Player:** {player}\n**DJ:** {dj}\n**Permisiuni DJ:** {djPerm}\n**Voce:** {voice}",

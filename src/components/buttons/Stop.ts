@@ -1,5 +1,5 @@
-import { type ButtonInteraction } from "discord.js";
-import { Component, Lavamusic } from "../../structures";
+import type { ButtonInteraction } from "discord.js";
+import { Component, type Lavamusic } from "../../structures";
 import { handlePlayerInteraction } from "../../utils/PlayerUIUtils";
 
 export default class StopButton extends Component {
