@@ -164,7 +164,7 @@ export default class InteractionCreate extends Event {
 
 					if (
 						(interaction.member as GuildMember).voice.channel?.type ===
-						ChannelType.GuildStageVoice &&
+							ChannelType.GuildStageVoice &&
 						!clientMember.permissions.has(PermissionFlagsBits.RequestToSpeak)
 					) {
 						return await interaction.reply({
@@ -292,7 +292,11 @@ export default class InteractionCreate extends Event {
 					content: t(I18N.events.interaction.error, { error }),
 				});
 			}
-		} else if (interaction.isButton() || interaction.isAnySelectMenu() || interaction.isModalSubmit()) {
+		} else if (
+			interaction.isButton() ||
+			interaction.isAnySelectMenu() ||
+			interaction.isModalSubmit()
+		) {
 			const component = this.client.components.get((interaction as any).customId);
 			if (component) {
 				try {
@@ -313,14 +317,3 @@ export default class InteractionCreate extends Event {
 		}
 	}
 }
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

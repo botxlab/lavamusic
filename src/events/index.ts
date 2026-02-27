@@ -45,5 +45,5 @@ export const EventList = [
 	PlayerResumed,
 	QueueEnd,
 	TrackEnd,
-	TrackStart
+	TrackStart,
 ];

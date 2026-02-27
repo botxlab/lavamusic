@@ -1,8 +1,4 @@
-import {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-} from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import type { Player } from "lavalink-client";
 import { I18N, t } from "../structures/I18n";
 
@@ -65,24 +61,10 @@ function getButtons(player: Player): ActionRowBuilder<ButtonBuilder>[] {
 	return buttonData.reduce((rows, { customId, style, emoji }, index) => {
 		if (index % 5 === 0) rows.push(new ActionRowBuilder<ButtonBuilder>());
 
-		const button = new ButtonBuilder()
-			.setCustomId(customId)
-			.setStyle(style)
-			.setEmoji(emoji);
+		const button = new ButtonBuilder().setCustomId(customId).setStyle(style).setEmoji(emoji);
 		rows[rows.length - 1].addComponents(button);
 		return rows;
 	}, [] as ActionRowBuilder<ButtonBuilder>[]);
 }
 
 export { getButtons };
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

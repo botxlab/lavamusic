@@ -23,5 +23,5 @@ export const ComponentList = [
 	Skip,
 	Stop,
 	VolumeDown,
-	VolumeUp
+	VolumeUp,
 ];

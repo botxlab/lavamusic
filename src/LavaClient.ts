@@ -3,8 +3,7 @@ import { env } from "./env";
 import Lavamusic from "./structures/Lavamusic";
 import { setupAntiCrash } from "./utils/ProcessHandlers";
 
-const { MessageContent, GuildVoiceStates, GuildMessages, Guilds } =
-	GatewayIntentBits;
+const { MessageContent, GuildVoiceStates, GuildMessages, Guilds } = GatewayIntentBits;
 
 export async function launch() {
 	const clientOptions: ClientOptions = {
@@ -52,14 +51,3 @@ export async function launch() {
 
 // Allow standalone execution in dev mode (when this file is the entry point)
 if (import.meta.main) launch();
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

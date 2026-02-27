@@ -179,14 +179,16 @@ async function trackStart(
 			name: t(I18N.player.setupStart.now_playing, { lng: locale }),
 			iconURL: iconUrl,
 		})
-		.setDescription(t(I18N.player.setupStart.description, {
-			lng: locale,
-			title: track.info.title,
-			uri: track.info.uri,
-			author: track.info.author,
-			length: client.utils.formatTime(track.info.duration),
-			requester: (player.queue.current!.requester as Requester).id,
-		}))
+		.setDescription(
+			t(I18N.player.setupStart.description, {
+				lng: locale,
+				title: track.info.title,
+				uri: track.info.uri,
+				author: track.info.author,
+				length: client.utils.formatTime(track.info.duration),
+				requester: (player.queue.current!.requester as Requester).id,
+			}),
+		)
 		.setColor(client.color.main);
 
 	if (track.info.artworkUrl) {
@@ -254,14 +256,16 @@ async function updateSetup(client: Lavamusic, guild: Guild, locale: string): Pro
 					name: t(I18N.player.setupStart.now_playing, { lng: locale }),
 					iconURL: iconUrl,
 				})
-				.setDescription(t(I18N.player.setupStart.description, {
-					lng: locale,
-					title: player.queue.current.info.title,
-					uri: player.queue.current.info.uri,
-					author: player.queue.current.info.author,
-					length: client.utils.formatTime(player.queue.current.info.duration),
-					requester: (player.queue.current.requester as Requester).id,
-				}))
+				.setDescription(
+					t(I18N.player.setupStart.description, {
+						lng: locale,
+						title: player.queue.current.info.title,
+						uri: player.queue.current.info.uri,
+						author: player.queue.current.info.author,
+						length: client.utils.formatTime(player.queue.current.info.duration),
+						requester: (player.queue.current.requester as Requester).id,
+					}),
+				)
 				.setColor(client.color.main);
 
 			if (player.queue.current.info.artworkUrl) {
@@ -342,14 +346,3 @@ async function oops(channel: TextChannel, args: string): Promise<void> {
 	}
 }
 export { buttonReply, oops, setupStart, trackStart, updateSetup };
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

@@ -131,5 +131,5 @@ export const CommandList = [
 	List,
 	Load,
 	RemoveSong,
-	Steal
+	Steal,
 ];

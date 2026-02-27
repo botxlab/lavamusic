@@ -48,13 +48,14 @@ export default class TrackStart extends Event {
 		const embed = new EmbedBuilder()
 			.setAuthor({
 				name: t(I18N.player.trackStart.now_playing, { lng: locale }),
-				iconURL: this.client.config.icons[track.info.sourceName] || this.client.user?.displayAvatarURL(),
+				iconURL:
+					this.client.config.icons[track.info.sourceName] || this.client.user?.displayAvatarURL(),
 			})
 			.setDescription(
 				`**[${track.info.title}](${track.info.uri})**\n` +
-				`-# ${t(I18N.player.trackStart.author)}: ${track.info.author}\n` +
-				`-# ${t(I18N.player.trackStart.duration)}: ${track.info.isStream ? "LIVE" : this.client.utils.formatTime(track.info.duration)}\n` +
-				`-# ${t(I18N.player.trackStart.requested_by, { user: (track.requester as Requester).username })}`
+					`-# ${t(I18N.player.trackStart.author)}: ${track.info.author}\n` +
+					`-# ${t(I18N.player.trackStart.duration)}: ${track.info.isStream ? "LIVE" : this.client.utils.formatTime(track.info.duration)}\n` +
+					`-# ${t(I18N.player.trackStart.requested_by, { user: (track.requester as Requester).username })}`,
 			)
 			.setColor(this.client.color.main);
 
@@ -80,9 +81,7 @@ export default class TrackStart extends Event {
 	}
 }
 
-export function createButtonRow(
-	player: Player
-): ActionRowBuilder<ButtonBuilder> {
+export function createButtonRow(player: Player): ActionRowBuilder<ButtonBuilder> {
 	return new ActionRowBuilder<ButtonBuilder>().addComponents(
 		new ButtonBuilder()
 			.setCustomId("resume")
@@ -131,14 +130,3 @@ export async function checkDj(
 	}
 	return true;
 }
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */

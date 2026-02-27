@@ -62,7 +62,7 @@ export default class Move extends Command {
 		let from: number;
 		let to: number;
 
-		if (args.length === 3 && args[1].toLowerCase() === 'to') {
+		if (args.length === 3 && args[1].toLowerCase() === "to") {
 			// 'move 2 to 1' - args = ['2', 'to', '1']
 			from = Number(args[0]);
 			to = Number(args[2]);
@@ -137,14 +137,3 @@ export default class Move extends Command {
 		});
 	}
 }
-
-/**
- * Project: lavamusic
- * Author: Appu
- * Main Contributor: LucasB25
- * Company: Coders
- * Copyright (c) 2024. All rights reserved.
- * This code is the property of Coder and may not be reproduced or
- * modified without permission. For more information, contact us at
- * https://discord.gg/YQsGbTwPBx
- */
