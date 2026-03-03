@@ -24,14 +24,17 @@ import type {
 	Stay,
 } from "./types";
 
+/* Types */
 type PgLikeDB = NodePgDatabase<typeof pgSchema> | PgliteDatabase<typeof pgSchema>;
 type SqliteDB = BunSQLiteDatabase<typeof sqliteSchema>;
 
+/* Postgres Provider */
 export class PostgresProvider implements IDatabaseProvider {
 	readonly type: DatabaseType;
 	readonly db: PgLikeDB;
 	private readonly schema: typeof pgSchema;
 
+	// Repositories (lazily initialized)
 	private _guilds?: IGuildRepository;
 	private _setups?: ISetupRepository;
 	private _stays?: IStayRepository;
@@ -87,9 +90,14 @@ export class PostgresProvider implements IDatabaseProvider {
 		return this._playlists;
 	}
 
-	async connect(): Promise<void> {}
+	async connect(): Promise<void> {
+		// Connection is handled during initialization
+	}
 
-	async disconnect(): Promise<void> {}
+	async disconnect(): Promise<void> {
+		// PGLite doesn't need explicit disconnect
+		// For node-postgres, the pool handles connections
+	}
 
 	private createGuildRepository(): IGuildRepository {
 		const db = this.db;
@@ -101,6 +109,7 @@ export class PostgresProvider implements IDatabaseProvider {
 
 				if (result.length > 0) return result[0] as Guild;
 
+				// Create guild if not exists
 				await db
 					.insert(guild)
 					.values({
@@ -359,11 +368,13 @@ export class PostgresProvider implements IDatabaseProvider {
 	}
 }
 
+/* SQLite */
 export class SQLiteProvider implements IDatabaseProvider {
 	readonly type: DatabaseType;
 	readonly db: SqliteDB;
 	private readonly schema: typeof sqliteSchema;
 
+	// Repositories (lazily initialized)
 	private _guilds?: IGuildRepository;
 	private _setups?: ISetupRepository;
 	private _stays?: IStayRepository;
@@ -419,9 +430,13 @@ export class SQLiteProvider implements IDatabaseProvider {
 		return this._playlists;
 	}
 
-	async connect(): Promise<void> {}
+	async connect(): Promise<void> {
+		// Connection is handled during initialization
+	}
 
-	async disconnect(): Promise<void> {}
+	async disconnect(): Promise<void> {
+		// SQLite handles connections automatically
+	}
 
 	private createGuildRepository(): IGuildRepository {
 		const db = this.db;

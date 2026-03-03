@@ -78,6 +78,7 @@ export default class Restart extends Command {
 				return collector.stop("canceled");
 			}
 
+			// Proceed with restart
 			await ctx.editMessage({
 				content: `⏳ ${ctx.locale(I18N.dev.restart.status.restarting)}`,
 				embeds: [],
@@ -87,8 +88,10 @@ export default class Restart extends Command {
 			try {
 				logger.info(ctx.locale(I18N.dev.restart.restart_by, { user: ctx.author?.username }));
 
+				// Destroy client connection
 				await client.destroy();
 
+				// Restart logic
 				const child = spawn("bun", ["run", "start"], {
 					detached: true,
 					stdio: "ignore",

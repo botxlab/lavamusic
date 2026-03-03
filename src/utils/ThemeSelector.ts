@@ -1,4 +1,10 @@
 class ThemeSelector {
+	/**
+	 * Applies a yellow fire effect to the text.
+	 *
+	 * @param text - The input text to apply the effect to.
+	 * @returns The processed text with the green fire effect.
+	 */
 	fire(text: string): string {
 		let fade = "";
 		let green = 250;
@@ -11,6 +17,12 @@ class ThemeSelector {
 		return fade;
 	}
 
+	/**
+	 * Applies a purple neon effect to the text.
+	 *
+	 * @param text - The input text to apply the effect to.
+	 * @returns The processed text with the purple neon effect.
+	 */
 	purpleNeon(text: string): string {
 		let fade = "";
 		let purple = 255;
@@ -23,6 +35,12 @@ class ThemeSelector {
 		return fade;
 	}
 
+	/**
+	 * Applies a cyan effect to the text.
+	 *
+	 * @param text - The input text to apply the effect to.
+	 * @returns The processed text with the cyan effect.
+	 */
 	cyan(text: string): string {
 		let fade = "";
 		let blue = 100;
@@ -37,6 +55,12 @@ class ThemeSelector {
 		return fade;
 	}
 
+	/**
+	 * Applies a water effect to the text.
+	 *
+	 * @param text - The input text to apply the effect to.
+	 * @returns The processed text with the water effect.
+	 */
 	water(text: string): string {
 		let fade = "";
 		let green = 255;

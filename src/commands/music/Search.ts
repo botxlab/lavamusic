@@ -73,7 +73,7 @@ export default class Search extends Command {
 		tracks: Track[],
 		currentPage: number,
 		maxPages: number,
-		isDisabled: boolean = false,
+		isDisabled: boolean = false, // Now takes an optional isDisabled parameter
 	) {
 		const startIndex = currentPage * TRACKS_PER_PAGE;
 		const endIndex = startIndex + TRACKS_PER_PAGE;
@@ -130,13 +130,13 @@ export default class Search extends Command {
 			.setCustomId("previous-page")
 			.setLabel(ctx.locale(I18N.buttons.previous))
 			.setStyle(ButtonStyle.Primary)
-			.setDisabled(currentPage === 0 || isDisabled);
+			.setDisabled(currentPage === 0 || isDisabled); // Apply disabled state
 
 		const nextButton = new ButtonBuilder()
 			.setCustomId("next-page")
 			.setLabel(ctx.locale(I18N.buttons.next))
 			.setStyle(ButtonStyle.Primary)
-			.setDisabled(currentPage === maxPages - 1 || isDisabled);
+			.setDisabled(currentPage === maxPages - 1 || isDisabled); // Apply disabled state
 
 		const buttonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
 			previousButton,
@@ -171,14 +171,14 @@ export default class Search extends Command {
 				await player.connect();
 			} catch (error) {
 				console.error("Failed to connect to voice channel:", error);
-				await player.destroy();
+				await player.destroy(); // Clean up the player if connection fails
 				const connectErrorContainer = new ContainerBuilder()
 					.setAccentColor(this.client.color.red)
 					.addTextDisplayComponents((textDisplay) =>
 						textDisplay.setContent(
 							`**${ctx.locale(
 								I18N.commands.search.errors.vc_connect_fail_title, // Changed key
-							)}**\n${ctx.locale(I18N.commands.search.errors.vc_connect_fail_description)}`,
+							)}**\n${ctx.locale(I18N.commands.search.errors.vc_connect_fail_description)}`, // Changed key
 						),
 					);
 				return await ctx.sendMessage({
@@ -263,13 +263,14 @@ export default class Search extends Command {
 						),
 					);
 
+				// Disable all components after track selection
 				const disabledComponents = this.generatePageComponents(
 					client,
 					ctx,
 					response.tracks,
 					currentPage,
 					maxPages,
-					true,
+					true, // Pass true to disable components
 				);
 
 				await ctx.editMessage(
@@ -349,11 +350,13 @@ export default class Search extends Command {
 					});
 				}
 			} else if (reason === "trackSelected") {
+				// Do nothing, components are already disabled and message edited.
 			}
 		});
 	}
 }
 
+// Helper function to filter out 'flags' for editMessage
 function filterFlagsForEditMessage(options: any) {
 	const { flags, ...rest } = options;
 	return rest;

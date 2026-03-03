@@ -41,11 +41,12 @@ export default class MoveNode extends Command {
 	}
 
 	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
+		// If no node specified, show available nodes as before
 		let nodeId: string | undefined;
 		if (args.length > 0) {
 			nodeId = args.join(" ");
 		} else if (ctx.options && typeof ctx.options.get === "function") {
-			const nodeOption = ctx.options.get("node", false);
+			const nodeOption = ctx.options.get("node", /* required */ false);
 			nodeId = nodeOption?.value as string | undefined;
 		} else {
 			nodeId = undefined;
@@ -100,6 +101,7 @@ export default class MoveNode extends Command {
 			});
 		}
 
+		// Validate the target node exists and is connected
 		const targetNode = client.manager.nodeManager.nodes.get(nodeId);
 		if (!targetNode) {
 			return await ctx.sendMessage({
@@ -127,6 +129,7 @@ export default class MoveNode extends Command {
 			});
 		}
 
+		// If all players are already on the target node
 		const allOnTarget = Array.from(allPlayers.values()).every(
 			(player) => player.node.options.id === nodeId,
 		);
@@ -155,6 +158,7 @@ export default class MoveNode extends Command {
 				});
 			}
 
+			// Move all players to the new node
 			const results: {
 				guildId: string;
 				from: string;
@@ -181,6 +185,7 @@ export default class MoveNode extends Command {
 				}
 			}
 
+			// Prepare summary
 			const successMoves = results.filter((r) => !r.error);
 			const failedMoves = results.filter((r) => r.error);
 
@@ -216,6 +221,7 @@ export default class MoveNode extends Command {
 				description = ctx.locale(I18N.commands.movenode.messages.no_players_moved);
 			}
 
+			// Send a summary message
 			const resultTitle = ctx.locale(I18N.commands.movenode.messages.results_title);
 			const resultColor = failedMoves.length > 0 ? this.client.color.red : this.client.color.green;
 			const resultTimestamp = new Date().toISOString();
@@ -246,7 +252,7 @@ export default class MoveNode extends Command {
 			return;
 		} catch (error) {
 			logger.error("Failed to move player nodes:", error);
-
+			// Error handling
 			if (ctx.interaction && (ctx.interaction.replied || ctx.interaction.deferred)) {
 				await ctx.editMessage({
 					embeds: [

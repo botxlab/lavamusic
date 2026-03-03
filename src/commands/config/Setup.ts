@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noNonNullAssertion: explanation */
 import { ChannelType, OverwriteType, PermissionFlagsBits } from "discord.js";
 import { I18N } from "../../structures/I18n";
 import { Command, type Context, type Lavamusic } from "../../structures/index";

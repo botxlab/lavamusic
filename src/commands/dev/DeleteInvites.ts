@@ -46,6 +46,7 @@ export default class DestroyInvites extends Command {
 		}
 
 		try {
+			// Fetch all invites and filter only those created by the bot
 			const invites = await guild.invites.fetch();
 			const botInvites = invites.filter((invite) => invite.inviterId === client.user?.id);
 
@@ -60,6 +61,7 @@ export default class DestroyInvites extends Command {
 				});
 			}
 
+			// Parallel deletion
 			await Promise.all(botInvites.map((invite) => invite.delete("Developer Cleanup")));
 
 			return await ctx.sendMessage({

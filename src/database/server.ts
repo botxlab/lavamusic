@@ -1,5 +1,9 @@
 import { getDatabase, type IDatabaseProvider } from "./index";
 
+/**
+ * ServerData provides a backward-compatible API for database operations.
+ * It wraps the new IDatabaseProvider interface.
+ */
 export default class ServerData {
 	private provider: IDatabaseProvider | null = null;
 
@@ -10,6 +14,9 @@ export default class ServerData {
 		return this.provider;
 	}
 
+	// -----------------------------
+	// Guild
+	// -----------------------------
 	public async get(guildId: string) {
 		const provider = await this.getProvider();
 		return provider.guilds.get(guildId);
@@ -45,6 +52,9 @@ export default class ServerData {
 		return provider.guilds.getDefaultVolume(guildId);
 	}
 
+	// -----------------------------
+	// Setup
+	// -----------------------------
 	public async getSetup(guildId: string) {
 		const provider = await this.getProvider();
 		return provider.setups.get(guildId);
@@ -60,6 +70,9 @@ export default class ServerData {
 		await provider.setups.delete(guildId);
 	}
 
+	// -----------------------------
+	// 24/7 Stay
+	// -----------------------------
 	public async set_247(guildId: string, textId: string, voiceId: string) {
 		const provider = await this.getProvider();
 		await provider.stays.set(guildId, textId, voiceId);
@@ -75,6 +88,9 @@ export default class ServerData {
 		return provider.stays.get(guildId);
 	}
 
+	// -----------------------------
+	// DJ Mode
+	// -----------------------------
 	public async setDj(guildId: string, mode: boolean) {
 		const provider = await this.getProvider();
 		await provider.djs.setMode(guildId, mode);
@@ -85,6 +101,9 @@ export default class ServerData {
 		return provider.djs.get(guildId);
 	}
 
+	// -----------------------------
+	// Roles
+	// -----------------------------
 	public async getRoles(guildId: string) {
 		const provider = await this.getProvider();
 		return provider.roles.getAll(guildId);
@@ -105,6 +124,9 @@ export default class ServerData {
 		await provider.roles.clear(guildId);
 	}
 
+	// -----------------------------
+	// Playlists
+	// -----------------------------
 	public async getPlaylist(userId: string, name: string) {
 		const provider = await this.getProvider();
 		return provider.playlists.get(userId, name);

@@ -1,6 +1,11 @@
 import { Signale, type SignaleOptions } from "signale";
 import { CONSOLE_LOG_COLORS, LOG_LEVEL } from "../types/log";
 
+/**
+ * Custom Logger class extending Signale.
+ *
+ * All configurations are from @see {module:types.log}.
+ */
 class Logger extends Signale {
 	constructor(scope = "Lavamusic") {
 		const options: SignaleOptions = {
@@ -14,6 +19,9 @@ class Logger extends Signale {
 		super(options);
 	}
 
+	/**
+	 * Constructs the Signale configuration dynamically.
+	 */
 	private static buildTypes(): SignaleOptions["types"] {
 		const types: any = {};
 

@@ -53,6 +53,7 @@ export async function updatePlayerMessage(
 	const setup = await client.db.getSetup(interaction.guildId!);
 	const locale = await client.db.getLanguage(interaction.guildId!);
 
+	// If it's the setup channel, update use the setup system logic
 	if (
 		setup &&
 		interaction.channelId === setup.textId &&
@@ -62,6 +63,7 @@ export async function updatePlayerMessage(
 		return;
 	}
 
+	// Otherwise, edit the current message (normal player)
 	const track = player.queue.current!;
 	const embed = new EmbedBuilder()
 		.setAuthor({

@@ -12,12 +12,18 @@ const LEVEL_KEYS = [
 	"STAR",
 ] as const;
 
+/**
+ * Defines log levels derived directly from {@linkcode LEVEL_KEYS}.
+ */
 export type LogLevel = (typeof LEVEL_KEYS)[number];
 
 export const LOG_LEVEL = Object.fromEntries(LEVEL_KEYS.map((key) => [key, key])) as {
 	[K in LogLevel]: K;
 };
 
+/**
+ * Discord Embed log colors.
+ */
 export const LOG_COLORS = {
 	INFO: Colors.Blue,
 	WARN: Colors.Yellow,
@@ -25,8 +31,14 @@ export const LOG_COLORS = {
 	SUCCESS: Colors.Green,
 } as const;
 
+/**
+ * Type for log levels that support Discord Embeds.
+ */
 export type EmbedLogLevel = keyof typeof LOG_COLORS;
 
+/**
+ * Colors for console output.
+ */
 export const CONSOLE_LOG_COLORS: Record<LogLevel, string> = {
 	INFO: "blue",
 	WARN: "yellow",

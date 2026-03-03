@@ -49,4 +49,5 @@ export async function launch() {
 	await client.start(env.TOKEN);
 }
 
+// Allow standalone execution in dev mode (when this file is the entry point)
 if (import.meta.main) launch();
