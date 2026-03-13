@@ -45,8 +45,8 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       undici:
-        specifier: ^7.22.0
-        version: 7.22.0
+        specifier: ^7.24.0
+        version: 7.24.0
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -2376,8 +2376,8 @@ packages:
     resolution: {integrity: sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==}
     engines: {node: '>=18.17'}
 
-  undici@7.22.0:
-    resolution: {integrity: sha512-RqslV2Us5BrllB+JeiZnK4peryVTndy9Dnqq62S3yYRRTj0tFQCwEniUy2167skdGOy3vqRzEvl1Dm4sV2ReDg==}
+  undici@7.24.0:
+    resolution: {integrity: sha512-jxytwMHhsbdpBXxLAcuu0fzlQeXCNnWdDyRHpvWsUl8vd98UwYdl9YTyn8/HcpcJPC3pwUveefsa3zTxyD/ERg==}
     engines: {node: '>=20.18.1'}
 
   unist-util-is@6.0.1:
@@ -4828,7 +4828,7 @@ snapshots:
 
   undici@6.21.3: {}
 
-  undici@7.22.0: {}
+  undici@7.24.0: {}
 
   unist-util-is@6.0.1:
     dependencies:
