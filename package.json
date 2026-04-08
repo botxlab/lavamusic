@@ -63,7 +63,7 @@
     "@electric-sql/pglite": "^0.3.15",
     "@top-gg/sdk": "^3.1.6",
     "discord.js": "^14.25.1",
-    "drizzle-orm": "^0.45.1",
+    "drizzle-orm": "^0.45.2",
     "genius-lyrics-api": "^3.2.1",
     "i18next": "^25.8.13",
     "lavalink-client": "^2.9.7",
