@@ -12,4 +12,4 @@ RUN bun run build
 
 RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["bun", "run", "start"]
