@@ -308,7 +308,7 @@ export default class MessageCreate extends Event {
 				const embed = new EmbedBuilder()
 					.setAuthor({
 						name: "Prefix - Command Logs",
-						iconURL: this.client.user?.avatarURL({ size: 2048 }) ?? "",
+						iconURL: this.client.user?.avatarURL({ size: 2048 }) ?? undefined,
 					})
 					.setColor(this.client.config.color.green)
 					.addFields(
