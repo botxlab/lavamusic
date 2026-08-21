@@ -37,7 +37,7 @@ export default class Botinfo extends Command {
 
 	public async run(client: Lavamusic, ctx: Context): Promise<any> {
 		const osInfo = `${os.type()} ${os.release()}`;
-		const osUptime = client.utils.formatTime(os.uptime());
+		const osUptime = client.utils.formatTime(os.uptime() * 1000);
 		const osHostname = os.hostname();
 		const cpuInfo = `${os.arch()} (${os.cpus().length} cores)`;
 		const cpuUsed = (await usagePercent({ coreIndex: 0, sampleMs: 2000 })).percent;

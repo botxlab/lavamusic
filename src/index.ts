@@ -28,7 +28,10 @@ if (process.env.SHARDING_MANAGER) {
 		console.clear();
 		setConsoleTitle("Lavamusic");
 		console.log(theme.purpleNeon(LAVAMUSIC_BANNER));
-		start();
+		start().catch((err) => {
+			logger.error("[MANAGER] An error has occurred:", err);
+			process.exit(1);
+		});
 	} catch (err) {
 		logger.error("[MANAGER] An error has occurred:", err);
 	}

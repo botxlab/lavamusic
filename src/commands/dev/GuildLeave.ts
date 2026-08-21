@@ -50,6 +50,11 @@ export default class GuildLeave extends Command {
 			return await ctx.sendMessage(ctx.locale(I18N.dev.guilds.not_found));
 		}
 
+		const logChannelId = env.LOG_CHANNEL_ID;
+		const logChannel = logChannelId
+			? (client.channels.cache.get(logChannelId) as TextChannel)
+			: null;
+
 		try {
 			await client.shard?.broadcastEval(
 				async (c, { guildId }) => {
@@ -61,18 +66,13 @@ export default class GuildLeave extends Command {
 				{ context: { guildId } },
 			);
 			await ctx.sendMessage(ctx.locale(I18N.dev.guilds.leave.success, { name: guild.name }));
-		} catch {
-			await ctx.sendMessage(ctx.locale(I18N.dev.guilds.leave.fail, { name: guild.name }));
-		}
-
-		const logChannelId = env.LOG_CHANNEL_ID;
-		if (logChannelId) {
-			const logChannel = client.channels.cache.get(logChannelId) as TextChannel;
 			if (logChannel && logChannel.type === ChannelType.GuildText) {
 				await logChannel.send(
-					ctx.locale(I18N.dev.guilds.leave.fail, { name: guild.name, id: guild.id }),
+					ctx.locale(I18N.dev.guilds.leave.log, { name: guild.name, id: guild.id }),
 				);
 			}
+		} catch {
+			await ctx.sendMessage(ctx.locale(I18N.dev.guilds.leave.fail, { name: guild.name }));
 		}
 	}
 }

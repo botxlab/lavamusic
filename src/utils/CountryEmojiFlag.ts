@@ -54,24 +54,31 @@ function parseInput(input: string): string | null {
 	// Check overrides
 	if (OVERRIDES[sanitized]) return OVERRIDES[sanitized];
 
-	try {
-		/**
-		 * Use Intl.Locale to parse BCP 47 language tags.
-		 *
-		 * .maximize() turns "ru" into "ru-Cyrl-RU" or "da" into "da-Latn-DK".
-		 *
-		 * This automatically resolves the primary region for "naked" language codes.
-		 */
-		const locale = new Intl.Locale(sanitized).maximize();
-		// If locale has a region (e.g., "US"), use it.
-		if (locale.region && ISO_REGION_REGEX.test(locale.region.toUpperCase())) {
-			return locale.region.toUpperCase();
+	if (sanitized.includes("-")) {
+		try {
+			/**
+			 * Use Intl.Locale to parse BCP 47 language tags.
+			 *
+			 * .maximize() turns "ru" into "ru-Cyrl-RU" or "da" into "da-Latn-DK".
+			 *
+			 * This automatically resolves the primary region for "naked" language codes.
+			 */
+			const locale = new Intl.Locale(sanitized).maximize();
+			// If locale has a region (e.g., "US"), use it.
+			if (locale.region && ISO_REGION_REGEX.test(locale.region.toUpperCase())) {
+				return locale.region.toUpperCase();
+			}
+		} catch {
+			// Not a valid BCP 47 tag
 		}
-	} catch {
-		// Fallback for raw ISO codes if Intl.Locale fails
-		const rawCode = sanitized.toUpperCase();
-		if (ISO_REGION_REGEX.test(rawCode)) return rawCode;
+		return null;
 	}
+
+	// Bare two-letter codes are treated as raw ISO country codes ("US", "BR").
+	// They must be checked before Intl.Locale, which parses them as language-only
+	// tags ("br" would otherwise maximize to Breton/France).
+	const rawCode = sanitized.toUpperCase();
+	if (ISO_REGION_REGEX.test(rawCode)) return rawCode;
 
 	return null;
 }

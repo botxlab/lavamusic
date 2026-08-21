@@ -51,7 +51,7 @@ export default class AddSong extends Command {
 	}
 
 	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
-		const playlist = args.shift();
+		const playlist = args.shift()?.trim().toLowerCase();
 		const song = args.join(" ");
 
 		if (!playlist) {
@@ -99,17 +99,27 @@ export default class AddSong extends Command {
 			});
 		}
 
-		let trackStrings: any;
+		let trackStrings: string[] = [];
 		let count = 0;
 		if (res.loadType === "playlist") {
-			trackStrings = res.tracks.map((track) => track.encoded);
-			count = res.tracks.length;
-		} else if (res.loadType === "track") {
+			trackStrings = res.tracks
+				.map((track) => track.encoded)
+				.filter((encoded): encoded is string => Boolean(encoded));
+			count = trackStrings.length;
+		} else if ((res.loadType === "track" || res.loadType === "search") && res.tracks[0]?.encoded) {
 			trackStrings = [res.tracks[0].encoded];
 			count = 1;
-		} else if (res.loadType === "search") {
-			trackStrings = [res.tracks[0].encoded];
-			count = 1;
+		}
+
+		if (count === 0) {
+			return await ctx.sendMessage({
+				embeds: [
+					{
+						description: ctx.locale(I18N.commands.addsong.messages.no_songs_found),
+						color: this.client.color.red,
+					},
+				],
+			});
 		}
 
 		await client.db.addTracksToPlaylist(ctx.author?.id ?? "", playlist, trackStrings);

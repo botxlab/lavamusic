@@ -109,15 +109,19 @@ export class PostgresProvider implements IDatabaseProvider {
 
 				if (result.length > 0) return result[0] as Guild;
 
-				// Create guild if not exists
-				await db
+				// Create guild if not exists; RETURNING covers the case where another
+				// caller inserted the row between our SELECT and INSERT
+				const inserted = await db
 					.insert(guild)
 					.values({
 						guildId,
 						prefix: env.PREFIX,
 						language: env.DEFAULT_LANGUAGE,
 					})
-					.onConflictDoNothing();
+					.onConflictDoNothing()
+					.returning();
+
+				if (inserted.length > 0) return inserted[0] as Guild;
 
 				const created = await db.select().from(guild).where(eq(guild.guildId, guildId));
 				return created[0] as Guild;
@@ -170,13 +174,10 @@ export class PostgresProvider implements IDatabaseProvider {
 
 			async set(guildId: string, textId: string, messageId: string): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing) {
-					await db.update(setup).set({ textId, messageId }).where(eq(setup.guildId, guildId));
-				} else {
-					await db.insert(setup).values({ guildId, textId, messageId });
-				}
+				await db
+					.insert(setup)
+					.values({ guildId, textId, messageId })
+					.onConflictDoUpdate({ target: setup.guildId, set: { textId, messageId } });
 			},
 
 			async delete(guildId: string): Promise<void> {
@@ -203,13 +204,10 @@ export class PostgresProvider implements IDatabaseProvider {
 
 			async set(guildId: string, textId: string, voiceId: string): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing && !Array.isArray(existing)) {
-					await db.update(stay).set({ textId, voiceId }).where(eq(stay.guildId, guildId));
-				} else {
-					await db.insert(stay).values({ guildId, textId, voiceId });
-				}
+				await db
+					.insert(stay)
+					.values({ guildId, textId, voiceId })
+					.onConflictDoUpdate({ target: stay.guildId, set: { textId, voiceId } });
 			},
 
 			async delete(guildId: string): Promise<void> {
@@ -233,16 +231,10 @@ export class PostgresProvider implements IDatabaseProvider {
 
 			async setMode(guildId: string, mode: boolean): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing) {
-					await db
-						.update(dj)
-						.set({ mode: mode ? 1 : 0 })
-						.where(eq(dj.guildId, guildId));
-				} else {
-					await db.insert(dj).values({ guildId, mode: mode ? 1 : 0 });
-				}
+				await db
+					.insert(dj)
+					.values({ guildId, mode: mode ? 1 : 0 })
+					.onConflictDoUpdate({ target: dj.guildId, set: { mode: mode ? 1 : 0 } });
 			},
 		};
 
@@ -327,34 +319,53 @@ export class PostgresProvider implements IDatabaseProvider {
 			},
 
 			async addTracks(userId: string, playlistName: string, tracks: string[]): Promise<void> {
-				const p = await repo.get(userId, playlistName);
+				// Read-modify-write inside a transaction so concurrent updates don't clobber each other
+				await db.transaction(async (tx) => {
+					const r = await tx
+						.select()
+						.from(playlist)
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const p = r[0] as Playlist | undefined;
 
-				if (!p) {
-					await repo.createWithTracks(userId, playlistName, tracks);
-					return;
-				}
+					if (!p) {
+						await tx
+							.insert(playlist)
+							.values({
+								id: randomUUID(),
+								userId,
+								name: playlistName,
+								tracks: JSON.stringify(tracks),
+							})
+							.onConflictDoNothing();
+						return;
+					}
 
-				const existing = p.tracks ? JSON.parse(p.tracks) : [];
-				const updated = [...existing, ...tracks];
-
-				await db
-					.update(playlist)
-					.set({ tracks: JSON.stringify(updated) })
-					.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const existing = p.tracks ? JSON.parse(p.tracks) : [];
+					await tx
+						.update(playlist)
+						.set({ tracks: JSON.stringify([...existing, ...tracks]) })
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+				});
 			},
 
 			async removeTrack(userId: string, playlistName: string, encodedSong: string): Promise<void> {
-				const p = await repo.get(userId, playlistName);
-				if (!p) return;
+				await db.transaction(async (tx) => {
+					const r = await tx
+						.select()
+						.from(playlist)
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const p = r[0] as Playlist | undefined;
+					if (!p) return;
 
-				const tracks: string[] = JSON.parse(p.tracks ?? "[]");
-				const idx = tracks.indexOf(encodedSong);
-				if (idx !== -1) tracks.splice(idx, 1);
+					const tracks: string[] = JSON.parse(p.tracks ?? "[]");
+					const idx = tracks.indexOf(encodedSong);
+					if (idx !== -1) tracks.splice(idx, 1);
 
-				await db
-					.update(playlist)
-					.set({ tracks: JSON.stringify(tracks) })
-					.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					await tx
+						.update(playlist)
+						.set({ tracks: JSON.stringify(tracks) })
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+				});
 			},
 
 			async getTracks(userId: string, playlistName: string): Promise<string[] | null> {
@@ -448,14 +459,19 @@ export class SQLiteProvider implements IDatabaseProvider {
 
 				if (result.length > 0) return result[0] as unknown as Guild;
 
-				await db
+				// Create guild if not exists; RETURNING covers the case where another
+				// caller inserted the row between our SELECT and INSERT
+				const inserted = await db
 					.insert(guild)
 					.values({
 						guildId,
 						prefix: env.PREFIX,
 						language: env.DEFAULT_LANGUAGE,
 					})
-					.onConflictDoNothing();
+					.onConflictDoNothing()
+					.returning();
+
+				if (inserted.length > 0) return inserted[0] as unknown as Guild;
 
 				const created = await db.select().from(guild).where(eq(guild.guildId, guildId));
 				return created[0] as unknown as Guild;
@@ -508,13 +524,10 @@ export class SQLiteProvider implements IDatabaseProvider {
 
 			async set(guildId: string, textId: string, messageId: string): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing) {
-					await db.update(setup).set({ textId, messageId }).where(eq(setup.guildId, guildId));
-				} else {
-					await db.insert(setup).values({ guildId, textId, messageId });
-				}
+				await db
+					.insert(setup)
+					.values({ guildId, textId, messageId })
+					.onConflictDoUpdate({ target: setup.guildId, set: { textId, messageId } });
 			},
 
 			async delete(guildId: string): Promise<void> {
@@ -541,13 +554,10 @@ export class SQLiteProvider implements IDatabaseProvider {
 
 			async set(guildId: string, textId: string, voiceId: string): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing && !Array.isArray(existing)) {
-					await db.update(stay).set({ textId, voiceId }).where(eq(stay.guildId, guildId));
-				} else {
-					await db.insert(stay).values({ guildId, textId, voiceId });
-				}
+				await db
+					.insert(stay)
+					.values({ guildId, textId, voiceId })
+					.onConflictDoUpdate({ target: stay.guildId, set: { textId, voiceId } });
 			},
 
 			async delete(guildId: string): Promise<void> {
@@ -571,16 +581,10 @@ export class SQLiteProvider implements IDatabaseProvider {
 
 			async setMode(guildId: string, mode: boolean): Promise<void> {
 				await guilds.get(guildId);
-				const existing = await repo.get(guildId);
-
-				if (existing) {
-					await db
-						.update(dj)
-						.set({ mode: mode ? 1 : 0 })
-						.where(eq(dj.guildId, guildId));
-				} else {
-					await db.insert(dj).values({ guildId, mode: mode ? 1 : 0 });
-				}
+				await db
+					.insert(dj)
+					.values({ guildId, mode: mode ? 1 : 0 })
+					.onConflictDoUpdate({ target: dj.guildId, set: { mode: mode ? 1 : 0 } });
 			},
 		};
 
@@ -668,34 +672,53 @@ export class SQLiteProvider implements IDatabaseProvider {
 			},
 
 			async addTracks(userId: string, playlistName: string, tracks: string[]): Promise<void> {
-				const p = await repo.get(userId, playlistName);
+				// Read-modify-write inside a transaction so concurrent updates don't clobber each other
+				await db.transaction(async (tx) => {
+					const r = await tx
+						.select()
+						.from(playlist)
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const p = r[0] as unknown as Playlist | undefined;
 
-				if (!p) {
-					await repo.createWithTracks(userId, playlistName, tracks);
-					return;
-				}
+					if (!p) {
+						await tx
+							.insert(playlist)
+							.values({
+								id: randomUUID(),
+								userId,
+								name: playlistName,
+								tracks: JSON.stringify(tracks),
+							})
+							.onConflictDoNothing();
+						return;
+					}
 
-				const existing = p.tracks ? JSON.parse(p.tracks) : [];
-				const updated = [...existing, ...tracks];
-
-				await db
-					.update(playlist)
-					.set({ tracks: JSON.stringify(updated) })
-					.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const existing = p.tracks ? JSON.parse(p.tracks) : [];
+					await tx
+						.update(playlist)
+						.set({ tracks: JSON.stringify([...existing, ...tracks]) })
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+				});
 			},
 
 			async removeTrack(userId: string, playlistName: string, encodedSong: string): Promise<void> {
-				const p = await repo.get(userId, playlistName);
-				if (!p) return;
+				await db.transaction(async (tx) => {
+					const r = await tx
+						.select()
+						.from(playlist)
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					const p = r[0] as unknown as Playlist | undefined;
+					if (!p) return;
 
-				const tracks: string[] = JSON.parse(p.tracks ?? "[]");
-				const idx = tracks.indexOf(encodedSong);
-				if (idx !== -1) tracks.splice(idx, 1);
+					const tracks: string[] = JSON.parse(p.tracks ?? "[]");
+					const idx = tracks.indexOf(encodedSong);
+					if (idx !== -1) tracks.splice(idx, 1);
 
-				await db
-					.update(playlist)
-					.set({ tracks: JSON.stringify(tracks) })
-					.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+					await tx
+						.update(playlist)
+						.set({ tracks: JSON.stringify(tracks) })
+						.where(and(eq(playlist.userId, userId), eq(playlist.name, playlistName)));
+				});
 			},
 
 			async getTracks(userId: string, playlistName: string): Promise<string[] | null> {

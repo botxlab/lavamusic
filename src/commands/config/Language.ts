@@ -109,7 +109,9 @@ export default class LanguageCommand extends Command {
 
 			/** Resolve key names (e.g. "EnglishUS") to codes (e.g. "en-US") */
 			let langCode: string = targetInput;
-			if (targetInput in Locale) langCode = Locale[targetInput as keyof typeof Locale];
+			if (targetInput && targetInput in Locale) {
+				langCode = Locale[targetInput as keyof typeof Locale];
+			}
 
 			const supportedLanguages = getSupportedLanguages();
 			const userLocale = ctx.interaction?.locale || langCode;

@@ -18,7 +18,7 @@ export default class Prefix extends Command {
 				usage: "prefix",
 			},
 			category: "general",
-			aliases: ["pf"],
+			aliases: ["pre"],
 			cooldown: 3,
 			args: true,
 			vote: false,

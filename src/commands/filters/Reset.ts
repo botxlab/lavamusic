@@ -12,7 +12,7 @@ export default class Reset extends Command {
 				usage: "reset",
 			},
 			category: "filters",
-			aliases: ["rs"],
+			aliases: ["rst"],
 			cooldown: 3,
 			args: false,
 			vote: false,

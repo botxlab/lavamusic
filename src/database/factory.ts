@@ -108,23 +108,28 @@ export async function createDatabaseProvider(): Promise<IDatabaseProvider> {
 }
 
 /**
- * Singleton instance holder
+ * Singleton instance holder (caches the creation promise so concurrent
+ * callers share a single provider instead of each building their own)
  */
-let _provider: IDatabaseProvider | null = null;
+let _providerPromise: Promise<IDatabaseProvider> | null = null;
 
 /**
  * Gets the database provider instance (creates it if not exists)
  */
 export async function getDatabase(): Promise<IDatabaseProvider> {
-	if (!_provider) {
-		_provider = await createDatabaseProvider();
+	if (!_providerPromise) {
+		_providerPromise = createDatabaseProvider().catch((error) => {
+			// Allow a later call to retry after a failed initialization
+			_providerPromise = null;
+			throw error;
+		});
 	}
-	return _provider;
+	return _providerPromise;
 }
 
 /**
  * Resets the database provider (useful for testing)
  */
 export function resetDatabase(): void {
-	_provider = null;
+	_providerPromise = null;
 }

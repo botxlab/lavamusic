@@ -19,18 +19,27 @@ export async function handlePlayerInteraction(
 	const player = client.manager.getPlayer(interaction.guildId!);
 	if (!player || !player.queue.current) return null;
 
-	if (interaction.member instanceof GuildMember) {
-		const isSameVoiceChannel =
-			interaction.guild?.members.me?.voice.channelId === interaction.member.voice.channelId;
-		if (!isSameVoiceChannel) {
-			await interaction.reply({
-				content: t(I18N.player.trackStart.not_connected_to_voice_channel, {
-					channel: interaction.guild?.members.me?.voice.channelId ?? "None",
-				}),
-				flags: MessageFlags.Ephemeral,
-			});
-			return null;
-		}
+	// Without a cached member we can't verify the voice channel or DJ roles, so fail closed
+	if (!(interaction.member instanceof GuildMember)) {
+		await interaction.reply({
+			content: t(I18N.player.trackStart.not_connected_to_voice_channel, {
+				channel: interaction.guild?.members.me?.voice.channelId ?? "None",
+			}),
+			flags: MessageFlags.Ephemeral,
+		});
+		return null;
+	}
+
+	const isSameVoiceChannel =
+		interaction.guild?.members.me?.voice.channelId === interaction.member.voice.channelId;
+	if (!isSameVoiceChannel) {
+		await interaction.reply({
+			content: t(I18N.player.trackStart.not_connected_to_voice_channel, {
+				channel: interaction.guild?.members.me?.voice.channelId ?? "None",
+			}),
+			flags: MessageFlags.Ephemeral,
+		});
+		return null;
 	}
 
 	if (!(await checkDj(client, interaction as any))) {
@@ -64,7 +73,8 @@ export async function updatePlayerMessage(
 	}
 
 	// Otherwise, edit the current message (normal player)
-	const track = player.queue.current!;
+	if (!player.queue.current) return;
+	const track = player.queue.current;
 	const embed = new EmbedBuilder()
 		.setAuthor({
 			name: t(I18N.player.trackStart.now_playing, { lng: locale }),

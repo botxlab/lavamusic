@@ -27,11 +27,9 @@ export default class Ready extends Event {
 
 		if (env.TOPGG) {
 			const autoPoster = AutoPoster(env.TOPGG, this.client);
-			setInterval(() => {
-				autoPoster.on("posted", (_stats) => {
-					logger.info("Successfully posted stats to Top.gg!");
-				});
-			}, 86400000); // 24 hours in milliseconds
+			autoPoster.on("posted", (_stats) => {
+				logger.info("Successfully posted stats to Top.gg!");
+			});
 		} else {
 			logger.warn("Top.gg token not found. Skipping auto poster.");
 		}

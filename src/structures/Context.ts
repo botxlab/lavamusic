@@ -14,6 +14,7 @@ import {
 	type TextBasedChannel,
 	type TextChannel,
 	type User,
+	type WebhookMessageEditOptions,
 } from "discord.js";
 import { env } from "../env";
 import { t } from "./I18n";
@@ -42,13 +43,7 @@ export default class Context {
 		this.guild = ctx.guild!;
 		this.member = ctx.member;
 		this.args = this.interaction ? args.map((arg: any) => arg.value) : args;
-		this.setUpLocale();
-	}
-
-	private async setUpLocale(): Promise<void> {
-		this.guildLocale = this.guild
-			? await this.client.db.getLanguage(this.guild.id)
-			: env.DEFAULT_LANGUAGE || Locale.EnglishUS;
+		this.guildLocale = env.DEFAULT_LANGUAGE || Locale.EnglishUS;
 	}
 
 	public get isInteraction(): boolean {
@@ -88,8 +83,12 @@ export default class Context {
 		content: string | MessagePayload | MessageCreateOptions,
 	): Promise<Message> {
 		if (this.isInteraction) {
-			await this.interaction?.deferReply();
-			this.msg = (await this.interaction?.fetchReply()) as Message;
+			if (this.interaction && !this.interaction.deferred && !this.interaction.replied) {
+				await this.interaction.deferReply();
+			}
+			this.msg = (await this.interaction?.editReply(
+				content as string | MessagePayload | WebhookMessageEditOptions,
+			)) as Message;
 			return this.msg;
 		}
 
@@ -139,7 +138,7 @@ export default class Context {
 			return this.interaction?.options.get(name, required)?.channel;
 		},
 		getSubCommand: () => {
-			return this.interaction?.options.data[0].name;
+			return this.interaction?.options.data[0]?.name;
 		},
 	};
 }

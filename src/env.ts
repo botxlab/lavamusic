@@ -79,9 +79,5 @@ const envSchema = z.object({
 
 type Env = z.infer<typeof envSchema>;
 
+// zod already rejects missing/invalid required variables during parse
 export const env: Env = envSchema.parse(process.env);
-for (const key in env) {
-	if (!(key in env)) {
-		throw new Error(`Missing env variable: ${key}. Please check the .env file and try again.`);
-	}
-}

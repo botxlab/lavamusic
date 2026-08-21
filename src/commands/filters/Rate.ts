@@ -12,7 +12,7 @@ export default class Rate extends Command {
 				usage: "rate <number>",
 			},
 			category: "filters",
-			aliases: ["rt"],
+			aliases: ["rate"],
 			cooldown: 3,
 			args: true,
 			vote: false,
