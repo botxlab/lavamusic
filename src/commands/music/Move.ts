@@ -98,9 +98,8 @@ export default class Move extends Command {
 			fromIndex < 0 ||
 			fromIndex >= player.queue.tracks.length ||
 			toIndex < 0 ||
-			toIndex >= player.queue.tracks.length + 1
+			toIndex >= player.queue.tracks.length
 		) {
-			// Allow toIndex up to length for inserting at end
 			return await ctx.sendMessage({
 				embeds: [
 					embed

@@ -1,4 +1,4 @@
-import { ChannelType, type GuildMember, PermissionFlagsBits, type VoiceState } from "discord.js";
+import { ChannelType, PermissionFlagsBits, type VoiceState } from "discord.js";
 import { Event, type Lavamusic } from "../../structures/index";
 import logger from "../../structures/Logger";
 import { LavamusicEventType } from "../../types/events";
@@ -165,32 +165,27 @@ export default class VoiceStateUpdate extends Event {
 		if (!player?.voiceChannelId) return;
 
 		const is247 = await client.db.get_247(newState.guild.id);
-		const vc = await newState.guild.channels.fetch(player.voiceChannelId).catch(() => null);
-		if (!vc || !("members" in vc)) return;
 
-		if (
-			vc.members instanceof Map &&
-			Array.from(vc.members.values()).filter((m: GuildMember) => !m.user.bot).length === 0
-		) {
+		// Count listeners via voice states - vc.members is built from the
+		// (capped) member cache and misses people in larger guilds
+		const hasHumanListeners = (voiceChannelId: string | null): boolean =>
+			newState.guild.voiceStates.cache.some((state) => {
+				if (state.channelId !== voiceChannelId) return false;
+				if (state.id === client.user!.id) return false;
+				// member may not be cached - safer to assume they're a listener
+				return state.member?.user?.bot !== true;
+			});
+
+		if (!hasHumanListeners(player.voiceChannelId)) {
 			setTimeout(async () => {
 				const latestPlayer = client.manager.getPlayer(newState.guild.id);
 				if (!latestPlayer?.voiceChannelId) return;
-				const ch = await newState.guild.channels
-					.fetch(latestPlayer.voiceChannelId)
-					.catch(() => null);
-				if (
-					ch &&
-					"members" in ch &&
-					ch.members instanceof Map &&
-					Array.from(ch.members.values()).filter((m: GuildMember) => !m.user.bot).length === 0
-				) {
-					if (!is247) {
-						try {
-							await latestPlayer.destroy();
-						} catch (err) {
-							logger?.error?.("destroy() after 5s no-listeners failed", err);
-						}
-					}
+				if (hasHumanListeners(latestPlayer.voiceChannelId)) return;
+				if (is247) return;
+				try {
+					await latestPlayer.destroy();
+				} catch (err) {
+					logger?.error?.("destroy() after 5s no-listeners failed", err);
 				}
 			}, 5000);
 		}

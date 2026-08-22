@@ -221,7 +221,7 @@ async function trackStart(
 				}),
 			})
 			.then((msg) => {
-				client.db.setSetup(msg.guild.id, msg.id, msg.channel.id);
+				client.db.setSetup(msg.guild.id, msg.channel.id, msg.id);
 			})
 			.catch(() => {
 				null;
