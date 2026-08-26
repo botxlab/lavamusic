@@ -542,3 +542,4 @@ package-lock.json
 
 .direnv/
 docs/.vitepress/cache
+/.vitepress
