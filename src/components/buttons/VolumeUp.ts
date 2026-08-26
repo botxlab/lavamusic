@@ -15,7 +15,7 @@ export default class VolumeUpButton extends Component {
 		const player = await handlePlayerInteraction(this.client, interaction);
 		if (!player) return;
 
-		const vol = Math.min(player.volume + 10, 100);
+		const vol = Math.min(player.volume + 10, 200);
 		player.setVolume(vol);
 		await interaction.deferUpdate();
 		await updatePlayerMessage(

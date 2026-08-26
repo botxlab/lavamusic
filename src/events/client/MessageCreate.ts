@@ -229,8 +229,8 @@ export default class MessageCreate extends Event {
 					if (
 						!(
 							isDev ||
-							(hasDJRole &&
-								!(message.member as GuildMember).permissions.has(PermissionFlagsBits.ManageGuild))
+							hasDJRole ||
+							(message.member as GuildMember).permissions.has(PermissionFlagsBits.ManageGuild)
 						)
 					) {
 						return await message.reply({
@@ -293,7 +293,7 @@ export default class MessageCreate extends Event {
 		}
 
 		try {
-			return command.run(this.client, ctx, ctx.args);
+			return await command.run(this.client, ctx, ctx.args);
 		} catch (error: any) {
 			logger.error(error);
 			await message.reply({

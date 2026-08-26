@@ -47,8 +47,10 @@ export default class Skip extends Command {
 				],
 			});
 		}
-		if (player.queue.tracks.length === 0 && !autoplay) {
-			await player.stopPlaying(false, false);
+		// skip() throws RangeError when the queue is empty, so stop instead;
+		// with autoplay enabled let stopPlaying trigger the next track
+		if (!player.queue.tracks.length) {
+			await player.stopPlaying(false, Boolean(autoplay));
 		} else {
 			await player.skip();
 		}

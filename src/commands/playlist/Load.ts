@@ -43,7 +43,7 @@ export default class LoadPlaylist extends Command {
 
 	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
 		let player = client.manager.getPlayer(ctx.guild.id);
-		const playlistName = args.join(" ").trim();
+		const playlistName = args.join(" ").trim().toLowerCase();
 		const playlistData = await client.db.getPlaylist(ctx.author?.id ?? "", playlistName);
 		if (!playlistData) {
 			return await ctx.sendMessage({

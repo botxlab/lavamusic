@@ -12,7 +12,7 @@ export default class Rotation extends Command {
 				usage: "rotation",
 			},
 			category: "filters",
-			aliases: ["rt"],
+			aliases: ["rot"],
 			cooldown: 3,
 			args: false,
 			vote: false,

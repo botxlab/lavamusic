@@ -171,7 +171,7 @@ async function trackStart(
 	}
 
 	const iconUrl =
-		client.config.icons[player.queue.current!.info.sourceName] ||
+		client.config.icons[track.info.sourceName] ||
 		client.user!.displayAvatarURL({ extension: "png" });
 
 	const embed = new EmbedBuilder()
@@ -186,7 +186,7 @@ async function trackStart(
 				uri: track.info.uri,
 				author: track.info.author,
 				length: client.utils.formatTime(track.info.duration),
-				requester: (player.queue.current!.requester as Requester).id,
+				requester: (track.requester as Requester).id,
 			}),
 		)
 		.setColor(client.color.main);
@@ -221,7 +221,7 @@ async function trackStart(
 				}),
 			})
 			.then((msg) => {
-				client.db.setSetup(msg.guild.id, msg.id, msg.channel.id);
+				client.db.setSetup(msg.guild.id, msg.channel.id, msg.id);
 			})
 			.catch(() => {
 				null;
@@ -309,7 +309,7 @@ async function updateSetup(client: Lavamusic, guild: Guild, locale: string): Pro
 
 async function buttonReply(int: any, args: string, color: ColorResolvable): Promise<void> {
 	const embed = new EmbedBuilder();
-	let m: Message;
+	let m: Message | undefined;
 	if (int.replied) {
 		m = await int.editReply({ embeds: [embed.setColor(color).setDescription(args)] }).catch(() => {
 			null;
@@ -320,7 +320,7 @@ async function buttonReply(int: any, args: string, color: ColorResolvable): Prom
 		});
 	}
 	setTimeout(async () => {
-		if (int && !int.flags?.has(MessageFlags.Ephemeral)) {
+		if (m?.deletable && !int.flags?.has(MessageFlags.Ephemeral)) {
 			await m.delete().catch(() => {
 				null;
 			});

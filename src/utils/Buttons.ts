@@ -58,10 +58,11 @@ function getButtons(player: Player): ActionRowBuilder<ButtonBuilder>[] {
 		},
 	];
 
-	return buttonData.reduce((rows, { customId, style, emoji }, index) => {
+	return buttonData.reduce((rows, { customId, label, style, emoji }, index) => {
 		if (index % 5 === 0) rows.push(new ActionRowBuilder<ButtonBuilder>());
 
 		const button = new ButtonBuilder().setCustomId(customId).setStyle(style).setEmoji(emoji);
+		if (label) button.setLabel(label);
 		rows[rows.length - 1].addComponents(button);
 		return rows;
 	}, [] as ActionRowBuilder<ButtonBuilder>[]);

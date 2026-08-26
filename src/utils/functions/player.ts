@@ -43,12 +43,14 @@ export async function autoPlayFunction(player: Player, lastTrack?: Track): Promi
 		const filtered = player.queue.previous
 			.filter((v) => v.info.sourceName === "spotify")
 			.slice(0, 5);
-		const ids = filtered.map(
-			(v) =>
-				v.info.identifier ||
-				v.info.uri.split("/")?.reverse()?.[0] ||
-				v.info.uri.split("/")?.reverse()?.[1],
-		);
+		const ids = filtered
+			.map(
+				(v) =>
+					v.info.identifier ||
+					v.info.uri?.split("/")?.reverse()?.[0] ||
+					v.info.uri?.split("/")?.reverse()?.[1],
+			)
+			.filter(Boolean);
 		if (ids.length >= 2) {
 			const res = await player
 				.search(
@@ -116,7 +118,7 @@ export async function autoPlayFunction(player: Player, lastTrack?: Track): Promi
 		);
 		if (res.tracks.length > 0) {
 			const track = res.tracks.filter((v) => v.info.identifier !== lastTrack.info.identifier)[0];
-			await player.queue.add(track);
+			if (track) await player.queue.add(track);
 		}
 	}
 	return;

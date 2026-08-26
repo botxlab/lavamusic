@@ -77,7 +77,20 @@ export default class Play extends Command {
 
 		if (!player.connected) await player.connect();
 
-		const response = (await player.search({ query: query }, ctx.author)) as SearchResult;
+		let response: SearchResult;
+		try {
+			response = (await player.search({ query: query }, ctx.author)) as SearchResult;
+		} catch (_error) {
+			return await ctx.editMessage({
+				content: "",
+				embeds: [
+					this.client
+						.embed()
+						.setColor(this.client.color.red)
+						.setDescription(ctx.locale(I18N.commands.play.errors.search_error)),
+				],
+			});
+		}
 		const embed = this.client.embed();
 
 		if (!response || response.tracks?.length === 0) {

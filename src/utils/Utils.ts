@@ -28,7 +28,7 @@ export interface FileWalkerResult {
 	file: string;
 }
 
-const timeFormatter = new Intl.DurationFormat("en-US", {
+const timeFormatter = new (Intl as any).DurationFormat("en-US", {
 	style: "digital",
 	fractionalDigits: 0,
 	hoursDisplay: "auto",
@@ -89,7 +89,7 @@ export function chunk<T>(array: T[], size: number): T[][] {
  * Formats bytes into human readable sizes (KB, MB, GB)
  */
 export function formatBytes(bytes: number): string {
-	if (bytes === 0) return "0 B Bytes";
+	if (!bytes || bytes <= 0) return "0 B";
 
 	const k = 1024;
 	const sizes = ["B", "KB", "MB", "GB", "TB", "PB"];
@@ -141,7 +141,7 @@ export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbe
 	if (embeds.length < 2) {
 		const payload: BaseMessageOptions = { embeds: embeds };
 		if (ctx.isInteraction) {
-			ctx.deferred
+			ctx.deferred || ctx.interaction!.replied
 				? await ctx.interaction!.followUp(payload)
 				: await ctx.interaction!.reply(payload);
 		} else {
@@ -165,11 +165,11 @@ export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbe
 		) => new ButtonBuilder().setCustomId(id).setEmoji(emoji).setStyle(style).setDisabled(disabled);
 
 		const buttons = [
-			buildButton("first", client.emoji.page.first, ButtonStyle.Primary, isFirst),
-			buildButton("back", client.emoji.page.back, ButtonStyle.Primary, isFirst),
-			buildButton("stop", client.emoji.page.cancel, ButtonStyle.Danger),
-			buildButton("next", client.emoji.page.next, ButtonStyle.Primary, isLast),
-			buildButton("last", client.emoji.page.last, ButtonStyle.Primary, isLast),
+			buildButton("paginate_first", client.emoji.page.first, ButtonStyle.Primary, isFirst),
+			buildButton("paginate_back", client.emoji.page.back, ButtonStyle.Primary, isFirst),
+			buildButton("paginate_stop", client.emoji.page.cancel, ButtonStyle.Danger),
+			buildButton("paginate_next", client.emoji.page.next, ButtonStyle.Primary, isLast),
+			buildButton("paginate_last", client.emoji.page.last, ButtonStyle.Primary, isLast),
 		];
 
 		return [new ActionRowBuilder<ButtonBuilder>().addComponents(buttons)];
@@ -181,8 +181,11 @@ export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbe
 	// Send initial message based on context type
 	if (ctx.isInteraction) {
 		const interaction = ctx.interaction!;
-		ctx.deferred ? await interaction.followUp(options) : await interaction.reply(options);
-		message = await interaction.fetchReply();
+		const response =
+			ctx.deferred || interaction.replied
+				? await interaction.followUp(options)
+				: await interaction.reply(options);
+		message = await response.fetch();
 	} else {
 		message = await (ctx.channel as TextChannel).send(options);
 	}
@@ -206,7 +209,7 @@ export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbe
 			return;
 		}
 
-		if (interaction.customId === "stop") {
+		if (interaction.customId === "paginate_stop") {
 			collector.stop("stopped_by_user");
 			await interaction.deferUpdate();
 			return;
@@ -214,16 +217,16 @@ export async function paginate(client: Lavamusic, ctx: Context, embeds: PageEmbe
 
 		// Update page index based on action
 		switch (interaction.customId) {
-			case "first":
+			case "paginate_first":
 				page = 0;
 				break;
-			case "back":
+			case "paginate_back":
 				page = Math.max(0, page - 1);
 				break;
-			case "next":
+			case "paginate_next":
 				page = Math.min(embeds.length - 1, page + 1);
 				break;
-			case "last":
+			case "paginate_last":
 				page = embeds.length - 1;
 				break;
 		}

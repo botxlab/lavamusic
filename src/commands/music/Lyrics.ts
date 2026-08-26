@@ -214,7 +214,7 @@ export default class Lyrics extends Command {
 							.setStyle(ButtonStyle.Secondary)
 							.setDisabled(current === 0),
 						new ButtonBuilder()
-							.setCustomId("stop")
+							.setCustomId("lyrics_stop")
 							.setEmoji(client.emoji.page.cancel)
 							.setStyle(ButtonStyle.Danger),
 						new ButtonBuilder()
@@ -261,6 +261,14 @@ export default class Lyrics extends Command {
 							time: 60000,
 						});
 						if (interaction.customId === "lyrics_subscribe") {
+							const liveLines = (lyricsResult as { lines?: unknown } | null)?.lines;
+							if (!Array.isArray(liveLines)) {
+								await interaction.reply({
+									content: ctx.locale(I18N.commands.lyrics.errors.no_results),
+									flags: MessageFlags.Ephemeral,
+								});
+								continue;
+							}
 							await interaction.reply({
 								content: ctx.locale(I18N.commands.lyrics.subscribed),
 								flags: MessageFlags.Ephemeral,
@@ -268,7 +276,7 @@ export default class Lyrics extends Command {
 							running = true;
 							subscriptionActive = true;
 							const maxTime = Date.now() + 3 * 60 * 1000;
-							const lyricsLines = (lyricsResult as LyricsResult).lines!;
+							const lyricsLines = liveLines as LyricsLine[];
 							lyricsUpdater = (async () => {
 								while (running && Date.now() < maxTime) {
 									if (!player || !player.playing) break;
@@ -310,7 +318,8 @@ export default class Lyrics extends Command {
 						if (interaction.customId === "lyrics_unsubscribe") {
 							running = false;
 							subscriptionActive = false;
-							const lyricsLines = (lyricsResult as any).lines as LyricsLine[];
+							const lyricsLines = ((lyricsResult as { lines?: LyricsLine[] }).lines ??
+								[]) as LyricsLine[];
 							const formatted = lyricsLines.map((l) => l.line).join("\n");
 							const unsubLyricsContainer = new ContainerBuilder()
 								.setAccentColor(client.color.main)
@@ -329,7 +338,7 @@ export default class Lyrics extends Command {
 							await interaction.update({
 								components: [unsubLyricsContainer, getNavigationRow(currentPage), liveLyricsRow],
 							});
-							await interaction.reply({
+							await interaction.followUp({
 								content: ctx.locale(I18N.commands.lyrics.unsubscribed),
 								flags: MessageFlags.Ephemeral,
 							});
@@ -340,7 +349,7 @@ export default class Lyrics extends Command {
 							currentPage--;
 						} else if (interaction.customId === "next") {
 							currentPage++;
-						} else if (interaction.customId === "stop") {
+						} else if (interaction.customId === "lyrics_stop") {
 							collectorActive = false;
 							running = false;
 							await interaction.update({
@@ -370,7 +379,7 @@ export default class Lyrics extends Command {
 					}
 				}
 				// After collecting is finished
-				if (ctx.guild?.members.me?.permissionsIn(ctx.channelId).has("SendMessages")) {
+				if (ctx.guild?.members.me?.permissionsIn(ctx.channel.id).has("SendMessages")) {
 					const finalContainer = createLyricsContainer(currentPage, true);
 					// Deactivate subscription buttons after the song ends
 					const disabledLiveLyricsRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -455,6 +464,9 @@ export default class Lyrics extends Command {
 		try {
 			if (!player) {
 				const node = client.manager.nodeManager.leastUsedNodes()[0];
+				if (!node) {
+					throw new Error("No available Lavalink nodes");
+				}
 				const result = await node.lyrics.get(track, true);
 				lyricsResult = result ?? "";
 			} else {

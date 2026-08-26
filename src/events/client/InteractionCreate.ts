@@ -207,10 +207,8 @@ export default class InteractionCreate extends Event {
 						);
 						if (
 							!(
-								hasDJRole &&
-								!(interaction.member as GuildMember).permissions.has(
-									PermissionFlagsBits.ManageGuild,
-								)
+								hasDJRole ||
+								(interaction.member as GuildMember).permissions.has(PermissionFlagsBits.ManageGuild)
 							)
 						) {
 							return await interaction.reply({

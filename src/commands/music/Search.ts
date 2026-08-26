@@ -243,7 +243,7 @@ export default class Search extends Command {
 								)}**\n${ctx.locale(I18N.commands.search.errors.invalid_selection_description)}`,
 							),
 						);
-					return await int.sendMessage({
+					return await int.followUp({
 						components: [errorContainer],
 						flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
 					});

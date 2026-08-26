@@ -42,7 +42,7 @@ export default class DeletePlaylist extends Command {
 	}
 
 	public async run(client: Lavamusic, ctx: Context, args: string[]): Promise<any> {
-		const playlistName = args.join(" ").trim();
+		const playlistName = args.join(" ").trim().toLowerCase();
 		const embed = this.client.embed();
 
 		const playlistExists = await client.db.getPlaylist(ctx.author?.id ?? "", playlistName);

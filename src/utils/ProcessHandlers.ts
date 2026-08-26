@@ -13,11 +13,18 @@ export function setupAntiCrash(client: Lavamusic): void {
 		logger.error("Uncaught Exception thrown:", err);
 	});
 
+	let exiting = false;
 	const handleExit = async (): Promise<void> => {
-		if (client) {
-			logger.star("Disconnecting from Discord...");
-			await client.destroy();
-			logger.success("Successfully disconnected from Discord!");
+		if (exiting) return;
+		exiting = true;
+		try {
+			if (client) {
+				logger.star("Disconnecting from Discord...");
+				await client.destroy();
+				logger.success("Successfully disconnected from Discord!");
+			}
+		} catch (error) {
+			logger.error("Error while disconnecting:", error);
 		}
 		process.exit(0);
 	};
